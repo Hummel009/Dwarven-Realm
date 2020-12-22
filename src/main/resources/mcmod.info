@@ -1,0 +1,15 @@
+[
+{
+	"modid" : "drealm",
+	"name" : "Dwarven Realm",
+	"version" : "Version 2.2",
+	"credits" : "Hummel009",
+	"authorList": ["Hummel009"],
+	"description": "Eastern Dwarves for the LOTR Mod!",
+	"url" : "",
+	"updateUrl" : "",
+	"parent" : "",
+	"dependencies": [],
+	"screenshots": []
+}
+]
