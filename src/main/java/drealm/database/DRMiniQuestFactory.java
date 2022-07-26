@@ -12,14 +12,14 @@ public class DRMiniQuestFactory {
 	public static LOTRMiniQuestFactory RED_MOUNTAINS;
 	public static LOTRMiniQuestFactory WIND_MOUNTAINS;
 
-	public static void onInit() {
-		DRMiniQuestFactory.addMiniQuestsFactories();
-		DRMiniQuestFactory.setupMiniQuestFactories();
-	}
-
 	private static void addMiniQuestsFactories() {
 		RED_MOUNTAINS = DRCommander.addMiniQuestFactory("RED_MOUNTAINS", "redMountains");
 		WIND_MOUNTAINS = DRCommander.addMiniQuestFactory("WIND_MOUNTAINS", "windMountains");
+	}
+
+	public static void onInit() {
+		DRMiniQuestFactory.addMiniQuestsFactories();
+		DRMiniQuestFactory.setupMiniQuestFactories();
 	}
 
 	private static void setupMiniQuestFactories() {

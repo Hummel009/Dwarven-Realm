@@ -22,6 +22,18 @@ public class DRStructureRedMountainsHouse extends LOTRWorldGenDwarfHouse {
 	}
 
 	@Override
+	protected ItemStack getRandomOtherItem(Random random) {
+		ItemStack[] items = { new ItemStack(DRRegistry.helmet_red_dwarven), new ItemStack(DRRegistry.body_red_dwarven), new ItemStack(DRRegistry.legs_red_dwarven), new ItemStack(DRRegistry.boots_red_dwarven), new ItemStack(DRRegistry.red_dwarf_steel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget) };
+		return items[random.nextInt(items.length)].copy();
+	}
+
+	@Override
+	protected ItemStack getRandomWeaponItem(Random random) {
+		ItemStack[] items = { new ItemStack(DRRegistry.sword_red_dwarven), new ItemStack(DRRegistry.dagger_red_dwarven), new ItemStack(DRRegistry.hammer_red_dwarven), new ItemStack(DRRegistry.battleaxe_red_dwarven), new ItemStack(DRRegistry.pickaxe_red_dwarven), new ItemStack(DRRegistry.mattock_red_dwarven), new ItemStack(DRRegistry.throwing_axe_red_dwarven), new ItemStack(DRRegistry.pike_red_dwarven) };
+		return items[random.nextInt(items.length)].copy();
+	}
+
+	@Override
 	protected void setupRandomBlocks(Random random) {
 		super.setupRandomBlocks(random);
 		stoneBlock = Blocks.stone;
@@ -42,17 +54,5 @@ public class DRStructureRedMountainsHouse extends LOTRWorldGenDwarfHouse {
 		personalContents = DRChestContents.RED_MOUNTAINS_STRONGHOLD;
 		plateFoods = DRFoods.RED_DWARF;
 		drinkFoods = LOTRFoods.DWARF_DRINK;
-	}
-
-	@Override
-	protected ItemStack getRandomWeaponItem(Random random) {
-		ItemStack[] items = new ItemStack[] { new ItemStack(DRRegistry.sword_red_dwarven), new ItemStack(DRRegistry.dagger_red_dwarven), new ItemStack(DRRegistry.hammer_red_dwarven), new ItemStack(DRRegistry.battleaxe_red_dwarven), new ItemStack(DRRegistry.pickaxe_red_dwarven), new ItemStack(DRRegistry.mattock_red_dwarven), new ItemStack(DRRegistry.throwing_axe_red_dwarven), new ItemStack(DRRegistry.pike_red_dwarven) };
-		return items[random.nextInt(items.length)].copy();
-	}
-
-	@Override
-	protected ItemStack getRandomOtherItem(Random random) {
-		ItemStack[] items = new ItemStack[] { new ItemStack(DRRegistry.helmet_red_dwarven), new ItemStack(DRRegistry.body_red_dwarven), new ItemStack(DRRegistry.legs_red_dwarven), new ItemStack(DRRegistry.boots_red_dwarven), new ItemStack(DRRegistry.red_dwarf_steel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget) };
-		return items[random.nextInt(items.length)].copy();
 	}
 }

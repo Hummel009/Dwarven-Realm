@@ -33,6 +33,15 @@ public class DRAchievement {
 	public static LOTRAchievement wear_full_wind_dwarven;
 	public static LOTRAchievement use_wind_dwarven_table;
 
+	private static LOTRAchievement createArmorAchievement(LOTRAchievement.Category category, int id, Item item, String name) {
+		if (!(item instanceof ItemArmor)) {
+			throw new IllegalArgumentException("Invalid armor achievement item, name: " + name + " for LOTR achievement category " + category);
+		}
+		LOTRAchievement achievement = new LOTRAchievement(category, id, item, name);
+		armorAchievements.put(((ItemArmor) item).getArmorMaterial(), achievement);
+		return achievement;
+	}
+
 	public static void onInit() {
 		smelt_red_dwarf_steel = new LOTRAchievement(Category.OROCARNI, 1, DRRegistry.red_dwarf_steel, "smeltRedDwarfSteel");
 		kill_red_dwarf = new LOTRAchievement(Category.OROCARNI, 2, LOTRMod.dwarfBone, "killRedDwarf").setRequiresEnemy(DRFaction.RED_MOUNTAINS).createTitle();
@@ -57,15 +66,6 @@ public class DRAchievement {
 		marry_wind_dwarf = new LOTRAchievement(DRAchievementCategory.WIND_MOUNTAINS, 20, LOTRMod.dwarvenRing, "marryWindDwarf").setRequiresAlly(DRFaction.WIND_MOUNTAINS);
 		do_miniquest_wind_mountains = new LOTRAchievement(DRAchievementCategory.WIND_MOUNTAINS, 21, LOTRMod.redBook, "doMiniquestWindMountains").setRequiresAlly(DRFaction.WIND_MOUNTAINS);
 		trade_wind_dwarf_smith = new LOTRAchievement(DRAchievementCategory.WIND_MOUNTAINS, 22, LOTRMod.silverCoin, "tradeWindDwarfSmith").setRequiresAlly(DRFaction.WIND_MOUNTAINS);
-	}
-
-	private static LOTRAchievement createArmorAchievement(LOTRAchievement.Category category, int id, Item item, String name) {
-		if (!(item instanceof ItemArmor)) {
-			throw new IllegalArgumentException("Invalid armor achievement item, name: " + name + " for LOTR achievement category " + category);
-		}
-		LOTRAchievement achievement = new LOTRAchievement(category, id, item, name);
-		armorAchievements.put(((ItemArmor) item).getArmorMaterial(), achievement);
-		return achievement;
 	}
 
 	public static void runAchievementCheck(EntityPlayer player) {

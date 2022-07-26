@@ -18,6 +18,43 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.util.ResourceLocation;
 
 public class DRInputStreamUtils {
+	public static String[] getAsStringArray(InputStream in, boolean hasComments) {
+		return DRInputStreamUtils.getAsStringList(in, hasComments).toArray(new String[0]);
+	}
+
+	public static List<String> getAsStringList(InputStream in, boolean hasComments) {
+		BufferedReader reader = DRInputStreamUtils.getReader(in);
+		List<String> list = new ArrayList<>();
+		if (reader == null) {
+			LOTRLog.logger.warn("Tried getting string list form reader but the reader is null.");
+			return list;
+		}
+		try {
+			list = reader.lines().filter(line -> hasComments ? !line.startsWith("#") : true).map(String::trim).filter(line -> !line.isEmpty()).collect(Collectors.toList());
+		} catch (UncheckedIOException e) {
+			LOTRLog.logger.error("Errored while getting getting string list from reader.");
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(reader);
+		}
+		return list;
+	}
+
+	public static BufferedImage getImage(InputStream in) {
+		try {
+			return ImageIO.read(in);
+		} catch (IOException e) {
+			LOTRLog.logger.error("Failed to convert a input stream into a buffered image.");
+			e.printStackTrace();
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+			}
+		}
+		return null;
+	}
+
 	public static BufferedReader getReader(InputStream in) {
 		if (in == null) {
 			return null;
@@ -31,44 +68,6 @@ public class DRInputStreamUtils {
 			map.put(entry.getKey(), DRInputStreamUtils.getReader(entry.getValue()));
 		}
 		return map;
-	}
-
-	public static String[] getAsStringArray(InputStream in, boolean hasComments) {
-		return DRInputStreamUtils.getAsStringList(in, hasComments).toArray(new String[0]);
-	}
-
-	public static List<String> getAsStringList(InputStream in, boolean hasComments) {
-		BufferedReader reader = DRInputStreamUtils.getReader(in);
-		List<String> list = new ArrayList<>();
-		if (reader == null) {
-			LOTRLog.logger.warn("Tried getting string list form reader but the reader is null.");
-			return list;
-		}
-		try {
-			list = reader.lines().filter(line -> hasComments ? !line.startsWith("#") : true).map(line -> line.trim()).filter(line -> !line.isEmpty()).collect(Collectors.toList());
-		} catch (UncheckedIOException e) {
-			LOTRLog.logger.error("Errored while getting getting string list from reader.");
-			e.printStackTrace();
-		} finally {
-			IOUtils.closeQuietly(reader);
-		}
-		return list;
-	}
-
-	public static BufferedImage getImage(InputStream in) {
-		try {
-			BufferedImage bufferedImage = ImageIO.read(in);
-			return bufferedImage;
-		} catch (IOException e) {
-			LOTRLog.logger.error("Failed to convert a input stream into a buffered image.");
-			e.printStackTrace();
-		} finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-			}
-		}
-		return null;
 	}
 
 	@SideOnly(value = Side.CLIENT)

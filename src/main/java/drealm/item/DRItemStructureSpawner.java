@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class DRItemStructureSpawner extends Item {
+	public static int lastStructureSpawnTick = 0;
 	@SideOnly(value = Side.CLIENT)
 	private IIcon iconBase;
 	@SideOnly(value = Side.CLIENT)
@@ -21,7 +22,6 @@ public class DRItemStructureSpawner extends Item {
 	private IIcon iconVillageBase;
 	@SideOnly(value = Side.CLIENT)
 	private IIcon iconVillageOverlay;
-	public static int lastStructureSpawnTick = 0;
 
 	public DRItemStructureSpawner() {
 		setHasSubtypes(true);
@@ -29,28 +29,16 @@ public class DRItemStructureSpawner extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack itemstack) {
-		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
-		String structureName = DRStructure.getNameFromID(itemstack.getItemDamage());
-		if (structureName != null) {
-			s = s + " " + StatCollector.translateToLocal("lotr.structure." + structureName + ".name");
+	@SideOnly(value = Side.CLIENT)
+	public int getColorFromItemStack(ItemStack itemstack, int pass) {
+		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(itemstack.getItemDamage());
+		if (info != null) {
+			if (pass == 0) {
+				return info.colorBackground;
+			}
+			return info.colorForeground;
 		}
-		return s;
-	}
-
-	@Override
-	@SideOnly(value = Side.CLIENT)
-	public void registerIcons(IIconRegister iconregister) {
-		iconBase = iconregister.registerIcon(getIconString() + "_base");
-		iconOverlay = iconregister.registerIcon(getIconString() + "_overlay");
-		iconVillageBase = iconregister.registerIcon(getIconString() + "_village_base");
-		iconVillageOverlay = iconregister.registerIcon(getIconString() + "_village_overlay");
-	}
-
-	@Override
-	@SideOnly(value = Side.CLIENT)
-	public boolean requiresMultipleRenderPasses() {
-		return true;
+		return 16777215;
 	}
 
 	@Override
@@ -73,16 +61,24 @@ public class DRItemStructureSpawner extends Item {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
-	public int getColorFromItemStack(ItemStack itemstack, int pass) {
-		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(itemstack.getItemDamage());
-		if (info != null) {
-			if (pass == 0) {
-				return info.colorBackground;
-			}
-			return info.colorForeground;
+	public String getItemStackDisplayName(ItemStack itemstack) {
+		StringBuilder s = new StringBuilder().append(("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim());
+		String structureName = DRStructure.getNameFromID(itemstack.getItemDamage());
+		if (structureName != null) {
+			s.append(" ").append(StatCollector.translateToLocal("lotr.structure." + structureName + ".name"));
 		}
-		return 16777215;
+		return s.toString();
+	}
+
+	@Override
+	@SideOnly(value = Side.CLIENT)
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		for (DRStructure.StructureColorInfo info : DRStructure.structureItemSpawners.values()) {
+			if (info.isHidden) {
+				continue;
+			}
+			list.add(new ItemStack(item, 1, info.spawnedID));
+		}
 	}
 
 	@Override
@@ -91,20 +87,35 @@ public class DRItemStructureSpawner extends Item {
 			return true;
 		}
 		if (LOTRLevelData.structuresBanned()) {
-			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.disabled", new Object[0]));
+			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.disabled"));
 			return false;
 		}
 		if (LOTRLevelData.isPlayerBannedForStructures(entityplayer)) {
-			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.banned", new Object[0]));
+			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.banned"));
 			return false;
 		}
 		if (lastStructureSpawnTick > 0) {
-			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.wait", new Object[] { lastStructureSpawnTick / 20.0 }));
+			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.wait", lastStructureSpawnTick / 20.0));
 			return false;
 		}
 		if (spawnStructure(entityplayer, world, itemstack.getItemDamage(), i += Facing.offsetsXForSide[side], j += Facing.offsetsYForSide[side], k += Facing.offsetsZForSide[side]) && !entityplayer.capabilities.isCreativeMode) {
 			--itemstack.stackSize;
 		}
+		return true;
+	}
+
+	@Override
+	@SideOnly(value = Side.CLIENT)
+	public void registerIcons(IIconRegister iconregister) {
+		iconBase = iconregister.registerIcon(getIconString() + "_base");
+		iconOverlay = iconregister.registerIcon(getIconString() + "_overlay");
+		iconVillageBase = iconregister.registerIcon(getIconString() + "_village_base");
+		iconVillageOverlay = iconregister.registerIcon(getIconString() + "_village_overlay");
+	}
+
+	@Override
+	@SideOnly(value = Side.CLIENT)
+	public boolean requiresMultipleRenderPasses() {
 		return true;
 	}
 
@@ -122,16 +133,5 @@ public class DRItemStructureSpawner extends Item {
 			return generated;
 		}
 		return false;
-	}
-
-	@Override
-	@SideOnly(value = Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		for (DRStructure.StructureColorInfo info : DRStructure.structureItemSpawners.values()) {
-			if (info.isHidden) {
-				continue;
-			}
-			list.add(new ItemStack(item, 1, info.spawnedID));
-		}
 	}
 }

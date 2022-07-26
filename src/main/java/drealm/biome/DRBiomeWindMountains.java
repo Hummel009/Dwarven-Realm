@@ -54,23 +54,20 @@ public class DRBiomeWindMountains extends LOTRBiome {
 	}
 
 	@Override
-	public LOTRAchievement getBiomeAchievement() {
-		return LOTRAchievement.enterMountainsWind;
-	}
-
-	@Override
-	public LOTRWaypoint.Region getBiomeWaypoints() {
-		return LOTRWaypoint.Region.RHUN;
-	}
-
-	@Override
-	public LOTRMusicRegion.Sub getBiomeMusic() {
-		return LOTRMusicRegion.RHUN.getSubregion("windMountains");
-	}
-
-	@Override
-	public boolean getEnableRiver() {
-		return false;
+	public void decorate(World world, Random random, int i, int k) {
+		super.decorate(world, random, i, k);
+		for (int l = 0; l < 3; ++l) {
+			int i1 = i + random.nextInt(16) + 8;
+			int j1 = MathHelper.getRandomIntegerInRange(random, 70, 160);
+			int k1 = k + random.nextInt(16) + 8;
+			new LOTRWorldGenMountainsideBush(LOTRMod.leaves5, 0).generate(world, random, i1, j1, k1);
+		}
+		for (int l = 0; l < 4; ++l) {
+			int i1 = i + random.nextInt(16) + 8;
+			int j1 = 70 + random.nextInt(80);
+			int k1 = k + random.nextInt(16) + 8;
+			new DRStructureWindMountainsHouse(false).generate(world, random, i1, j1, k1);
+		}
 	}
 
 	@Override
@@ -112,25 +109,28 @@ public class DRBiomeWindMountains extends LOTRBiome {
 	}
 
 	@Override
-	public void decorate(World world, Random random, int i, int k) {
-		super.decorate(world, random, i, k);
-		for (int l = 0; l < 3; ++l) {
-			int i1 = i + random.nextInt(16) + 8;
-			int j1 = MathHelper.getRandomIntegerInRange(random, 70, 160);
-			int k1 = k + random.nextInt(16) + 8;
-			new LOTRWorldGenMountainsideBush(LOTRMod.leaves5, 0).generate(world, random, i1, j1, k1);
-		}
-		for (int l = 0; l < 4; ++l) {
-			int i1 = i + random.nextInt(16) + 8;
-			int j1 = 70 + random.nextInt(80);
-			int k1 = k + random.nextInt(16) + 8;
-			new DRStructureWindMountainsHouse(false).generate(world, random, i1, j1, k1);
-		}
+	public LOTRAchievement getBiomeAchievement() {
+		return LOTRAchievement.enterMountainsWind;
+	}
+
+	@Override
+	public LOTRMusicRegion.Sub getBiomeMusic() {
+		return LOTRMusicRegion.RHUN.getSubregion("windMountains");
+	}
+
+	@Override
+	public LOTRWaypoint.Region getBiomeWaypoints() {
+		return LOTRWaypoint.Region.RHUN;
 	}
 
 	@Override
 	public float getChanceToSpawnAnimals() {
 		return 0.0f;
+	}
+
+	@Override
+	public boolean getEnableRiver() {
+		return false;
 	}
 
 	@Override

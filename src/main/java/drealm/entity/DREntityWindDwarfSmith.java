@@ -20,31 +20,8 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 	}
 
 	@Override
-	public LOTRTradeEntries getBuyPool() {
-		return WIND_DWARF_SMITH_BUY;
-	}
-
-	@Override
-	public LOTRTradeEntries getSellPool() {
-		return WIND_DWARF_SMITH_SELL;
-	}
-
-	@Override
-	public void setupNPCGender() {
-		familyInfo.setMale(true);
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(LOTRMod.blacksmithHammer));
-		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
-		return data;
-	}
-
-	@Override
-	public float getAlignmentBonus() {
-		return 2.0f;
+	public boolean canTradeWith(EntityPlayer entityplayer) {
+		return LOTRLevelData.getData(entityplayer).getAlignment(getFaction()) >= 100.0f && isFriendly(entityplayer);
 	}
 
 	@Override
@@ -54,18 +31,18 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 	}
 
 	@Override
-	public boolean canTradeWith(EntityPlayer entityplayer) {
-		return LOTRLevelData.getData(entityplayer).getAlignment(getFaction()) >= 100.0f && isFriendly(entityplayer);
+	public float getAlignmentBonus() {
+		return 2.0f;
 	}
 
 	@Override
-	public void onPlayerTrade(EntityPlayer entityplayer, LOTRTradeEntries.TradeType type, ItemStack itemstack) {
-		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.trade_wind_dwarf_smith);
+	public LOTRTradeEntries getBuyPool() {
+		return WIND_DWARF_SMITH_BUY;
 	}
 
 	@Override
-	public boolean shouldTraderRespawn() {
-		return true;
+	public LOTRTradeEntries getSellPool() {
+		return WIND_DWARF_SMITH_SELL;
 	}
 
 	@Override
@@ -77,5 +54,28 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 			return "windDwarf/smith/neutral";
 		}
 		return "windDwarf/dwarf/hostile";
+	}
+
+	@Override
+	public void onPlayerTrade(EntityPlayer entityplayer, LOTRTradeEntries.TradeType type, ItemStack itemstack) {
+		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.trade_wind_dwarf_smith);
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+		data = super.onSpawnWithEgg(data);
+		npcItemsInv.setMeleeWeapon(new ItemStack(LOTRMod.blacksmithHammer));
+		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
+		return data;
+	}
+
+	@Override
+	public void setupNPCGender() {
+		familyInfo.setMale(true);
+	}
+
+	@Override
+	public boolean shouldTraderRespawn() {
+		return true;
 	}
 }

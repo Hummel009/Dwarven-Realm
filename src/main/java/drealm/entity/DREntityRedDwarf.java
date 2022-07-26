@@ -19,21 +19,23 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
+	public LOTRMiniQuest createMiniQuest() {
+		return DRMiniQuestFactory.RED_MOUNTAINS.createQuest(this);
+	}
+
+	@Override
+	public float getAlignmentBonus() {
+		return 1.0f;
+	}
+
+	@Override
+	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
+		return DRMiniQuestFactory.RED_MOUNTAINS;
+	}
+
+	@Override
 	protected LOTRFoods getDwarfFoods() {
 		return DRFoods.RED_DWARF;
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.dagger_red_dwarven));
-		npcItemsInv.setIdleItem(null);
-		return data;
-	}
-
-	@Override
-	public LOTRFaction getFaction() {
-		return DRFaction.RED_MOUNTAINS;
 	}
 
 	@Override
@@ -42,8 +44,8 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRChestContents getLarderDrops() {
-		return DRChestContents.RED_DWARF_HOUSE_LARDER;
+	public LOTRFaction getFaction() {
+		return DRFaction.RED_MOUNTAINS;
 	}
 
 	@Override
@@ -57,8 +59,8 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	public float getAlignmentBonus() {
-		return 1.0f;
+	protected LOTRChestContents getLarderDrops() {
+		return DRChestContents.RED_DWARF_HOUSE_LARDER;
 	}
 
 	@Override
@@ -73,12 +75,10 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	public LOTRMiniQuest createMiniQuest() {
-		return DRMiniQuestFactory.RED_MOUNTAINS.createQuest(this);
-	}
-
-	@Override
-	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
-		return DRMiniQuestFactory.RED_MOUNTAINS;
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+		data = super.onSpawnWithEgg(data);
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.dagger_red_dwarven));
+		npcItemsInv.setIdleItem(null);
+		return data;
 	}
 }

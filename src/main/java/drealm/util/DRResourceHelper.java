@@ -12,37 +12,6 @@ import lotr.common.util.LOTRLog;
 import net.minecraft.util.ResourceLocation;
 
 public class DRResourceHelper {
-	public static InputStream getInputStream(ResourceLocation res) {
-		return DRResourceHelper.getInputStream(DRResourceHelper.getContainer(res), DRResourceHelper.getPath(res));
-	}
-
-	private static InputStream getInputStream(ModContainer container, String path) {
-		return container.getClass().getResourceAsStream(path);
-	}
-
-	public static Map<String, InputStream> getInputStreams(ResourceLocation res, String... extensions) {
-		HashMap<String, InputStream> map = new HashMap<>();
-		for (Map.Entry<String, ResourceLocation> entry : DRResourceHelper.getSubFileResourceLocations(res, extensions).entrySet()) {
-			map.put(entry.getKey(), DRResourceHelper.getInputStream(entry.getValue()));
-		}
-		return map;
-	}
-
-	public static Map<String, ResourceLocation> getSubFileResourceLocations(ResourceLocation res, String... extensions) {
-		HashMap<String, ResourceLocation> map = new HashMap<>();
-		String basePath = DRResourceHelper.getPath(res);
-		for (String file : DRResourceHelper.getAllSubFilePaths(res, extensions)) {
-			String name = file.replace("\\", "/");
-			int startIndex = name.contains(basePath) ? name.lastIndexOf(basePath) + basePath.length() + (basePath.endsWith("/") ? 0 : 1) : 0;
-			int endIndex = name.indexOf(".");
-			String newResPath = res.getResourcePath() + (res.getResourcePath().endsWith("/") ? "" : "/") + name.substring(startIndex, name.length());
-			ResourceLocation fileRes = new ResourceLocation(res.getResourceDomain(), newResPath);
-			name = name.substring(startIndex, endIndex);
-			map.put(name, fileRes);
-		}
-		return map;
-	}
-
 	public static List<String> getAllSubFilePaths(ResourceLocation res, String... extensions) {
 		ArrayList<String> list = new ArrayList<>();
 		String baseStringPath = DRResourceHelper.getPath(res);
@@ -55,13 +24,13 @@ public class DRResourceHelper {
 			Path basePath;
 			URI uri = container.getClass().getResource(baseStringPath).toURI();
 			FileSystem fileSystem = null;
-			if (uri.getScheme().equals("jar")) {
+			if ("jar".equals(uri.getScheme())) {
 				fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
-				basePath = fileSystem.getPath(baseStringPath, new String[0]);
+				basePath = fileSystem.getPath(baseStringPath);
 			} else {
 				basePath = Paths.get(uri);
 			}
-			Stream<Path> allFilePaths = Files.walk(basePath, new FileVisitOption[0]);
+			Stream<Path> allFilePaths = Files.walk(basePath);
 			Iterator it = allFilePaths.iterator();
 			block2: while (it.hasNext()) {
 				Path filePath = (Path) it.next();
@@ -69,7 +38,7 @@ public class DRResourceHelper {
 				if (!stringFilePath.contains(".")) {
 					continue;
 				}
-				String extension = stringFilePath.substring(stringFilePath.indexOf(".") + 1, stringFilePath.length());
+				String extension = stringFilePath.substring(stringFilePath.indexOf(".") + 1);
 				if (extensions.length != 0) {
 					for (String allowedExtension : extensions) {
 						if (!allowedExtension.equalsIgnoreCase(extension)) {
@@ -93,15 +62,46 @@ public class DRResourceHelper {
 		return list;
 	}
 
-	private static String getPath(ResourceLocation res) {
-		return "/assets/" + res.getResourceDomain() + "/" + res.getResourcePath();
-	}
-
 	private static ModContainer getContainer(ResourceLocation res) {
 		ModContainer modContainer = Loader.instance().getIndexedModList().get(res.getResourceDomain());
 		if (modContainer == null) {
 			throw new IllegalArgumentException("Can't find the mod container for the domain " + res.getResourceDomain());
 		}
 		return modContainer;
+	}
+
+	private static InputStream getInputStream(ModContainer container, String path) {
+		return container.getClass().getResourceAsStream(path);
+	}
+
+	public static InputStream getInputStream(ResourceLocation res) {
+		return DRResourceHelper.getInputStream(DRResourceHelper.getContainer(res), DRResourceHelper.getPath(res));
+	}
+
+	public static Map<String, InputStream> getInputStreams(ResourceLocation res, String... extensions) {
+		HashMap<String, InputStream> map = new HashMap<>();
+		for (Map.Entry<String, ResourceLocation> entry : DRResourceHelper.getSubFileResourceLocations(res, extensions).entrySet()) {
+			map.put(entry.getKey(), DRResourceHelper.getInputStream(entry.getValue()));
+		}
+		return map;
+	}
+
+	private static String getPath(ResourceLocation res) {
+		return "/assets/" + res.getResourceDomain() + "/" + res.getResourcePath();
+	}
+
+	public static Map<String, ResourceLocation> getSubFileResourceLocations(ResourceLocation res, String... extensions) {
+		HashMap<String, ResourceLocation> map = new HashMap<>();
+		String basePath = DRResourceHelper.getPath(res);
+		for (String file : DRResourceHelper.getAllSubFilePaths(res, extensions)) {
+			String name = file.replace("\\", "/");
+			int startIndex = name.contains(basePath) ? name.lastIndexOf(basePath) + basePath.length() + (basePath.endsWith("/") ? 0 : 1) : 0;
+			int endIndex = name.indexOf(".");
+			String newResPath = res.getResourcePath() + (res.getResourcePath().endsWith("/") ? "" : "/") + name.substring(startIndex);
+			ResourceLocation fileRes = new ResourceLocation(res.getResourceDomain(), newResPath);
+			name = name.substring(startIndex, endIndex);
+			map.put(name, fileRes);
+		}
+		return map;
 	}
 }

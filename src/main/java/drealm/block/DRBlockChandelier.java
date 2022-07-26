@@ -17,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class DRBlockChandelier extends Block {
 	@SideOnly(value = Side.CLIENT)
 	private IIcon[] chandelierIcons;
-	private String[] chandelierNames = new String[] { "redDwarven", "windDwarven" };
+	private String[] chandelierNames = { "redDwarven", "windDwarven" };
 
 	public DRBlockChandelier() {
 		super(Material.circuits);
@@ -30,43 +30,6 @@ public class DRBlockChandelier extends Block {
 	}
 
 	@Override
-	public IIcon getIcon(int i, int j) {
-		if (j >= chandelierNames.length) {
-			j = 0;
-		}
-		return chandelierIcons[j];
-	}
-
-	@Override
-	@SideOnly(value = Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconregister) {
-		chandelierIcons = new IIcon[chandelierNames.length];
-		for (int i = 0; i < chandelierNames.length; ++i) {
-			chandelierIcons[i] = iconregister.registerIcon(getTextureName() + "_" + chandelierNames[i]);
-		}
-	}
-
-	@Override
-	public int damageDropped(int i) {
-		return i;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
-	@Override
-	public int getRenderType() {
-		return 1;
-	}
-
-	@Override
 	public boolean canBlockStay(World world, int i, int j, int k) {
 		Block block = world.getBlock(i, j + 1, k);
 		int meta = world.getBlockMetadata(i, j + 1, k);
@@ -76,10 +39,7 @@ public class DRBlockChandelier extends Block {
 		if (block instanceof BlockSlab && !block.isOpaqueCube() && (meta & 8) == 0) {
 			return true;
 		}
-		if (block instanceof BlockStairs && (meta & 4) == 0) {
-			return true;
-		}
-		if (block instanceof LOTRBlockOrcChain) {
+		if (block instanceof BlockStairs && (meta & 4) == 0 || block instanceof LOTRBlockOrcChain) {
 			return true;
 		}
 		return world.getBlock(i, j + 1, k).isSideSolid(world, i, j + 1, k, ForgeDirection.DOWN);
@@ -91,11 +51,8 @@ public class DRBlockChandelier extends Block {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, Block block) {
-		if (!canBlockStay(world, i, j, k)) {
-			this.dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
-			world.setBlockToAir(i, j, k);
-		}
+	public int damageDropped(int i) {
+		return i;
 	}
 
 	@Override
@@ -104,10 +61,36 @@ public class DRBlockChandelier extends Block {
 	}
 
 	@Override
+	public IIcon getIcon(int i, int j) {
+		if (j >= chandelierNames.length) {
+			j = 0;
+		}
+		return chandelierIcons[j];
+	}
+
+	@Override
+	public int getRenderType() {
+		return 1;
+	}
+
+	@Override
 	@SideOnly(value = Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i = 0; i < chandelierNames.length; ++i) {
 			list.add(new ItemStack(item, 1, i));
+		}
+	}
+
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	@Override
+	public void onNeighborBlockChange(World world, int i, int j, int k, Block block) {
+		if (!canBlockStay(world, i, j, k)) {
+			this.dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
+			world.setBlockToAir(i, j, k);
 		}
 	}
 
@@ -122,6 +105,20 @@ public class DRBlockChandelier extends Block {
 		spawnChandelierParticles(world, i + d1, j + d2, k + d1, random, meta);
 		spawnChandelierParticles(world, i + d, j + d2, k + d1, random, meta);
 		spawnChandelierParticles(world, i + d1, j + d2, k + d, random, meta);
+	}
+
+	@Override
+	@SideOnly(value = Side.CLIENT)
+	public void registerBlockIcons(IIconRegister iconregister) {
+		chandelierIcons = new IIcon[chandelierNames.length];
+		for (int i = 0; i < chandelierNames.length; ++i) {
+			chandelierIcons[i] = iconregister.registerIcon(getTextureName() + "_" + chandelierNames[i]);
+		}
+	}
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
 	}
 
 	private void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {

@@ -12,19 +12,34 @@ public class DREntityRedDwarfWarrior extends DREntityRedDwarf {
 	}
 
 	@Override
+	public float getAlignmentBonus() {
+		return 2.0f;
+	}
+
+	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
 		int i = rand.nextInt(7);
-		if (i == 0) {
+		switch (i) {
+		case 0:
 			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_red_dwarven));
-		} else if (i == 1 || i == 2) {
+			break;
+		case 1:
+		case 2:
 			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.battleaxe_red_dwarven));
-		} else if (i == 3 || i == 4) {
+			break;
+		case 3:
+		case 4:
 			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammer_red_dwarven));
-		} else if (i == 5) {
+			break;
+		case 5:
 			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.mattock_red_dwarven));
-		} else if (i == 6) {
+			break;
+		case 6:
 			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pike_red_dwarven));
+			break;
+		default:
+			break;
 		}
 		if (rand.nextInt(6) == 0) {
 			npcItemsInv.setSpearBackup(npcItemsInv.getMeleeWeapon());
@@ -38,10 +53,5 @@ public class DREntityRedDwarfWarrior extends DREntityRedDwarf {
 			setCurrentItemOrArmor(4, new ItemStack(DRRegistry.helmet_red_dwarven));
 		}
 		return data;
-	}
-
-	@Override
-	public float getAlignmentBonus() {
-		return 2.0f;
 	}
 }

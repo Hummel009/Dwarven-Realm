@@ -38,15 +38,6 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconregister) {
-		tableIcons = new IIcon[3];
-		tableIcons[0] = iconregister.registerIcon(getTextureName() + "_side0");
-		tableIcons[1] = iconregister.registerIcon(getTextureName() + "_side1");
-		tableIcons[2] = iconregister.registerIcon(getTextureName() + "_top");
-	}
-
-	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int side, float f, float f1, float f2) {
 		boolean hasRequiredAlignment;
 		hasRequiredAlignment = LOTRLevelData.getData(entityplayer).getAlignment(tableFaction) >= 1.0f;
@@ -68,16 +59,25 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 		return true;
 	}
 
+	@Override
 	@SideOnly(value = Side.CLIENT)
-	public static class Gui extends LOTRGuiCraftingTable {
-		public Gui(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(new Container(inv, world, i, j, k), "wind_mountains");
-		}
+	public void registerBlockIcons(IIconRegister iconregister) {
+		tableIcons = new IIcon[3];
+		tableIcons[0] = iconregister.registerIcon(getTextureName() + "_side0");
+		tableIcons[1] = iconregister.registerIcon(getTextureName() + "_side1");
+		tableIcons[2] = iconregister.registerIcon(getTextureName() + "_top");
 	}
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
 			super(inv, world, i, j, k, DRRecipe.wind_mountains, DRRegistry.wind_dwarven_table);
+		}
+	}
+
+	@SideOnly(value = Side.CLIENT)
+	public static class Gui extends LOTRGuiCraftingTable {
+		public Gui(InventoryPlayer inv, World world, int i, int j, int k) {
+			super(new Container(inv, world, i, j, k), "wind_mountains");
 		}
 	}
 }

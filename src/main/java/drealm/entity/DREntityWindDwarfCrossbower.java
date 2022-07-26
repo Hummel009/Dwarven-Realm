@@ -18,23 +18,14 @@ public class DREntityWindDwarfCrossbower extends DREntityWindDwarfWarrior {
 		spawnRidingHorse = false;
 	}
 
-	@Override
-	protected EntityAIBase getDwarfAttackAI() {
-		meleeAttackAI = super.getDwarfAttackAI();
-		return meleeAttackAI;
-	}
-
 	protected EntityAIBase createRedRangedAI() {
 		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_wind_dwarven));
-		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.ironCrossbow));
-		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
-		return data;
+	protected EntityAIBase getDwarfAttackAI() {
+		meleeAttackAI = super.getDwarfAttackAI();
+		return meleeAttackAI;
 	}
 
 	@Override
@@ -65,5 +56,14 @@ public class DREntityWindDwarfCrossbower extends DREntityWindDwarfWarrior {
 			tasks.addTask(2, rangedAttackAI);
 			setCurrentItemOrArmor(0, npcItemsInv.getRangedWeapon());
 		}
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+		data = super.onSpawnWithEgg(data);
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_wind_dwarven));
+		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.ironCrossbow));
+		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
+		return data;
 	}
 }

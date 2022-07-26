@@ -19,21 +19,23 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
+	public LOTRMiniQuest createMiniQuest() {
+		return DRMiniQuestFactory.WIND_MOUNTAINS.createQuest(this);
+	}
+
+	@Override
+	public float getAlignmentBonus() {
+		return 1.0f;
+	}
+
+	@Override
+	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
+		return DRMiniQuestFactory.WIND_MOUNTAINS;
+	}
+
+	@Override
 	protected LOTRFoods getDwarfFoods() {
 		return DRFoods.WIND_DWARF;
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.dagger_wind_dwarven));
-		npcItemsInv.setIdleItem(null);
-		return data;
-	}
-
-	@Override
-	public LOTRFaction getFaction() {
-		return DRFaction.WIND_MOUNTAINS;
 	}
 
 	@Override
@@ -42,8 +44,8 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRChestContents getLarderDrops() {
-		return DRChestContents.WIND_DWARF_HOUSE_LARDER;
+	public LOTRFaction getFaction() {
+		return DRFaction.WIND_MOUNTAINS;
 	}
 
 	@Override
@@ -57,8 +59,8 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	public float getAlignmentBonus() {
-		return 1.0f;
+	protected LOTRChestContents getLarderDrops() {
+		return DRChestContents.WIND_DWARF_HOUSE_LARDER;
 	}
 
 	@Override
@@ -73,13 +75,11 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	public LOTRMiniQuest createMiniQuest() {
-		return DRMiniQuestFactory.WIND_MOUNTAINS.createQuest(this);
-	}
-
-	@Override
-	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
-		return DRMiniQuestFactory.WIND_MOUNTAINS;
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+		data = super.onSpawnWithEgg(data);
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.dagger_wind_dwarven));
+		npcItemsInv.setIdleItem(null);
+		return data;
 	}
 
 }

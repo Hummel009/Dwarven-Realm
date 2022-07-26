@@ -28,12 +28,8 @@ public class DRTickHandlerServer {
 	@SubscribeEvent
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
 		World world = event.world;
-		if (event.phase == TickEvent.Phase.END) {
-			if (world == DimensionManager.getWorld(0)) {
-				if (DRItemStructureSpawner.lastStructureSpawnTick > 0) {
-					--DRItemStructureSpawner.lastStructureSpawnTick;
-				}
-			}
+		if (event.phase == TickEvent.Phase.END && world == DimensionManager.getWorld(0) && DRItemStructureSpawner.lastStructureSpawnTick > 0) {
+			--DRItemStructureSpawner.lastStructureSpawnTick;
 		}
 	}
 

@@ -3,8 +3,6 @@ package drealm.item;
 import drealm.database.DRFaction;
 import drealm.util.DRCommander;
 import lotr.common.item.LOTRItemBanner;
-import lotr.common.recipe.LOTRRecipes;
-import net.minecraft.init.Blocks;
 
 public class DRItemBanner {
 	public static LOTRItemBanner.BannerType RED_MOUNTAINS;

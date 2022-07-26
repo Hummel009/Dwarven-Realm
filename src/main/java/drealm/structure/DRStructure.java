@@ -16,21 +16,12 @@ public class DRStructure {
 	public static HashMap<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
 	public static int id = 3000;
 
-	private static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
-		if (idToClassMapping.containsKey(id)) {
-			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + "!");
-		}
-		idToClassMapping.put(id, str);
-		idToStringMapping.put(id, name);
-		structureItemSpawners.put(id, new StructureColorInfo(id, colorBG, colorFG, str.isVillage(), hide));
+	public static String getNameFromID(int ID) {
+		return idToStringMapping.get(ID);
 	}
 
 	public static IStructureProvider getStructureForID(int ID) {
 		return idToClassMapping.get(ID);
-	}
-
-	public static String getNameFromID(int ID) {
-		return idToStringMapping.get(ID);
 	}
 
 	public static void preInit() {
@@ -56,7 +47,7 @@ public class DRStructure {
 				try {
 					generator = strClass.getConstructor(Boolean.TYPE).newInstance(true);
 				} catch (Exception e) {
-					FMLLog.warning("Failed to build LOTR structure " + strClass.getName(), new Object[0]);
+					FMLLog.warning("Failed to build LOTR structure " + strClass.getName());
 					e.printStackTrace();
 				}
 				if (generator != null) {
@@ -93,6 +84,21 @@ public class DRStructure {
 		DRStructure.registerStructure(id, strProvider, name, colorBG, colorFG, hide);
 	}
 
+	private static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
+		if (idToClassMapping.containsKey(id)) {
+			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + "!");
+		}
+		idToClassMapping.put(id, str);
+		idToStringMapping.put(id, name);
+		structureItemSpawners.put(id, new StructureColorInfo(id, colorBG, colorFG, str.isVillage(), hide));
+	}
+
+	public interface IStructureProvider {
+		boolean generateStructure(World var1, EntityPlayer var2, int var3, int var4, int var5);
+
+		boolean isVillage();
+	}
+
 	public static class StructureColorInfo {
 		public final int spawnedID;
 		public final int colorBackground;
@@ -107,12 +113,6 @@ public class DRStructure {
 			isVillage = vill;
 			isHidden = hide;
 		}
-	}
-
-	public interface IStructureProvider {
-		boolean generateStructure(World var1, EntityPlayer var2, int var3, int var4, int var5);
-
-		boolean isVillage();
 	}
 
 }

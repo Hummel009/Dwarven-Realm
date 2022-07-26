@@ -8,9 +8,6 @@ import net.minecraft.world.World;
 
 public class DRServerProxy implements IGuiHandler {
 
-	public void preInit(FMLPreInitializationEvent event) {
-	}
-
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
 		if (ID == 0) {
@@ -34,5 +31,8 @@ public class DRServerProxy implements IGuiHandler {
 	}
 
 	public void onInit(FMLInitializationEvent event) {
+	}
+
+	public void preInit(FMLPreInitializationEvent event) {
 	}
 }

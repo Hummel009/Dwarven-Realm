@@ -12,10 +12,6 @@ public class DRFaction {
 	public static LOTRFaction RED_MOUNTAINS;
 	public static LOTRFaction WIND_MOUNTAINS;
 
-	public static void preInit() {
-		DRFaction.setupFactions();
-	}
-
 	public static void onInit() {
 		DRFaction.setupRelations();
 		DRFaction.setupMapInfo();
@@ -23,11 +19,24 @@ public class DRFaction {
 		DRFaction.setupRanks();
 	}
 
+	public static void preInit() {
+		DRFaction.setupFactions();
+	}
+
+	private static void setupControlZones() {
+		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(2437, 898, 454));
+		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(2500, 1535, 292));
+		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
+		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
+		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
+		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
+	}
+
 	private static void setupFactions() {
 		EnumSet<LOTRFaction.FactionType> enumSetFreeDwarf = EnumSet.of(LOTRFaction.FactionType.TYPE_FREE, LOTRFaction.FactionType.TYPE_DWARF);
 		EnumSet<LOTRFaction.FactionType> enumSetEvilDwarf = EnumSet.of(LOTRFaction.FactionType.TYPE_ORC, LOTRFaction.FactionType.TYPE_DWARF);
 		RED_MOUNTAINS = DRCommander.addFaction("RED_MOUNTAINS", 0x570000, LOTRDimension.DimensionRegion.EAST, enumSetFreeDwarf);
-		WIND_MOUNTAINS = DRCommander.addFaction("WIND_MOUNTAINS", 0xCEA863, LOTRDimension.DimensionRegion.EAST, enumSetEvilDwarf);		
+		WIND_MOUNTAINS = DRCommander.addFaction("WIND_MOUNTAINS", 0xCEA863, LOTRDimension.DimensionRegion.EAST, enumSetEvilDwarf);
 		RED_MOUNTAINS.approvesWarCrimes = false;
 	}
 
@@ -55,15 +64,6 @@ public class DRFaction {
 		DRCommander.addFactionRank(WIND_MOUNTAINS, 1000.0F, "commander").makeAchievement().makeTitle();
 		DRCommander.addFactionRank(WIND_MOUNTAINS, 1500.0F, "lord", true).makeAchievement().makeTitle();
 		DRCommander.addFactionRank(WIND_MOUNTAINS, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
-	}
-
-	private static void setupControlZones() {
-		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(2437, 898, 454));
-		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(2500, 1535, 292));
-		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
-		DRCommander.addControlZone(WIND_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
-		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
-		DRCommander.addControlZone(RED_MOUNTAINS, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
 	}
 
 	private static void setupRelations() {

@@ -21,25 +21,6 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 	}
 
 	@Override
-	protected EntityAIBase getDwarfAttackAI() {
-		meleeAttackAI = super.getDwarfAttackAI();
-		return meleeAttackAI;
-	}
-
-	protected EntityAIBase createRedRangedAI() {
-		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_red_dwarven));
-		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.rhunFirePot));
-		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
-		return data;
-	}
-
-	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
 		EntityArrow template = new EntityArrow(worldObj, this, target, 1.0f, 0.5f);
 		LOTREntityFirePot pot = new LOTREntityFirePot(worldObj, this);
@@ -49,6 +30,16 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 		pot.motionZ = template.motionZ;
 		playSound("random.bow", 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.8f));
 		worldObj.spawnEntityInWorld(pot);
+	}
+
+	protected EntityAIBase createRedRangedAI() {
+		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
+	}
+
+	@Override
+	protected EntityAIBase getDwarfAttackAI() {
+		meleeAttackAI = super.getDwarfAttackAI();
+		return meleeAttackAI;
 	}
 
 	@Override
@@ -79,5 +70,14 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 			tasks.addTask(2, rangedAttackAI);
 			setCurrentItemOrArmor(0, npcItemsInv.getRangedWeapon());
 		}
+	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+		data = super.onSpawnWithEgg(data);
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_red_dwarven));
+		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.rhunFirePot));
+		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
+		return data;
 	}
 }

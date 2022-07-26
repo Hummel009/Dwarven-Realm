@@ -21,6 +21,10 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	private static LOTRRandomSkins windDwarfSkinsMale;
 	private static LOTRRandomSkins windDwarfSkinsFemale;
 	private static ResourceLocation ringTexture;
+	static {
+		ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
+	}
+
 	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public DRRenderDwarf() {
@@ -70,15 +74,8 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	}
 
 	@Override
-	public int shouldRenderPass(EntityLiving entity, int pass, float f) {
-		LOTREntityDwarf dwarf = (LOTREntityDwarf) entity;
-		if (pass == 1 && dwarf.getClass() == dwarf.familyInfo.marriageEntityClass && dwarf.getEquipmentInSlot(4) != null && dwarf.getEquipmentInSlot(4).getItem() == dwarf.familyInfo.marriageRing) {
-			bindTexture(ringTexture);
-			setRenderPassModel(standardRenderPassModel);
-			((ModelBiped) renderPassModel).bipedRightArm.showModel = false;
-			return 1;
-		}
-		return super.shouldRenderPass(entity, pass, f);
+	public float getHeldItemYTranslation() {
+		return 0.125f;
 	}
 
 	@Override
@@ -91,11 +88,14 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	}
 
 	@Override
-	public float getHeldItemYTranslation() {
-		return 0.125f;
-	}
-
-	static {
-		ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
+	public int shouldRenderPass(EntityLiving entity, int pass, float f) {
+		LOTREntityDwarf dwarf = (LOTREntityDwarf) entity;
+		if (pass == 1 && dwarf.getClass() == dwarf.familyInfo.marriageEntityClass && dwarf.getEquipmentInSlot(4) != null && dwarf.getEquipmentInSlot(4).getItem() == dwarf.familyInfo.marriageRing) {
+			bindTexture(ringTexture);
+			setRenderPassModel(standardRenderPassModel);
+			((ModelBiped) renderPassModel).bipedRightArm.showModel = false;
+			return 1;
+		}
+		return super.shouldRenderPass(entity, pass, f);
 	}
 }

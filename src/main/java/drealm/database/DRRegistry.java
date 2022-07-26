@@ -171,6 +171,26 @@ public class DRRegistry {
 		registerItem(structure_spawner, "lotr:structureSpawner", true);
 	}
 
+	private static void registerBlock(Block block, String name) {
+		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(name);
+		block.setBlockTextureName("drealm:" + lowerUnderscoreName);
+		GameRegistry.registerBlock(block, lowerUnderscoreName);
+	}
+
+	private static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
+		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(name);
+		block.setBlockTextureName("drealm:" + lowerUnderscoreName);
+		GameRegistry.registerBlock(block, itemClass, lowerUnderscoreName);
+	}
+
+	private static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
+		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(name);
+		GameRegistry.registerBlock(block, itemClass, lowerUnderscoreName);
+	}
+
 	private static void registerItem(Item item, String name) {
 		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setUnlocalizedName(name);
@@ -183,25 +203,5 @@ public class DRRegistry {
 		item.setTextureName(name);
 		item.setUnlocalizedName(name);
 		GameRegistry.registerItem(item, itemName);
-	}
-
-	private static void registerBlock(Block block, String name) {
-		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		block.setBlockName(name);
-		block.setBlockTextureName("drealm:" + lowerUnderscoreName);
-		GameRegistry.registerBlock(block, lowerUnderscoreName);
-	}
-
-	private static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
-		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		block.setBlockName(name);
-		GameRegistry.registerBlock(block, itemClass, lowerUnderscoreName);
-	}
-
-	private static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
-		String lowerUnderscoreName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		block.setBlockName(name);
-		block.setBlockTextureName("drealm:" + lowerUnderscoreName);
-		GameRegistry.registerBlock(block, itemClass, lowerUnderscoreName);
 	}
 }
