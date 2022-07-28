@@ -36,30 +36,6 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		largeIconScale = f;
 	}
 
-	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
-		String itemIconString = item.getUnlocalizedName().substring("item.".length());
-		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
-	}
-
-	public static DRRenderLargeItem getRendererIfLarge(Item item) {
-		for (String folder : sizeFolders.keySet()) {
-			float iconScale = sizeFolders.get(folder);
-			try {
-				ResourceLocation resLoc = DRRenderLargeItem.getLargeTexturePath(item, folder);
-				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
-				if (res == null) {
-					continue;
-				}
-				return new DRRenderLargeItem(item, folder, iconScale);
-			} catch (IOException resLoc) {
-			}
-		}
-		return null;
-	}
-
 	private void doTransformations() {
 		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
@@ -103,5 +79,29 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		Tessellator tess = Tessellator.instance;
 		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
+	}
+
+	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
+		String itemIconString = item.getUnlocalizedName().substring("item.".length());
+		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
+		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
+		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
+		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+	}
+
+	public static DRRenderLargeItem getRendererIfLarge(Item item) {
+		for (String folder : sizeFolders.keySet()) {
+			float iconScale = sizeFolders.get(folder);
+			try {
+				ResourceLocation resLoc = DRRenderLargeItem.getLargeTexturePath(item, folder);
+				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
+				if (res == null) {
+					continue;
+				}
+				return new DRRenderLargeItem(item, folder, iconScale);
+			} catch (IOException resLoc) {
+			}
+		}
+		return null;
 	}
 }

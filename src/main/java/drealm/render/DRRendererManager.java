@@ -19,15 +19,6 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 	private static DRRendererManager INSTANCE;
 	private static List<DRRenderLargeItem> largeItemRenderers;
 
-	public static void preInit() {
-		largeItemRenderers = new ArrayList<>();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		INSTANCE = new DRRendererManager();
-		INSTANCE.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
-		MinecraftForge.EVENT_BUS.register(INSTANCE);
-	}
-
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
@@ -58,5 +49,14 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 				largeRenderer.registerIcons(map);
 			}
 		}
+	}
+
+	public static void preInit() {
+		largeItemRenderers = new ArrayList<>();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		INSTANCE = new DRRendererManager();
+		INSTANCE.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
+		MinecraftForge.EVENT_BUS.register(INSTANCE);
 	}
 }

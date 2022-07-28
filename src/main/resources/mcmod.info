@@ -1,15 +1,17 @@
 [
-{
-	"modid" : "drealm",
-	"name" : "Dwarven Realm",
-	"version" : "3.0",
-	"credits" : "Hummel009",
-	"authorList": ["Hummel009"],
-	"description": "This mod adds eastern dwarf folks from the Lord of the Rings to Minecraft",
-	"url" : "",
-	"updateUrl" : "",
-	"parent" : "",
-	"dependencies": [],
-	"screenshots": []
-}
+  {
+    "modid": "drealm",
+    "name": "Dwarven Realm",
+    "version": "3.0",
+    "credits": "Hummel009",
+    "authorList": [
+      "Hummel009"
+    ],
+    "description": "This mod adds eastern dwarf folks from the Lord of the Rings to Minecraft",
+    "url": "",
+    "updateUrl": "",
+    "parent": "",
+    "dependencies": [],
+    "screenshots": []
+  }
 ]

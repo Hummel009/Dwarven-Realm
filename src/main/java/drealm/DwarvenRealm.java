@@ -20,7 +20,7 @@ public class DwarvenRealm {
 	public static DRServerProxy proxy;
 	@Mod.Instance(value = "drealm")
 	public static DwarvenRealm instance;
-	private static DREventHandler event_handler;
+	public static DREventHandler event_handler;
 	public static DRTickHandlerServer tick_handler;
 
 	@Mod.EventHandler
