@@ -14,7 +14,7 @@ import drealm.structure.DRStructure;
 import drealm.util.*;
 import net.minecraft.util.ResourceLocation;
 
-@Mod(modid = "drealm", version = "Version 3.0", name = "Dwarven Realm", dependencies = "required-after:lotr")
+@Mod(modid = "drealm", version = "3.0", dependencies = "required-after:lotr")
 public class DwarvenRealm {
 	@SidedProxy(serverSide = "drealm.proxy.DRServerProxy", clientSide = "drealm.proxy.DRClientProxy")
 	public static DRServerProxy proxy;
