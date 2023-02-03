@@ -13,6 +13,6 @@ public class DRBiomeRedMountainsFoothills extends DRBiomeRedMountains {
 	}
 
 	@Override
-	protected void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
+	public void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
 	}
 }

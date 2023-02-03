@@ -34,12 +34,12 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRFoods getDwarfFoods() {
+	public LOTRFoods getDwarfFoods() {
 		return DRFoods.RED_DWARF;
 	}
 
 	@Override
-	protected Item getDwarfSteelDrop() {
+	public Item getDwarfSteelDrop() {
 		return DRRegistry.red_dwarf_steel;
 	}
 
@@ -49,17 +49,17 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRChestContents getGenericDrops() {
+	public LOTRChestContents getGenericDrops() {
 		return DRChestContents.RED_MOUNTAINS_STRONGHOLD;
 	}
 
 	@Override
-	protected LOTRAchievement getKillAchievement() {
+	public LOTRAchievement getKillAchievement() {
 		return DRAchievement.kill_red_dwarf;
 	}
 
 	@Override
-	protected LOTRChestContents getLarderDrops() {
+	public LOTRChestContents getLarderDrops() {
 		return DRChestContents.RED_DWARF_HOUSE_LARDER;
 	}
 

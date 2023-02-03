@@ -4,7 +4,7 @@ import java.util.Random;
 
 import drealm.entity.*;
 import drealm.structure.*;
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.common.*;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
 import lotr.common.world.biome.*;
@@ -17,8 +17,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class DRBiomeRedMountains extends LOTRBiome {
-	public static final LOTRSpawnList RED_DWARVES = DRReflectionHelper.newLOTRSpawnList(new LOTRSpawnEntry(DREntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfFireThrower.class, 10, 4, 4));
+public class DRBiomeRedMountains extends LOTRBiome { 
+	public static final LOTRSpawnList RED_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfFireThrower.class, 10, 4, 4));
 
 	public DRBiomeRedMountains(int i, boolean major) {
 		super(i, major);
@@ -70,7 +70,7 @@ public class DRBiomeRedMountains extends LOTRBiome {
 	}
 
 	@Override
-	protected void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
+	public void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
 		int stoneHeight = 110 - rockDepth;
 		int sandHeight = stoneHeight - 6;
 		for (int j = ySize - 1; j >= sandHeight; --j) {

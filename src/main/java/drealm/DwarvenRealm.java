@@ -23,18 +23,22 @@ public class DwarvenRealm {
 	public static DREventHandler event_handler;
 	public static DRTickHandlerServer tick_handler;
 
+	public static ModContainer getModContainer() {
+		return FMLCommonHandler.instance().findContainerFor(instance);
+	}
+
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
 		DRMaterial.onInit();
 		DRShields.onInit();
 		DRInvasions.onInit();
 		DRAchievementCategory.onInit();
-		DRSpeech.onInit();
 		DRAchievement.onInit();
 		DRFaction.onInit();
 		DRMiniQuestFactory.onInit();
 		DRRoads.onInit();
-		DRReflectionHelper.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
+		DRSpeech.onInit();
+		DRCommander.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
 		tick_handler = new DRTickHandlerServer();
 		proxy.onInit(event);
 	}
@@ -43,6 +47,7 @@ public class DwarvenRealm {
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 		event_handler = new DREventHandler();
+		DRConfig.preInit();
 		DRCreativeTabs.preInit();
 		DRFaction.preInit();
 		DRWaypoint.preInit();

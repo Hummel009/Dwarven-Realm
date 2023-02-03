@@ -1,6 +1,6 @@
 package drealm.database;
 
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.common.LOTRShields;
 import lotr.common.fac.LOTRFaction;
 import net.minecraft.util.ResourceLocation;
@@ -9,9 +9,9 @@ public class DRShields {
 	public static LOTRShields ALIGNMENT_WIND_MOUNTAINS;
 	public static LOTRShields ALIGNMENT_RED_MOUNTAINS;
 
-	private static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
-		LOTRShields shield = DRReflectionHelper.addAlignmentShield(enumName, faction);
-		DRReflectionHelper.setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase() + ".png"));
+	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
+		LOTRShields shield = DRCommander.addAlignmentShield(enumName, faction);
+		DRCommander.setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase() + ".png"));
 		return shield;
 	}
 

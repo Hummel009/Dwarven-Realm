@@ -15,7 +15,7 @@ public class DREntityRedDwarfAxeThrower extends DREntityRedDwarfWarrior {
 	}
 
 	@Override
-	protected void applyEntityAttributes() {
+	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		getEntityAttribute(npcRangedAccuracy).setBaseValue(0.75);
 	}

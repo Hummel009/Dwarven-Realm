@@ -32,12 +32,12 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 		worldObj.spawnEntityInWorld(pot);
 	}
 
-	protected EntityAIBase createRedRangedAI() {
+	public EntityAIBase createRedRangedAI() {
 		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
 	}
 
 	@Override
-	protected EntityAIBase getDwarfAttackAI() {
+	public EntityAIBase getDwarfAttackAI() {
 		meleeAttackAI = super.getDwarfAttackAI();
 		return meleeAttackAI;
 	}

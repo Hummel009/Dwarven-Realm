@@ -17,24 +17,24 @@ public class DRStructureWindMountainsHouse extends LOTRWorldGenDwarfHouse {
 	}
 
 	@Override
-	protected LOTREntityDwarf createDwarf(World world) {
+	public LOTREntityDwarf createDwarf(World world) {
 		return new DREntityWindDwarf(world);
 	}
 
 	@Override
-	protected ItemStack getRandomOtherItem(Random random) {
+	public ItemStack getRandomOtherItem(Random random) {
 		ItemStack[] items = { new ItemStack(DRRegistry.helmet_wind_dwarven), new ItemStack(DRRegistry.body_wind_dwarven), new ItemStack(DRRegistry.legs_wind_dwarven), new ItemStack(DRRegistry.boots_wind_dwarven), new ItemStack(DRRegistry.wind_dwarf_steel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget) };
 		return items[random.nextInt(items.length)].copy();
 	}
 
 	@Override
-	protected ItemStack getRandomWeaponItem(Random random) {
+	public ItemStack getRandomWeaponItem(Random random) {
 		ItemStack[] items = { new ItemStack(DRRegistry.sword_wind_dwarven), new ItemStack(DRRegistry.dagger_wind_dwarven), new ItemStack(DRRegistry.hammer_wind_dwarven), new ItemStack(DRRegistry.battleaxe_wind_dwarven), new ItemStack(DRRegistry.pickaxe_wind_dwarven), new ItemStack(DRRegistry.mattock_wind_dwarven), new ItemStack(DRRegistry.throwing_axe_wind_dwarven), new ItemStack(DRRegistry.pike_wind_dwarven) };
 		return items[random.nextInt(items.length)].copy();
 	}
 
 	@Override
-	protected void setupRandomBlocks(Random random) {
+	public void setupRandomBlocks(Random random) {
 		super.setupRandomBlocks(random);
 		stoneBlock = Blocks.stone;
 		stoneMeta = 0;

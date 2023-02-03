@@ -22,12 +22,12 @@ public class DRStructureRedMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 	}
 
 	@Override
-	protected LOTREntityDwarf createSmith(World world) {
+	public LOTREntityDwarf createSmith(World world) {
 		return new DREntityRedDwarfSmith(world);
 	}
 
 	@Override
-	protected LOTRChestContents getChestContents() {
+	public LOTRChestContents getChestContents() {
 		return DRChestContents.RED_MOUNTAINS_SMITHY;
 	}
 }

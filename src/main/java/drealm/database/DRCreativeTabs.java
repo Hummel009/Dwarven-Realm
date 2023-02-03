@@ -1,6 +1,6 @@
 package drealm.database;
 
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.common.LOTRCreativeTabs;
 
 public class DRCreativeTabs {
@@ -10,9 +10,9 @@ public class DRCreativeTabs {
 	public static LOTRCreativeTabs tabBlocks;
 
 	public static void preInit() {
-		tabCombat = DRReflectionHelper.getLOTRCreativeTab("tabCombat");
-		tabTools = DRReflectionHelper.getLOTRCreativeTab("tabTools");
-		tabMaterials = DRReflectionHelper.getLOTRCreativeTab("tabMaterials");
-		tabBlocks = DRReflectionHelper.getLOTRCreativeTab("tabBlock");
+		tabCombat = DRCommander.getLOTRCreativeTab("tabCombat");
+		tabTools = DRCommander.getLOTRCreativeTab("tabTools");
+		tabMaterials = DRCommander.getLOTRCreativeTab("tabMaterials");
+		tabBlocks = DRCommander.getLOTRCreativeTab("tabBlock");
 	}
 }

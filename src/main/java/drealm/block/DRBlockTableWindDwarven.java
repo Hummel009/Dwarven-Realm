@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 	@SideOnly(value = Side.CLIENT)
-	private IIcon[] tableIcons;
+	public IIcon[] tableIcons;
 
 	public DRBlockTableWindDwarven() {
 		super(Material.rock, DRFaction.WIND_MOUNTAINS, 1);

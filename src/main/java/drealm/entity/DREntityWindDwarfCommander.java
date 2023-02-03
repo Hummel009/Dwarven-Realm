@@ -21,7 +21,7 @@ public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior impleme
 	}
 
 	@Override
-	protected void applyEntityAttributes() {
+	public void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
 	}

@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class DRStructure {
-	private static HashMap<Integer, IStructureProvider> idToClassMapping = new HashMap();
-	private static HashMap<Integer, String> idToStringMapping = new HashMap();
-	public static HashMap<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
+	public static Map<Integer, IStructureProvider> idToClassMapping = new HashMap();
+	public static Map<Integer, String> idToStringMapping = new HashMap();
+	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
 	public static int id = 3000;
 
 	public static String getNameFromID(int ID) {
@@ -34,11 +34,11 @@ public class DRStructure {
 		DRStructure.registerStructure(id++, DRStructureWindMountainsStronghold.class, "WindMountainsStronghold", 0xCEA863, 0xCEA863);
 	}
 
-	private static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG) {
+	public static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG) {
 		DRStructure.registerStructure(id, strClass, name, colorBG, colorFG, false);
 	}
 
-	private static void registerStructure(int id, final Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
+	public static void registerStructure(int id, final Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
 		IStructureProvider strProvider = new IStructureProvider() {
 
 			@Override
@@ -84,7 +84,7 @@ public class DRStructure {
 		DRStructure.registerStructure(id, strProvider, name, colorBG, colorFG, hide);
 	}
 
-	private static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
+	public static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
 		if (idToClassMapping.containsKey(id)) {
 			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + "!");
 		}

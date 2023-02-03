@@ -2,19 +2,20 @@ package drealm.database;
 
 import java.util.*;
 
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.common.*;
 import lotr.common.LOTRAchievement.Category;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 
 public class DRAchievement {
-	private static Map<ItemArmor.ArmorMaterial, LOTRAchievement> armorAchievements = new HashMap<>();
+	public static Map<ArmorMaterial, LOTRAchievement> armorAchievements = new EnumMap<>(ArmorMaterial.class);
 
 	public static LOTRAchievement trade_red_dwarf_smith;
 	public static LOTRAchievement trade_red_dwarf_miner;
 	public static LOTRAchievement trade_red_dwarf_commander;
-	public static LOTRAchievement trade_red_dwarf_merchant;
+	public static LOTRAchievement trade_red_dwarf_merchant; 
 	public static LOTRAchievement kill_red_dwarf;
 	public static LOTRAchievement marry_red_dwarf;
 	public static LOTRAchievement do_miniquest_red_mountains;
@@ -33,10 +34,7 @@ public class DRAchievement {
 	public static LOTRAchievement wear_full_wind_dwarven;
 	public static LOTRAchievement use_wind_dwarven_table;
 
-	private static LOTRAchievement createArmorAchievement(LOTRAchievement.Category category, int id, Item item, String name) {
-		if (!(item instanceof ItemArmor)) {
-			throw new IllegalArgumentException("Invalid armor achievement item, name: " + name + " for LOTR achievement category " + category);
-		}
+	public static LOTRAchievement createArmorAchievement(LOTRAchievement.Category category, int id, Item item, String name) {
 		LOTRAchievement achievement = new LOTRAchievement(category, id, item, name);
 		armorAchievements.put(((ItemArmor) item).getArmorMaterial(), achievement);
 		return achievement;
@@ -79,8 +77,7 @@ public class DRAchievement {
 		public static LOTRAchievement.Category WIND_MOUNTAINS;
 
 		public static void onInit() {
-			WIND_MOUNTAINS = DRReflectionHelper.addAchievementCategory("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
+			WIND_MOUNTAINS = DRCommander.addAchievementCategory("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
 		}
 	}
-
 }

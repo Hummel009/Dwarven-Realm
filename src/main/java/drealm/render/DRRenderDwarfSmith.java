@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
 public class DRRenderDwarfSmith extends DRRenderDwarf {
-	private static ResourceLocation apronTexture = new ResourceLocation("lotr:mob/dwarf/blacksmith_apron.png");
+	public static ResourceLocation apronTexture = new ResourceLocation("lotr:mob/dwarf/blacksmith_apron.png");
 
 	@Override
 	public int shouldRenderPass(EntityLiving entity, int pass, float f) {

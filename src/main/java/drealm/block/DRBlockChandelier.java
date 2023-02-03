@@ -16,8 +16,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class DRBlockChandelier extends Block {
 	@SideOnly(value = Side.CLIENT)
-	private IIcon[] chandelierIcons;
-	private String[] chandelierNames = { "redDwarven", "windDwarven" };
+	public IIcon[] chandelierIcons;
+	public String[] chandelierNames = { "redDwarven", "windDwarven" };
 
 	public DRBlockChandelier() {
 		super(Material.circuits);
@@ -121,7 +121,7 @@ public class DRBlockChandelier extends Block {
 		return false;
 	}
 
-	private void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
+	public static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
 		world.spawnParticle("smoke", d, d1, d2, 0.0, 0.0, 0.0);
 		world.spawnParticle("flame", d, d1, d2, 0.0, 0.0, 0.0);
 	}

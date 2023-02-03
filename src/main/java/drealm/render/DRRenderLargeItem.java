@@ -2,6 +2,7 @@ package drealm.render;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.Map.Entry;
 
 import org.lwjgl.opengl.GL11;
 
@@ -17,17 +18,16 @@ import net.minecraft.item.Item;
 import net.minecraft.util.*;
 
 public class DRRenderLargeItem extends LOTRRenderLargeItem {
-	private static Map<String, Float> sizeFolders = new HashMap<>();
+	public static Map<String, Float> sizeFolders = new HashMap<>();
+	public List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	public final Item theItem;
+	public final String folderName;
+	public final float largeIconScale;
+	public IIcon largeIcon;
 	static {
-		sizeFolders.put("large", 2.0f);
-		sizeFolders.put("large2", 3.0f);
+		sizeFolders.put("large-2x", 2.0f);
+		sizeFolders.put("large-3x", 3.0f);
 	}
-	private final Item theItem;
-	private final String folderName;
-	private final float largeIconScale;
-	private IIcon largeIcon;
-
-	private List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
 
 	public DRRenderLargeItem(Item item, String dir, float f) {
 		super(item, dir, f);
@@ -36,7 +36,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		largeIconScale = f;
 	}
 
-	private void doTransformations() {
+	public void doTransformations() {
 		GL11.glTranslatef(-(largeIconScale - 1.0f) / 2.0f, -(largeIconScale - 1.0f) / 2.0f, 0.0f);
 		GL11.glScalef(largeIconScale, largeIconScale, 1.0f);
 	}
@@ -56,7 +56,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		}
 	}
 
-	private IIcon registerLargeIcon(IIconRegister register, String extra) {
+	public IIcon registerLargeIcon(IIconRegister register, String extra) {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
@@ -73,7 +73,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		this.renderLargeItem(largeIcon);
 	}
 
-	private void renderLargeItem(IIcon icon) {
+	public void renderLargeItem(IIcon icon) {
 		doTransformations();
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationItemsTexture);
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -81,7 +81,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		ItemRenderer.renderItemIn2D(tess, icon.getMaxU(), icon.getMinV(), icon.getMinU(), icon.getMaxV(), icon.getIconWidth(), icon.getIconHeight(), 0.0625f);
 	}
 
-	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
+	public static ResourceLocation getLargeTexturePath(Item item, String folder) {
 		String itemIconString = item.getUnlocalizedName().substring("item.".length());
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
@@ -90,15 +90,15 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 	}
 
 	public static DRRenderLargeItem getRendererIfLarge(Item item) {
-		for (String folder : sizeFolders.keySet()) {
-			float iconScale = sizeFolders.get(folder);
+		for (Entry<String, Float> folder : sizeFolders.entrySet()) {
+			float iconScale = folder.getValue();
 			try {
-				ResourceLocation resLoc = DRRenderLargeItem.getLargeTexturePath(item, folder);
+				ResourceLocation resLoc = DRRenderLargeItem.getLargeTexturePath(item, folder.getKey());
 				IResource res = Minecraft.getMinecraft().getResourceManager().getResource(resLoc);
 				if (res == null) {
 					continue;
 				}
-				return new DRRenderLargeItem(item, folder, iconScale);
+				return new DRRenderLargeItem(item, folder.getKey(), iconScale);
 			} catch (IOException resLoc) {
 			}
 		}

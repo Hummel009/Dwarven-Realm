@@ -135,7 +135,7 @@ public class DRRecipe {
 		wind_mountains.add(new LOTRRecipePoisonWeapon(LOTRMod.chisel, LOTRMod.chiselIthildin, new ItemStack(LOTRMod.ithildin, 1, 0)));
 	}
 
-	protected static boolean isIron(ItemStack itemstack) {
+	public static boolean isIron(ItemStack itemstack) {
 		return LOTRMod.isOreNameEqual(itemstack, "oreIron") || LOTRMod.isOreNameEqual(itemstack, "ingotIron");
 	}
 

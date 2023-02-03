@@ -175,7 +175,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		return true;
 	}
 
-	private void generateFacingEast(World world, Random random, int i, int j, int k) {
+	public void generateFacingEast(World world, Random random, int i, int j, int k) {
 		int k1;
 		int k12;
 		int i1;
@@ -341,7 +341,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 3, j + 9, k, LOTRMod.commandTable, 0);
 	}
 
-	private void generateFacingNorth(World world, Random random, int i, int j, int k) {
+	public void generateFacingNorth(World world, Random random, int i, int j, int k) {
 		int k1;
 		int i1;
 		int i12;
@@ -507,7 +507,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 9, k - 3, LOTRMod.commandTable, 0);
 	}
 
-	private void generateFacingSouth(World world, Random random, int i, int j, int k) {
+	public void generateFacingSouth(World world, Random random, int i, int j, int k) {
 		int k1;
 		int i1;
 		int i12;
@@ -673,7 +673,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 9, k + 3, LOTRMod.commandTable, 0);
 	}
 
-	private void generateFacingWest(World world, Random random, int i, int j, int k) {
+	public void generateFacingWest(World world, Random random, int i, int j, int k) {
 		int k1;
 		int k12;
 		int i1;
@@ -839,7 +839,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i - 3, j + 9, k, LOTRMod.commandTable, 0);
 	}
 
-	private void placeBalconySection(World world, int i, int j, int k, boolean isEdge, boolean isPillar) {
+	public void placeBalconySection(World world, int i, int j, int k, boolean isEdge, boolean isPillar) {
 		if (isEdge) {
 			for (int j1 = j + 4; (j1 >= j || !LOTRMod.isOpaque(world, i, j1, k)) && j1 >= 0; --j1) {
 				if (isPillar) {
@@ -868,7 +868,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 	}
 
-	private void placeRandomOre(World world, Random random, int i, int j, int k) {
+	public void placeRandomOre(World world, Random random, int i, int j, int k) {
 		if (!LOTRMod.isOpaque(world, i, j - 1, k) || !random.nextBoolean()) {
 			return;
 		}
@@ -898,7 +898,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j, k, block, 0);
 	}
 
-	private void spawnDwarf(World world, int i, int j, int k) {
+	public static void spawnDwarf(World world, int i, int j, int k) {
 		DREntityWindDwarfWarrior dwarf = world.rand.nextInt(3) == 0 ? new DREntityWindDwarfAxeThrower(world) : new DREntityWindDwarfWarrior(world);
 		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
 		((DREntityWindDwarf) dwarf).onSpawnWithEgg(null);
@@ -907,7 +907,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		world.spawnEntityInWorld(dwarf);
 	}
 
-	private void spawnDwarfCommander(World world, int i, int j, int k) {
+	public static void spawnDwarfCommander(World world, int i, int j, int k) {
 		DREntityWindDwarfCommander dwarf = new DREntityWindDwarfCommander(world);
 		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
 		((LOTREntityDwarf) dwarf).onSpawnWithEgg(null);

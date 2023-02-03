@@ -1,5 +1,6 @@
 package drealm.util;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -16,6 +17,13 @@ public class DREventHandler {
 	public DREventHandler() {
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
+	}
+
+	@SubscribeEvent
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+		if ("got".equals(event.modID)) {
+			DRConfig.load();
+		}
 	}
 
 	@SubscribeEvent

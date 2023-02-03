@@ -34,12 +34,12 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRFoods getDwarfFoods() {
+	public LOTRFoods getDwarfFoods() {
 		return DRFoods.WIND_DWARF;
 	}
 
 	@Override
-	protected Item getDwarfSteelDrop() {
+	public Item getDwarfSteelDrop() {
 		return DRRegistry.wind_dwarf_steel;
 	}
 
@@ -49,17 +49,17 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	}
 
 	@Override
-	protected LOTRChestContents getGenericDrops() {
+	public LOTRChestContents getGenericDrops() {
 		return DRChestContents.WIND_MOUNTAINS_STRONGHOLD;
 	}
 
 	@Override
-	protected LOTRAchievement getKillAchievement() {
+	public LOTRAchievement getKillAchievement() {
 		return DRAchievement.kill_wind_dwarf;
 	}
 
 	@Override
-	protected LOTRChestContents getLarderDrops() {
+	public LOTRChestContents getLarderDrops() {
 		return DRChestContents.WIND_DWARF_HOUSE_LARDER;
 	}
 

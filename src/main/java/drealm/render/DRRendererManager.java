@@ -4,7 +4,7 @@ import java.util.*;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import drealm.database.DRRegistry;
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.client.render.item.*;
 import lotr.common.item.*;
 import net.minecraft.client.Minecraft;
@@ -16,13 +16,20 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 public class DRRendererManager implements IResourceManagerReloadListener {
-	private static DRRendererManager INSTANCE;
-	private static List<DRRenderLargeItem> largeItemRenderers;
+	public static List<DRRenderLargeItem> largeItemRenderers;
+
+	public DRRendererManager() {
+		largeItemRenderers = new ArrayList<>();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		this.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(this);
+		MinecraftForge.EVENT_BUS.register(this);
+	}
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
-		for (Item item : DRReflectionHelper.getObjectFieldsOfType(DRRegistry.class, Item.class)) {
+		for (Item item : DRCommander.getObjectFieldsOfType(DRRegistry.class, Item.class)) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			DRRenderLargeItem largeItemRenderer = DRRenderLargeItem.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
@@ -49,14 +56,5 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 				largeRenderer.registerIcons(map);
 			}
 		}
-	}
-
-	public static void preInit() {
-		largeItemRenderers = new ArrayList<>();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		INSTANCE = new DRRendererManager();
-		INSTANCE.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(INSTANCE);
-		MinecraftForge.EVENT_BUS.register(INSTANCE);
 	}
 }

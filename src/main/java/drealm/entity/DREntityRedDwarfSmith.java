@@ -25,7 +25,7 @@ public class DREntityRedDwarfSmith extends DREntityRedDwarf implements LOTRTrade
 	}
 
 	@Override
-	protected void dropFewItems(boolean flag, int i) {
+	public void dropFewItems(boolean flag, int i) {
 		super.dropFewItems(flag, i);
 		dropItem(DRRegistry.red_dwarf_steel, 1 + rand.nextInt(3) + rand.nextInt(i + 1));
 	}

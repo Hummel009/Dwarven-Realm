@@ -13,15 +13,15 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class DRItemStructureSpawner extends Item {
-	public static int lastStructureSpawnTick = 0;
+	public static int lastStructureSpawnTick;
 	@SideOnly(value = Side.CLIENT)
-	private IIcon iconBase;
+	public IIcon iconBase;
 	@SideOnly(value = Side.CLIENT)
-	private IIcon iconOverlay;
+	public IIcon iconOverlay;
 	@SideOnly(value = Side.CLIENT)
-	private IIcon iconVillageBase;
+	public IIcon iconVillageBase;
 	@SideOnly(value = Side.CLIENT)
-	private IIcon iconVillageOverlay;
+	public IIcon iconVillageOverlay;
 
 	public DRItemStructureSpawner() {
 		setHasSubtypes(true);
@@ -119,7 +119,7 @@ public class DRItemStructureSpawner extends Item {
 		return true;
 	}
 
-	private boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
+	public static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
 		if (!DRStructure.structureItemSpawners.containsKey(id)) {
 			return false;
 		}

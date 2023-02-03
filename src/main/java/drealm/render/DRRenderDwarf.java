@@ -12,20 +12,16 @@ import net.minecraft.entity.*;
 import net.minecraft.util.ResourceLocation;
 
 public class DRRenderDwarf extends LOTRRenderBiped {
-	private static LOTRRandomSkins dwarfSkinsMale;
-	private static LOTRRandomSkins dwarfSkinsFemale;
-	private static LOTRRandomSkins blueDwarfSkinsMale;
-	private static LOTRRandomSkins blueDwarfSkinsFemale;
-	private static LOTRRandomSkins redDwarfSkinsMale;
-	private static LOTRRandomSkins redDwarfSkinsFemale;
-	private static LOTRRandomSkins windDwarfSkinsMale;
-	private static LOTRRandomSkins windDwarfSkinsFemale;
-	private static ResourceLocation ringTexture;
-	static {
-		ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
-	}
-
-	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
+	public static LOTRRandomSkins dwarfSkinsMale;
+	public static LOTRRandomSkins dwarfSkinsFemale;
+	public static LOTRRandomSkins blueDwarfSkinsMale;
+	public static LOTRRandomSkins blueDwarfSkinsFemale;
+	public static LOTRRandomSkins redDwarfSkinsMale;
+	public static LOTRRandomSkins redDwarfSkinsFemale;
+	public static LOTRRandomSkins windDwarfSkinsMale;
+	public static LOTRRandomSkins windDwarfSkinsFemale;
+	public static ResourceLocation ringTexture  = new ResourceLocation("lotr:mob/dwarf/ring.png");
+	public ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public DRRenderDwarf() {
 		super(new LOTRModelDwarf(), 0.5f);
@@ -41,7 +37,7 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	}
 
 	@Override
-	protected void func_82421_b() {
+	public void func_82421_b() {
 		field_82423_g = new LOTRModelDwarf(1.0f);
 		field_82425_h = new LOTRModelDwarf(0.5f);
 	}
@@ -79,7 +75,7 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f) {
+	public void preRenderCallback(EntityLivingBase entity, float f) {
 		super.preRenderCallback(entity, f);
 		GL11.glScalef(0.8125f, 0.8125f, 0.8125f);
 		if (LOTRMod.isAprilFools()) {

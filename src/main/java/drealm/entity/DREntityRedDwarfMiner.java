@@ -20,7 +20,7 @@ public class DREntityRedDwarfMiner extends DREntityRedDwarf implements LOTRTrade
 	}
 
 	@Override
-	protected boolean canDwarfSpawnAboveGround() {
+	public boolean canDwarfSpawnAboveGround() {
 		return false;
 	}
 
@@ -30,7 +30,7 @@ public class DREntityRedDwarfMiner extends DREntityRedDwarf implements LOTRTrade
 	}
 
 	@Override
-	protected void dropFewItems(boolean flag, int i) {
+	public void dropFewItems(boolean flag, int i) {
 		super.dropFewItems(flag, i);
 		if (flag) {
 			if (rand.nextInt(4) == 0) {

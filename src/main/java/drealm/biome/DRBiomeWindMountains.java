@@ -4,7 +4,7 @@ import java.util.Random;
 
 import drealm.entity.*;
 import drealm.structure.*;
-import drealm.util.DRReflectionHelper;
+import drealm.util.DRCommander;
 import lotr.common.*;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
 import lotr.common.world.biome.*;
@@ -18,7 +18,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class DRBiomeWindMountains extends LOTRBiome {
-	public static final LOTRSpawnList WIND_DWARVES = DRReflectionHelper.newLOTRSpawnList(new LOTRSpawnEntry(DREntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfCrossbower.class, 10, 4, 4));
+	public static final LOTRSpawnList WIND_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfCrossbower.class, 10, 4, 4));
 
 	public DRBiomeWindMountains(int i, boolean major) {
 		super(i, major);
@@ -71,7 +71,7 @@ public class DRBiomeWindMountains extends LOTRBiome {
 	}
 
 	@Override
-	protected void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
+	public void generateMountainTerrain(World world, Random random, Block[] blocks, byte[] meta, int i, int k, int xzIndex, int ySize, int height, int rockDepth, LOTRBiomeVariant variant) {
 		int snowHeight = 150 - rockDepth;
 		int stoneHeight = snowHeight - 40;
 		for (int j = ySize - 1; j >= stoneHeight; --j) {

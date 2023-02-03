@@ -25,7 +25,7 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 	}
 
 	@Override
-	protected void dropFewItems(boolean flag, int i) {
+	public void dropFewItems(boolean flag, int i) {
 		super.dropFewItems(flag, i);
 		dropItem(DRRegistry.wind_dwarf_steel, 1 + rand.nextInt(3) + rand.nextInt(i + 1));
 	}
