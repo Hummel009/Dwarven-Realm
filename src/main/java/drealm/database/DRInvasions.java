@@ -1,7 +1,7 @@
 package drealm.database;
 
 import drealm.entity.*;
-import drealm.util.DRCommander;
+import drealm.util.DRReflectionHelper;
 import lotr.common.world.spawning.LOTRInvasions;
 import lotr.common.world.spawning.LOTRInvasions.InvasionSpawnEntry;
 
@@ -10,8 +10,8 @@ public class DRInvasions {
 	public static LOTRInvasions WIND_MOUNTAINS;
 
 	private static void addInvasionIcons() {
-		DRCommander.changeInvasionIcon(RED_MOUNTAINS, DRRegistry.hammer_red_dwarven);
-		DRCommander.changeInvasionIcon(WIND_MOUNTAINS, DRRegistry.hammer_wind_dwarven);
+		DRReflectionHelper.changeInvasionIcon(RED_MOUNTAINS, DRRegistry.hammer_red_dwarven);
+		DRReflectionHelper.changeInvasionIcon(WIND_MOUNTAINS, DRRegistry.hammer_wind_dwarven);
 	}
 
 	private static void addInvasionMobs() {
@@ -31,7 +31,7 @@ public class DRInvasions {
 	}
 
 	private static void setupInvasions() {
-		RED_MOUNTAINS = DRCommander.addInvasion("RED_MOUNTAINS", DRFaction.RED_MOUNTAINS);
-		WIND_MOUNTAINS = DRCommander.addInvasion("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
+		RED_MOUNTAINS = DRReflectionHelper.addInvasion("RED_MOUNTAINS", DRFaction.RED_MOUNTAINS);
+		WIND_MOUNTAINS = DRReflectionHelper.addInvasion("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
 	}
 }

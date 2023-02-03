@@ -2,7 +2,7 @@ package drealm.database;
 
 import java.util.*;
 
-import drealm.util.DRCommander;
+import drealm.util.DRReflectionHelper;
 import lotr.common.*;
 import lotr.common.LOTRAchievement.Category;
 import net.minecraft.entity.player.EntityPlayer;
@@ -79,7 +79,7 @@ public class DRAchievement {
 		public static LOTRAchievement.Category WIND_MOUNTAINS;
 
 		public static void onInit() {
-			WIND_MOUNTAINS = DRCommander.addAchievementCategory("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
+			WIND_MOUNTAINS = DRReflectionHelper.addAchievementCategory("WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
 		}
 	}
 

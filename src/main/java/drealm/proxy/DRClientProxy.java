@@ -4,7 +4,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.*;
 import drealm.entity.*;
 import drealm.render.*;
-import drealm.util.DRCommander;
+import drealm.util.DRReflectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.*;
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +18,7 @@ public class DRClientProxy extends DRServerProxy implements IResourceManagerRelo
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
-		DRCommander.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
+		DRReflectionHelper.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package drealm.database;
 
 import java.lang.reflect.*;
 
-import drealm.util.DRCommander;
+import drealm.util.DRReflectionHelper;
 import lotr.common.item.LOTRMaterial;
 import lotr.common.util.LOTRLog;
 import net.minecraft.entity.EntityLivingBase;
@@ -95,8 +95,8 @@ public class DRMaterial {
 	}
 
 	public static void onInit() {
-		DRCommander.setMaterialCraftingItem(RED_DWARVEN, DRRegistry.red_dwarf_steel);
-		DRCommander.setMaterialCraftingItem(WIND_DWARVEN, DRRegistry.wind_dwarf_steel);
+		DRReflectionHelper.setMaterialCraftingItem(RED_DWARVEN, DRRegistry.red_dwarf_steel);
+		DRReflectionHelper.setMaterialCraftingItem(WIND_DWARVEN, DRRegistry.wind_dwarf_steel);
 	}
 
 	private static void setup() {

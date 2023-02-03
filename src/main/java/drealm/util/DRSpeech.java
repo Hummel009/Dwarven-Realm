@@ -31,7 +31,7 @@ public class DRSpeech {
 				LOTRLog.logger.error("DR speech bank " + speechBankName + " is empty!", new Object[0]);
 				continue;
 			}
-			DRCommander.addSpeechBank(speechBankName, random, speeches);
+			DRReflectionHelper.addSpeechBank(speechBankName, random, speeches);
 		}
 	}
 }

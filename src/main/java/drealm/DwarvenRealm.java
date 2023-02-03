@@ -34,7 +34,7 @@ public class DwarvenRealm {
 		DRFaction.onInit();
 		DRMiniQuestFactory.onInit();
 		DRRoads.onInit();
-		DRCommander.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
+		DRReflectionHelper.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
 		tick_handler = new DRTickHandlerServer();
 		proxy.onInit(event);
 	}

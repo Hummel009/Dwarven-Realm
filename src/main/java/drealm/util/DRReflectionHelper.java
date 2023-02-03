@@ -28,13 +28,23 @@ import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class DRCommander {
+public class DRReflectionHelper {
 	public static int lastBannerID = 52;
 
 	public static LOTRAchievement.Category addAchievementCategory(String enumName, LOTRFaction faction) {
 		Class[] classArr = { LOTRFaction.class };
 		Object[] args = { faction };
 		return EnumHelper.addEnum(LOTRAchievement.Category.class, enumName, classArr, args);
+	}
+
+	public static void setShieldTexture(LOTRShields shield, ResourceLocation resourceLocation) {
+		try {
+			Field privateField = LOTRShields.class.getDeclaredField("shieldTexture");
+			privateField.setAccessible(true);
+			privateField.set(shield, resourceLocation);
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e2) {
+			e2.printStackTrace();
+		}
 	}
 
 	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
@@ -58,13 +68,13 @@ public class DRCommander {
 		findAndInvokeMethod(zone, LOTRFaction.class, faction, "addControlZone", LOTRControlZone.class);
 	}
 
-	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension dim, LOTRDimension.DimensionRegion region, boolean player, boolean registry, int alignment, LOTRMapRegion mapInfo, EnumSet<LOTRFaction.FactionType> types) {
+	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension dim, LOTRDimension.DimensionRegion region, boolean player, boolean registry, int alignment, LOTRMapRegion mapInfo, Set<LOTRFaction.FactionType> types) {
 		Class[] classArr = { Integer.TYPE, LOTRDimension.class, LOTRDimension.DimensionRegion.class, Boolean.TYPE, Boolean.TYPE, Integer.TYPE, LOTRMapRegion.class, EnumSet.class };
 		Object[] args = { color, dim, region, player, registry, alignment, mapInfo, types };
 		return EnumHelper.addEnum(LOTRFaction.class, enumName, classArr, args);
 	}
 
-	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension.DimensionRegion region, EnumSet<LOTRFaction.FactionType> types) {
+	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension.DimensionRegion region, Set<LOTRFaction.FactionType> types) {
 		return addFaction(enumName, color, LOTRDimension.MIDDLE_EARTH, region, true, true, Integer.MIN_VALUE, null, types);
 	}
 
@@ -162,7 +172,7 @@ public class DRCommander {
 	}
 
 	private static <T, E> T findAndInvokeMethod(Object[] arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
-		return DRCommander.findAndInvokeMethod(arg, clazz, instance, new String[] { methodName }, methodTypes);
+		return DRReflectionHelper.findAndInvokeMethod(arg, clazz, instance, new String[] { methodName }, methodTypes);
 	}
 
 	private static <T, E> T findAndInvokeMethod(Object[] args, Class<? super E> clazz, E instance, String[] methodNames, Class<?>... methodTypes) {
@@ -319,7 +329,6 @@ public class DRCommander {
 			Integer biomeID = LOTRDimension.MIDDLE_EARTH.colorsToBiomeIDs.get(color);
 			if (biomeID != null) {
 				biomeImageData[i] = (byte) biomeID.intValue();
-				continue;
 			}
 		}
 		ReflectionHelper.setPrivateValue(LOTRGenLayerWorld.class, null, biomeImageData, "biomeImageData");

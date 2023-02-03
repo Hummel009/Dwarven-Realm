@@ -4,7 +4,7 @@ import java.util.*;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import drealm.database.DRRegistry;
-import drealm.util.DRCommander;
+import drealm.util.DRReflectionHelper;
 import lotr.client.render.item.*;
 import lotr.common.item.*;
 import net.minecraft.client.Minecraft;
@@ -22,7 +22,7 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
-		for (Item item : DRCommander.getObjectFieldsOfType(DRRegistry.class, Item.class)) {
+		for (Item item : DRReflectionHelper.getObjectFieldsOfType(DRRegistry.class, Item.class)) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			DRRenderLargeItem largeItemRenderer = DRRenderLargeItem.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
