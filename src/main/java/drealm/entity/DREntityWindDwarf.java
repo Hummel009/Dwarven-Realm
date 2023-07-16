@@ -68,7 +68,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			if (hiredNPCInfo.getHiringPlayer() == entityplayer) {
 				return "windDwarf/dwarf/hired";
 			}

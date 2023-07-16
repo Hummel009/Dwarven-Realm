@@ -52,7 +52,7 @@ public class DREntityWindDwarfMerchant extends DREntityWindDwarf implements LOTR
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			return "windDwarf/merchant/friendly";
 		}
 		return "windDwarf/dwarf/hostile";

@@ -51,7 +51,7 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
 				return "windDwarf/smith/friendly";
 			}

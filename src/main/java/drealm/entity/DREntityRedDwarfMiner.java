@@ -64,7 +64,7 @@ public class DREntityRedDwarfMiner extends DREntityRedDwarf implements LOTRTrade
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
 				return "redDwarf/miner/friendly";
 			}

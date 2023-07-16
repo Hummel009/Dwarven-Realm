@@ -52,7 +52,7 @@ public class DREntityRedDwarfMerchant extends DREntityRedDwarf implements LOTRTr
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			return "redDwarf/merchant/friendly";
 		}
 		return "redDwarf/dwarf/hostile";

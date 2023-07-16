@@ -48,7 +48,7 @@ public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior impleme
 
 	@Override
 	public String getSpeechBank(EntityPlayer entityplayer) {
-		if (isFriendly(entityplayer)) {
+		if (isFriendlyAndAligned(entityplayer)) {
 			if (canTradeWith(entityplayer)) {
 				return "windDwarf/commander/friendly";
 			}
