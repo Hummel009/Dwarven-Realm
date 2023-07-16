@@ -7,6 +7,7 @@
 bin
 build
 libs/LOTR_UpdatedLangFiles/*.lang
+libs/LOTR_UpdatedLangFiles/readme.txt
 run
 server/config
 server/logs
