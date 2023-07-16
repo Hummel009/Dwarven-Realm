@@ -23,7 +23,7 @@ public class DREventHandler {
 
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if ("got".equals(event.modID)) {
+		if ("drealm".equals(event.modID)) {
 			DRConfig.load();
 		}
 	}

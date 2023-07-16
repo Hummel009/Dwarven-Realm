@@ -17,6 +17,7 @@ import drealm.map.DRWaypoint;
 import drealm.proxy.DRServerProxy;
 import drealm.structure.DRStructure;
 import drealm.util.*;
+import integrator.NEIDRIntegrator;
 import net.minecraft.util.ResourceLocation;
 
 @Mod(modid = "drealm", dependencies = "required-after:lotr", useMetadata = true)
@@ -62,6 +63,9 @@ public class DwarvenRealm {
 		DRStructure.preInit();
 		DRRecipe.preInit();
 		DRBiome.preInit();
+		if (DRModChecker.hasNEI() && DRModChecker.hasGuiContainer()) {
+			NEIDRIntegrator.registerRecipes();
+		}
 		proxy.preInit(event);
 	}
 }

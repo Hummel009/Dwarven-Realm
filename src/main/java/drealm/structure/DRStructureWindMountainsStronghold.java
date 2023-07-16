@@ -47,7 +47,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		int i1;
 		Block block;
 		int i12;
-		if (restrictions && (block = world.getBlock(i, j - 1, k)) != Blocks.grass && block != Blocks.stone && block != Blocks.dirt && block != LOTRMod.rock && block != Blocks.snow) {
+		if (restrictions && (block = world.getBlock(i, j - 1, k)) != Blocks.grass && block != Blocks.stone && block != Blocks.dirt && block != Blocks.stained_hardened_clay && block != Blocks.snow) {
 			return false;
 		}
 		--j;

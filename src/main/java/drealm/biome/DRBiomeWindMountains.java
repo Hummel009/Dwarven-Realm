@@ -52,8 +52,8 @@ public class DRBiomeWindMountains extends LOTRBiome {
 		decorator.addTree(LOTRTreeType.FIR, 500);
 		decorator.addTree(LOTRTreeType.PINE, 500);
 		decorator.addTree(LOTRTreeType.MAPLE, 300);
-		decorator.addRandomStructure(new DRStructureWindMountainsStronghold(false), 400);
-		decorator.addRandomStructure(new DRStructureWindMountainsSmithy(false), 150);
+		decorator.addRandomStructure(new DRStructureWindMountainsStronghold(false), 200);
+		decorator.addRandomStructure(new DRStructureWindMountainsSmithy(false), 75);
 		registerMountainsFlowers();
 		biomeColors.setSky(11653858);
 		registerTravellingTrader(DREntityWindDwarfMerchant.class);
