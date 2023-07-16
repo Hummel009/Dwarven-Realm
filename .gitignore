@@ -6,6 +6,7 @@
 .idea/vcs.xml
 bin
 build
+libs/LOTR_UpdatedLangFiles/*.lang
 run
 server/config
 server/logs
