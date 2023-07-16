@@ -240,9 +240,8 @@ public class DRRegistry {
 	}
 
 	public static void registerItem(Item item, String name) {
-		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		item.setTextureName(itemName);
-		item.setUnlocalizedName(itemName);
-		GameRegistry.registerItem(item, itemName);
+		item.setTextureName(name);
+		item.setUnlocalizedName(name);
+		GameRegistry.registerItem(item, name);
 	}
 }
