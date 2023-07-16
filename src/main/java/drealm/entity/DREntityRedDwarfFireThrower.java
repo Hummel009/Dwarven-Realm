@@ -76,7 +76,7 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_red_dwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.swordRedDwarven));
 		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.rhunFirePot));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return data;

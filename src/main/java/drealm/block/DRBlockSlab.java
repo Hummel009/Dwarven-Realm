@@ -26,13 +26,13 @@ public class DRBlockSlab extends LOTRBlockSlabBase {
 
 	public static class SlabExDouble extends ItemSlab {
 		public SlabExDouble(Block block) {
-			super(block, (BlockSlab) DRRegistry.slab_single, (BlockSlab) DRRegistry.slab_double, true);
+			super(block, (BlockSlab) DRRegistry.slabSingle, (BlockSlab) DRRegistry.slabDouble, true);
 		}
 	}
 
 	public static class SlabExSingle extends ItemSlab {
 		public SlabExSingle(Block block) {
-			super(block, (BlockSlab) DRRegistry.slab_single, (BlockSlab) DRRegistry.slab_double, false);
+			super(block, (BlockSlab) DRRegistry.slabSingle, (BlockSlab) DRRegistry.slabDouble, false);
 		}
 	}
 }

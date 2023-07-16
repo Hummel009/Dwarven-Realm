@@ -287,7 +287,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 6, k1, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.red_dwarven_table, 0);
+			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.redDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i - 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i + 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 		}
@@ -453,7 +453,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i13, j + 6, k + 2, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k - 2, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.red_dwarven_table, 0);
+			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.redDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 1, LOTRMod.dwarvenForge, 0);
 		}
@@ -619,7 +619,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i13, j + 6, k - 2, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k + 2, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.red_dwarven_table, 0);
+			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.redDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 1, LOTRMod.dwarvenForge, 0);
 		}
@@ -785,7 +785,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 6, k1, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.red_dwarven_table, 0);
+			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.redDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i - 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i + 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 		}

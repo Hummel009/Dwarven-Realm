@@ -1,5 +1,6 @@
 package drealm.database;
 
+import com.google.common.base.CaseFormat;
 import cpw.mods.fml.common.registry.GameRegistry;
 import drealm.block.*;
 import drealm.item.DRItemArmor;
@@ -15,225 +16,233 @@ import net.minecraft.item.ItemBlock;
 public class DRRegistry {
 	public static Block brick;
 	public static Block chandelier;
-	public static Block ore_storage;
+	public static Block oreStorage;
 	public static Block pillar;
-	public static Block red_dwarf_bars;
-	public static Block red_dwarven_table;
-	public static Block slab_double;
-	public static Block slab_single;
+	public static Block redDwarfBars;
+	public static Block redDwarvenTable;
+	public static Block slabDouble;
+	public static Block slabSingle;
 	public static Block wall;
-	public static Block wind_dwarf_bars;
-	public static Block wind_dwarven_table;
-	public static Item axe_red_dwarven;
-	public static Item axe_wind_dwarven;
-	public static Item battleaxe_red_dwarven;
-	public static Item battleaxe_wind_dwarven;
-	public static Item boar_armor_red_dwarven;
-	public static Item boar_armor_wind_dwarven;
-	public static Item body_red_dwarven;
-	public static Item body_wind_dwarven;
-	public static Item boots_red_dwarven;
-	public static Item boots_wind_dwarven;
-	public static Item dagger_red_dwarven;
-	public static Item dagger_red_dwarven_poisoned;
-	public static Item dagger_wind_dwarven;
-	public static Item dagger_wind_dwarven_poisoned;
-	public static Item hammer_red_dwarven;
-	public static Item hammer_wind_dwarven;
-	public static Item helmet_red_dwarven;
-	public static Item helmet_wind_dwarven;
-	public static Item hoe_red_dwarven;
-	public static Item hoe_wind_dwarven;
-	public static Item legs_red_dwarven;
-	public static Item legs_wind_dwarven;
-	public static Item mattock_red_dwarven;
-	public static Item mattock_wind_dwarven;
-	public static Item pickaxe_red_dwarven;
-	public static Item pickaxe_wind_dwarven;
-	public static Item pike_red_dwarven;
-	public static Item pike_wind_dwarven;
-	public static Item red_dwarf_steel;
-	public static Item shovel_red_dwarven;
-	public static Item shovel_wind_dwarven;
-	public static Item spear_red_dwarven;
-	public static Item spear_wind_dwarven;
-	public static Item structure_spawner;
-	public static Item sword_red_dwarven;
-	public static Item sword_wind_dwarven;
-	public static Item throwing_axe_red_dwarven;
-	public static Item throwing_axe_wind_dwarven;
-	public static Item wind_dwarf_steel;
+	public static Block windDwarfBars;
+	public static Block windDwarvenTable;
+
+	public static Item axeRedDwarven;
+	public static Item axeWindDwarven;
+	public static Item battleaxeRedDwarven;
+	public static Item battleaxeWindDwarven;
+	public static Item boarArmorRedDwarven;
+	public static Item boarArmorWindDwarven;
+	public static Item bodyRedDwarven;
+	public static Item bodyWindDwarven;
+	public static Item bootsRedDwarven;
+	public static Item bootsWindDwarven;
+	public static Item daggerRedDwarven;
+	public static Item daggerRedDwarvenPoisoned;
+	public static Item daggerWindDwarven;
+	public static Item daggerWindDwarvenPoisoned;
+	public static Item hammerRedDwarven;
+	public static Item hammerWindDwarven;
+	public static Item helmetRedDwarven;
+	public static Item helmetWindDwarven;
+	public static Item hoeRedDwarven;
+	public static Item hoeWindDwarven;
+	public static Item legsRedDwarven;
+	public static Item legsWindDwarven;
+	public static Item mattockRedDwarven;
+	public static Item mattockWindDwarven;
+	public static Item pickaxeRedDwarven;
+	public static Item pickaxeWindDwarven;
+	public static Item pikeRedDwarven;
+	public static Item pikeWindDwarven;
+	public static Item redDwarfSteel;
+	public static Item shovelRedDwarven;
+	public static Item shovelWindDwarven;
+	public static Item spearRedDwarven;
+	public static Item spearWindDwarven;
+	public static Item structureSpawner;
+	public static Item swordRedDwarven;
+	public static Item swordWindDwarven;
+	public static Item throwingAxeRedDwarven;
+	public static Item throwingAxeWindDwarven;
+	public static Item windDwarfSteel;
 
 	public static void preInit() {
 		brick = new DRBlockBrick();
 		chandelier = new DRBlockChandelier();
-		ore_storage = new DRBlockOreStorage();
+		oreStorage = new DRBlockOreStorage();
 		pillar = new DRBlockPillar();
-		red_dwarf_bars = new LOTRBlockBars();
-		red_dwarven_table = new DRBlockTableRedDwarven();
-		slab_double = new DRBlockSlab(true).setHardness(2.0f).setResistance(10.0f).setStepSound(Block.soundTypeStone).setBlockName("slab_double");
-		slab_single = new DRBlockSlab(false).setHardness(2.0f).setResistance(10.0f).setStepSound(Block.soundTypeStone).setBlockName("slab_single");
+		redDwarfBars = new LOTRBlockBars();
+		redDwarvenTable = new DRBlockTableRedDwarven();
+		slabDouble = new DRBlockSlab(true).setHardness(2.0f).setResistance(10.0f).setStepSound(Block.soundTypeStone).setBlockName("slab_double");
+		slabSingle = new DRBlockSlab(false).setHardness(2.0f).setResistance(10.0f).setStepSound(Block.soundTypeStone).setBlockName("slab_single");
 		wall = new DRBlockWall();
-		wind_dwarf_bars = new LOTRBlockBars();
-		wind_dwarven_table = new DRBlockTableWindDwarven();
+		windDwarfBars = new LOTRBlockBars();
+		windDwarvenTable = new DRBlockTableWindDwarven();
 		if (DRConfig.enableTextures14) {
-			body_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 1);
-			body_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 1);
-			legs_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 2);
-			legs_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 2);
-			boots_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 3);
-			boots_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 3);
-			helmet_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 0);
-			helmet_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 0);
-			boar_armor_red_dwarven = new LOTRItemMountArmor(DRMaterial.RED_DWARVEN14, LOTRItemMountArmor.Mount.BOAR);
-			boar_armor_wind_dwarven = new LOTRItemMountArmor(DRMaterial.WIND_DWARVEN14, LOTRItemMountArmor.Mount.BOAR);
+			bodyRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 1);
+			bodyWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 1);
+			legsRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 2);
+			legsWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 2);
+			bootsRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 3);
+			bootsWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 3);
+			helmetRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN14, 0);
+			helmetWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN14, 0);
+			boarArmorRedDwarven = new LOTRItemMountArmor(DRMaterial.RED_DWARVEN14, LOTRItemMountArmor.Mount.BOAR);
+			boarArmorWindDwarven = new LOTRItemMountArmor(DRMaterial.WIND_DWARVEN14, LOTRItemMountArmor.Mount.BOAR);
 		} else {
-			body_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 1);
-			body_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 1);
-			legs_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 2);
-			legs_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 2);
-			boots_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 3);
-			boots_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 3);
-			helmet_red_dwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 0);
-			helmet_wind_dwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 0);
-			boar_armor_red_dwarven = new LOTRItemMountArmor(DRMaterial.RED_DWARVEN, LOTRItemMountArmor.Mount.BOAR);
-			boar_armor_wind_dwarven = new LOTRItemMountArmor(DRMaterial.WIND_DWARVEN, LOTRItemMountArmor.Mount.BOAR);
+			bodyRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 1);
+			bodyWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 1);
+			legsRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 2);
+			legsWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 2);
+			bootsRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 3);
+			bootsWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 3);
+			helmetRedDwarven = new DRItemArmor(DRMaterial.RED_DWARVEN, 0);
+			helmetWindDwarven = new DRItemArmor(DRMaterial.WIND_DWARVEN, 0);
+			boarArmorRedDwarven = new LOTRItemMountArmor(DRMaterial.RED_DWARVEN, LOTRItemMountArmor.Mount.BOAR);
+			boarArmorWindDwarven = new LOTRItemMountArmor(DRMaterial.WIND_DWARVEN, LOTRItemMountArmor.Mount.BOAR);
 		}
-		axe_red_dwarven = new LOTRItemAxe(DRMaterial.RED_DWARVEN);
-		axe_wind_dwarven = new LOTRItemAxe(DRMaterial.WIND_DWARVEN);
-		battleaxe_red_dwarven = new LOTRItemBattleaxe(DRMaterial.RED_DWARVEN);
-		battleaxe_wind_dwarven = new LOTRItemBattleaxe(DRMaterial.WIND_DWARVEN);
-		dagger_red_dwarven = new LOTRItemDagger(DRMaterial.RED_DWARVEN);
-		dagger_red_dwarven_poisoned = new LOTRItemDagger(DRMaterial.RED_DWARVEN, LOTRItemDagger.DaggerEffect.POISON);
-		dagger_wind_dwarven = new LOTRItemDagger(DRMaterial.WIND_DWARVEN);
-		dagger_wind_dwarven_poisoned = new LOTRItemDagger(DRMaterial.WIND_DWARVEN, LOTRItemDagger.DaggerEffect.POISON);
-		hammer_red_dwarven = new LOTRItemHammer(DRMaterial.RED_DWARVEN);
-		hammer_wind_dwarven = new LOTRItemHammer(DRMaterial.WIND_DWARVEN);
-		hoe_red_dwarven = new LOTRItemHoe(DRMaterial.RED_DWARVEN);
-		hoe_wind_dwarven = new LOTRItemHoe(DRMaterial.WIND_DWARVEN);
-		mattock_red_dwarven = new LOTRItemMattock(DRMaterial.RED_DWARVEN);
-		mattock_wind_dwarven = new LOTRItemMattock(DRMaterial.WIND_DWARVEN);
-		pickaxe_red_dwarven = new LOTRItemPickaxe(DRMaterial.RED_DWARVEN);
-		pickaxe_wind_dwarven = new LOTRItemPickaxe(DRMaterial.WIND_DWARVEN);
-		pike_red_dwarven = new LOTRItemPolearm(DRMaterial.RED_DWARVEN);
-		pike_wind_dwarven = new LOTRItemPolearm(DRMaterial.WIND_DWARVEN);
-		red_dwarf_steel = new Item().setCreativeTab(DRCreativeTabs.tabMaterials);
-		shovel_red_dwarven = new LOTRItemShovel(DRMaterial.RED_DWARVEN);
-		shovel_wind_dwarven = new LOTRItemShovel(DRMaterial.WIND_DWARVEN);
-		spear_red_dwarven = new LOTRItemSpear(DRMaterial.RED_DWARVEN);
-		spear_wind_dwarven = new LOTRItemSpear(DRMaterial.WIND_DWARVEN);
-		structure_spawner = new DRItemStructureSpawner();
-		sword_red_dwarven = new LOTRItemSword(DRMaterial.RED_DWARVEN);
-		sword_wind_dwarven = new LOTRItemSword(DRMaterial.WIND_DWARVEN);
-		throwing_axe_red_dwarven = new LOTRItemThrowingAxe(DRMaterial.RED_DWARVEN);
-		throwing_axe_wind_dwarven = new LOTRItemThrowingAxe(DRMaterial.WIND_DWARVEN);
-		wind_dwarf_steel = new Item().setCreativeTab(DRCreativeTabs.tabMaterials);
+		axeRedDwarven = new LOTRItemAxe(DRMaterial.RED_DWARVEN);
+		axeWindDwarven = new LOTRItemAxe(DRMaterial.WIND_DWARVEN);
+		battleaxeRedDwarven = new LOTRItemBattleaxe(DRMaterial.RED_DWARVEN);
+		battleaxeWindDwarven = new LOTRItemBattleaxe(DRMaterial.WIND_DWARVEN);
+		daggerRedDwarven = new LOTRItemDagger(DRMaterial.RED_DWARVEN);
+		daggerRedDwarvenPoisoned = new LOTRItemDagger(DRMaterial.RED_DWARVEN, LOTRItemDagger.DaggerEffect.POISON);
+		daggerWindDwarven = new LOTRItemDagger(DRMaterial.WIND_DWARVEN);
+		daggerWindDwarvenPoisoned = new LOTRItemDagger(DRMaterial.WIND_DWARVEN, LOTRItemDagger.DaggerEffect.POISON);
+		hammerRedDwarven = new LOTRItemHammer(DRMaterial.RED_DWARVEN);
+		hammerWindDwarven = new LOTRItemHammer(DRMaterial.WIND_DWARVEN);
+		hoeRedDwarven = new LOTRItemHoe(DRMaterial.RED_DWARVEN);
+		hoeWindDwarven = new LOTRItemHoe(DRMaterial.WIND_DWARVEN);
+		mattockRedDwarven = new LOTRItemMattock(DRMaterial.RED_DWARVEN);
+		mattockWindDwarven = new LOTRItemMattock(DRMaterial.WIND_DWARVEN);
+		pickaxeRedDwarven = new LOTRItemPickaxe(DRMaterial.RED_DWARVEN);
+		pickaxeWindDwarven = new LOTRItemPickaxe(DRMaterial.WIND_DWARVEN);
+		pikeRedDwarven = new LOTRItemPolearm(DRMaterial.RED_DWARVEN);
+		pikeWindDwarven = new LOTRItemPolearm(DRMaterial.WIND_DWARVEN);
+		redDwarfSteel = new Item().setCreativeTab(DRCreativeTabs.tabMaterials);
+		shovelRedDwarven = new LOTRItemShovel(DRMaterial.RED_DWARVEN);
+		shovelWindDwarven = new LOTRItemShovel(DRMaterial.WIND_DWARVEN);
+		spearRedDwarven = new LOTRItemSpear(DRMaterial.RED_DWARVEN);
+		spearWindDwarven = new LOTRItemSpear(DRMaterial.WIND_DWARVEN);
+		structureSpawner = new DRItemStructureSpawner();
+		swordRedDwarven = new LOTRItemSword(DRMaterial.RED_DWARVEN);
+		swordWindDwarven = new LOTRItemSword(DRMaterial.WIND_DWARVEN);
+		throwingAxeRedDwarven = new LOTRItemThrowingAxe(DRMaterial.RED_DWARVEN);
+		throwingAxeWindDwarven = new LOTRItemThrowingAxe(DRMaterial.WIND_DWARVEN);
+		windDwarfSteel = new Item().setCreativeTab(DRCreativeTabs.tabMaterials);
 
-		LOTRBlockSlabBase.registerSlabs(slab_single, slab_double);
+		LOTRBlockSlabBase.registerSlabs(slabSingle, slabDouble);
 
-		registerBlockV(wind_dwarf_bars, "wind_dwarf_bars");
-		registerBlockV(red_dwarf_bars, "red_dwarf_bars");
-		registerBlock(red_dwarven_table, "red_dwarven_table");
-		registerBlock(wind_dwarven_table, "wind_dwarven_table");
+		registerBlockV(windDwarfBars, "windDwarfBars");
+		registerBlockV(redDwarfBars, "redDwarfBars");
+		registerBlock(redDwarvenTable, "redDwarvenTable");
+		registerBlock(windDwarvenTable, "windDwarvenTable");
 		registerBlockV(chandelier, "chandelier", LOTRItemBlockMetadata.class);
 		registerBlock(brick, "brick", LOTRItemBlockMetadata.class);
 		registerBlock(pillar, "pillar", LOTRItemBlockMetadata.class);
-		registerBlockV(ore_storage, "ore_storage", LOTRItemBlockMetadata.class);
+		registerBlockV(oreStorage, "oreStorage", LOTRItemBlockMetadata.class);
 		registerBlock(wall, "wall", LOTRItemBlockMetadata.class, true);
-		registerBlock(slab_single, "slab_single", DRBlockSlab.SlabExSingle.class);
-		registerBlock(slab_double, "slab_double", DRBlockSlab.SlabExDouble.class);
+		registerBlock(slabSingle, "slabSingle", DRBlockSlab.SlabExSingle.class);
+		registerBlock(slabDouble, "slabDouble", DRBlockSlab.SlabExDouble.class);
 
-		registerItemV(red_dwarf_steel, "red_dwarf_steel");
-		registerItemV(wind_dwarf_steel, "wind_dwarf_steel");
-		registerItemV(helmet_red_dwarven, "helmet_red_dwarven");
-		registerItemV(body_red_dwarven, "body_red_dwarven");
-		registerItemV(legs_red_dwarven, "legs_red_dwarven");
-		registerItemV(boots_red_dwarven, "boots_red_dwarven");
-		registerItemV(helmet_wind_dwarven, "helmet_wind_dwarven");
-		registerItemV(body_wind_dwarven, "body_wind_dwarven");
-		registerItemV(legs_wind_dwarven, "legs_wind_dwarven");
-		registerItemV(boots_wind_dwarven, "boots_wind_dwarven");
-		registerItemV(shovel_red_dwarven, "shovel_red_dwarven");
-		registerItemV(pickaxe_red_dwarven, "pickaxe_red_dwarven");
-		registerItemV(axe_red_dwarven, "axe_red_dwarven");
-		registerItemV(sword_red_dwarven, "sword_red_dwarven");
-		registerItemV(hoe_red_dwarven, "hoe_red_dwarven");
-		registerItemV(dagger_red_dwarven, "dagger_red_dwarven");
-		registerItemV(dagger_red_dwarven_poisoned, "dagger_red_dwarven_poisoned");
-		registerItemV(battleaxe_red_dwarven, "battleaxe_red_dwarven");
-		registerItemV(hammer_red_dwarven, "hammer_red_dwarven");
-		registerItemV(mattock_red_dwarven, "mattock_red_dwarven");
-		registerItemV(throwing_axe_red_dwarven, "throwing_axe_red_dwarven");
-		registerItemV(spear_red_dwarven, "spear_red_dwarven");
-		registerItemV(boar_armor_red_dwarven, "boar_armor_red_dwarven");
-		registerItemV(pike_red_dwarven, "pike_red_dwarven");
-		registerItemV(shovel_wind_dwarven, "shovel_wind_dwarven");
-		registerItemV(pickaxe_wind_dwarven, "pickaxe_wind_dwarven");
-		registerItemV(axe_wind_dwarven, "axe_wind_dwarven");
-		registerItemV(sword_wind_dwarven, "sword_wind_dwarven");
-		registerItemV(hoe_wind_dwarven, "hoe_wind_dwarven");
-		registerItemV(dagger_wind_dwarven, "dagger_wind_dwarven");
-		registerItemV(dagger_wind_dwarven_poisoned, "dagger_wind_dwarven_poisoned");
-		registerItemV(battleaxe_wind_dwarven, "battleaxe_wind_dwarven");
-		registerItemV(hammer_wind_dwarven, "hammer_wind_dwarven");
-		registerItemV(mattock_wind_dwarven, "mattock_wind_dwarven");
-		registerItemV(throwing_axe_wind_dwarven, "throwing_axe_wind_dwarven");
-		registerItemV(spear_wind_dwarven, "spear_wind_dwarven");
-		registerItemV(boar_armor_wind_dwarven, "boar_armor_wind_dwarven");
-		registerItemV(pike_wind_dwarven, "pike_wind_dwarven");
-		registerItem(structure_spawner, "lotr:structureSpawner");
+		registerItemV(redDwarfSteel, "redDwarfSteel");
+		registerItemV(windDwarfSteel, "windDwarfSteel");
+		registerItemV(helmetRedDwarven, "helmetRedDwarven");
+		registerItemV(bodyRedDwarven, "bodyRedDwarven");
+		registerItemV(legsRedDwarven, "legsRedDwarven");
+		registerItemV(bootsRedDwarven, "bootsRedDwarven");
+		registerItemV(helmetWindDwarven, "helmetWindDwarven");
+		registerItemV(bodyWindDwarven, "bodyWindDwarven");
+		registerItemV(legsWindDwarven, "legsWindDwarven");
+		registerItemV(bootsWindDwarven, "bootsWindDwarven");
+		registerItemV(shovelRedDwarven, "shovelRedDwarven");
+		registerItemV(pickaxeRedDwarven, "pickaxeRedDwarven");
+		registerItemV(axeRedDwarven, "axeRedDwarven");
+		registerItemV(swordRedDwarven, "swordRedDwarven");
+		registerItemV(hoeRedDwarven, "hoeRedDwarven");
+		registerItemV(daggerRedDwarven, "daggerRedDwarven");
+		registerItemV(daggerRedDwarvenPoisoned, "daggerRedDwarvenPoisoned");
+		registerItemV(battleaxeRedDwarven, "battleaxeRedDwarven");
+		registerItemV(hammerRedDwarven, "hammerRedDwarven");
+		registerItemV(mattockRedDwarven, "mattockRedDwarven");
+		registerItemV(throwingAxeRedDwarven, "throwingAxeRedDwarven");
+		registerItemV(spearRedDwarven, "spearRedDwarven");
+		registerItemV(boarArmorRedDwarven, "boarArmorRedDwarven");
+		registerItemV(pikeRedDwarven, "pikeRedDwarven");
+		registerItemV(shovelWindDwarven, "shovelWindDwarven");
+		registerItemV(pickaxeWindDwarven, "pickaxeWindDwarven");
+		registerItemV(axeWindDwarven, "axeWindDwarven");
+		registerItemV(swordWindDwarven, "swordWindDwarven");
+		registerItemV(hoeWindDwarven, "hoeWindDwarven");
+		registerItemV(daggerWindDwarven, "daggerWindDwarven");
+		registerItemV(daggerWindDwarvenPoisoned, "daggerWindDwarvenPoisoned");
+		registerItemV(battleaxeWindDwarven, "battleaxeWindDwarven");
+		registerItemV(hammerWindDwarven, "hammerWindDwarven");
+		registerItemV(mattockWindDwarven, "mattockWindDwarven");
+		registerItemV(throwingAxeWindDwarven, "throwingAxeWindDwarven");
+		registerItemV(spearWindDwarven, "spearWindDwarven");
+		registerItemV(boarArmorWindDwarven, "boarArmorWindDwarven");
+		registerItemV(pikeWindDwarven, "pikeWindDwarven");
+		registerItem(structureSpawner, "lotr:structureSpawner");
 	}
 
 	public static void registerBlockV(Block block, String name) {
-		block.setBlockName(name);
+		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(blockName);
 		if (DRConfig.enableTextures14) {
-			block.setBlockTextureName("drealm:" + name + "14");
+			block.setBlockTextureName("drealm:" + blockName + "14");
 		} else {
-			block.setBlockTextureName("drealm:" + name);
+			block.setBlockTextureName("drealm:" + blockName);
 		}
-		GameRegistry.registerBlock(block, name);
+		GameRegistry.registerBlock(block, blockName);
 	}
 
 	public static void registerBlockV(Block block, String name, Class<? extends ItemBlock> itemClass) {
-		block.setBlockName(name);
+		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(blockName);
 		if (DRConfig.enableTextures14) {
-			block.setBlockTextureName("drealm:" + name + "14");
+			block.setBlockTextureName("drealm:" + blockName + "14");
 		} else {
-			block.setBlockTextureName("drealm:" + name);
+			block.setBlockTextureName("drealm:" + blockName);
 		}
-		GameRegistry.registerBlock(block, itemClass, name);
+		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
 	public static void registerItemV(Item item, String name) {
-		item.setUnlocalizedName(name);
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setUnlocalizedName(itemName);
 		if (DRConfig.enableTextures14) {
-			item.setTextureName("drealm:" + name + "14");
+			item.setTextureName("drealm:" + itemName + "14");
 		} else {
-			item.setTextureName("drealm:" + name);
+			item.setTextureName("drealm:" + itemName);
 		}
-		GameRegistry.registerItem(item, name);
+		GameRegistry.registerItem(item, itemName);
 	}
 
 	public static void registerBlock(Block block, String name) {
-		block.setBlockName(name);
-		block.setBlockTextureName("drealm:" + name);
-		GameRegistry.registerBlock(block, name);
+		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(blockName);
+		block.setBlockTextureName("drealm:" + blockName);
+		GameRegistry.registerBlock(block, blockName);
 	}
 
 	public static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
-		block.setBlockName(name);
-		block.setBlockTextureName("drealm:" + name);
-		GameRegistry.registerBlock(block, itemClass, name);
+		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(blockName);
+		block.setBlockTextureName("drealm:" + blockName);
+		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
 	public static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
-		block.setBlockName(name);
-		GameRegistry.registerBlock(block, itemClass, name);
+		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		block.setBlockName(blockName);
+		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
 	public static void registerItem(Item item, String name) {
-		item.setTextureName(name);
-		item.setUnlocalizedName(name);
-		GameRegistry.registerItem(item, name);
+		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		item.setTextureName(itemName);
+		item.setUnlocalizedName(itemName);
+		GameRegistry.registerItem(item, itemName);
 	}
 }

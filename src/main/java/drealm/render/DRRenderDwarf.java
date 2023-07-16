@@ -25,7 +25,8 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	public static LOTRRandomSkins windDwarfSkinsMale;
 	public static LOTRRandomSkins windDwarfSkinsFemale;
 	public static ResourceLocation ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
-	public ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
+
+	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public DRRenderDwarf() {
 		super(new LOTRModelDwarf(), 0.5f);
@@ -54,20 +55,17 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 				return blueDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return blueDwarfSkinsFemale.getRandomSkin(dwarf);
-		}
-		if (dwarf instanceof DREntityRedDwarf) {
+		} else if (dwarf instanceof DREntityRedDwarf) {
 			if (dwarf.familyInfo.isMale()) {
 				return redDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return redDwarfSkinsFemale.getRandomSkin(dwarf);
-		}
-		if (dwarf instanceof DREntityWindDwarf) {
+		} else if (dwarf instanceof DREntityWindDwarf) {
 			if (dwarf.familyInfo.isMale()) {
 				return windDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return windDwarfSkinsFemale.getRandomSkin(dwarf);
-		}
-		if (dwarf.familyInfo.isMale()) {
+		} else if (dwarf.familyInfo.isMale()) {
 			return dwarfSkinsMale.getRandomSkin(dwarf);
 		}
 		return dwarfSkinsFemale.getRandomSkin(dwarf);

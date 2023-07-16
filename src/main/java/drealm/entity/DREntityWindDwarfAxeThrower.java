@@ -25,7 +25,7 @@ public class DREntityWindDwarfAxeThrower extends DREntityWindDwarfWarrior {
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
 		ItemStack axeItem = npcItemsInv.getRangedWeapon();
 		if (axeItem == null) {
-			axeItem = new ItemStack(DRRegistry.throwing_axe_wind_dwarven);
+			axeItem = new ItemStack(DRRegistry.throwingAxeWindDwarven);
 		}
 		LOTREntityThrowingAxe axe = new LOTREntityThrowingAxe(worldObj, this, target, axeItem, 1.0f, (float) getEntityAttribute(npcRangedAccuracy).getAttributeValue());
 		playSound("random.bow", 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.8f));
@@ -50,7 +50,7 @@ public class DREntityWindDwarfAxeThrower extends DREntityWindDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setRangedWeapon(new ItemStack(DRRegistry.throwing_axe_wind_dwarven));
+		npcItemsInv.setRangedWeapon(new ItemStack(DRRegistry.throwingAxeWindDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return data;
 	}

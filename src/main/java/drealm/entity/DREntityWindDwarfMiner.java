@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class DREntityWindDwarfMiner extends DREntityWindDwarf implements LOTRTradeable {
 	public static final LOTRTradeEntries WIND_DWARF_MINER_BUY = new LOTRTradeEntries(TradeType.BUY, new LOTRTradeEntry(new ItemStack(Items.coal, 2), 4), new LOTRTradeEntry(new ItemStack(Blocks.iron_ore), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.oreCopper), 7), new LOTRTradeEntry(new ItemStack(LOTRMod.oreTin), 7), new LOTRTradeEntry(new ItemStack(LOTRMod.oreSilver), 12), new LOTRTradeEntry(new ItemStack(Blocks.gold_ore), 22), new LOTRTradeEntry(new ItemStack(Items.glowstone_dust, 4), 3), new LOTRTradeEntry(new ItemStack(Blocks.cobblestone, 8), 1), new LOTRTradeEntry(new ItemStack(Items.lava_bucket), 20), new LOTRTradeEntry(new ItemStack(Items.flint), 2), new LOTRTradeEntry(new ItemStack(LOTRMod.sulfur), 6), new LOTRTradeEntry(new ItemStack(LOTRMod.saltpeter), 6), new LOTRTradeEntry(new ItemStack(LOTRMod.diamond), 40), new LOTRTradeEntry(new ItemStack(LOTRMod.emerald), 25), new LOTRTradeEntry(new ItemStack(LOTRMod.sapphire), 20), new LOTRTradeEntry(new ItemStack(LOTRMod.ruby), 20), new LOTRTradeEntry(new ItemStack(LOTRMod.opal), 15), new LOTRTradeEntry(new ItemStack(LOTRMod.amber), 15), new LOTRTradeEntry(new ItemStack(LOTRMod.amethyst), 12), new LOTRTradeEntry(new ItemStack(LOTRMod.topaz), 12));
-	public static final LOTRTradeEntries WIND_DWARF_MINER_SELL = new LOTRTradeEntries(TradeType.SELL, new LOTRTradeEntry(new ItemStack(Items.cooked_beef), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_porkchop), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.muttonCooked), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_chicken), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.gammon), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.deerCooked), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_fished), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.rabbitCooked), 3), new LOTRTradeEntry(new ItemStack(Items.bread), 2), new LOTRTradeEntry(new ItemStack(LOTRMod.mugAle, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugMead, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugCider, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugPerry, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugDwarvenAle, 1, 32767), 12), new LOTRTradeEntry(new ItemStack(DRRegistry.pickaxe_wind_dwarven), 10));
+	public static final LOTRTradeEntries WIND_DWARF_MINER_SELL = new LOTRTradeEntries(TradeType.SELL, new LOTRTradeEntry(new ItemStack(Items.cooked_beef), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_porkchop), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.muttonCooked), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_chicken), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.gammon), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.deerCooked), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_fished), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.rabbitCooked), 3), new LOTRTradeEntry(new ItemStack(Items.bread), 2), new LOTRTradeEntry(new ItemStack(LOTRMod.mugAle, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugMead, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugCider, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugPerry, 1, 32767), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.mugDwarvenAle, 1, 32767), 12), new LOTRTradeEntry(new ItemStack(DRRegistry.pickaxeWindDwarven), 10));
 
 	public DREntityWindDwarfMiner(World world) {
 		super(world);
@@ -75,13 +75,13 @@ public class DREntityWindDwarfMiner extends DREntityWindDwarf implements LOTRTra
 
 	@Override
 	public void onPlayerTrade(EntityPlayer entityplayer, LOTRTradeEntries.TradeType type, ItemStack itemstack) {
-		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.trade_wind_dwarf_miner);
+		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.tradeWindDwarfMiner);
 	}
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pickaxe_wind_dwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pickaxeWindDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
 		return data;
 	}

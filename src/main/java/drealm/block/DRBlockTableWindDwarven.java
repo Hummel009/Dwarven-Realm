@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 	@SideOnly(Side.CLIENT)
-	public IIcon[] tableIcons;
+	private IIcon[] tableIcons;
 
 	public DRBlockTableWindDwarven() {
 		super(Material.rock, DRFaction.WIND_MOUNTAINS, 1);
@@ -74,7 +74,7 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(inv, world, i, j, k, DRRecipe.wind_mountains, DRRegistry.wind_dwarven_table);
+			super(inv, world, i, j, k, DRRecipe.windMountains, DRRegistry.windDwarvenTable);
 		}
 	}
 

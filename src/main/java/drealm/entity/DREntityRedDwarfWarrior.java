@@ -23,35 +23,35 @@ public class DREntityRedDwarfWarrior extends DREntityRedDwarf {
 		int i = rand.nextInt(7);
 		switch (i) {
 			case 0:
-				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_red_dwarven));
+				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.swordRedDwarven));
 				break;
 			case 1:
 			case 2:
-				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.battleaxe_red_dwarven));
+				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.battleaxeRedDwarven));
 				break;
 			case 3:
 			case 4:
-				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammer_red_dwarven));
+				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammerRedDwarven));
 				break;
 			case 5:
-				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.mattock_red_dwarven));
+				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.mattockRedDwarven));
 				break;
 			case 6:
-				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pike_red_dwarven));
+				npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pikeRedDwarven));
 				break;
 			default:
 				break;
 		}
 		if (rand.nextInt(6) == 0) {
 			npcItemsInv.setSpearBackup(npcItemsInv.getMeleeWeapon());
-			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.spear_red_dwarven));
+			npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.spearRedDwarven));
 		}
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
-		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.boots_red_dwarven));
-		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legs_red_dwarven));
-		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.body_red_dwarven));
+		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.bootsRedDwarven));
+		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legsRedDwarven));
+		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.bodyRedDwarven));
 		if (rand.nextInt(10) != 0) {
-			setCurrentItemOrArmor(4, new ItemStack(DRRegistry.helmet_red_dwarven));
+			setCurrentItemOrArmor(4, new ItemStack(DRRegistry.helmetRedDwarven));
 		}
 		return data;
 	}

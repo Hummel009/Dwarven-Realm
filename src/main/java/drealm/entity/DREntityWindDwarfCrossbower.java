@@ -62,7 +62,7 @@ public class DREntityWindDwarfCrossbower extends DREntityWindDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.sword_wind_dwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.swordWindDwarven));
 		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.ironCrossbow));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return data;

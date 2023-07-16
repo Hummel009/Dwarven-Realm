@@ -18,7 +18,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	public DREntityWindDwarf(World world) {
 		super(world);
 		familyInfo.marriageEntityClass = DREntityWindDwarf.class;
-		familyInfo.marriageAchievement = DRAchievement.marry_wind_dwarf;
+		familyInfo.marriageAchievement = DRAchievement.marryWindDwarf;
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 
 	@Override
 	public Item getDwarfSteelDrop() {
-		return DRRegistry.wind_dwarf_steel;
+		return DRRegistry.windDwarfSteel;
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 
 	@Override
 	public LOTRAchievement getKillAchievement() {
-		return DRAchievement.kill_wind_dwarf;
+		return DRAchievement.killWindDwarf;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.dagger_wind_dwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.daggerWindDwarven));
 		npcItemsInv.setIdleItem(null);
 		return data;
 	}

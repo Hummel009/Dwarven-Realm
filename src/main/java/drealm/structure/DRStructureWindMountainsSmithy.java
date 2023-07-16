@@ -17,8 +17,8 @@ public class DRStructureWindMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 		carvedBrickMeta = 1;
 		pillarBlock = DRRegistry.pillar;
 		pillarMeta = 0;
-		tableBlock = DRRegistry.wind_dwarven_table;
-		barsBlock = DRRegistry.wind_dwarf_bars;
+		tableBlock = DRRegistry.windDwarvenTable;
+		barsBlock = DRRegistry.windDwarfBars;
 	}
 
 	@Override

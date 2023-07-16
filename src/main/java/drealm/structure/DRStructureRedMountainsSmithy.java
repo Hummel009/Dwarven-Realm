@@ -18,8 +18,8 @@ public class DRStructureRedMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 		carvedBrickMeta = 2;
 		pillarBlock = LOTRMod.pillar;
 		pillarMeta = 4;
-		tableBlock = DRRegistry.red_dwarven_table;
-		barsBlock = DRRegistry.red_dwarf_bars;
+		tableBlock = DRRegistry.redDwarvenTable;
+		barsBlock = DRRegistry.redDwarfBars;
 	}
 
 	@Override

@@ -20,8 +20,8 @@ import java.util.Random;
 
 public class DRBlockChandelier extends Block {
 	@SideOnly(Side.CLIENT)
-	public IIcon[] chandelierIcons;
-	public String[] chandelierNames = {"redDwarven", "windDwarven"};
+	private IIcon[] chandelierIcons;
+	private String[] chandelierNames = {"redDwarven", "windDwarven"};
 
 	public DRBlockChandelier() {
 		super(Material.circuits);

@@ -21,13 +21,13 @@ import java.util.List;
 public class DRItemStructureSpawner extends Item {
 	public static int lastStructureSpawnTick;
 	@SideOnly(Side.CLIENT)
-	public IIcon iconBase;
+	private IIcon iconBase;
 	@SideOnly(Side.CLIENT)
-	public IIcon iconOverlay;
+	private IIcon iconOverlay;
 	@SideOnly(Side.CLIENT)
-	public IIcon iconVillageBase;
+	private IIcon iconVillageBase;
 	@SideOnly(Side.CLIENT)
-	public IIcon iconVillageOverlay;
+	private IIcon iconVillageOverlay;
 
 	public DRItemStructureSpawner() {
 		setHasSubtypes(true);

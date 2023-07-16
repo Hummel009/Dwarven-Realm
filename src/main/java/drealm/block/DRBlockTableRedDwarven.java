@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 	@SideOnly(Side.CLIENT)
-	public IIcon[] tableIcons;
+	private IIcon[] tableIcons;
 
 	public DRBlockTableRedDwarven() {
 		super(Material.rock, DRFaction.RED_MOUNTAINS, 0);
@@ -74,7 +74,7 @@ public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(inv, world, i, j, k, DRRecipe.red_mountains, DRRegistry.red_dwarven_table);
+			super(inv, world, i, j, k, DRRecipe.redMountains, DRRegistry.redDwarvenTable);
 		}
 	}
 

@@ -13,8 +13,7 @@ public class DRServerProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
 		if (ID == 0) {
 			return new DRBlockTableRedDwarven.Gui(entityplayer.inventory, world, i, j, k);
-		}
-		if (ID == 1) {
+		} else if (ID == 1) {
 			return new DRBlockTableWindDwarven.Gui(entityplayer.inventory, world, i, j, k);
 		}
 		return null;
@@ -24,8 +23,7 @@ public class DRServerProxy implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
 		if (ID == 0) {
 			return new DRBlockTableRedDwarven.Container(entityplayer.inventory, world, i, j, k);
-		}
-		if (ID == 1) {
+		} else if (ID == 1) {
 			return new DRBlockTableWindDwarven.Container(entityplayer.inventory, world, i, j, k);
 		}
 		return null;

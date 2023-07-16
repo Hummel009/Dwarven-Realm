@@ -10,8 +10,8 @@ public class DRInvasions {
 	public static LOTRInvasions WIND_MOUNTAINS;
 
 	public static void addInvasionIcons() {
-		DRCommander.changeInvasionIcon(RED_MOUNTAINS, DRRegistry.hammer_red_dwarven);
-		DRCommander.changeInvasionIcon(WIND_MOUNTAINS, DRRegistry.hammer_wind_dwarven);
+		DRCommander.changeInvasionIcon(RED_MOUNTAINS, DRRegistry.hammerRedDwarven);
+		DRCommander.changeInvasionIcon(WIND_MOUNTAINS, DRRegistry.hammerWindDwarven);
 	}
 
 	public static void addInvasionMobs() {

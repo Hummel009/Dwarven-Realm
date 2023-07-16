@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior implements LOTRUnitTradeable {
-	public static final LOTRUnitTradeEntries WIND_DWARF_COMMANDER = new LOTRUnitTradeEntries(200.0f, new LOTRUnitTradeEntry(DREntityWindDwarf.class, 20, 0.0f), new LOTRUnitTradeEntry(DREntityWindDwarfWarrior.class, 30, 50.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfAxeThrower.class, 50, 100.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfCrossbower.class, 50, 100.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfWarrior.class, LOTREntityWildBoar.class, "WindDwarfWarrior_Boar", 50, 150.0f).setMountArmor(DRRegistry.boar_armor_wind_dwarven).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfAxeThrower.class, LOTREntityWildBoar.class, "WindDwarfAxeThrower_Boar", 70, 200.0f).setMountArmor(DRRegistry.boar_armor_wind_dwarven).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfBannerBearer.class, 50, 200.0f).setPledgeExclusive());
+	public static final LOTRUnitTradeEntries WIND_DWARF_COMMANDER = new LOTRUnitTradeEntries(200.0f, new LOTRUnitTradeEntry(DREntityWindDwarf.class, 20, 0.0f), new LOTRUnitTradeEntry(DREntityWindDwarfWarrior.class, 30, 50.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfAxeThrower.class, 50, 100.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfCrossbower.class, 50, 100.0f).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfWarrior.class, LOTREntityWildBoar.class, "WindDwarfWarrior_Boar", 50, 150.0f).setMountArmor(DRRegistry.boarArmorWindDwarven).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfAxeThrower.class, LOTREntityWildBoar.class, "WindDwarfAxeThrower_Boar", 70, 200.0f).setMountArmor(DRRegistry.boarArmorWindDwarven).setPledgeExclusive(), new LOTRUnitTradeEntry(DREntityWindDwarfBannerBearer.class, 50, 200.0f).setPledgeExclusive());
 
 	public DREntityWindDwarfCommander(World world) {
 		super(world);
@@ -70,18 +70,18 @@ public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior impleme
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		data = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammer_wind_dwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammerWindDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
-		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.boots_wind_dwarven));
-		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legs_wind_dwarven));
-		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.body_wind_dwarven));
+		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.bootsWindDwarven));
+		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legsWindDwarven));
+		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.bodyWindDwarven));
 		setCurrentItemOrArmor(4, null);
 		return data;
 	}
 
 	@Override
 	public void onUnitTrade(EntityPlayer entityplayer) {
-		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.trade_wind_dwarf_commander);
+		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.tradeWindDwarfCommander);
 	}
 
 	@Override

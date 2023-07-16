@@ -27,13 +27,13 @@ public class DRStructureRedMountainsHouse extends LOTRWorldGenDwarfHouse {
 
 	@Override
 	public ItemStack getRandomOtherItem(Random random) {
-		ItemStack[] items = {new ItemStack(DRRegistry.helmet_red_dwarven), new ItemStack(DRRegistry.body_red_dwarven), new ItemStack(DRRegistry.legs_red_dwarven), new ItemStack(DRRegistry.boots_red_dwarven), new ItemStack(DRRegistry.red_dwarf_steel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget)};
+		ItemStack[] items = {new ItemStack(DRRegistry.helmetRedDwarven), new ItemStack(DRRegistry.bodyRedDwarven), new ItemStack(DRRegistry.legsRedDwarven), new ItemStack(DRRegistry.bootsRedDwarven), new ItemStack(DRRegistry.redDwarfSteel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget)};
 		return items[random.nextInt(items.length)].copy();
 	}
 
 	@Override
 	public ItemStack getRandomWeaponItem(Random random) {
-		ItemStack[] items = {new ItemStack(DRRegistry.sword_red_dwarven), new ItemStack(DRRegistry.dagger_red_dwarven), new ItemStack(DRRegistry.hammer_red_dwarven), new ItemStack(DRRegistry.battleaxe_red_dwarven), new ItemStack(DRRegistry.pickaxe_red_dwarven), new ItemStack(DRRegistry.mattock_red_dwarven), new ItemStack(DRRegistry.throwing_axe_red_dwarven), new ItemStack(DRRegistry.pike_red_dwarven)};
+		ItemStack[] items = {new ItemStack(DRRegistry.swordRedDwarven), new ItemStack(DRRegistry.daggerRedDwarven), new ItemStack(DRRegistry.hammerRedDwarven), new ItemStack(DRRegistry.battleaxeRedDwarven), new ItemStack(DRRegistry.pickaxeRedDwarven), new ItemStack(DRRegistry.mattockRedDwarven), new ItemStack(DRRegistry.throwingAxeRedDwarven), new ItemStack(DRRegistry.pikeRedDwarven)};
 		return items[random.nextInt(items.length)].copy();
 	}
 
@@ -52,8 +52,8 @@ public class DRStructureRedMountainsHouse extends LOTRWorldGenDwarfHouse {
 		pillarMeta = 4;
 		chandelierBlock = DRRegistry.chandelier;
 		chandelierMeta = 0;
-		tableBlock = DRRegistry.red_dwarven_table;
-		barsBlock = DRRegistry.red_dwarf_bars;
+		tableBlock = DRRegistry.redDwarvenTable;
+		barsBlock = DRRegistry.redDwarfBars;
 		larderContents = DRChestContents.RED_DWARF_HOUSE_LARDER;
 		personalContents = DRChestContents.RED_MOUNTAINS_STRONGHOLD;
 		plateFoods = DRFoods.RED_DWARF;

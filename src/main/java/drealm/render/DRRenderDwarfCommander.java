@@ -9,7 +9,8 @@ import net.minecraft.util.ResourceLocation;
 public class DRRenderDwarfCommander extends DRRenderDwarf {
 	public static ResourceLocation cloak = new ResourceLocation("lotr:mob/dwarf/commander_cloak.png");
 	public static ResourceLocation blueCloak = new ResourceLocation("lotr:mob/dwarf/blueMountains_commander_cloak.png");
-	public LOTRModelDwarf cloakModel = new LOTRModelDwarf(1.5f);
+
+	private LOTRModelDwarf cloakModel = new LOTRModelDwarf(1.5f);
 
 	public ResourceLocation getCloakTexture(EntityLivingBase entity) {
 		return entity instanceof LOTREntityBlueDwarf ? blueCloak : cloak;

@@ -102,10 +102,10 @@ public class DRMaterial {
 	}
 
 	public static void onInit() {
-		DRCommander.setMaterialCraftingItem(RED_DWARVEN, DRRegistry.red_dwarf_steel);
-		DRCommander.setMaterialCraftingItem(WIND_DWARVEN, DRRegistry.wind_dwarf_steel);
-		DRCommander.setMaterialCraftingItem(RED_DWARVEN14, DRRegistry.red_dwarf_steel);
-		DRCommander.setMaterialCraftingItem(WIND_DWARVEN14, DRRegistry.wind_dwarf_steel);
+		DRCommander.setMaterialCraftingItem(RED_DWARVEN, DRRegistry.redDwarfSteel);
+		DRCommander.setMaterialCraftingItem(WIND_DWARVEN, DRRegistry.windDwarfSteel);
+		DRCommander.setMaterialCraftingItem(RED_DWARVEN14, DRRegistry.redDwarfSteel);
+		DRCommander.setMaterialCraftingItem(WIND_DWARVEN14, DRRegistry.windDwarfSteel);
 	}
 
 	public static void setup() {

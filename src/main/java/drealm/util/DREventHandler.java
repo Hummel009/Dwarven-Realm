@@ -37,9 +37,9 @@ public class DREventHandler {
 		}
 		Container container = player.openContainer;
 		if (container instanceof DRBlockTableRedDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(DRAchievement.use_red_dwarven_table);
+			LOTRLevelData.getData(player).addAchievement(DRAchievement.useRedDwarvenTable);
 		} else if (container instanceof DRBlockTableWindDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(DRAchievement.use_wind_dwarven_table);
+			LOTRLevelData.getData(player).addAchievement(DRAchievement.useWindDwarvenTable);
 		}
 	}
 
@@ -48,10 +48,10 @@ public class DREventHandler {
 		EntityPlayer entityplayer = event.player;
 		ItemStack itemstack = event.smelting;
 		if (!entityplayer.worldObj.isRemote) {
-			if (itemstack.getItem() == DRRegistry.red_dwarf_steel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smelt_red_dwarf_steel);
-			} else if (itemstack.getItem() == DRRegistry.wind_dwarf_steel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smelt_wind_dwarf_steel);
+			if (itemstack.getItem() == DRRegistry.redDwarfSteel) {
+				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smeltRedDwarfSteel);
+			} else if (itemstack.getItem() == DRRegistry.windDwarfSteel) {
+				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smeltWindDwarfSteel);
 			}
 		}
 	}
