@@ -1,15 +1,19 @@
 package drealm.render;
 
-import org.lwjgl.opengl.GL11;
-
-import drealm.entity.*;
+import drealm.entity.DREntityRedDwarf;
+import drealm.entity.DREntityWindDwarf;
 import lotr.client.model.LOTRModelDwarf;
-import lotr.client.render.entity.*;
+import lotr.client.render.entity.LOTRRandomSkins;
+import lotr.client.render.entity.LOTRRenderBiped;
 import lotr.common.LOTRMod;
-import lotr.common.entity.npc.*;
+import lotr.common.entity.npc.LOTREntityBlueDwarf;
+import lotr.common.entity.npc.LOTREntityDwarf;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class DRRenderDwarf extends LOTRRenderBiped {
 	public static LOTRRandomSkins dwarfSkinsMale;
@@ -20,7 +24,7 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	public static LOTRRandomSkins redDwarfSkinsFemale;
 	public static LOTRRandomSkins windDwarfSkinsMale;
 	public static LOTRRandomSkins windDwarfSkinsFemale;
-	public static ResourceLocation ringTexture  = new ResourceLocation("lotr:mob/dwarf/ring.png");
+	public static ResourceLocation ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
 	public ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public DRRenderDwarf() {

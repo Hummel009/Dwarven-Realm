@@ -1,12 +1,17 @@
 package drealm.entity;
 
-import drealm.database.*;
+import drealm.database.DRAchievement;
+import drealm.database.DRInvasions;
+import drealm.database.DRRegistry;
 import lotr.common.LOTRLevelData;
 import lotr.common.entity.ai.LOTREntityAIAttackOnCollide;
 import lotr.common.entity.animal.LOTREntityWildBoar;
-import lotr.common.entity.npc.*;
+import lotr.common.entity.npc.LOTRUnitTradeEntries;
+import lotr.common.entity.npc.LOTRUnitTradeEntry;
+import lotr.common.entity.npc.LOTRUnitTradeable;
 import lotr.common.world.spawning.LOTRInvasions;
-import net.minecraft.entity.*;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,7 +22,7 @@ public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior impleme
 
 	public DREntityWindDwarfCommander(World world) {
 		super(world);
-		this.addTargetTasks(false);
+		addTargetTasks(false);
 	}
 
 	@Override

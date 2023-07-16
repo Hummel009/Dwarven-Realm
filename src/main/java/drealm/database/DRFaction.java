@@ -1,26 +1,30 @@
 package drealm.database;
 
-import java.util.EnumSet;
-
 import drealm.database.DRAchievement.DRAchievementCategory;
 import drealm.util.DRCommander;
-import lotr.common.*;
-import lotr.common.fac.*;
+import lotr.common.LOTRAchievement;
+import lotr.common.LOTRDimension;
+import lotr.common.fac.LOTRControlZone;
+import lotr.common.fac.LOTRFaction;
+import lotr.common.fac.LOTRFactionRelations;
+import lotr.common.fac.LOTRMapRegion;
 import lotr.common.world.map.LOTRWaypoint;
+
+import java.util.EnumSet;
 
 public class DRFaction {
 	public static LOTRFaction RED_MOUNTAINS;
 	public static LOTRFaction WIND_MOUNTAINS;
 
 	public static void onInit() {
-		DRFaction.setupRelations();
-		DRFaction.setupMapInfo();
-		DRFaction.setupControlZones();
-		DRFaction.setupRanks();
+		setupRelations();
+		setupMapInfo();
+		setupControlZones();
+		setupRanks();
 	}
 
 	public static void preInit() {
-		DRFaction.setupFactions();
+		setupFactions();
 	}
 
 	public static void setupControlZones() {

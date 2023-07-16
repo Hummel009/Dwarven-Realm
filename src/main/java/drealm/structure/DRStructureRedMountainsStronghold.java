@@ -1,21 +1,44 @@
 package drealm.structure;
 
-import java.util.Random;
-
-import drealm.database.*;
-import drealm.entity.*;
+import drealm.database.DRChestContents;
+import drealm.database.DRRegistry;
+import drealm.entity.DREntityRedDwarf;
+import drealm.entity.DREntityRedDwarfAxeThrower;
+import drealm.entity.DREntityRedDwarfCommander;
+import drealm.entity.DREntityRedDwarfWarrior;
 import drealm.item.DRItemBanner;
-import lotr.common.*;
+import lotr.common.LOTRFoods;
+import lotr.common.LOTRMod;
 import lotr.common.entity.LOTREntityNPCRespawner;
 import lotr.common.entity.npc.LOTREntityDwarf;
-import lotr.common.world.structure.*;
+import lotr.common.world.structure.LOTRChestContents;
+import lotr.common.world.structure.LOTRWorldGenStructureBase;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase {
 	public DRStructureRedMountainsStronghold(boolean flag) {
 		super(flag);
+	}
+
+	public static void spawnDwarf(World world, int i, int j, int k) {
+		DREntityRedDwarfWarrior dwarf = world.rand.nextInt(3) == 0 ? new DREntityRedDwarfAxeThrower(world) : new DREntityRedDwarfWarrior(world);
+		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
+		((DREntityRedDwarf) dwarf).onSpawnWithEgg(null);
+		dwarf.isNPCPersistent = true;
+		dwarf.setHomeArea(i, j, k, 16);
+		world.spawnEntityInWorld(dwarf);
+	}
+
+	public static void spawnDwarfCommander(World world, int i, int j, int k) {
+		DREntityRedDwarfCommander dwarf = new DREntityRedDwarfCommander(world);
+		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
+		((LOTREntityDwarf) dwarf).onSpawnWithEgg(null);
+		dwarf.setHomeArea(i, j, k, 16);
+		world.spawnEntityInWorld(dwarf);
 	}
 
 	@Override
@@ -33,21 +56,21 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			rotation = usingPlayerRotation();
 		}
 		switch (rotation) {
-		case 0: {
-			k += 8;
-			break;
-		}
-		case 1: {
-			i -= 8;
-			break;
-		}
-		case 2: {
-			k -= 8;
-			break;
-		}
-		case 3: {
-			i += 8;
-		}
+			case 0: {
+				k += 8;
+				break;
+			}
+			case 1: {
+				i -= 8;
+				break;
+			}
+			case 2: {
+				k -= 8;
+				break;
+			}
+			case 3: {
+				i += 8;
+			}
 		}
 		if (restrictions) {
 			int minHeight = j;
@@ -118,7 +141,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 				} else if (k2 == 5) {
 					l = i2 % 2;
 				}
-				if (l <= -1) {
+				if (l == -1) {
 					continue;
 				}
 				if (l == 1) {
@@ -147,21 +170,21 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 		setBlockAndNotifyAdequately(world, i, j + 11, k, DRRegistry.chandelier, 0);
 		setBlockAndNotifyAdequately(world, i, j + 12, k, LOTRMod.brick, 6);
 		switch (rotation) {
-		case 0: {
-			generateFacingSouth(world, random, i, j, k);
-			break;
-		}
-		case 1: {
-			generateFacingWest(world, random, i, j, k);
-			break;
-		}
-		case 2: {
-			generateFacingNorth(world, random, i, j, k);
-			break;
-		}
-		case 3: {
-			generateFacingEast(world, random, i, j, k);
-		}
+			case 0: {
+				generateFacingSouth(world, random, i, j, k);
+				break;
+			}
+			case 1: {
+				generateFacingWest(world, random, i, j, k);
+				break;
+			}
+			case 2: {
+				generateFacingNorth(world, random, i, j, k);
+				break;
+			}
+			case 3: {
+				generateFacingEast(world, random, i, j, k);
+			}
 		}
 		spawnDwarfCommander(world, i, j + 9, k);
 		for (int l = 0; l < 4; ++l) {
@@ -235,8 +258,8 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i + 3, j + 3, k12 + 1, DRRegistry.chandelier, 0);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12 + 3, Blocks.planks, 1);
-			this.placeBarrel(world, random, i + 5, j + 2, k12, 4, LOTRFoods.DWARF_DRINK);
-			this.placeBarrel(world, random, i + 5, j + 2, k12 + 3, 4, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i + 5, j + 2, k12, 4, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i + 5, j + 2, k12 + 3, 4, LOTRFoods.DWARF_DRINK);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12 + 1, Blocks.furnace, 0);
 			setBlockMetadata(world, i + 5, j + 1, k12 + 1, 4);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12 + 2, Blocks.furnace, 0);
@@ -401,8 +424,8 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k - 3, DRRegistry.chandelier, 0);
 			setBlockAndNotifyAdequately(world, i12, j + 1, k - 5, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i12 + 3, j + 1, k - 5, Blocks.planks, 1);
-			this.placeBarrel(world, random, i12, j + 2, k - 5, 3, LOTRFoods.DWARF_DRINK);
-			this.placeBarrel(world, random, i12 + 3, j + 2, k - 5, 3, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i12, j + 2, k - 5, 3, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i12 + 3, j + 2, k - 5, 3, LOTRFoods.DWARF_DRINK);
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 1, k - 5, Blocks.furnace, 0);
 			setBlockMetadata(world, i12 + 1, j + 1, k - 5, 3);
 			setBlockAndNotifyAdequately(world, i12 + 2, j + 1, k - 5, Blocks.furnace, 0);
@@ -567,8 +590,8 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k + 3, DRRegistry.chandelier, 0);
 			setBlockAndNotifyAdequately(world, i12, j + 1, k + 5, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i12 + 3, j + 1, k + 5, Blocks.planks, 1);
-			this.placeBarrel(world, random, i12, j + 2, k + 5, 2, LOTRFoods.DWARF_DRINK);
-			this.placeBarrel(world, random, i12 + 3, j + 2, k + 5, 2, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i12, j + 2, k + 5, 2, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i12 + 3, j + 2, k + 5, 2, LOTRFoods.DWARF_DRINK);
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 1, k + 5, Blocks.furnace, 0);
 			setBlockMetadata(world, i12 + 1, j + 1, k + 5, 2);
 			setBlockAndNotifyAdequately(world, i12 + 2, j + 1, k + 5, Blocks.furnace, 0);
@@ -733,8 +756,8 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			setBlockAndNotifyAdequately(world, i - 3, j + 3, k12 + 1, DRRegistry.chandelier, 0);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12 + 3, Blocks.planks, 1);
-			this.placeBarrel(world, random, i - 5, j + 2, k12, 5, LOTRFoods.DWARF_DRINK);
-			this.placeBarrel(world, random, i - 5, j + 2, k12 + 3, 5, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i - 5, j + 2, k12, 5, LOTRFoods.DWARF_DRINK);
+			placeBarrel(world, random, i - 5, j + 2, k12 + 3, 5, LOTRFoods.DWARF_DRINK);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12 + 1, Blocks.furnace, 0);
 			setBlockMetadata(world, i - 5, j + 1, k12 + 1, 5);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12 + 2, Blocks.furnace, 0);
@@ -875,43 +898,26 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 		int l = random.nextInt(5);
 		Block block = null;
 		switch (l) {
-		case 0: {
-			block = Blocks.iron_ore;
-			break;
-		}
-		case 1: {
-			block = Blocks.gold_ore;
-			break;
-		}
-		case 2: {
-			block = LOTRMod.oreCopper;
-			break;
-		}
-		case 3: {
-			block = LOTRMod.oreTin;
-			break;
-		}
-		case 4: {
-			block = LOTRMod.oreSilver;
-		}
+			case 0: {
+				block = Blocks.iron_ore;
+				break;
+			}
+			case 1: {
+				block = Blocks.gold_ore;
+				break;
+			}
+			case 2: {
+				block = LOTRMod.oreCopper;
+				break;
+			}
+			case 3: {
+				block = LOTRMod.oreTin;
+				break;
+			}
+			case 4: {
+				block = LOTRMod.oreSilver;
+			}
 		}
 		setBlockAndNotifyAdequately(world, i, j, k, block, 0);
-	}
-
-	public static void spawnDwarf(World world, int i, int j, int k) {
-		DREntityRedDwarfWarrior dwarf = world.rand.nextInt(3) == 0 ? new DREntityRedDwarfAxeThrower(world) : new DREntityRedDwarfWarrior(world);
-		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
-		((DREntityRedDwarf) dwarf).onSpawnWithEgg(null);
-		dwarf.isNPCPersistent = true;
-		dwarf.setHomeArea(i, j, k, 16);
-		world.spawnEntityInWorld(dwarf);
-	}
-
-	public static void spawnDwarfCommander(World world, int i, int j, int k) {
-		DREntityRedDwarfCommander dwarf = new DREntityRedDwarfCommander(world);
-		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
-		((LOTREntityDwarf) dwarf).onSpawnWithEgg(null);
-		dwarf.setHomeArea(i, j, k, 16);
-		world.spawnEntityInWorld(dwarf);
 	}
 }

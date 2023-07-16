@@ -1,23 +1,31 @@
 package drealm.biome;
 
-import java.util.Random;
-
 import drealm.entity.*;
-import drealm.structure.*;
+import drealm.structure.DRStructureRedMountainsHouse;
+import drealm.structure.DRStructureRedMountainsSmithy;
+import drealm.structure.DRStructureRedMountainsStronghold;
 import drealm.util.DRCommander;
-import lotr.common.*;
+import lotr.common.LOTRAchievement;
+import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
-import lotr.common.world.biome.*;
+import lotr.common.world.biome.LOTRBiome;
+import lotr.common.world.biome.LOTRMusicRegion;
 import lotr.common.world.biome.variant.LOTRBiomeVariant;
 import lotr.common.world.feature.LOTRTreeType;
-import lotr.common.world.map.*;
-import lotr.common.world.spawning.*;
+import lotr.common.world.map.LOTRRoadType;
+import lotr.common.world.map.LOTRWaypoint;
+import lotr.common.world.spawning.LOTRBiomeSpawnList;
+import lotr.common.world.spawning.LOTREventSpawner;
+import lotr.common.world.spawning.LOTRSpawnEntry;
+import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
-public class DRBiomeRedMountains extends LOTRBiome { 
+import java.util.Random;
+
+public class DRBiomeRedMountains extends LOTRBiome {
 	public static final LOTRSpawnList RED_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfFireThrower.class, 10, 4, 4));
 
 	public DRBiomeRedMountains(int i, boolean major) {
@@ -27,11 +35,11 @@ public class DRBiomeRedMountains extends LOTRBiome {
 		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(RED_DWARVES, 10);
 		npcSpawnList.newFactionList(600).add(arrspawnListContainer);
 		addBiomeVariantSet(LOTRBiomeVariant.SET_MOUNTAINS);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_BEECH, 0.2f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_BIRCH, 0.2f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_LARCH, 0.2f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_PINE, 0.2f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_MAPLE, 0.2f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_BEECH, 0.2f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_BIRCH, 0.2f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_LARCH, 0.2f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_PINE, 0.2f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_MAPLE, 0.2f);
 		decorator.biomeOreFactor = 2.0f;
 		decorator.biomeGemFactor = 1.5f;
 		decorator.addSoil(new WorldGenMinable(LOTRMod.rock, 4, 60, Blocks.stone), 12.0f, 0, 96);

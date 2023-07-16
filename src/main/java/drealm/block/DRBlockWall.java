@@ -1,6 +1,7 @@
 package drealm.block;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import drealm.database.DRRegistry;
 import lotr.common.LOTRMod;
 import lotr.common.block.LOTRBlockWallBase;
@@ -12,7 +13,7 @@ public class DRBlockWall extends LOTRBlockWallBase {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int i, int j) {
 		if (j == 0) {
 			return DRRegistry.brick.getIcon(i, 0);

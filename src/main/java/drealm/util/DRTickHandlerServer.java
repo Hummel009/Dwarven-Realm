@@ -7,7 +7,8 @@ import drealm.database.DRAchievement;
 import drealm.item.DRItemStructureSpawner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraftforge.common.*;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 
 public class DRTickHandlerServer {
 	public DRTickHandlerServer() {
@@ -32,5 +33,4 @@ public class DRTickHandlerServer {
 			--DRItemStructureSpawner.lastStructureSpawnTick;
 		}
 	}
-
 }

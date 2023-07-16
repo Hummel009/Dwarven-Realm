@@ -4,8 +4,10 @@ import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import drealm.block.*;
-import drealm.database.*;
+import drealm.block.DRBlockTableRedDwarven;
+import drealm.block.DRBlockTableWindDwarven;
+import drealm.database.DRAchievement;
+import drealm.database.DRRegistry;
 import lotr.common.LOTRLevelData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -53,5 +55,4 @@ public class DREventHandler {
 			}
 		}
 	}
-
 }

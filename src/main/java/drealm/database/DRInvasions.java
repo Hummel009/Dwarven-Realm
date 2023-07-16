@@ -15,19 +15,19 @@ public class DRInvasions {
 	}
 
 	public static void addInvasionMobs() {
-		DRInvasions.RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfWarrior.class, 10));
-		DRInvasions.RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfAxeThrower.class, 5));
-		DRInvasions.RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfBannerBearer.class, 2));
+		RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfWarrior.class, 10));
+		RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfAxeThrower.class, 5));
+		RED_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityRedDwarfBannerBearer.class, 2));
 
-		DRInvasions.WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfWarrior.class, 10));
-		DRInvasions.WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfAxeThrower.class, 5));
-		DRInvasions.WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfBannerBearer.class, 2));
+		WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfWarrior.class, 10));
+		WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfAxeThrower.class, 5));
+		WIND_MOUNTAINS.invasionMobs.add(new InvasionSpawnEntry(DREntityWindDwarfBannerBearer.class, 2));
 	}
 
 	public static void onInit() {
-		DRInvasions.setupInvasions();
-		DRInvasions.addInvasionIcons();
-		DRInvasions.addInvasionMobs();
+		setupInvasions();
+		addInvasionIcons();
+		addInvasionMobs();
 	}
 
 	public static void setupInvasions() {

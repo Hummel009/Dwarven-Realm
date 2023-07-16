@@ -1,6 +1,7 @@
 package drealm.structure;
 
-import drealm.database.*;
+import drealm.database.DRChestContents;
+import drealm.database.DRRegistry;
 import drealm.entity.DREntityRedDwarfSmith;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityDwarf;

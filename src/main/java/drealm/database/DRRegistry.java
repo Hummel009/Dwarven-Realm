@@ -2,12 +2,15 @@ package drealm.database;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import drealm.block.*;
-import drealm.item.*;
+import drealm.item.DRItemArmor;
+import drealm.item.DRItemStructureSpawner;
 import drealm.util.DRConfig;
-import lotr.common.block.*;
+import lotr.common.block.LOTRBlockBars;
+import lotr.common.block.LOTRBlockSlabBase;
 import lotr.common.item.*;
 import net.minecraft.block.Block;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 
 public class DRRegistry {
 	public static Block brick;

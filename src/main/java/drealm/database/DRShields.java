@@ -16,7 +16,7 @@ public class DRShields {
 	}
 
 	public static void onInit() {
-		ALIGNMENT_WIND_MOUNTAINS = DRShields.addAlignmentShield("ALIGNMENT_WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
-		ALIGNMENT_RED_MOUNTAINS = DRShields.addAlignmentShield("ALIGNMENT_RED_MOUNTAINS", DRFaction.RED_MOUNTAINS);
+		ALIGNMENT_WIND_MOUNTAINS = addAlignmentShield("ALIGNMENT_WIND_MOUNTAINS", DRFaction.WIND_MOUNTAINS);
+		ALIGNMENT_RED_MOUNTAINS = addAlignmentShield("ALIGNMENT_RED_MOUNTAINS", DRFaction.RED_MOUNTAINS);
 	}
 }

@@ -1,7 +1,9 @@
 package drealm.entity;
 
-import drealm.database.*;
-import lotr.common.*;
+import drealm.database.DRAchievement;
+import drealm.database.DRRegistry;
+import lotr.common.LOTRLevelData;
+import lotr.common.LOTRMod;
 import lotr.common.entity.npc.*;
 import lotr.common.entity.npc.LOTRTradeEntries.TradeType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +17,7 @@ public class DREntityRedDwarfMerchant extends DREntityRedDwarf implements LOTRTr
 
 	public DREntityRedDwarfMerchant(World world) {
 		super(world);
-		this.addTargetTasks(false);
+		addTargetTasks(false);
 	}
 
 	@Override

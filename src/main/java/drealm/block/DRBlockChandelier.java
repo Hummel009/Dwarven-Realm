@@ -1,23 +1,27 @@
 package drealm.block;
 
-import java.util.*;
-
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import lotr.common.LOTRCreativeTabs;
 import lotr.common.block.LOTRBlockOrcChain;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.List;
+import java.util.Random;
+
 public class DRBlockChandelier extends Block {
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon[] chandelierIcons;
-	public String[] chandelierNames = { "redDwarven", "windDwarven" };
+	public String[] chandelierNames = {"redDwarven", "windDwarven"};
 
 	public DRBlockChandelier() {
 		super(Material.circuits);
@@ -27,6 +31,11 @@ public class DRBlockChandelier extends Block {
 		setStepSound(Block.soundTypeMetal);
 		setLightLevel(0.9375f);
 		setBlockBounds(0.0625f, 0.1875f, 0.0625f, 0.9375f, 1.0f, 0.9375f);
+	}
+
+	public static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
+		world.spawnParticle("smoke", d, d1, d2, 0.0, 0.0, 0.0);
+		world.spawnParticle("flame", d, d1, d2, 0.0, 0.0, 0.0);
 	}
 
 	@Override
@@ -74,7 +83,7 @@ public class DRBlockChandelier extends Block {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i = 0; i < chandelierNames.length; ++i) {
 			list.add(new ItemStack(item, 1, i));
@@ -89,13 +98,13 @@ public class DRBlockChandelier extends Block {
 	@Override
 	public void onNeighborBlockChange(World world, int i, int j, int k, Block block) {
 		if (!canBlockStay(world, i, j, k)) {
-			this.dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
+			dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
 			world.setBlockToAir(i, j, k);
 		}
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
 		int meta = world.getBlockMetadata(i, j, k);
 		double d = 0.13;
@@ -108,7 +117,7 @@ public class DRBlockChandelier extends Block {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconregister) {
 		chandelierIcons = new IIcon[chandelierNames.length];
 		for (int i = 0; i < chandelierNames.length; ++i) {
@@ -119,10 +128,5 @@ public class DRBlockChandelier extends Block {
 	@Override
 	public boolean renderAsNormalBlock() {
 		return false;
-	}
-
-	public static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
-		world.spawnParticle("smoke", d, d1, d2, 0.0, 0.0, 0.0);
-		world.spawnParticle("flame", d, d1, d2, 0.0, 0.0, 0.0);
 	}
 }

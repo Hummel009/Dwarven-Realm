@@ -1,9 +1,13 @@
 package drealm.entity;
 
-import drealm.database.*;
-import lotr.common.*;
-import lotr.common.entity.npc.*;
+import drealm.database.DRAchievement;
+import drealm.database.DRRegistry;
+import lotr.common.LOTRLevelData;
+import lotr.common.LOTRMod;
+import lotr.common.entity.npc.LOTRTradeEntries;
 import lotr.common.entity.npc.LOTRTradeEntries.TradeType;
+import lotr.common.entity.npc.LOTRTradeEntry;
+import lotr.common.entity.npc.LOTRTradeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -16,7 +20,7 @@ public class DREntityRedDwarfSmith extends DREntityRedDwarf implements LOTRTrade
 
 	public DREntityRedDwarfSmith(World world) {
 		super(world);
-		this.addTargetTasks(false);
+		addTargetTasks(false);
 	}
 
 	@Override

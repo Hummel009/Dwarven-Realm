@@ -1,26 +1,32 @@
 package drealm.item;
 
-import java.util.List;
-
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import drealm.structure.DRStructure;
-import lotr.common.*;
+import lotr.common.LOTRCreativeTabs;
+import lotr.common.LOTRLevelData;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.Facing;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class DRItemStructureSpawner extends Item {
 	public static int lastStructureSpawnTick;
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon iconBase;
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon iconOverlay;
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon iconVillageBase;
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon iconVillageOverlay;
 
 	public DRItemStructureSpawner() {
@@ -28,8 +34,24 @@ public class DRItemStructureSpawner extends Item {
 		setCreativeTab(LOTRCreativeTabs.tabSpawn);
 	}
 
+	public static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
+		if (!DRStructure.structureItemSpawners.containsKey(id)) {
+			return false;
+		}
+		DRStructure.IStructureProvider strProvider = DRStructure.getStructureForID(id);
+		if (strProvider != null) {
+			boolean generated = strProvider.generateStructure(world, entityplayer, i, j, k);
+			if (generated) {
+				lastStructureSpawnTick = 20;
+				world.playSoundAtEntity(entityplayer, "lotr:item.structureSpawner", 1.0f, 1.0f);
+			}
+			return generated;
+		}
+		return false;
+	}
+
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack itemstack, int pass) {
 		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(itemstack.getItemDamage());
 		if (info != null) {
@@ -42,7 +64,7 @@ public class DRItemStructureSpawner extends Item {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int i, int pass) {
 		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(i);
 		if (info != null) {
@@ -62,7 +84,7 @@ public class DRItemStructureSpawner extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
-		StringBuilder s = new StringBuilder().append(("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim());
+		StringBuilder s = new StringBuilder().append((StatCollector.translateToLocal(getUnlocalizedName() + ".name")).trim());
 		String structureName = DRStructure.getNameFromID(itemstack.getItemDamage());
 		if (structureName != null) {
 			s.append(" ").append(StatCollector.translateToLocal("lotr.structure." + structureName + ".name"));
@@ -71,7 +93,7 @@ public class DRItemStructureSpawner extends Item {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (DRStructure.StructureColorInfo info : DRStructure.structureItemSpawners.values()) {
 			if (info.isHidden) {
@@ -98,14 +120,14 @@ public class DRItemStructureSpawner extends Item {
 			entityplayer.addChatMessage(new ChatComponentTranslation("chat.lotr.spawnStructure.wait", lastStructureSpawnTick / 20.0));
 			return false;
 		}
-		if (spawnStructure(entityplayer, world, itemstack.getItemDamage(), i += Facing.offsetsXForSide[side], j += Facing.offsetsYForSide[side], k += Facing.offsetsZForSide[side]) && !entityplayer.capabilities.isCreativeMode) {
+		if (spawnStructure(entityplayer, world, itemstack.getItemDamage(), i + Facing.offsetsXForSide[side], j + Facing.offsetsYForSide[side], k + Facing.offsetsZForSide[side]) && !entityplayer.capabilities.isCreativeMode) {
 			--itemstack.stackSize;
 		}
 		return true;
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconregister) {
 		iconBase = iconregister.registerIcon(getIconString() + "_base");
 		iconOverlay = iconregister.registerIcon(getIconString() + "_overlay");
@@ -114,24 +136,8 @@ public class DRItemStructureSpawner extends Item {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return true;
-	}
-
-	public static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
-		if (!DRStructure.structureItemSpawners.containsKey(id)) {
-			return false;
-		}
-		DRStructure.IStructureProvider strProvider = DRStructure.getStructureForID(id);
-		if (strProvider != null) {
-			boolean generated = strProvider.generateStructure(world, entityplayer, i, j, k);
-			if (generated) {
-				lastStructureSpawnTick = 20;
-				world.playSoundAtEntity(entityplayer, "lotr:item.structureSpawner", 1.0f, 1.0f);
-			}
-			return generated;
-		}
-		return false;
 	}
 }

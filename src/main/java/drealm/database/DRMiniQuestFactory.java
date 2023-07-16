@@ -2,7 +2,8 @@ package drealm.database;
 
 import drealm.util.DRCommander;
 import lotr.common.LOTRMod;
-import lotr.common.entity.npc.*;
+import lotr.common.entity.npc.LOTREntityMordorOrc;
+import lotr.common.entity.npc.LOTREntityMordorWarg;
 import lotr.common.fac.LOTRFaction;
 import lotr.common.quest.*;
 import net.minecraft.init.Items;
@@ -18,8 +19,8 @@ public class DRMiniQuestFactory {
 	}
 
 	public static void onInit() {
-		DRMiniQuestFactory.addMiniQuestsFactories();
-		DRMiniQuestFactory.setupMiniQuestFactories();
+		addMiniQuestsFactories();
+		setupMiniQuestFactories();
 	}
 
 	public static void setupMiniQuestFactories() {
@@ -39,7 +40,7 @@ public class DRMiniQuestFactory {
 		DRCommander.addMiniQuest(RED_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killMordor").setKillFaction(LOTRFaction.MORDOR, 20, 40));
 		DRCommander.addMiniQuest(RED_MOUNTAINS, new LOTRMiniQuestKillEntity.QFKillEntity("killOrc").setKillEntity(LOTREntityMordorOrc.class, 10, 30));
 		DRCommander.addMiniQuest(RED_MOUNTAINS, new LOTRMiniQuestKillEntity.QFKillEntity("killWarg").setKillEntity(LOTREntityMordorWarg.class, 10, 30));
-		DRCommander.addMiniQuest(RED_MOUNTAINS, new LOTRMiniQuestBounty.QFBounty("bounty"));
+		DRCommander.addMiniQuest(RED_MOUNTAINS, new LOTRMiniQuestBounty.QFBounty<>("bounty"));
 
 		DRCommander.setMiniQuestFactoryAchievement(WIND_MOUNTAINS, DRAchievement.do_miniquest_wind_mountains);
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestCollect.QFCollect("mineMithril").setCollectItem(new ItemStack(LOTRMod.mithril), 1, 2).setRewardFactor(50.0f));
@@ -57,6 +58,6 @@ public class DRMiniQuestFactory {
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killGondor").setKillFaction(LOTRFaction.GONDOR, 20, 40));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killDale").setKillFaction(LOTRFaction.DALE, 20, 40));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killElf").setKillFaction(LOTRFaction.WOOD_ELF, 20, 40));
-		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestBounty.QFBounty("bounty"));
+		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestBounty.QFBounty<>("bounty"));
 	}
 }

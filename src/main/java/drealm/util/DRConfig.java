@@ -1,10 +1,10 @@
 package drealm.util;
 
-import java.io.File;
-import java.util.*;
+import net.minecraftforge.common.config.Configuration;
 
-import cpw.mods.fml.client.config.IConfigElement;
-import net.minecraftforge.common.config.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DRConfig {
 	public static Configuration config;
@@ -14,20 +14,12 @@ public class DRConfig {
 
 	static {
 		allCategories = new ArrayList<>();
-		CATEGORY_MISC = DRConfig.getCategory("1_misc");
+		CATEGORY_MISC = getCategory("1_misc");
 	}
 
 	public static String getCategory(String category) {
 		allCategories.add(category);
 		return category;
-	}
-
-	public static List<IConfigElement> getConfigElements() {
-		ArrayList<IConfigElement> list = new ArrayList<>();
-		for (String category : allCategories) {
-			list.addAll(new ConfigElement(config.getCategory(category)).getChildElements());
-		}
-		return list;
 	}
 
 	public static void load() {
@@ -39,6 +31,6 @@ public class DRConfig {
 
 	public static void preInit() {
 		config = new Configuration(new File("config", "Dwarven Realm.cfg"));
-		DRConfig.load();
+		load();
 	}
 }

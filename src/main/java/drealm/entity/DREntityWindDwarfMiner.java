@@ -1,13 +1,18 @@
 package drealm.entity;
 
-import drealm.database.*;
-import lotr.common.*;
-import lotr.common.entity.npc.*;
+import drealm.database.DRAchievement;
+import drealm.database.DRRegistry;
+import lotr.common.LOTRLevelData;
+import lotr.common.LOTRMod;
+import lotr.common.entity.npc.LOTRTradeEntries;
 import lotr.common.entity.npc.LOTRTradeEntries.TradeType;
+import lotr.common.entity.npc.LOTRTradeEntry;
+import lotr.common.entity.npc.LOTRTradeable;
 import lotr.common.world.structure.LOTRChestContents;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

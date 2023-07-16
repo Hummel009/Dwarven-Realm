@@ -1,53 +1,67 @@
 package drealm.util;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
-
-import javax.imageio.ImageIO;
-
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import lotr.client.LOTRTextures;
-import lotr.common.*;
+import lotr.common.LOTRAchievement;
+import lotr.common.LOTRCreativeTabs;
+import lotr.common.LOTRDimension;
+import lotr.common.LOTRShields;
 import lotr.common.entity.npc.LOTRSpeech;
-import lotr.common.fac.*;
-import lotr.common.item.*;
+import lotr.common.fac.LOTRControlZone;
+import lotr.common.fac.LOTRFaction;
+import lotr.common.fac.LOTRFactionRank;
+import lotr.common.fac.LOTRMapRegion;
+import lotr.common.item.LOTRItemArmor;
+import lotr.common.item.LOTRItemBanner;
 import lotr.common.item.LOTRItemBanner.BannerType;
-import lotr.common.quest.*;
+import lotr.common.item.LOTRMaterial;
+import lotr.common.quest.LOTRMiniQuest;
+import lotr.common.quest.LOTRMiniQuestFactory;
 import lotr.common.util.LOTRLog;
 import lotr.common.world.genlayer.LOTRGenLayerWorld;
-import lotr.common.world.map.*;
-import lotr.common.world.spawning.*;
+import lotr.common.world.map.LOTRRoads;
+import lotr.common.world.map.LOTRWaypoint;
+import lotr.common.world.spawning.LOTRInvasions;
+import lotr.common.world.spawning.LOTRSpawnEntry;
+import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.*;
+import java.util.*;
+
 public class DRCommander {
 	public static int lastBannerID = 52;
 
 	public static LOTRAchievement.Category addAchievementCategory(String enumName, LOTRFaction faction) {
-		Class[] classArr = { LOTRFaction.class };
-		Object[] args = { faction };
+		Class<?>[] classArr = {LOTRFaction.class};
+		Object[] args = {faction};
 		return EnumHelper.addEnum(LOTRAchievement.Category.class, enumName, classArr, args);
 	}
 
 	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
-		Class[] classArr = { LOTRFaction.class };
-		Object[] args = { faction };
+		Class<?>[] classArr = {LOTRFaction.class};
+		Object[] args = {faction};
 		return EnumHelper.addEnum(LOTRShields.class, enumName, classArr, args);
 	}
 
 	public static LOTRItemBanner.BannerType addBanner(String name, LOTRFaction faction) {
 		int id = lastBannerID++;
-		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(), new Class[] { Integer.TYPE, String.class, LOTRFaction.class }, new Object[] { id, name, faction });
+		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
 		LOTRItemBanner.BannerType.bannerTypes.add(banner);
-		Map map = (Map) ReflectionHelper.getPrivateValue(LOTRItemBanner.BannerType.class, null, "bannerForID");
-		LOTRItemBanner.BannerType prior = (BannerType) map.put(id, banner);
-		if (prior != null) {
-		}
+		Map<Integer, BannerType> map = ReflectionHelper.getPrivateValue(BannerType.class, null, "bannerForID");
+		LOTRItemBanner.BannerType prior = map.put(id, banner);
 		return banner;
 	}
 
@@ -56,8 +70,8 @@ public class DRCommander {
 	}
 
 	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension dim, LOTRDimension.DimensionRegion region, boolean player, boolean registry, int alignment, LOTRMapRegion mapInfo, Set<LOTRFaction.FactionType> types) {
-		Class[] classArr = { Integer.TYPE, LOTRDimension.class, LOTRDimension.DimensionRegion.class, Boolean.TYPE, Boolean.TYPE, Integer.TYPE, LOTRMapRegion.class, EnumSet.class };
-		Object[] args = { color, dim, region, player, registry, alignment, mapInfo, types };
+		Class<?>[] classArr = {Integer.TYPE, LOTRDimension.class, LOTRDimension.DimensionRegion.class, Boolean.TYPE, Boolean.TYPE, Integer.TYPE, LOTRMapRegion.class, EnumSet.class};
+		Object[] args = {color, dim, region, player, registry, alignment, mapInfo, types};
 		return EnumHelper.addEnum(LOTRFaction.class, enumName, classArr, args);
 	}
 
@@ -70,7 +84,7 @@ public class DRCommander {
 	}
 
 	public static LOTRFactionRank addFactionRank(LOTRFaction faction, float alignment, String name, boolean gendered) {
-		return (LOTRFactionRank) findAndInvokeMethod(new Object[] { Float.valueOf(alignment), name, gendered }, LOTRFaction.class, faction, "addRank", Float.TYPE, String.class, Boolean.TYPE);
+		return findAndInvokeMethod(new Object[]{alignment, name, gendered}, LOTRFaction.class, faction, "addRank", Float.TYPE, String.class, Boolean.TYPE);
 	}
 
 	public static LOTRInvasions addInvasion(String enumName, LOTRFaction faction) {
@@ -78,8 +92,8 @@ public class DRCommander {
 	}
 
 	public static LOTRInvasions addInvasion(String enumName, LOTRFaction faction, String subfaction) {
-		Class[] classArr = { LOTRFaction.class, String.class };
-		Object[] args = { faction, subfaction };
+		Class<?>[] classArr = {LOTRFaction.class, String.class};
+		Object[] args = {faction, subfaction};
 		return EnumHelper.addEnum(LOTRInvasions.class, enumName, classArr, args);
 	}
 
@@ -88,15 +102,15 @@ public class DRCommander {
 	}
 
 	public static LOTRMiniQuestFactory addMiniQuestFactory(String enumName, String name) {
-		Class[] classArr = { String.class };
-		Object[] args = { name };
+		Class<?>[] classArr = {String.class};
+		Object[] args = {name};
 		return EnumHelper.addEnum(LOTRMiniQuestFactory.class, enumName, classArr, args);
 	}
 
 	static void addSpeechBank(String name, boolean rand, List<String> lines) {
 		Class<?> speechBankClass = LOTRSpeech.class.getDeclaredClasses()[0];
-		Object speechBank = findAndInvokeConstructor(new Object[] { name, Boolean.valueOf(rand), lines }, speechBankClass, String.class, boolean.class, List.class);
-		Map<String, Object> allSpeechBanks = (Map<String, Object>) ReflectionHelper.getPrivateValue(LOTRSpeech.class, null, "allSpeechBanks");
+		Object speechBank = findAndInvokeConstructor(new Object[]{name, rand, lines}, speechBankClass, String.class, boolean.class, List.class);
+		Map<String, Object> allSpeechBanks = ReflectionHelper.getPrivateValue(LOTRSpeech.class, null, "allSpeechBanks");
 		allSpeechBanks.put(name, speechBank);
 		ReflectionHelper.setPrivateValue(LOTRSpeech.class, null, allSpeechBanks, "allSpeechBanks");
 	}
@@ -106,8 +120,8 @@ public class DRCommander {
 	}
 
 	public static LOTRWaypoint addWaypoint(String name, LOTRWaypoint.Region region, LOTRFaction faction, double x, double z, boolean hidden) {
-		Class[] classArr = { LOTRWaypoint.Region.class, LOTRFaction.class, Double.TYPE, Double.TYPE, Boolean.TYPE };
-		Object[] args = { region, faction, x, z, hidden };
+		Class<?>[] classArr = {LOTRWaypoint.Region.class, LOTRFaction.class, Double.TYPE, Double.TYPE, Boolean.TYPE};
+		Object[] args = {region, faction, x, z, hidden};
 		return EnumHelper.addEnum(LOTRWaypoint.class, name, classArr, args);
 	}
 
@@ -120,8 +134,9 @@ public class DRCommander {
 		constructor.setAccessible(true);
 		try {
 			return constructor.newInstance(args);
-		} catch (IllegalAccessException | IllegalArgumentException | InstantiationException | InvocationTargetException e) {
-			LOTRLog.logger.error("Error when initializing constructor from class " + clazz.getSimpleName() + " with parameters " + args);
+		} catch (IllegalAccessException | IllegalArgumentException | InstantiationException |
+		         InvocationTargetException e) {
+			LOTRLog.logger.error("Error when initializing constructor from class {} with parameters {}", clazz.getSimpleName(), args);
 			e.printStackTrace();
 			return null;
 		}
@@ -131,12 +146,12 @@ public class DRCommander {
 		return findAndInvokeMethod(new Object[0], clazz, instance, methodName);
 	}
 
-	public static <T, E> T findAndInvokeMethod(Object arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
-		return findAndInvokeMethod(new Object[] { arg }, clazz, instance, new String[] { methodName }, methodTypes);
+	public static <T, E> void findAndInvokeMethod(Object arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
+		findAndInvokeMethod(new Object[]{arg}, clazz, instance, new String[]{methodName}, methodTypes);
 	}
 
 	public static <T, E> T findAndInvokeMethod(Object[] arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
-		return DRCommander.findAndInvokeMethod(arg, clazz, instance, new String[] { methodName }, methodTypes);
+		return findAndInvokeMethod(arg, clazz, instance, new String[]{methodName}, methodTypes);
 	}
 
 	public static <T, E> T findAndInvokeMethod(Object[] args, Class<? super E> clazz, E instance, String[] methodNames, Class<?>... methodTypes) {
@@ -153,7 +168,7 @@ public class DRCommander {
 		try {
 			return clazz.getDeclaredConstructor(parameterTypes);
 		} catch (NoSuchMethodException | SecurityException e) {
-			LOTRLog.logger.error("Error when getting constructor from class " + clazz.getSimpleName() + " with parameters " + parameterTypes);
+			LOTRLog.logger.error("Error when getting constructor from class {} with parameters {}", clazz.getSimpleName(), parameterTypes);
 			e.printStackTrace();
 			return null;
 		}
@@ -179,7 +194,7 @@ public class DRCommander {
 		} finally {
 			try {
 				in.close();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 		return null;
@@ -194,7 +209,7 @@ public class DRCommander {
 	}
 
 	public static LOTRCreativeTabs getLOTRCreativeTab(String name) {
-		return (LOTRCreativeTabs) ReflectionHelper.getPrivateValue(LOTRCreativeTabs.class, null, name);
+		return ReflectionHelper.getPrivateValue(LOTRCreativeTabs.class, null, name);
 	}
 
 	public static <E, T> List<T> getObjectFieldsOfType(Class<? extends E> clazz, Class<? extends T> type) {
@@ -217,7 +232,7 @@ public class DRCommander {
 					}
 				}
 			}
-		} catch (IllegalArgumentException | IllegalAccessException e) {
+		} catch (IllegalArgumentException | IllegalAccessException ignored) {
 
 		}
 		return list;
@@ -228,20 +243,20 @@ public class DRCommander {
 	}
 
 	public static LOTRSpawnList newLOTRSpawnList(LOTRSpawnEntry... entries) {
-		return findAndInvokeConstructor(new Object[] { entries }, LOTRSpawnList.class, LOTRSpawnEntry[].class);
+		return findAndInvokeConstructor(new Object[]{entries}, LOTRSpawnList.class, LOTRSpawnEntry[].class);
 	}
 
 	public static void registerRoad(String name, Object... waypoints) {
-		findAndInvokeMethod(new Object[] { name, waypoints }, LOTRRoads.class, null, "registerRoad", String.class, Object[].class);
+		findAndInvokeMethod(new Object[]{name, waypoints}, LOTRRoads.class, null, "registerRoad", String.class, Object[].class);
 	}
 
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public static void setClientMapImage(ResourceLocation res) {
 		ResourceLocation sepiaMapTexture;
 		ReflectionHelper.setPrivateValue(LOTRTextures.class, null, res, "mapTexture");
 		try {
 			BufferedImage mapImage = getImage(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
-			sepiaMapTexture = findAndInvokeMethod(new Object[] { mapImage, new ResourceLocation("lotr:map_sepia") }, LOTRTextures.class, null, "convertToSepia", BufferedImage.class, ResourceLocation.class);
+			sepiaMapTexture = findAndInvokeMethod(new Object[]{mapImage, new ResourceLocation("lotr:map_sepia")}, LOTRTextures.class, null, "convertToSepia", BufferedImage.class, ResourceLocation.class);
 		} catch (IOException e) {
 			FMLLog.severe("Failed to generate GOT sepia map");
 			e.printStackTrace();
@@ -259,7 +274,7 @@ public class DRCommander {
 	}
 
 	public static void setMaterialCraftingItem(LOTRMaterial material, Item toolItem, Item armorItem) {
-		findAndInvokeMethod(new Object[] { toolItem, armorItem }, LOTRMaterial.class, material, "setCraftingItems", Item.class, Item.class);
+		findAndInvokeMethod(new Object[]{toolItem, armorItem}, LOTRMaterial.class, material, "setCraftingItems", Item.class, Item.class);
 	}
 
 	public static void setMiniQuestFactoryAchievement(LOTRMiniQuestFactory factory, LOTRAchievement achievement) {
@@ -291,5 +306,4 @@ public class DRCommander {
 			e2.printStackTrace();
 		}
 	}
-
 }

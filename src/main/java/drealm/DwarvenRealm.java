@@ -1,14 +1,19 @@
 package drealm;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import drealm.biome.DRBiome;
 import drealm.database.*;
 import drealm.database.DRAchievement.DRAchievementCategory;
 import drealm.entity.DREntity;
 import drealm.item.DRItemBanner;
-import drealm.map.*;
+import drealm.map.DRRoads;
+import drealm.map.DRWaypoint;
 import drealm.proxy.DRServerProxy;
 import drealm.structure.DRStructure;
 import drealm.util.*;
@@ -18,10 +23,10 @@ import net.minecraft.util.ResourceLocation;
 public class DwarvenRealm {
 	@SidedProxy(serverSide = "drealm.proxy.DRServerProxy", clientSide = "drealm.proxy.DRClientProxy")
 	public static DRServerProxy proxy;
-	@Mod.Instance(value = "drealm")
+	@Mod.Instance("drealm")
 	public static DwarvenRealm instance;
-	public static DREventHandler event_handler;
-	public static DRTickHandlerServer tick_handler;
+	public static DREventHandler eventHandler;
+	public static DRTickHandlerServer tickHandler;
 
 	public static ModContainer getModContainer() {
 		return FMLCommonHandler.instance().findContainerFor(instance);
@@ -39,14 +44,14 @@ public class DwarvenRealm {
 		DRRoads.onInit();
 		DRSpeech.onInit();
 		DRCommander.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
-		tick_handler = new DRTickHandlerServer();
+		tickHandler = new DRTickHandlerServer();
 		proxy.onInit(event);
 	}
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		event_handler = new DREventHandler();
+		eventHandler = new DREventHandler();
 		DRConfig.preInit();
 		DRCreativeTabs.preInit();
 		DRFaction.preInit();

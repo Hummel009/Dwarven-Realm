@@ -1,22 +1,27 @@
 package drealm.block;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import drealm.DwarvenRealm;
-import drealm.database.*;
+import drealm.database.DRFaction;
+import drealm.database.DRRecipe;
+import drealm.database.DRRegistry;
 import lotr.client.gui.LOTRGuiCraftingTable;
-import lotr.common.*;
+import lotr.common.LOTRLevelData;
+import lotr.common.LOTRMod;
 import lotr.common.block.LOTRBlockCraftingTable;
 import lotr.common.fac.LOTRAlignmentValues;
 import lotr.common.inventory.LOTRContainerCraftingTable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon[] tableIcons;
 
 	public DRBlockTableRedDwarven() {
@@ -25,7 +30,7 @@ public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int i, int j) {
 		if (i == 1) {
 			return tableIcons[2];
@@ -59,7 +64,7 @@ public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 	}
 
 	@Override
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconregister) {
 		tableIcons = new IIcon[3];
 		tableIcons[0] = iconregister.registerIcon(getTextureName() + "_side0");
@@ -73,7 +78,7 @@ public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 		}
 	}
 
-	@SideOnly(value = Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public static class Gui extends LOTRGuiCraftingTable {
 		public Gui(InventoryPlayer inv, World world, int i, int j, int k) {
 			super(new Container(inv, world, i, j, k), "red_mountains");

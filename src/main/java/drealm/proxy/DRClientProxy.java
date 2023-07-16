@@ -1,12 +1,18 @@
 package drealm.proxy;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import drealm.entity.*;
-import drealm.render.*;
+import drealm.render.DRRenderDwarf;
+import drealm.render.DRRenderDwarfCommander;
+import drealm.render.DRRenderDwarfSmith;
+import drealm.render.DRRendererManager;
 import drealm.util.DRCommander;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.*;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 
 public class DRClientProxy extends DRServerProxy implements IResourceManagerReloadListener {

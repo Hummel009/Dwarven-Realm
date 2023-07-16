@@ -1,21 +1,29 @@
 package drealm.biome;
 
-import java.util.Random;
-
 import drealm.entity.*;
-import drealm.structure.*;
+import drealm.structure.DRStructureWindMountainsHouse;
+import drealm.structure.DRStructureWindMountainsSmithy;
+import drealm.structure.DRStructureWindMountainsStronghold;
 import drealm.util.DRCommander;
-import lotr.common.*;
+import lotr.common.LOTRAchievement;
+import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
-import lotr.common.world.biome.*;
+import lotr.common.world.biome.LOTRBiome;
+import lotr.common.world.biome.LOTRMusicRegion;
 import lotr.common.world.biome.variant.LOTRBiomeVariant;
-import lotr.common.world.feature.*;
+import lotr.common.world.feature.LOTRTreeType;
+import lotr.common.world.feature.LOTRWorldGenMountainsideBush;
 import lotr.common.world.map.LOTRWaypoint;
-import lotr.common.world.spawning.*;
+import lotr.common.world.spawning.LOTRBiomeSpawnList;
+import lotr.common.world.spawning.LOTREventSpawner;
+import lotr.common.world.spawning.LOTRSpawnEntry;
+import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class DRBiomeWindMountains extends LOTRBiome {
 	public static final LOTRSpawnList WIND_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfCrossbower.class, 10, 4, 4));
@@ -28,9 +36,9 @@ public class DRBiomeWindMountains extends LOTRBiome {
 		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(WIND_DWARVES, 10);
 		npcSpawnList.newFactionList(600).add(arrspawnListContainer);
 		addBiomeVariantSet(LOTRBiomeVariant.SET_MOUNTAINS);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_LARCH, 0.3f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_PINE, 0.3f);
-		this.addBiomeVariant(LOTRBiomeVariant.FOREST_MAPLE, 0.3f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_LARCH, 0.3f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_PINE, 0.3f);
+		addBiomeVariant(LOTRBiomeVariant.FOREST_MAPLE, 0.3f);
 		decorator.biomeGemFactor = 1.0f;
 		decorator.flowersPerChunk = 1;
 		decorator.doubleFlowersPerChunk = 0;

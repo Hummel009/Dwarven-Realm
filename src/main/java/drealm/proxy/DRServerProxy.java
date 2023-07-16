@@ -1,13 +1,14 @@
 package drealm.proxy;
 
-import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
-import drealm.block.*;
+import drealm.block.DRBlockTableRedDwarven;
+import drealm.block.DRBlockTableWindDwarven;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class DRServerProxy implements IGuiHandler {
-
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
 		if (ID == 0) {

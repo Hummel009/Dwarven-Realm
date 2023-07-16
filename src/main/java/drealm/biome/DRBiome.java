@@ -10,7 +10,7 @@ public class DRBiome {
 	public static LOTRBiome windMountainsFoothills;
 
 	public static void preInit() {
-		for (int i : new int[] { 117, 118, 164, 165 }) {
+		for (int i : new int[]{117, 118, 164, 165}) {
 			LOTRDimension.MIDDLE_EARTH.biomeList[i] = null;
 		}
 		redMountains = new DRBiomeRedMountains(117, true).setTemperatureRainfall(0.3f, 0.4f).setMinMaxHeight(1.5f, 2.0f).setColor(0x93714D).setBiomeName("redMountains");

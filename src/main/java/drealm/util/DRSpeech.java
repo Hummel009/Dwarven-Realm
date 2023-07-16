@@ -1,17 +1,21 @@
 package drealm.util;
 
-import java.io.*;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.zip.*;
-
+import com.google.common.base.Charsets;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.ModContainer;
+import drealm.DwarvenRealm;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.input.BOMInputStream;
 
-import com.google.common.base.Charsets;
-
-import cpw.mods.fml.common.*;
-import drealm.DwarvenRealm;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class DRSpeech {
 	public static void onInit() {
@@ -33,7 +37,7 @@ public class DRSpeech {
 					int i = s.indexOf(".txt");
 					try {
 						s = s.substring(0, i);
-						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(zip.getInputStream(entry)), Charsets.UTF_8.name()));
+						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(zip.getInputStream(entry)), Charsets.UTF_8));
 						speechBankNamesAndReaders.put(s, reader);
 					} catch (Exception e) {
 						FMLLog.severe("Failed to load Dwarven Realm speech bank " + s + "from zip file");
@@ -53,7 +57,7 @@ public class DRSpeech {
 					}
 					try {
 						s = s.substring(0, i);
-						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(new FileInputStream(subfile)), Charsets.UTF_8.name()));
+						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(Files.newInputStream(subfile.toPath())), Charsets.UTF_8));
 						speechBankNamesAndReaders.put(s, reader);
 					} catch (Exception e) {
 						FMLLog.severe("Failed to load Dwarven Realm speech bank " + s + " from MCP folder");
@@ -86,9 +90,9 @@ public class DRSpeech {
 					continue;
 				}
 				if (random) {
-					DRCommander.addSpeechBank(speechBankName.getKey(), random, speeches);
+					DRCommander.addSpeechBank(speechBankName.getKey(), true, speeches);
 				} else {
-					DRCommander.addSpeechBank(speechBankName.getKey(), random, allLines);
+					DRCommander.addSpeechBank(speechBankName.getKey(), false, allLines);
 				}
 			} catch (Exception e) {
 				FMLLog.severe("Failed to load Dwarven Realm speech bank " + speechBankName.getKey());

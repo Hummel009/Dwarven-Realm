@@ -1,7 +1,8 @@
 package drealm.item;
 
 import drealm.util.DRCommander;
-import lotr.common.item.*;
+import lotr.common.item.LOTRItemArmor;
+import lotr.common.item.LOTRMaterial;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 

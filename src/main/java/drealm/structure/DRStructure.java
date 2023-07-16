@@ -1,18 +1,21 @@
 package drealm.structure;
 
-import java.util.*;
-
 import cpw.mods.fml.common.FMLLog;
 import lotr.common.LOTRConfig;
 import lotr.common.world.structure.LOTRWorldGenStructureBase;
-import lotr.common.world.structure2.*;
+import lotr.common.world.structure2.LOTRStructureTimelapse;
+import lotr.common.world.structure2.LOTRWorldGenStructureBase2;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class DRStructure {
-	public static Map<Integer, IStructureProvider> idToClassMapping = new HashMap();
-	public static Map<Integer, String> idToStringMapping = new HashMap();
+	public static Map<Integer, IStructureProvider> idToClassMapping = new HashMap<>();
+	public static Map<Integer, String> idToStringMapping = new HashMap<>();
 	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
 	public static int id = 3000;
 
@@ -25,20 +28,20 @@ public class DRStructure {
 	}
 
 	public static void preInit() {
-		DRStructure.registerStructure(id++, DRStructureRedMountainsHouse.class, "RedMountainsHouse", 0x570000, 0x570000);
-		DRStructure.registerStructure(id++, DRStructureRedMountainsSmithy.class, "RedMountainsSmithy", 0x570000, 0x570000);
-		DRStructure.registerStructure(id++, DRStructureRedMountainsStronghold.class, "RedMountainsStronghold", 0x570000, 0x570000);
+		registerStructure(id++, DRStructureRedMountainsHouse.class, "RedMountainsHouse", 0x570000, 0x570000);
+		registerStructure(id++, DRStructureRedMountainsSmithy.class, "RedMountainsSmithy", 0x570000, 0x570000);
+		registerStructure(id++, DRStructureRedMountainsStronghold.class, "RedMountainsStronghold", 0x570000, 0x570000);
 
-		DRStructure.registerStructure(id++, DRStructureWindMountainsHouse.class, "WindMountainsHouse", 0xCEA863, 0xCEA863);
-		DRStructure.registerStructure(id++, DRStructureWindMountainsSmithy.class, "WindMountainsSmithy", 0xCEA863, 0xCEA863);
-		DRStructure.registerStructure(id++, DRStructureWindMountainsStronghold.class, "WindMountainsStronghold", 0xCEA863, 0xCEA863);
+		registerStructure(id++, DRStructureWindMountainsHouse.class, "WindMountainsHouse", 0xCEA863, 0xCEA863);
+		registerStructure(id++, DRStructureWindMountainsSmithy.class, "WindMountainsSmithy", 0xCEA863, 0xCEA863);
+		registerStructure(id++, DRStructureWindMountainsStronghold.class, "WindMountainsStronghold", 0xCEA863, 0xCEA863);
 	}
 
 	public static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG) {
-		DRStructure.registerStructure(id, strClass, name, colorBG, colorFG, false);
+		registerStructure(id, strClass, name, colorBG, colorFG, false);
 	}
 
-	public static void registerStructure(int id, final Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
+	public static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
 		IStructureProvider strProvider = new IStructureProvider() {
 
 			@Override
@@ -81,7 +84,7 @@ public class DRStructure {
 				return false;
 			}
 		};
-		DRStructure.registerStructure(id, strProvider, name, colorBG, colorFG, hide);
+		registerStructure(id, strProvider, name, colorBG, colorFG, hide);
 	}
 
 	public static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
@@ -114,5 +117,4 @@ public class DRStructure {
 			isHidden = hide;
 		}
 	}
-
 }
