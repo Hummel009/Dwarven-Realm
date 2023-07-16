@@ -25,7 +25,7 @@ public class NEIDRIntegrator {
 	}
 
 	public static void registerRecipes() {
-		registerHandler("red_dwarven", DRBlockTableRedDwarven.Gui.class, DRRecipe.red_mountains);
-		registerHandler("wind_dwarven", DRBlockTableWindDwarven.Gui.class, DRRecipe.wind_mountains);
+		registerHandler("red_mountains", DRBlockTableRedDwarven.Gui.class, DRRecipe.red_mountains);
+		registerHandler("wind_mountains", DRBlockTableWindDwarven.Gui.class, DRRecipe.wind_mountains);
 	}
 }
