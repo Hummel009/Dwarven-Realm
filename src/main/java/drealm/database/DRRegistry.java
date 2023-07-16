@@ -133,60 +133,60 @@ public class DRRegistry {
 
 		LOTRBlockSlabBase.registerSlabs(slabSingle, slabDouble);
 
-		registerBlockV(windDwarfBars, "windDwarfBars");
-		registerBlockV(redDwarfBars, "redDwarfBars");
-		registerBlock(redDwarvenTable, "redDwarvenTable");
-		registerBlock(windDwarvenTable, "windDwarvenTable");
-		registerBlockV(chandelier, "chandelier", LOTRItemBlockMetadata.class);
-		registerBlock(brick, "brick", LOTRItemBlockMetadata.class);
-		registerBlock(pillar, "pillar", LOTRItemBlockMetadata.class);
-		registerBlockV(oreStorage, "oreStorage", LOTRItemBlockMetadata.class);
-		registerBlock(wall, "wall", LOTRItemBlockMetadata.class, true);
-		registerBlock(slabSingle, "slabSingle", DRBlockSlab.SlabExSingle.class);
-		registerBlock(slabDouble, "slabDouble", DRBlockSlab.SlabExDouble.class);
+		registerBlock(windDwarfBars, "windDwarfBars");
+		registerBlock(redDwarfBars, "redDwarfBars");
+		registerBlockNoAlt(redDwarvenTable, "redDwarvenTable");
+		registerBlockNoAlt(windDwarvenTable, "windDwarvenTable");
+		registerBlock(chandelier, "chandelier", LOTRItemBlockMetadata.class);
+		registerBlockNoAlt(brick, "brick", LOTRItemBlockMetadata.class);
+		registerBlockNoAlt(pillar, "pillar", LOTRItemBlockMetadata.class);
+		registerBlock(oreStorage, "oreStorage", LOTRItemBlockMetadata.class);
+		registerBlockNoAlt(wall, "wall", LOTRItemBlockMetadata.class, true);
+		registerBlockNoAlt(slabSingle, "slabSingle", DRBlockSlab.SlabExSingle.class);
+		registerBlockNoAlt(slabDouble, "slabDouble", DRBlockSlab.SlabExDouble.class);
 
-		registerItemV(redDwarfSteel, "redDwarfSteel");
-		registerItemV(windDwarfSteel, "windDwarfSteel");
-		registerItemV(helmetRedDwarven, "helmetRedDwarven");
-		registerItemV(bodyRedDwarven, "bodyRedDwarven");
-		registerItemV(legsRedDwarven, "legsRedDwarven");
-		registerItemV(bootsRedDwarven, "bootsRedDwarven");
-		registerItemV(helmetWindDwarven, "helmetWindDwarven");
-		registerItemV(bodyWindDwarven, "bodyWindDwarven");
-		registerItemV(legsWindDwarven, "legsWindDwarven");
-		registerItemV(bootsWindDwarven, "bootsWindDwarven");
-		registerItemV(shovelRedDwarven, "shovelRedDwarven");
-		registerItemV(pickaxeRedDwarven, "pickaxeRedDwarven");
-		registerItemV(axeRedDwarven, "axeRedDwarven");
-		registerItemV(swordRedDwarven, "swordRedDwarven");
-		registerItemV(hoeRedDwarven, "hoeRedDwarven");
-		registerItemV(daggerRedDwarven, "daggerRedDwarven");
-		registerItemV(daggerRedDwarvenPoisoned, "daggerRedDwarvenPoisoned");
-		registerItemV(battleaxeRedDwarven, "battleaxeRedDwarven");
-		registerItemV(hammerRedDwarven, "hammerRedDwarven");
-		registerItemV(mattockRedDwarven, "mattockRedDwarven");
-		registerItemV(throwingAxeRedDwarven, "throwingAxeRedDwarven");
-		registerItemV(spearRedDwarven, "spearRedDwarven");
-		registerItemV(boarArmorRedDwarven, "boarArmorRedDwarven");
-		registerItemV(pikeRedDwarven, "pikeRedDwarven");
-		registerItemV(shovelWindDwarven, "shovelWindDwarven");
-		registerItemV(pickaxeWindDwarven, "pickaxeWindDwarven");
-		registerItemV(axeWindDwarven, "axeWindDwarven");
-		registerItemV(swordWindDwarven, "swordWindDwarven");
-		registerItemV(hoeWindDwarven, "hoeWindDwarven");
-		registerItemV(daggerWindDwarven, "daggerWindDwarven");
-		registerItemV(daggerWindDwarvenPoisoned, "daggerWindDwarvenPoisoned");
-		registerItemV(battleaxeWindDwarven, "battleaxeWindDwarven");
-		registerItemV(hammerWindDwarven, "hammerWindDwarven");
-		registerItemV(mattockWindDwarven, "mattockWindDwarven");
-		registerItemV(throwingAxeWindDwarven, "throwingAxeWindDwarven");
-		registerItemV(spearWindDwarven, "spearWindDwarven");
-		registerItemV(boarArmorWindDwarven, "boarArmorWindDwarven");
-		registerItemV(pikeWindDwarven, "pikeWindDwarven");
-		registerItem(structureSpawner, "lotr:structureSpawner");
+		registerItem(redDwarfSteel, "redDwarfSteel");
+		registerItem(windDwarfSteel, "windDwarfSteel");
+		registerItem(helmetRedDwarven, "helmetRedDwarven");
+		registerItem(bodyRedDwarven, "bodyRedDwarven");
+		registerItem(legsRedDwarven, "legsRedDwarven");
+		registerItem(bootsRedDwarven, "bootsRedDwarven");
+		registerItem(helmetWindDwarven, "helmetWindDwarven");
+		registerItem(bodyWindDwarven, "bodyWindDwarven");
+		registerItem(legsWindDwarven, "legsWindDwarven");
+		registerItem(bootsWindDwarven, "bootsWindDwarven");
+		registerItem(shovelRedDwarven, "shovelRedDwarven");
+		registerItem(pickaxeRedDwarven, "pickaxeRedDwarven");
+		registerItem(axeRedDwarven, "axeRedDwarven");
+		registerItem(swordRedDwarven, "swordRedDwarven");
+		registerItem(hoeRedDwarven, "hoeRedDwarven");
+		registerItem(daggerRedDwarven, "daggerRedDwarven");
+		registerItem(daggerRedDwarvenPoisoned, "daggerRedDwarvenPoisoned");
+		registerItem(battleaxeRedDwarven, "battleaxeRedDwarven");
+		registerItem(hammerRedDwarven, "hammerRedDwarven");
+		registerItem(mattockRedDwarven, "mattockRedDwarven");
+		registerItem(throwingAxeRedDwarven, "throwingAxeRedDwarven");
+		registerItem(spearRedDwarven, "spearRedDwarven");
+		registerItem(boarArmorRedDwarven, "boarArmorRedDwarven");
+		registerItem(pikeRedDwarven, "pikeRedDwarven");
+		registerItem(shovelWindDwarven, "shovelWindDwarven");
+		registerItem(pickaxeWindDwarven, "pickaxeWindDwarven");
+		registerItem(axeWindDwarven, "axeWindDwarven");
+		registerItem(swordWindDwarven, "swordWindDwarven");
+		registerItem(hoeWindDwarven, "hoeWindDwarven");
+		registerItem(daggerWindDwarven, "daggerWindDwarven");
+		registerItem(daggerWindDwarvenPoisoned, "daggerWindDwarvenPoisoned");
+		registerItem(battleaxeWindDwarven, "battleaxeWindDwarven");
+		registerItem(hammerWindDwarven, "hammerWindDwarven");
+		registerItem(mattockWindDwarven, "mattockWindDwarven");
+		registerItem(throwingAxeWindDwarven, "throwingAxeWindDwarven");
+		registerItem(spearWindDwarven, "spearWindDwarven");
+		registerItem(boarArmorWindDwarven, "boarArmorWindDwarven");
+		registerItem(pikeWindDwarven, "pikeWindDwarven");
+		registerItemLOTR(structureSpawner, "structureSpawner");
 	}
 
-	public static void registerBlockV(Block block, String name) {
+	public static void registerBlock(Block block, String name) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		block.setBlockName(blockName);
 		if (DRConfig.enableTextures14) {
@@ -197,7 +197,7 @@ public class DRRegistry {
 		GameRegistry.registerBlock(block, blockName);
 	}
 
-	public static void registerBlockV(Block block, String name, Class<? extends ItemBlock> itemClass) {
+	public static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		block.setBlockName(blockName);
 		if (DRConfig.enableTextures14) {
@@ -208,7 +208,7 @@ public class DRRegistry {
 		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
-	public static void registerItemV(Item item, String name) {
+	public static void registerItem(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		item.setUnlocalizedName(itemName);
 		if (DRConfig.enableTextures14) {
@@ -219,29 +219,29 @@ public class DRRegistry {
 		GameRegistry.registerItem(item, itemName);
 	}
 
-	public static void registerBlock(Block block, String name) {
+	public static void registerBlockNoAlt(Block block, String name) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		block.setBlockName(blockName);
 		block.setBlockTextureName("drealm:" + blockName);
 		GameRegistry.registerBlock(block, blockName);
 	}
 
-	public static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
+	public static void registerBlockNoAlt(Block block, String name, Class<? extends ItemBlock> itemClass) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		block.setBlockName(blockName);
 		block.setBlockTextureName("drealm:" + blockName);
 		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
-	public static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
+	public static void registerBlockNoAlt(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		block.setBlockName(blockName);
 		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
-	public static void registerItem(Item item, String name) {
-		item.setTextureName(name);
-		item.setUnlocalizedName(name);
+	public static void registerItemLOTR(Item item, String name) {
+		item.setTextureName("lotr:" + name);
+		item.setUnlocalizedName("lotr:" + name);
 		GameRegistry.registerItem(item, name);
 	}
 }

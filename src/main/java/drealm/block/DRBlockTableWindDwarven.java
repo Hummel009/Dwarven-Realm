@@ -6,6 +6,7 @@ import drealm.DwarvenRealm;
 import drealm.database.DRFaction;
 import drealm.database.DRRecipe;
 import drealm.database.DRRegistry;
+import drealm.database.DRGuiIds;
 import lotr.client.gui.LOTRGuiCraftingTable;
 import lotr.common.LOTRLevelData;
 import lotr.common.block.LOTRBlockCraftingTable;
@@ -25,7 +26,7 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 	private IIcon[] tableIcons;
 
 	public DRBlockTableWindDwarven() {
-		super(Material.rock, DRFaction.WIND_MOUNTAINS, 1);
+		super(Material.rock, DRFaction.WIND_MOUNTAINS, DRGuiIds.WIND_DWARVEN.ordinal());
 		setStepSound(Block.soundTypeStone);
 	}
 
