@@ -7,7 +7,10 @@ import drealm.DwarvenRealm;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.input.BOMInputStream;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,6 +24,7 @@ public class DRSpeech {
 	public static void onInit() {
 		HashMap<String, BufferedReader> speechBankNamesAndReaders = new HashMap<>();
 		ZipFile zip = null;
+		String addition = DRConfig.enableRussian ? "rus/" : "eng/";
 		try {
 			ModContainer mc = DwarvenRealm.getModContainer();
 			if (mc.getSource().isFile()) {
@@ -29,8 +33,8 @@ public class DRSpeech {
 				while (entries.hasMoreElements()) {
 					ZipEntry entry = entries.nextElement();
 					String s = entry.getName();
-					String path = "assets/drealm/speech/";
-					if (!s.startsWith("assets/drealm/speech/") || !s.endsWith(".txt")) {
+					String path = "assets/drealm/speech/" + addition;
+					if (!s.startsWith("assets/drealm/speech/" + addition) || !s.endsWith(".txt")) {
 						continue;
 					}
 					s = s.substring(path.length());
@@ -45,7 +49,7 @@ public class DRSpeech {
 					}
 				}
 			} else {
-				File speechBankDir = new File(DwarvenRealm.class.getResource("/assets/drealm/speech/").toURI());
+				File speechBankDir = new File(DwarvenRealm.class.getResource("/assets/drealm/speech/" + addition).toURI());
 				Collection<File> subfiles = FileUtils.listFiles(speechBankDir, null, true);
 				for (File subfile : subfiles) {
 					String s = subfile.getPath();

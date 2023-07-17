@@ -11,6 +11,7 @@ public class DRConfig {
 	public static List<String> allCategories;
 	public static String CATEGORY_MISC;
 	public static boolean enableTextures14;
+	public static boolean enableRussian;
 
 	static {
 		allCategories = new ArrayList<>();
@@ -24,6 +25,7 @@ public class DRConfig {
 
 	public static void load() {
 		enableTextures14 = config.get(CATEGORY_MISC, "Enable 1.14 Textures", false).getBoolean();
+		enableRussian = config.get(CATEGORY_MISC, "Enable Russian text assets", false).getBoolean();
 		if (config.hasChanged()) {
 			config.save();
 		}
