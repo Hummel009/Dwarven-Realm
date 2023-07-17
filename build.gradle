@@ -5,8 +5,8 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven {
-			name = "github"
-			url = "https://github.com/juanmuscaria/maven/raw/master"
+			name = 'github'
+			url = 'https://github.com/juanmuscaria/maven/raw/master'
 		}
 	}
 	dependencies {
@@ -16,14 +16,14 @@ buildscript {
 
 apply plugin: 'forge'
 
-def currentDate = LocalDate.now()
-version = currentDate.format(DateTimeFormatter.ofPattern("yy.MM.dd"))
-group = "com.yourname.modid"
-archivesBaseName = "Game of Thrones"
+final def currentDate = LocalDate.now()
+version = currentDate.format(DateTimeFormatter.ofPattern('yy.MM.dd'))
+group = 'com.yourname.modid'
+archivesBaseName = 'Dwarven Realm'
 
 minecraft {
-	version = "1.7.10-10.13.4.1614-1.7.10"
-	runDir = "run"
+	version = '1.7.10-10.13.4.1614-1.7.10'
+	runDir = 'run'
 	srcCompat = JavaVersion.VERSION_1_8
 	targetCompat = JavaVersion.VERSION_1_8
 }
@@ -36,8 +36,8 @@ jar {
 }
 
 processResources {
-	inputs.property "version", project.version
-	inputs.property "mcversion", project.minecraft.version
+	inputs.property 'version', project.version
+	inputs.property 'mcversion', project.minecraft.version
 
 	from(sourceSets.main.resources.srcDirs) {
 		include 'mcmod.info'
