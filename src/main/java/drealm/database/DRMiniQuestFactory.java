@@ -56,8 +56,8 @@ public class DRMiniQuestFactory {
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestCollect.QFCollect<>("forgeDwarfWeapon").setCollectItem(new ItemStack(DRRegistry.throwingAxeWindDwarven), 1, 4).setRewardFactor(4.0f));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestCollect.QFCollect<>("collectDrink").setCollectItem(new ItemStack(LOTRMod.mugDwarvenAle), 2, 5).setRewardFactor(3.0f));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killGondor").setKillFaction(LOTRFaction.GONDOR, 20, 40));
-		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killDale").setKillFaction(LOTRFaction.DALE, 20, 40));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killElf").setKillFaction(LOTRFaction.WOOD_ELF, 20, 40));
+		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestKillFaction.QFKillFaction("killDorwinion").setKillFaction(LOTRFaction.DORWINION, 20, 40));
 		DRCommander.addMiniQuest(WIND_MOUNTAINS, new LOTRMiniQuestBounty.QFBounty<>("bounty"));
 	}
 }
