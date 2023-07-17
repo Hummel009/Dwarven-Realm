@@ -5,29 +5,35 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import drealm.block.DRBlockTableRedDwarven;
 import drealm.block.DRBlockTableWindDwarven;
-import drealm.database.DRGuiIds;
+import drealm.database.DRGuiId;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class DRServerProxy implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		if (ID == DRGuiIds.RED_DWARVEN.ordinal()) {
-			return new DRBlockTableRedDwarven.Gui(entityplayer.inventory, world, i, j, k);
-		} else if (ID == DRGuiIds.WIND_DWARVEN.ordinal()) {
-			return new DRBlockTableWindDwarven.Gui(entityplayer.inventory, world, i, j, k);
+		DRGuiId gui = DRGuiId.values()[ID];
+		switch (gui) {
+			case RED_DWARVEN:
+				return new DRBlockTableRedDwarven.Gui(entityplayer.inventory, world, i, j, k);
+			case WIND_DWARVEN:
+				return new DRBlockTableWindDwarven.Gui(entityplayer.inventory, world, i, j, k);
+			default:
+				return null;
 		}
-		return null;
 	}
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		if (ID == DRGuiIds.RED_DWARVEN.ordinal()) {
-			return new DRBlockTableRedDwarven.Container(entityplayer.inventory, world, i, j, k);
-		} else if (ID == DRGuiIds.WIND_DWARVEN.ordinal()) {
-			return new DRBlockTableWindDwarven.Container(entityplayer.inventory, world, i, j, k);
+		DRGuiId gui = DRGuiId.values()[ID];
+		switch (gui) {
+			case RED_DWARVEN:
+				return new DRBlockTableRedDwarven.Container(entityplayer.inventory, world, i, j, k);
+			case WIND_DWARVEN:
+				return new DRBlockTableWindDwarven.Container(entityplayer.inventory, world, i, j, k);
+			default:
+				return null;
 		}
-		return null;
 	}
 
 	public void onInit(FMLInitializationEvent event) {

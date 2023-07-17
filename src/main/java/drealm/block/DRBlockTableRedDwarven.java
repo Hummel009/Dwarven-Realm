@@ -6,7 +6,7 @@ import drealm.DwarvenRealm;
 import drealm.database.DRFaction;
 import drealm.database.DRRecipe;
 import drealm.database.DRRegistry;
-import drealm.database.DRGuiIds;
+import drealm.database.DRGuiId;
 import lotr.client.gui.LOTRGuiCraftingTable;
 import lotr.common.LOTRLevelData;
 import lotr.common.LOTRMod;
@@ -26,7 +26,7 @@ public class DRBlockTableRedDwarven extends LOTRBlockCraftingTable {
 	private IIcon[] tableIcons;
 
 	public DRBlockTableRedDwarven() {
-		super(Material.rock, DRFaction.RED_MOUNTAINS, DRGuiIds.RED_DWARVEN.ordinal());
+		super(Material.rock, DRFaction.RED_MOUNTAINS, DRGuiId.RED_DWARVEN.ordinal());
 		setStepSound(Block.soundTypeStone);
 	}
 

@@ -1,14 +1,11 @@
-Что ж, я скоро отправляюсь в путь.
-Я не могу остаться здесь навсегда. Мне нужно посетить другие земли, чтобы раздобыть товары для торговли и продать их...
-Если вы хотите торговать со мной, то будет разумно поспешить!
-Богатства гномов не будут ждать вечно.
-Это ваш последний шанс заключить хорошую сделку со мной!
-Я ухожу в ближайшее время, но ещё едва есть время для торговли!
-Бизнес не может ждать, #! Я не останусь здесь на долго.
-Другие земли ждут! Я скоро уезжаю.
-Поторопись, #! Мне придётся покинуть эти земли в ближайшее время.
-Вы хотите посмотреть на богатства Орокарни? Тогда вам нужно быть побыстрее.
-Я скоро уйду!
-Время идёт, #! Если хотите торговать со мной, вы должны сделать это прямо сейчас!
-Это ваш последний шанс посмотреть на мои сокровища!
-Я должен идти! Поспешите, если хотите поторговать со мной!
+Well, I'll be on my way soon enough.
+I can't stay here forever. Other lands to visit, other goods to trade...
+If you wish to trade with me, you would be wise to hurry!
+The riches of the Red Mountains shall not wait here forever.
+This is your last chance to get an excellent Dwarvish bargain!
+I shall be leaving soon, but there is still time for a trade or two!
+Business cannot wait, #! I will not stay here for too long.
+Other lands await! I'll be leaving soon.
+Hurry, #! I will have to depart these lands soon.
+Do you wish to gaze upon the riches of the Dwarves of the Red Mountains? Well, you had better be quick. I'll be on my way soon!
+Time is passing, #! If you wish to trade with me, you must do it now!
