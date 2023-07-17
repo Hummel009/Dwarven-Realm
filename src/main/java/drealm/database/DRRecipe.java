@@ -32,6 +32,9 @@ public class DRRecipe {
 	}
 
 	public static void createRedMountainsRecipes() {
+		redMountains.add(new ShapelessOreRecipe(new ItemStack(DRRegistry.redDwarfSteel, 1), new ItemStack(LOTRMod.rock, 1, 4), "ingotIron"));
+		redMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.daggerRedDwarvenPoisoned), " ", "Y", "X", 'X', DRRegistry.daggerRedDwarven, 'Y', LOTRMod.bottlePoison));
+		redMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.daggerRedDwarvenPoisoned), "Y", "X", " ", 'X', DRRegistry.daggerRedDwarven, 'Y', LOTRMod.bottlePoison));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.redDwarvenTable), "XX", "YY", 'X', "plankWood", 'Y', new ItemStack(LOTRMod.brick, 1, 6)));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.shovelRedDwarven), "X", "Y", "Y", 'X', DRRegistry.redDwarfSteel, 'Y', "stickWood"));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.pickaxeRedDwarven), "XXX", " Y ", " Y ", 'X', DRRegistry.redDwarfSteel, 'Y', "stickWood"));
@@ -79,8 +82,6 @@ public class DRRecipe {
 		redMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.slabSingle8, 6, 6), "XXX", 'X', new ItemStack(LOTRMod.brick4, 1, 14)));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.wall4, 6, 6), "XXX", "XXX", 'X', new ItemStack(LOTRMod.brick4, 1, 14)));
 		redMountains.add(new LOTRRecipePoisonWeapon(LOTRMod.chisel, LOTRMod.chiselIthildin, new ItemStack(LOTRMod.ithildin, 1, 0)));
-		redMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.ironCrossbow), "XXY", "ZYX", "YZX", 'X', DRRegistry.redDwarfSteel, 'Y', "stickWood", 'Z', Items.string));
-		redMountains.add(new ShapelessOreRecipe(new ItemStack(DRRegistry.redDwarfSteel, 1), new ItemStack(LOTRMod.rock, 1, 4), "ingotIron"));
 	}
 
 	public static void createUnsmeltRecipes() {
@@ -90,6 +91,8 @@ public class DRRecipe {
 
 	public static void createWindMountainsRecipes() {
 		windMountains.add(new ShapelessOreRecipe(new ItemStack(DRRegistry.windDwarfSteel, 1), new ItemStack(Blocks.stained_hardened_clay, 1, 9), "ingotIron"));
+		windMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.daggerWindDwarvenPoisoned), " ", "Y", "X", 'X', DRRegistry.daggerWindDwarven, 'Y', LOTRMod.bottlePoison));
+		windMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.daggerWindDwarvenPoisoned), "Y", "X", " ", 'X', DRRegistry.daggerWindDwarven, 'Y', LOTRMod.bottlePoison));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.windDwarvenTable), "XX", "YY", 'X', "plankWood", 'Y', new ItemStack(LOTRMod.brick, 1, 6)));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.shovelWindDwarven), "X", "Y", "Y", 'X', DRRegistry.windDwarfSteel, 'Y', "stickWood"));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(DRRegistry.pickaxeWindDwarven), "XXX", " Y ", " Y ", 'X', DRRegistry.windDwarfSteel, 'Y', "stickWood"));
