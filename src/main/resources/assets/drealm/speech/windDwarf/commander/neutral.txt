@@ -1,11 +1,11 @@
-Ты должен доказать свою преданность, если хочешь нанять несколько наших храбрых воинов, #. 
-Ты хочешь нанять моих гномов? Иди и убей несколько эльфов, или ещё кого нибудь. 
-Ты должен заслужить моё доверие, прежде чем я смогу позволить тебе командовать моими гномами. 
-Докажи свою преданность гномам гор Ветра, и они последуют за тобой в бой! 
-Ты сможешь нанять моих ребят только после того, как заработаешь себе имя среди нас.
-Гномы последуют в бой только за тем, кому можно доверять! 
-Я не позволяю всяким проходимцам командовать моими воинами. Докажи свою преданность нашему народу, а затем возвращайся!
-Ты хочешь нанять гномов? Сначала ты должен доказать свою верность нашему народу! 
-Сколько эльфов ты убил? Ты воевал за Саурона? Нет? Возвращайся, когда ты будешь стоить большего. 
-Мои ребята не будут бегать за каждым, кто его позовёт. Покажи себя! 
-Кто ты? Я не слышал о тебе. Убей наших врагов и придай веса своему имени!
+You'll have to prove your worth if you want to hire some units, #.
+You want to hire my Dwarves? Go and kill some more Elves first, or something.
+I'll have to trust you more before I can let you command my Dwarves.
+Prove your allegiance to the Wind Mountains, and they will follow you into battle!
+You've got no chance of commanding a Dwarven army without some deeds to your name, lad!
+Dwarves only follow into battle those whom we can trust!
+I will not let any simple Man command my lads. Prove your worth to our kin and then come back!
+You want to hire some Dwarves? You must prove your standing amongst our people first!
+How many Elves did you kill? I say not enough. Come back when you do more deeds.
+My lads will not follow any stranger into battle. Prove yourself!
+Who are you? I have not heard of you. Kill some Elves and give a meaning to your name!

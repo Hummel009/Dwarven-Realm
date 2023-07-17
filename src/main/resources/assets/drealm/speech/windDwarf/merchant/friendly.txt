@@ -1,15 +1,11 @@
-Как вы видите, #, мои ноги уже болят таскать этот тяжелый груз. Но Вы можете помочь мне и купить что нибудь.
-Уходите? Может что-то купите?
-Мы, гномы гор Ветра, часто торгуем с владыкой Сауроном, так что пользуйтесь нашей щедростью, #. 
-Эль, доспехи, оружие - это ваше, мой друг! Пока у Вас есть достаточно монет... 
-Другие народы не могут похвастаться теми богатствами, что скрывают наши горы.
-Я путешествую по землям в поисках богатства. Возможно, Вы делаете то же самое, #? 
-Дайте мне несколько монет, #, и я буду самым счастливым купцом в мире! 
-Привет, #! Вы хотите купить мои товары? 
-Я принёс великие сокровища гор востока! Вы можете получить их за... символическую плату. Скажем, 50 монет? 
-Вы хотите торговать со мной, #? У меня есть несколько товаров, которые могут привлечь Ваше внимание. 
-За бесплатно я ничего не отдам!
-Вы хотите торговать со мной, #? За пару десятков серебрянных монет Вы сможете наслаждиться искусством нашего народа! 
-Пока Вы не попробовали наш эль, Вы не жили, #. К счастью у меня его много! 
-Я вижу голод в твоих глазах, #. Вы пробовали вкусную пищу гномов?
-Мы - гномы, и наше искусство непревзойдённо.
+As you can see, #, my feet ache from this heavy load. Care you to buy something?
+We Dwarves do not usually trade with Men, but you are an exception, #.
+Ale, armour, weapons - you want it, it's yours, my friend! As long as you have enough coins...
+I come from the mighty strongholds of the Wind Mountains, #. No other Dwarves boast riches quite like ours.
+I am travelling the land in search of wealth - perhaps you are doing the same, #?
+Give me some coins, #, and I shall be a very happy merchant indeed!
+Greetings, #! Do you wish to buy some goods from me?
+I bring great treasures from the Wind Mountains! You can have them... for a certain price!
+Do you wish to trade with me, #? I have several items which might be of interest to you.
+I will sell you anything for a fair price!
+Do you want to trade with me, #? For a few dozen silver coins you can enjoy the craftwork of the Dwarves of Wind Mountains!
