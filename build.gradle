@@ -28,13 +28,6 @@ minecraft {
 	targetCompat = JavaVersion.VERSION_1_8
 }
 
-jar {
-	manifest {
-		attributes 'FMLCorePlugin': 'got.coremod.GOTLoadingPlugin'
-		attributes 'FMLCorePluginContainsFMLMod': 'true'
-	}
-}
-
 processResources {
 	inputs.property 'version', project.version
 	inputs.property 'mcversion', project.minecraft.version
