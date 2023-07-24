@@ -117,8 +117,8 @@ public class DRRegistry {
 		mattockWindDwarven = new LOTRItemMattock(DRMaterial.WIND_DWARVEN);
 		pickaxeRedDwarven = new LOTRItemPickaxe(DRMaterial.RED_DWARVEN);
 		pickaxeWindDwarven = new LOTRItemPickaxe(DRMaterial.WIND_DWARVEN);
-		pikeRedDwarven = new LOTRItemPolearm(DRMaterial.RED_DWARVEN);
-		pikeWindDwarven = new LOTRItemPolearm(DRMaterial.WIND_DWARVEN);
+		pikeRedDwarven = new LOTRItemPike(DRMaterial.RED_DWARVEN);
+		pikeWindDwarven = new LOTRItemPike(DRMaterial.WIND_DWARVEN);
 		redDwarfSteel = new Item().setCreativeTab(DRCreativeTabs.tabMaterials);
 		shovelRedDwarven = new LOTRItemShovel(DRMaterial.RED_DWARVEN);
 		shovelWindDwarven = new LOTRItemShovel(DRMaterial.WIND_DWARVEN);
