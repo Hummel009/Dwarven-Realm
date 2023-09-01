@@ -12,17 +12,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class DRSpeech {
 	public static void onInit() {
-		HashMap<String, BufferedReader> speechBankNamesAndReaders = new HashMap<>();
+		Map<String, BufferedReader> speechBankNamesAndReaders = new HashMap<>();
 		ZipFile zip = null;
 		String addition = DRConfig.enableRussian ? "rus/" : "eng/";
 		try {
@@ -77,8 +74,8 @@ public class DRSpeech {
 			BufferedReader reader = speechBankName.getValue();
 			try {
 				String line;
-				ArrayList<String> speeches = new ArrayList<>();
-				ArrayList<String> allLines = new ArrayList<>();
+				List<String> speeches = new ArrayList<>();
+				List<String> allLines = new ArrayList<>();
 				boolean random = true;
 				while ((line = reader.readLine()) != null) {
 					if ("!RANDOM".equals(line)) {

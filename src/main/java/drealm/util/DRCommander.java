@@ -58,7 +58,7 @@ public class DRCommander {
 
 	public static LOTRItemBanner.BannerType addBanner(String name, LOTRFaction faction) {
 		int id = lastBannerID++;
-		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
+		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(Locale.ROOT), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
 		LOTRItemBanner.BannerType.bannerTypes.add(banner);
 		Map<Integer, BannerType> map = ReflectionHelper.getPrivateValue(BannerType.class, null, "bannerForID");
 		LOTRItemBanner.BannerType prior = map.put(id, banner);

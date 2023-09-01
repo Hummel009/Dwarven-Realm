@@ -5,13 +5,15 @@ import lotr.common.LOTRShields;
 import lotr.common.fac.LOTRFaction;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Locale;
+
 public class DRShields {
 	public static LOTRShields ALIGNMENT_WIND_MOUNTAINS;
 	public static LOTRShields ALIGNMENT_RED_MOUNTAINS;
 
 	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
 		LOTRShields shield = DRCommander.addAlignmentShield(enumName, faction);
-		DRCommander.setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase() + ".png"));
+		DRCommander.setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase(Locale.ROOT) + ".png"));
 		return shield;
 	}
 
