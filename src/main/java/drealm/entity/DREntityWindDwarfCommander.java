@@ -69,14 +69,14 @@ public class DREntityWindDwarfCommander extends DREntityWindDwarfWarrior impleme
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammerWindDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
 		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.bootsWindDwarven));
 		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legsWindDwarven));
 		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.bodyWindDwarven));
 		setCurrentItemOrArmor(4, null);
-		return data;
+		return d;
 	}
 
 	@Override

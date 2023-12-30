@@ -39,13 +39,12 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 		if (i == 0) {
 			return Blocks.stone.getIcon(0, 0);
 		}
-		return i == 4 || i == 5 ? tableIcons[0] : tableIcons[1];
+		return tableIcons[i == 4 || i == 5 ? 0 : 1];
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int side, float f, float f1, float f2) {
-		boolean hasRequiredAlignment;
-		hasRequiredAlignment = LOTRLevelData.getData(entityplayer).getAlignment(tableFaction) >= 1.0f;
+		boolean hasRequiredAlignment = LOTRLevelData.getData(entityplayer).getAlignment(tableFaction) >= 1.0f;
 		if (hasRequiredAlignment) {
 			if (!world.isRemote) {
 				entityplayer.openGui(DwarvenRealm.instance, tableGUIID, world, i, j, k);

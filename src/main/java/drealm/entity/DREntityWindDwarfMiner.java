@@ -80,10 +80,10 @@ public class DREntityWindDwarfMiner extends DREntityWindDwarf implements LOTRTra
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pickaxeWindDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
-		return data;
+		return d;
 	}
 
 	@Override

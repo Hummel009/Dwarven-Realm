@@ -79,9 +79,9 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.daggerWindDwarven));
 		npcItemsInv.setIdleItem(null);
-		return data;
+		return d;
 	}
 }

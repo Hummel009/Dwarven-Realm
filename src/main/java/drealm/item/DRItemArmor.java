@@ -19,7 +19,7 @@ public class DRItemArmor extends LOTRItemArmor {
 	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type) {
 		StringBuilder texture = new StringBuilder("drealm:armor/").append(DRCommander.getArmorName(this));
 		if (type != null) {
-			texture.append("_").append(type);
+			texture.append('_').append(type);
 		}
 		return texture.append(".png").toString();
 	}

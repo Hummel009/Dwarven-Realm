@@ -43,40 +43,39 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
-		int k1;
-		int i1;
+		int k3 = k;
+		int i3 = i;
+		int j2 = j;
 		Block block;
-		int i12;
-		if (restrictions && (block = world.getBlock(i, j - 1, k)) != Blocks.grass && block != Blocks.stone && block != Blocks.dirt && block != Blocks.stained_hardened_clay && block != Blocks.snow) {
+		if (restrictions && (block = world.getBlock(i3, j2 - 1, k3)) != Blocks.grass && block != Blocks.stone && block != Blocks.dirt && block != Blocks.stained_hardened_clay && block != Blocks.snow) {
 			return false;
 		}
-		--j;
+		--j2;
 		int rotation = random.nextInt(4);
 		if (!restrictions && usingPlayer != null) {
 			rotation = usingPlayerRotation();
 		}
 		switch (rotation) {
-			case 0: {
-				k += 8;
+			case 0:
+				k3 += 8;
 				break;
-			}
-			case 1: {
-				i -= 8;
+			case 1:
+				i3 -= 8;
 				break;
-			}
-			case 2: {
-				k -= 8;
+			case 2:
+				k3 -= 8;
 				break;
-			}
-			case 3: {
-				i += 8;
-			}
+			case 3:
+				i3 += 8;
+				break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + rotation);
 		}
 		if (restrictions) {
-			int minHeight = j;
-			int maxHeight = j;
-			for (int i13 = i - 6; i13 <= i + 6; ++i13) {
-				for (int k12 = k - 6; k12 <= k + 6; ++k12) {
+			int minHeight = j2;
+			int maxHeight = j2;
+			for (int i13 = i3 - 6; i13 <= i3 + 6; ++i13) {
+				for (int k12 = k3 - 6; k12 <= k3 + 6; ++k12) {
 					int j1 = world.getTopSolidOrLiquidBlock(i13, k12) - 1;
 					Block block2 = world.getBlock(i13, j1, k12);
 					if (block2 != Blocks.grass && block2 != Blocks.stone && block2 != Blocks.dirt && block2 != LOTRMod.rock && block2 != Blocks.snow) {
@@ -95,46 +94,49 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				return false;
 			}
 		}
-		for (k1 = k - 6; k1 <= k + 6; ++k1) {
-			for (i1 = i - 6; i1 <= i + 6; ++i1) {
-				boolean flag = Math.abs(k1 - k) == 6 && Math.abs(i1 - i) == 6;
-				for (int j1 = j + 7; (j1 >= j || !LOTRMod.isOpaque(world, i1, j1, k1)) && j1 >= 0; --j1) {
+		int i1;
+		int k1;
+		for (k1 = k3 - 6; k1 <= k3 + 6; ++k1) {
+			for (i1 = i3 - 6; i1 <= i3 + 6; ++i1) {
+				boolean flag = Math.abs(k1 - k3) == 6 && Math.abs(i1 - i3) == 6;
+				for (int j1 = j2 + 7; (j1 >= j2 || !LOTRMod.isOpaque(world, i1, j1, k1)) && j1 >= 0; --j1) {
 					if (flag) {
 						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.pillar, 0);
 					} else {
-						if (Math.abs(i1 - i) < 6 && Math.abs(k1 - k) < 6) {
-							if (j1 >= j + 1 && j1 <= j + 3 || j1 >= j + 4 && j1 <= j + 7) {
+						if (Math.abs(i1 - i3) < 6 && Math.abs(k1 - k3) < 6) {
+							if (j1 >= j2 + 1 && j1 <= j2 + 3 || j1 >= j2 + 4 && j1 <= j2 + 7) {
 								setAir(world, i1, j1, k1);
 								continue;
 							}
-							if (j1 == j) {
+							if (j1 == j2) {
 								setBlockAndNotifyAdequately(world, i1, j1, k1, Blocks.planks, 1);
 								continue;
 							}
 						}
 						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.brick, 0);
 					}
-					if (j1 > j) {
+					if (j1 > j2) {
 						continue;
 					}
 					setGrassToDirt(world, i1, j1 - 1, k1);
 				}
 			}
 		}
-		for (i12 = i - 6; i12 <= i + 6; ++i12) {
-			setBlockAndNotifyAdequately(world, i12, j + 8, k - 6, LOTRMod.stairsDwarvenBrick, 2);
-			setBlockAndNotifyAdequately(world, i12, j + 8, k + 6, LOTRMod.stairsDwarvenBrick, 3);
+		int i12;
+		for (i12 = i3 - 6; i12 <= i3 + 6; ++i12) {
+			setBlockAndNotifyAdequately(world, i12, j2 + 8, k3 - 6, LOTRMod.stairsDwarvenBrick, 2);
+			setBlockAndNotifyAdequately(world, i12, j2 + 8, k3 + 6, LOTRMod.stairsDwarvenBrick, 3);
 		}
-		for (k1 = k - 6; k1 <= k + 6; ++k1) {
-			setBlockAndNotifyAdequately(world, i - 6, j + 8, k1, LOTRMod.stairsDwarvenBrick, 0);
-			setBlockAndNotifyAdequately(world, i + 6, j + 8, k1, LOTRMod.stairsDwarvenBrick, 1);
+		for (k1 = k3 - 6; k1 <= k3 + 6; ++k1) {
+			setBlockAndNotifyAdequately(world, i3 - 6, j2 + 8, k1, LOTRMod.stairsDwarvenBrick, 0);
+			setBlockAndNotifyAdequately(world, i3 + 6, j2 + 8, k1, LOTRMod.stairsDwarvenBrick, 1);
 		}
-		for (k1 = k - 5; k1 <= k + 5; ++k1) {
-			for (i1 = i - 5; i1 <= i + 5; ++i1) {
-				setBlockAndNotifyAdequately(world, i1, j + 4, k1, DRRegistry.slabDouble, 0);
-				setBlockAndNotifyAdequately(world, i1, j + 8, k1, DRRegistry.slabDouble, 0);
-				int i2 = Math.abs(i1 - i);
-				int k2 = Math.abs(k1 - k);
+		for (k1 = k3 - 5; k1 <= k3 + 5; ++k1) {
+			for (i1 = i3 - 5; i1 <= i3 + 5; ++i1) {
+				setBlockAndNotifyAdequately(world, i1, j2 + 4, k1, DRRegistry.slabDouble, 0);
+				setBlockAndNotifyAdequately(world, i1, j2 + 8, k1, DRRegistry.slabDouble, 0);
+				int i2 = Math.abs(i1 - i3);
+				int k2 = Math.abs(k1 - k3);
 				int l = -1;
 				if (i2 == 5) {
 					l = k2 % 2;
@@ -145,67 +147,61 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 					continue;
 				}
 				if (l == 1) {
-					for (int j1 = j + 9; j1 <= j + 11; ++j1) {
+					for (int j1 = j2 + 9; j1 <= j2 + 11; ++j1) {
 						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.pillar, 0);
 					}
 					continue;
 				}
-				setBlockAndNotifyAdequately(world, i1, j + 9, k1, DRRegistry.wall, 0);
+				setBlockAndNotifyAdequately(world, i1, j2 + 9, k1, DRRegistry.wall, 0);
 			}
 		}
-		for (i12 = i - 5; i12 <= i + 5; ++i12) {
-			setBlockAndNotifyAdequately(world, i12, j + 12, k - 5, LOTRMod.stairsDwarvenBrick, 2);
-			setBlockAndNotifyAdequately(world, i12, j + 12, k + 5, LOTRMod.stairsDwarvenBrick, 3);
+		for (i12 = i3 - 5; i12 <= i3 + 5; ++i12) {
+			setBlockAndNotifyAdequately(world, i12, j2 + 12, k3 - 5, LOTRMod.stairsDwarvenBrick, 2);
+			setBlockAndNotifyAdequately(world, i12, j2 + 12, k3 + 5, LOTRMod.stairsDwarvenBrick, 3);
 		}
-		for (k1 = k - 5; k1 <= k + 5; ++k1) {
-			setBlockAndNotifyAdequately(world, i - 5, j + 12, k1, LOTRMod.stairsDwarvenBrick, 0);
-			setBlockAndNotifyAdequately(world, i + 5, j + 12, k1, LOTRMod.stairsDwarvenBrick, 1);
+		for (k1 = k3 - 5; k1 <= k3 + 5; ++k1) {
+			setBlockAndNotifyAdequately(world, i3 - 5, j2 + 12, k1, LOTRMod.stairsDwarvenBrick, 0);
+			setBlockAndNotifyAdequately(world, i3 + 5, j2 + 12, k1, LOTRMod.stairsDwarvenBrick, 1);
 		}
-		for (k1 = k - 4; k1 <= k + 4; ++k1) {
-			for (i1 = i - 4; i1 <= i + 4; ++i1) {
-				setBlockAndNotifyAdequately(world, i1, j + 12, k1, LOTRMod.slabSingle, 15);
+		for (k1 = k3 - 4; k1 <= k3 + 4; ++k1) {
+			for (i1 = i3 - 4; i1 <= i3 + 4; ++i1) {
+				setBlockAndNotifyAdequately(world, i1, j2 + 12, k1, LOTRMod.slabSingle, 15);
 			}
 		}
-		setBlockAndNotifyAdequately(world, i, j + 7, k, DRRegistry.chandelier, 1);
-		setBlockAndNotifyAdequately(world, i, j + 11, k, DRRegistry.chandelier, 1);
-		setBlockAndNotifyAdequately(world, i, j + 12, k, LOTRMod.brick, 6);
+		setBlockAndNotifyAdequately(world, i3, j2 + 7, k3, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i3, j2 + 11, k3, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i3, j2 + 12, k3, LOTRMod.brick, 6);
 		switch (rotation) {
-			case 0: {
-				generateFacingSouth(world, random, i, j, k);
+			case 0:
+				generateFacingSouth(world, random, i3, j2, k3);
 				break;
-			}
-			case 1: {
-				generateFacingWest(world, random, i, j, k);
+			case 1:
+				generateFacingWest(world, random, i3, j2, k3);
 				break;
-			}
-			case 2: {
-				generateFacingNorth(world, random, i, j, k);
+			case 2:
+				generateFacingNorth(world, random, i3, j2, k3);
 				break;
-			}
-			case 3: {
-				generateFacingEast(world, random, i, j, k);
-			}
+			case 3:
+				generateFacingEast(world, random, i3, j2, k3);
+				break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + rotation);
 		}
-		spawnDwarfCommander(world, i, j + 9, k);
+		spawnDwarfCommander(world, i3, j2 + 9, k3);
 		for (int l = 0; l < 4; ++l) {
-			spawnDwarf(world, i, j + 5, k);
+			spawnDwarf(world, i3, j2 + 5, k3);
 		}
 		LOTREntityNPCRespawner respawner = new LOTREntityNPCRespawner(world);
 		respawner.setSpawnClasses(DREntityWindDwarfWarrior.class, DREntityWindDwarfAxeThrower.class);
 		respawner.setCheckRanges(8, -8, 16, 8);
 		respawner.setSpawnRanges(8, 1, 10, 16);
-		placeNPCRespawner(respawner, world, i, j, k);
+		placeNPCRespawner(respawner, world, i3, j2, k3);
 		return true;
 	}
 
 	public void generateFacingEast(World world, Random random, int i, int j, int k) {
-		int k1;
 		int k12;
-		int i1;
 		int j1;
-		int k13;
-		int j12;
-		int j2;
 		for (k12 = k - 6; k12 <= k + 6; ++k12) {
 			setBlockAndNotifyAdequately(world, i - 7, j + 1, k12, DRRegistry.slabSingle, 0);
 			setGrassToDirt(world, i - 7, j, k12);
@@ -214,6 +210,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setGrassToDirt(world, i - 7, j1 - 1, k12);
 			}
 		}
+		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i - 6, j12, k);
 			setBlockAndNotifyAdequately(world, i - 7, j12, k - 1, DRRegistry.pillar, 0);
@@ -228,6 +225,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i - 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i - 7, j + 4, k, LOTRMod.slabSingle, 7);
 		placeWallBanner(world, i - 6, j + 6, k, 1, DRItemBanner.WIND_MOUNTAINS);
+		int k13;
+		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (i1 = i - 4; i1 <= i - 1; ++i1) {
 				for (k13 = k - 5; k13 <= k - 1; ++k13) {
@@ -267,6 +266,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 		setAir(world, i - 5, j + 4, k);
 		int stairX = 1;
+		int j2;
 		for (j1 = j + 1; j1 <= j + 4; ++j1) {
 			setAir(world, i - 5, j + 4, k - stairX);
 			setAir(world, i - 5, j + 4, k + stairX);
@@ -282,6 +282,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i - 5, j1, k - stairX, LOTRMod.brick, 6);
 			setBlockAndNotifyAdequately(world, i - 5, j1, k + stairX, LOTRMod.brick, 6);
 		}
+		int k1;
 		for (k1 = k - 5; k1 <= k + 5; k1 += 10) {
 			setBlockAndNotifyAdequately(world, i - 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
@@ -365,13 +366,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 	}
 
 	public void generateFacingNorth(World world, Random random, int i, int j, int k) {
-		int k1;
-		int i1;
 		int i12;
-		int i13;
 		int j1;
-		int j12;
-		int j2;
 		for (i12 = i - 6; i12 <= i + 6; ++i12) {
 			setBlockAndNotifyAdequately(world, i12, j + 1, k + 7, DRRegistry.slabSingle, 0);
 			setGrassToDirt(world, i12, j, k + 7);
@@ -380,6 +376,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setGrassToDirt(world, i12, j1 - 1, k + 7);
 			}
 		}
+		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i, j12, k + 6);
 			setBlockAndNotifyAdequately(world, i - 1, j12, k + 7, DRRegistry.pillar, 0);
@@ -394,6 +391,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k + 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k + 7, LOTRMod.slabSingle, 7);
 		placeWallBanner(world, i, j + 6, k + 6, 0, DRItemBanner.WIND_MOUNTAINS);
+		int i1;
+		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (k1 = k + 4; k1 >= k + 1; --k1) {
 				for (i1 = i - 5; i1 <= i - 1; ++i1) {
@@ -433,6 +432,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 		setAir(world, i, j + 4, k + 5);
 		int stairX = 1;
+		int j2;
 		for (j1 = j + 1; j1 <= j + 4; ++j1) {
 			setAir(world, i - stairX, j + 4, k + 5);
 			setAir(world, i + stairX, j + 4, k + 5);
@@ -448,6 +448,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i - stairX, j1, k + 5, LOTRMod.brick, 6);
 			setBlockAndNotifyAdequately(world, i + stairX, j1, k + 5, LOTRMod.brick, 6);
 		}
+		int i13;
 		for (i13 = i - 5; i13 <= i + 5; i13 += 10) {
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k + 2, Blocks.wooden_slab, 1);
@@ -531,13 +532,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 	}
 
 	public void generateFacingSouth(World world, Random random, int i, int j, int k) {
-		int k1;
-		int i1;
 		int i12;
-		int i13;
 		int j1;
-		int j12;
-		int j2;
 		for (i12 = i - 6; i12 <= i + 6; ++i12) {
 			setBlockAndNotifyAdequately(world, i12, j + 1, k - 7, DRRegistry.slabSingle, 0);
 			setGrassToDirt(world, i12, j, k - 7);
@@ -546,6 +542,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setGrassToDirt(world, i12, j1 - 1, k - 7);
 			}
 		}
+		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i, j12, k - 6);
 			setBlockAndNotifyAdequately(world, i - 1, j12, k - 7, DRRegistry.pillar, 0);
@@ -560,6 +557,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k - 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k - 7, LOTRMod.slabSingle, 7);
 		placeWallBanner(world, i, j + 6, k - 6, 2, DRItemBanner.WIND_MOUNTAINS);
+		int i1;
+		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (k1 = k - 4; k1 <= k - 1; ++k1) {
 				for (i1 = i - 5; i1 <= i - 1; ++i1) {
@@ -599,6 +598,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 		setAir(world, i, j + 4, k - 5);
 		int stairX = 1;
+		int j2;
 		for (j1 = j + 1; j1 <= j + 4; ++j1) {
 			setAir(world, i - stairX, j + 4, k - 5);
 			setAir(world, i + stairX, j + 4, k - 5);
@@ -614,6 +614,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i - stairX, j1, k - 5, LOTRMod.brick, 6);
 			setBlockAndNotifyAdequately(world, i + stairX, j1, k - 5, LOTRMod.brick, 6);
 		}
+		int i13;
 		for (i13 = i - 5; i13 <= i + 5; i13 += 10) {
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k - 2, Blocks.wooden_slab, 1);
@@ -697,13 +698,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 	}
 
 	public void generateFacingWest(World world, Random random, int i, int j, int k) {
-		int k1;
 		int k12;
-		int i1;
 		int j1;
-		int k13;
-		int j12;
-		int j2;
 		for (k12 = k - 6; k12 <= k + 6; ++k12) {
 			setBlockAndNotifyAdequately(world, i + 7, j + 1, k12, DRRegistry.slabSingle, 0);
 			setGrassToDirt(world, i + 7, j, k12);
@@ -712,6 +708,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setGrassToDirt(world, i + 7, j1 - 1, k12);
 			}
 		}
+		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i + 6, j12, k);
 			setBlockAndNotifyAdequately(world, i + 7, j12, k - 1, DRRegistry.pillar, 0);
@@ -726,6 +723,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i + 7, j + 4, k, LOTRMod.slabSingle, 7);
 		placeWallBanner(world, i + 6, j + 6, k, 3, DRItemBanner.WIND_MOUNTAINS);
+		int k13;
+		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (i1 = i + 4; i1 >= i + 1; --i1) {
 				for (k13 = k - 5; k13 <= k - 1; ++k13) {
@@ -765,6 +764,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 		setAir(world, i + 5, j + 4, k);
 		int stairX = 1;
+		int j2;
 		for (j1 = j + 1; j1 <= j + 4; ++j1) {
 			setAir(world, i + 5, j + 4, k - stairX);
 			setAir(world, i + 5, j + 4, k + stairX);
@@ -780,6 +780,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i + 5, j1, k - stairX, LOTRMod.brick, 6);
 			setBlockAndNotifyAdequately(world, i + 5, j1, k + stairX, LOTRMod.brick, 6);
 		}
+		int k1;
 		for (k1 = k - 5; k1 <= k + 5; k1 += 10) {
 			setBlockAndNotifyAdequately(world, i - 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
@@ -896,27 +897,25 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			return;
 		}
 		int l = random.nextInt(5);
-		Block block = null;
+		Block block;
 		switch (l) {
-			case 0: {
+			case 0:
 				block = Blocks.iron_ore;
 				break;
-			}
-			case 1: {
+			case 1:
 				block = Blocks.gold_ore;
 				break;
-			}
-			case 2: {
+			case 2:
 				block = LOTRMod.oreCopper;
 				break;
-			}
-			case 3: {
+			case 3:
 				block = LOTRMod.oreTin;
 				break;
-			}
-			case 4: {
+			case 4:
 				block = LOTRMod.oreSilver;
-			}
+				break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + l);
 		}
 		setBlockAndNotifyAdequately(world, i, j, k, block, 0);
 	}

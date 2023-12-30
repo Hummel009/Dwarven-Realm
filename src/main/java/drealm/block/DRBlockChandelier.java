@@ -42,16 +42,7 @@ public class DRBlockChandelier extends Block {
 	public boolean canBlockStay(World world, int i, int j, int k) {
 		Block block = world.getBlock(i, j + 1, k);
 		int meta = world.getBlockMetadata(i, j + 1, k);
-		if (block instanceof BlockFence || block instanceof BlockWall) {
-			return true;
-		}
-		if (block instanceof BlockSlab && !block.isOpaqueCube() && (meta & 8) == 0) {
-			return true;
-		}
-		if (block instanceof BlockStairs && (meta & 4) == 0 || block instanceof LOTRBlockOrcChain) {
-			return true;
-		}
-		return world.getBlock(i, j + 1, k).isSideSolid(world, i, j + 1, k, ForgeDirection.DOWN);
+		return block instanceof BlockFence || block instanceof BlockWall || block instanceof BlockSlab && !block.isOpaqueCube() && (meta & 8) == 0 || block instanceof BlockStairs && (meta & 4) == 0 || block instanceof LOTRBlockOrcChain || world.getBlock(i, j + 1, k).isSideSolid(world, i, j + 1, k, ForgeDirection.DOWN);
 	}
 
 	@Override
@@ -71,10 +62,11 @@ public class DRBlockChandelier extends Block {
 
 	@Override
 	public IIcon getIcon(int i, int j) {
-		if (j >= chandelierNames.length) {
-			j = 0;
+		int j1 = j;
+		if (j1 >= chandelierNames.length) {
+			j1 = 0;
 		}
-		return chandelierIcons[j];
+		return chandelierIcons[j1];
 	}
 
 	@Override
@@ -84,6 +76,7 @@ public class DRBlockChandelier extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("rawtypes")
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i = 0; i < chandelierNames.length; ++i) {
 			list.add(new ItemStack(item, 1, i));
@@ -108,9 +101,9 @@ public class DRBlockChandelier extends Block {
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
 		int meta = world.getBlockMetadata(i, j, k);
 		double d = 0.13;
-		double d1 = 1.0 - d;
 		double d2 = 0.6875;
 		spawnChandelierParticles(world, i + d, j + d2, k + d, random, meta);
+		double d1 = 1.0 - d;
 		spawnChandelierParticles(world, i + d1, j + d2, k + d1, random, meta);
 		spawnChandelierParticles(world, i + d, j + d2, k + d1, random, meta);
 		spawnChandelierParticles(world, i + d1, j + d2, k + d, random, meta);
@@ -121,7 +114,7 @@ public class DRBlockChandelier extends Block {
 	public void registerBlockIcons(IIconRegister iconregister) {
 		chandelierIcons = new IIcon[chandelierNames.length];
 		for (int i = 0; i < chandelierNames.length; ++i) {
-			chandelierIcons[i] = iconregister.registerIcon(getTextureName() + "_" + chandelierNames[i]);
+			chandelierIcons[i] = iconregister.registerIcon(getTextureName() + '_' + chandelierNames[i]);
 		}
 	}
 

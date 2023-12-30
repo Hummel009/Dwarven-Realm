@@ -55,17 +55,20 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 				return blueDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return blueDwarfSkinsFemale.getRandomSkin(dwarf);
-		} else if (dwarf instanceof DREntityRedDwarf) {
+		}
+		if (dwarf instanceof DREntityRedDwarf) {
 			if (dwarf.familyInfo.isMale()) {
 				return redDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return redDwarfSkinsFemale.getRandomSkin(dwarf);
-		} else if (dwarf instanceof DREntityWindDwarf) {
+		}
+		if (dwarf instanceof DREntityWindDwarf) {
 			if (dwarf.familyInfo.isMale()) {
 				return windDwarfSkinsMale.getRandomSkin(dwarf);
 			}
 			return windDwarfSkinsFemale.getRandomSkin(dwarf);
-		} else if (dwarf.familyInfo.isMale()) {
+		}
+		if (dwarf.familyInfo.isMale()) {
 			return dwarfSkinsMale.getRandomSkin(dwarf);
 		}
 		return dwarfSkinsFemale.getRandomSkin(dwarf);

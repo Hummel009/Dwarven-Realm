@@ -80,10 +80,10 @@ public class DREntityRedDwarfMiner extends DREntityRedDwarf implements LOTRTrade
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.pickaxeRedDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
-		return data;
+		return d;
 	}
 
 	@Override

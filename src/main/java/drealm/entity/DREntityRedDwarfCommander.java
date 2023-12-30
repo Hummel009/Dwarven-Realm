@@ -69,14 +69,14 @@ public class DREntityRedDwarfCommander extends DREntityRedDwarfWarrior implement
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.hammerRedDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getMeleeWeapon());
 		setCurrentItemOrArmor(1, new ItemStack(DRRegistry.bootsRedDwarven));
 		setCurrentItemOrArmor(2, new ItemStack(DRRegistry.legsRedDwarven));
 		setCurrentItemOrArmor(3, new ItemStack(DRRegistry.bodyRedDwarven));
 		setCurrentItemOrArmor(4, null);
-		return data;
+		return d;
 	}
 
 	@Override

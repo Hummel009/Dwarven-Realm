@@ -89,7 +89,7 @@ public class DRStructure {
 
 	public static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
 		if (idToClassMapping.containsKey(id)) {
-			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + "!");
+			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + '!');
 		}
 		idToClassMapping.put(id, str);
 		idToStringMapping.put(id, name);

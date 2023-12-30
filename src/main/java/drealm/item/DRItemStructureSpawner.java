@@ -84,16 +84,17 @@ public class DRItemStructureSpawner extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
-		StringBuilder s = new StringBuilder().append((StatCollector.translateToLocal(getUnlocalizedName() + ".name")).trim());
+		StringBuilder s = new StringBuilder().append(StatCollector.translateToLocal(getUnlocalizedName() + ".name").trim());
 		String structureName = DRStructure.getNameFromID(itemstack.getItemDamage());
 		if (structureName != null) {
-			s.append(" ").append(StatCollector.translateToLocal("lotr.structure." + structureName + ".name"));
+			s.append(' ').append(StatCollector.translateToLocal("lotr.structure." + structureName + ".name"));
 		}
 		return s.toString();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("rawtypes")
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (DRStructure.StructureColorInfo info : DRStructure.structureItemSpawners.values()) {
 			if (info.isHidden) {

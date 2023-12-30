@@ -4,19 +4,14 @@ import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class DRConfig {
 	public static Configuration config;
-	public static List<String> allCategories;
-	public static String CATEGORY_MISC;
+	public static Collection<String> allCategories = new ArrayList<>();
+	public static String CATEGORY_MISC = getCategory("1_misc");
 	public static boolean enableTextures14;
 	public static boolean enableRussian;
-
-	static {
-		allCategories = new ArrayList<>();
-		CATEGORY_MISC = getCategory("1_misc");
-	}
 
 	public static String getCategory(String category) {
 		allCategories.add(category);

@@ -49,9 +49,9 @@ public class DREntityRedDwarfAxeThrower extends DREntityRedDwarfWarrior {
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		npcItemsInv.setRangedWeapon(new ItemStack(DRRegistry.throwingAxeRedDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
-		return data;
+		return d;
 	}
 }

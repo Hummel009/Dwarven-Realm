@@ -60,7 +60,7 @@ public class DRMaterial {
 				setManFlesh.invoke(material);
 			}
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			LOTRLog.logger.error("Failed to edit LOTRMaterial {}", material.toString(), e);
+			LOTRLog.logger.error("Failed to edit LOTRMaterial {}", material, e);
 		}
 		return material;
 	}

@@ -19,7 +19,7 @@ public class DREntityRedDwarfWarrior extends DREntityRedDwarf {
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		data = super.onSpawnWithEgg(data);
+		IEntityLivingData d = super.onSpawnWithEgg(data);
 		int i = rand.nextInt(7);
 		switch (i) {
 			case 0:
@@ -53,6 +53,6 @@ public class DREntityRedDwarfWarrior extends DREntityRedDwarf {
 		if (rand.nextInt(10) != 0) {
 			setCurrentItemOrArmor(4, new ItemStack(DRRegistry.helmetRedDwarven));
 		}
-		return data;
+		return d;
 	}
 }

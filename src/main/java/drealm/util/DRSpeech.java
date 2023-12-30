@@ -30,10 +30,10 @@ public class DRSpeech {
 				while (entries.hasMoreElements()) {
 					ZipEntry entry = entries.nextElement();
 					String s = entry.getName();
-					String path = "assets/drealm/speech/" + addition;
 					if (!s.startsWith("assets/drealm/speech/" + addition) || !s.endsWith(".txt")) {
 						continue;
 					}
+					String path = "assets/drealm/speech/" + addition;
 					s = s.substring(path.length());
 					int i = s.indexOf(".txt");
 					try {

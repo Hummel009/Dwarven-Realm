@@ -239,7 +239,7 @@ public class DRCommander {
 	}
 
 	public static String getPath(ResourceLocation res) {
-		return "/assets/" + res.getResourceDomain() + "/" + res.getResourcePath();
+		return "/assets/" + res.getResourceDomain() + '/' + res.getResourcePath();
 	}
 
 	public static LOTRSpawnList newLOTRSpawnList(LOTRSpawnEntry... entries) {
@@ -252,8 +252,8 @@ public class DRCommander {
 
 	@SideOnly(Side.CLIENT)
 	public static void setClientMapImage(ResourceLocation res) {
-		ResourceLocation sepiaMapTexture;
 		ReflectionHelper.setPrivateValue(LOTRTextures.class, null, res, "mapTexture");
+		ResourceLocation sepiaMapTexture;
 		try {
 			BufferedImage mapImage = getImage(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
 			sepiaMapTexture = findAndInvokeMethod(new Object[]{mapImage, new ResourceLocation("lotr:map_sepia")}, LOTRTextures.class, null, "convertToSepia", BufferedImage.class, ResourceLocation.class);

@@ -16,10 +16,7 @@ import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class DRRenderLargeItem extends LOTRRenderLargeItem {
@@ -33,7 +30,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 	public final Item theItem;
 	public final String folderName;
 	public final float largeIconScale;
-	public List<LOTRRenderLargeItem.ExtraLargeIconToken> extraTokens = new ArrayList<>();
+	public Collection<ExtraLargeIconToken> extraTokens = new ArrayList<>();
 	public IIcon largeIcon;
 
 	public DRRenderLargeItem(Item item, String dir, float f) {
@@ -48,7 +45,7 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
 		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
-		return new ResourceLocation(modID, "textures/items/" + folder + "/" + itemIconString + ".png");
+		return new ResourceLocation(modID, "textures/items/" + folder + '/' + itemIconString + ".png");
 	}
 
 	public static DRRenderLargeItem getRendererIfLarge(Item item) {
@@ -91,10 +88,10 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
 		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
-		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ":";
-		StringBuilder path = new StringBuilder().append(modID).append(folderName).append("/").append(itemName);
+		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ':';
+		StringBuilder path = new StringBuilder().append(modID).append(folderName).append('/').append(itemName);
 		if (!StringUtils.isNullOrEmpty(extra)) {
-			path.append("_").append(extra);
+			path.append('_').append(extra);
 		}
 		return register.registerIcon(path.toString());
 	}
