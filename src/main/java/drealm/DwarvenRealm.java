@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 public class DwarvenRealm {
 	@Mod.Instance("drealm")
 	public static DwarvenRealm instance;
-	@SidedProxy(serverSide = "drealm.common.proxy.DRCommonProxy", clientSide = "drealm.common.proxy.DRClientProxy")
+	@SidedProxy(serverSide = "drealm.proxy.DRCommonProxy", clientSide = "drealm.proxy.DRClientProxy")
 	private static DRCommonProxy proxy;
 
 	public static ModContainer getModContainer() {
