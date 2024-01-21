@@ -69,7 +69,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 				i3 += 8;
 				break;
 			default:
-				throw new IllegalStateException("Unexpected value: " + rotation);
+				break;
 		}
 		if (restrictions) {
 			int minHeight = j2;
@@ -185,7 +185,7 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 				generateFacingEast(world, random, i3, j2, k3);
 				break;
 			default:
-				throw new IllegalStateException("Unexpected value: " + rotation);
+				break;
 		}
 		spawnDwarfCommander(world, i3, j2 + 9, k3);
 		for (int l = 0; l < 4; ++l) {
@@ -911,11 +911,9 @@ public class DRStructureRedMountainsStronghold extends LOTRWorldGenStructureBase
 			case 3:
 				block = LOTRMod.oreTin;
 				break;
-			case 4:
+			default:
 				block = LOTRMod.oreSilver;
 				break;
-			default:
-				throw new IllegalStateException("Unexpected value: " + l);
 		}
 		setBlockAndNotifyAdequately(world, i, j, k, block, 0);
 	}
