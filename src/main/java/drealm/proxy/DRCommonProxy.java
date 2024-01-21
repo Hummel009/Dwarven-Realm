@@ -5,14 +5,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import drealm.block.DRBlockTableRedDwarven;
 import drealm.block.DRBlockTableWindDwarven;
-import drealm.database.DRGuiId;
+import drealm.content.DRGuiIds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class DRServerProxy implements IGuiHandler {
+public class DRCommonProxy implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		DRGuiId gui = DRGuiId.values()[ID];
+		DRGuiIds gui = DRGuiIds.values()[ID];
 		switch (gui) {
 			case RED_DWARVEN:
 				return new DRBlockTableRedDwarven.Gui(entityplayer.inventory, world, i, j, k);
@@ -25,7 +25,7 @@ public class DRServerProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		DRGuiId gui = DRGuiId.values()[ID];
+		DRGuiIds gui = DRGuiIds.values()[ID];
 		switch (gui) {
 			case RED_DWARVEN:
 				return new DRBlockTableRedDwarven.Container(entityplayer.inventory, world, i, j, k);

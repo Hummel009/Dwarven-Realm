@@ -34,7 +34,7 @@ public class DRItemStructureSpawner extends Item {
 		setCreativeTab(LOTRCreativeTabs.tabSpawn);
 	}
 
-	public static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
+	private static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
 		if (!DRStructure.structureItemSpawners.containsKey(id)) {
 			return false;
 		}
@@ -84,12 +84,12 @@ public class DRItemStructureSpawner extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
-		StringBuilder s = new StringBuilder().append(StatCollector.translateToLocal(getUnlocalizedName() + ".name").trim());
+		String s = StatCollector.translateToLocal(getUnlocalizedName() + ".name").trim();
 		String structureName = DRStructure.getNameFromID(itemstack.getItemDamage());
 		if (structureName != null) {
-			s.append(' ').append(StatCollector.translateToLocal("lotr.structure." + structureName + ".name"));
+			s += ' ' + StatCollector.translateToLocal("lotr.structure." + structureName + ".name");
 		}
-		return s.toString();
+		return s;
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package drealm.biome;
 
-import drealm.entity.*;
+import drealm.content.DRSpawnLists;
+import drealm.entity.DREntityRedDwarfMerchant;
 import drealm.structure.DRStructureRedMountainsHouse;
 import drealm.structure.DRStructureRedMountainsSmithy;
 import drealm.structure.DRStructureRedMountainsStronghold;
-import drealm.util.DRCommander;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
@@ -16,23 +16,20 @@ import lotr.common.world.map.LOTRRoadType;
 import lotr.common.world.map.LOTRWaypoint;
 import lotr.common.world.spawning.LOTRBiomeSpawnList;
 import lotr.common.world.spawning.LOTREventSpawner;
-import lotr.common.world.spawning.LOTRSpawnEntry;
-import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
 public class DRBiomeRedMountains extends LOTRBiome {
-	public static final LOTRSpawnList RED_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityRedDwarfFireThrower.class, 10, 4, 4));
-
 	public DRBiomeRedMountains(int i, boolean major) {
 		super(i, major);
 		npcSpawnList.clear();
 		LOTRBiomeSpawnList.SpawnListContainer[] arrspawnListContainer = new LOTRBiomeSpawnList.SpawnListContainer[1];
-		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(RED_DWARVES, 10);
+		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(DRSpawnLists.redDwarves, 10);
 		npcSpawnList.newFactionList(600).add(arrspawnListContainer);
 		addBiomeVariantSet(LOTRBiomeVariant.SET_MOUNTAINS);
 		addBiomeVariant(LOTRBiomeVariant.FOREST_BEECH, 0.2f);
@@ -69,11 +66,12 @@ public class DRBiomeRedMountains extends LOTRBiome {
 	@Override
 	public void decorate(World world, Random random, int i, int k) {
 		super.decorate(world, random, i, k);
+		WorldGenerator str = new DRStructureRedMountainsHouse(false);
 		for (int l = 0; l < 4; ++l) {
 			int i1 = i + random.nextInt(16) + 8;
 			int j1 = 70 + random.nextInt(80);
 			int k1 = k + random.nextInt(16) + 8;
-			new DRStructureRedMountainsHouse(false).generate(world, random, i1, j1, k1);
+			str.generate(world, random, i1, j1, k1);
 		}
 	}
 

@@ -3,10 +3,10 @@ package drealm.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import drealm.DwarvenRealm;
-import drealm.database.DRFaction;
-import drealm.database.DRGuiId;
-import drealm.database.DRRecipe;
-import drealm.database.DRRegistry;
+import drealm.content.DRBlocks;
+import drealm.content.DRFactions;
+import drealm.content.DRGuiIds;
+import drealm.content.DRRecipes;
 import lotr.client.gui.LOTRGuiCraftingTable;
 import lotr.common.LOTRLevelData;
 import lotr.common.block.LOTRBlockCraftingTable;
@@ -26,7 +26,7 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 	private IIcon[] tableIcons;
 
 	public DRBlockTableWindDwarven() {
-		super(Material.rock, DRFaction.WIND_MOUNTAINS, DRGuiId.WIND_DWARVEN.ordinal());
+		super(Material.rock, DRFactions.windMountains, DRGuiIds.WIND_DWARVEN.ordinal());
 		setStepSound(Block.soundTypeStone);
 	}
 
@@ -74,7 +74,7 @@ public class DRBlockTableWindDwarven extends LOTRBlockCraftingTable {
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(inv, world, i, j, k, DRRecipe.windMountains, DRRegistry.windDwarvenTable);
+			super(inv, world, i, j, k, DRRecipes.windMountains, DRBlocks.windDwarvenTable);
 		}
 	}
 

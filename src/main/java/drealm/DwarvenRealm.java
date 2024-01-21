@@ -8,13 +8,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import drealm.biome.DRBiome;
-import drealm.database.*;
-import drealm.database.DRAchievement.DRAchievementCategory;
+import drealm.content.*;
 import drealm.entity.DREntity;
 import drealm.item.DRItemBanner;
-import drealm.map.DRRoads;
-import drealm.map.DRWaypoint;
-import drealm.proxy.DRServerProxy;
+import drealm.proxy.DRCommonProxy;
 import drealm.structure.DRStructure;
 import drealm.util.*;
 import integrator.NEIDRIntegrator;
@@ -22,12 +19,10 @@ import net.minecraft.util.ResourceLocation;
 
 @Mod(modid = "drealm", dependencies = "required-after:lotr", useMetadata = true)
 public class DwarvenRealm {
-	@SidedProxy(serverSide = "drealm.proxy.DRServerProxy", clientSide = "drealm.proxy.DRClientProxy")
-	public static DRServerProxy proxy;
 	@Mod.Instance("drealm")
 	public static DwarvenRealm instance;
-	public static DREventHandler eventHandler;
-	public static DRTickHandlerServer tickHandler;
+	@SidedProxy(serverSide = "drealm.common.proxy.DRCommonProxy", clientSide = "drealm.common.proxy.DRClientProxy")
+	private static DRCommonProxy proxy;
 
 	public static ModContainer getModContainer() {
 		return FMLCommonHandler.instance().findContainerFor(instance);
@@ -35,34 +30,39 @@ public class DwarvenRealm {
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
-		DRMaterial.onInit();
-		DRShields.onInit();
+		DRMaterials.onInit();
+		DRChestContents.onInit();
 		DRInvasions.onInit();
-		DRAchievementCategory.onInit();
-		DRAchievement.onInit();
-		DRFaction.onInit();
-		DRMiniQuestFactory.onInit();
+		DRSpawnLists.onInit();
+		DRBiome.onInit();
+		DRRecipes.onInit();
+		DRAchievements.onInit();
 		DRRoads.onInit();
+		DRTradeEntries.onInit();
+		DRUnitTradeEntries.onInit();
 		DRSpeech.onInit();
-		DRCommander.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
-		tickHandler = new DRTickHandlerServer();
+		DRStructure.onInit();
+		DRMiniQuests.onInit();
+		DRFactions.onInit();
+		DRAPI.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
+		DRTickHandlerServer tickHandler = new DRTickHandlerServer();
 		proxy.onInit(event);
 	}
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
-		eventHandler = new DREventHandler();
+		DREventHandler eventHandler = new DREventHandler();
 		DRConfig.preInit();
-		DRCreativeTabs.preInit();
-		DRFaction.preInit();
-		DRWaypoint.preInit();
+		DRFactions.preInit();
+		DRWaypoints.preInit();
 		DRItemBanner.preInit();
-		DRRegistry.preInit();
+		DRCreativeTabs.preInit();
+		DRBlocks.preInit();
+		DRItems.preInit();
+		DRFoods.preInit();
 		DREntity.preInit();
-		DRStructure.preInit();
-		DRRecipe.preInit();
-		DRBiome.preInit();
+		DRShields.preInit();
 		if (DRModChecker.hasNEI() && DRModChecker.hasGuiContainer()) {
 			NEIDRIntegrator.registerRecipes();
 		}

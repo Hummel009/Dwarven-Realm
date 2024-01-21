@@ -14,20 +14,22 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DRStructure {
-	public static Map<Integer, IStructureProvider> idToClassMapping = new HashMap<>();
-	public static Map<Integer, String> idToStringMapping = new HashMap<>();
+	private static final Map<Integer, IStructureProvider> ID_TO_CLASS_MAPPING = new HashMap<>();
+	private static final Map<Integer, String> ID_TO_STRING_MAPPING = new HashMap<>();
+	private static int id = 3000;
+
 	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
-	public static int id = 3000;
+
 
 	public static String getNameFromID(int ID) {
-		return idToStringMapping.get(ID);
+		return ID_TO_STRING_MAPPING.get(ID);
 	}
 
 	public static IStructureProvider getStructureForID(int ID) {
-		return idToClassMapping.get(ID);
+		return ID_TO_CLASS_MAPPING.get(ID);
 	}
 
-	public static void preInit() {
+	public static void onInit() {
 		registerStructure(id++, DRStructureRedMountainsHouse.class, "RedMountainsHouse", 0x570000, 0x570000);
 		registerStructure(id++, DRStructureRedMountainsSmithy.class, "RedMountainsSmithy", 0x570000, 0x570000);
 		registerStructure(id++, DRStructureRedMountainsStronghold.class, "RedMountainsStronghold", 0x570000, 0x570000);
@@ -37,11 +39,11 @@ public class DRStructure {
 		registerStructure(id++, DRStructureWindMountainsStronghold.class, "WindMountainsStronghold", 0xCEA863, 0xCEA863);
 	}
 
-	public static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG) {
+	private static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG) {
 		registerStructure(id, strClass, name, colorBG, colorFG, false);
 	}
 
-	public static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
+	private static void registerStructure(int id, Class<? extends WorldGenerator> strClass, String name, int colorBG, int colorFG, boolean hide) {
 		IStructureProvider strProvider = new IStructureProvider() {
 
 			@Override
@@ -87,12 +89,12 @@ public class DRStructure {
 		registerStructure(id, strProvider, name, colorBG, colorFG, hide);
 	}
 
-	public static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
-		if (idToClassMapping.containsKey(id)) {
+	private static void registerStructure(int id, IStructureProvider str, String name, int colorBG, int colorFG, boolean hide) {
+		if (ID_TO_CLASS_MAPPING.containsKey(id)) {
 			throw new IllegalArgumentException("Structure ID " + id + " is already registered to " + name + '!');
 		}
-		idToClassMapping.put(id, str);
-		idToStringMapping.put(id, name);
+		ID_TO_CLASS_MAPPING.put(id, str);
+		ID_TO_STRING_MAPPING.put(id, name);
 		structureItemSpawners.put(id, new StructureColorInfo(id, colorBG, colorFG, str.isVillage(), hide));
 	}
 
@@ -109,7 +111,7 @@ public class DRStructure {
 		public final boolean isVillage;
 		public final boolean isHidden;
 
-		public StructureColorInfo(int i, int colorBG, int colorFG, boolean vill, boolean hide) {
+		protected StructureColorInfo(int i, int colorBG, int colorFG, boolean vill, boolean hide) {
 			spawnedID = i;
 			colorBackground = colorBG;
 			colorForeground = colorFG;

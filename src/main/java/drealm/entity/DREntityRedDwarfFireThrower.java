@@ -1,6 +1,6 @@
 package drealm.entity;
 
-import drealm.database.DRRegistry;
+import drealm.content.DRItems;
 import lotr.common.LOTRMod;
 import lotr.common.entity.ai.LOTREntityAIRangedAttack;
 import lotr.common.entity.npc.LOTREntityNPC;
@@ -13,8 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
-	public EntityAIBase rangedAttackAI = createRedRangedAI();
-	public EntityAIBase meleeAttackAI;
+	private final EntityAIBase rangedAttackAI = createRedRangedAI();
+	private EntityAIBase meleeAttackAI;
 
 	public DREntityRedDwarfFireThrower(World world) {
 		super(world);
@@ -33,7 +33,7 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 		worldObj.spawnEntityInWorld(pot);
 	}
 
-	public EntityAIBase createRedRangedAI() {
+	private EntityAIBase createRedRangedAI() {
 		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
 	}
 
@@ -76,7 +76,7 @@ public class DREntityRedDwarfFireThrower extends DREntityRedDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		IEntityLivingData d = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.swordRedDwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRItems.swordRedDwarven));
 		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.rhunFirePot));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return d;

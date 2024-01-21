@@ -3,7 +3,7 @@ package drealm.entity;
 import lotr.common.entity.LOTREntities;
 
 public class DREntity {
-	public static int id = 3000;
+	private static int id = 3000;
 
 	public static void preInit() {
 		LOTREntities.registerCreature(DREntityRedDwarf.class, "RedDwarf", id++, 0x570000, 0x570000);

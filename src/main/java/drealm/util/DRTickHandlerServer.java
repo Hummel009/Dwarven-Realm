@@ -3,7 +3,7 @@ package drealm.util;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import drealm.database.DRAchievement;
+import drealm.content.DRAchievements;
 import drealm.item.DRItemStructureSpawner;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -23,7 +23,7 @@ public class DRTickHandlerServer {
 		if (world.isRemote || !player.isEntityAlive() || event.phase != TickEvent.Phase.END) {
 			return;
 		}
-		DRAchievement.runAchievementCheck(player);
+		DRAchievements.runAchievementCheck(player);
 	}
 
 	@SubscribeEvent

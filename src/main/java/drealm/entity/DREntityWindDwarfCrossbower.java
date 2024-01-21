@@ -1,6 +1,6 @@
 package drealm.entity;
 
-import drealm.database.DRRegistry;
+import drealm.content.DRItems;
 import lotr.common.LOTRMod;
 import lotr.common.entity.ai.LOTREntityAIRangedAttack;
 import lotr.common.entity.npc.LOTREntityNPC;
@@ -11,15 +11,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class DREntityWindDwarfCrossbower extends DREntityWindDwarfWarrior {
-	public EntityAIBase rangedAttackAI = createRedRangedAI();
-	public EntityAIBase meleeAttackAI;
+	private final EntityAIBase rangedAttackAI = createRedRangedAI();
+	private EntityAIBase meleeAttackAI;
 
 	public DREntityWindDwarfCrossbower(World world) {
 		super(world);
 		spawnRidingHorse = false;
 	}
 
-	public EntityAIBase createRedRangedAI() {
+	private EntityAIBase createRedRangedAI() {
 		return new LOTREntityAIRangedAttack(this, 1.3, 20, 30, 16.0f);
 	}
 
@@ -62,7 +62,7 @@ public class DREntityWindDwarfCrossbower extends DREntityWindDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		IEntityLivingData d = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.swordWindDwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRItems.swordWindDwarven));
 		npcItemsInv.setRangedWeapon(new ItemStack(LOTRMod.ironCrossbow));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return d;

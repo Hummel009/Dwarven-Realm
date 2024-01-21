@@ -1,8 +1,8 @@
 package drealm.util;
 
 public class DRModChecker {
-	public static int hasNEI = -1;
-	public static int hasGuiContainer = -1;
+	private static int hasNEI = -1;
+	private static int hasGuiContainer = -1;
 
 	public static boolean hasGuiContainer() {
 		if (hasGuiContainer == -1) {

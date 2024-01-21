@@ -3,13 +3,14 @@ package drealm.biome;
 import lotr.common.LOTRDimension;
 import lotr.common.world.biome.LOTRBiome;
 
+@SuppressWarnings("WeakerAccess")
 public class DRBiome {
 	public static LOTRBiome redMountains;
 	public static LOTRBiome redMountainsFoothills;
 	public static LOTRBiome windMountains;
 	public static LOTRBiome windMountainsFoothills;
 
-	public static void preInit() {
+	public static void onInit() {
 		for (int i : new int[]{117, 118, 164, 165}) {
 			LOTRDimension.MIDDLE_EARTH.biomeList[i] = null;
 		}

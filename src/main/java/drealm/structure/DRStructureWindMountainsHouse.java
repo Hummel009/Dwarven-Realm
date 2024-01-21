@@ -1,8 +1,9 @@
 package drealm.structure;
 
-import drealm.database.DRChestContents;
-import drealm.database.DRFoods;
-import drealm.database.DRRegistry;
+import drealm.content.DRBlocks;
+import drealm.content.DRChestContents;
+import drealm.content.DRFoods;
+import drealm.content.DRItems;
 import drealm.entity.DREntityWindDwarf;
 import lotr.common.LOTRFoods;
 import lotr.common.LOTRMod;
@@ -27,13 +28,13 @@ public class DRStructureWindMountainsHouse extends LOTRWorldGenDwarfHouse {
 
 	@Override
 	public ItemStack getRandomOtherItem(Random random) {
-		ItemStack[] items = {new ItemStack(DRRegistry.helmetWindDwarven), new ItemStack(DRRegistry.bodyWindDwarven), new ItemStack(DRRegistry.legsWindDwarven), new ItemStack(DRRegistry.bootsWindDwarven), new ItemStack(DRRegistry.windDwarfSteel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget)};
+		ItemStack[] items = new ItemStack[]{new ItemStack(DRItems.helmetWindDwarven), new ItemStack(DRItems.bodyWindDwarven), new ItemStack(DRItems.legsWindDwarven), new ItemStack(DRItems.bootsWindDwarven), new ItemStack(DRItems.windDwarfSteel), new ItemStack(LOTRMod.bronze), new ItemStack(Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_nugget)};
 		return items[random.nextInt(items.length)].copy();
 	}
 
 	@Override
 	public ItemStack getRandomWeaponItem(Random random) {
-		ItemStack[] items = {new ItemStack(DRRegistry.swordWindDwarven), new ItemStack(DRRegistry.daggerWindDwarven), new ItemStack(DRRegistry.hammerWindDwarven), new ItemStack(DRRegistry.battleaxeWindDwarven), new ItemStack(DRRegistry.pickaxeWindDwarven), new ItemStack(DRRegistry.mattockWindDwarven), new ItemStack(DRRegistry.throwingAxeWindDwarven), new ItemStack(DRRegistry.pikeWindDwarven)};
+		ItemStack[] items = new ItemStack[]{new ItemStack(DRItems.swordWindDwarven), new ItemStack(DRItems.daggerWindDwarven), new ItemStack(DRItems.hammerWindDwarven), new ItemStack(DRItems.battleaxeWindDwarven), new ItemStack(DRItems.pickaxeWindDwarven), new ItemStack(DRItems.mattockWindDwarven), new ItemStack(DRItems.throwingAxeWindDwarven), new ItemStack(DRItems.pikeWindDwarven)};
 		return items[random.nextInt(items.length)].copy();
 	}
 
@@ -46,17 +47,17 @@ public class DRStructureWindMountainsHouse extends LOTRWorldGenDwarfHouse {
 		fillerMeta = 0;
 		topBlock = Blocks.stone;
 		topMeta = 0;
-		brick2Block = DRRegistry.brick;
+		brick2Block = DRBlocks.brick;
 		brick2Meta = 0;
-		pillarBlock = DRRegistry.pillar;
+		pillarBlock = DRBlocks.pillar;
 		pillarMeta = 0;
-		chandelierBlock = DRRegistry.chandelier;
+		chandelierBlock = DRBlocks.chandelier;
 		chandelierMeta = 1;
-		tableBlock = DRRegistry.windDwarvenTable;
-		barsBlock = DRRegistry.windDwarfBars;
-		larderContents = DRChestContents.WIND_DWARF_HOUSE_LARDER;
-		personalContents = DRChestContents.WIND_MOUNTAINS_STRONGHOLD;
-		plateFoods = DRFoods.WIND_DWARF;
+		tableBlock = DRBlocks.windDwarvenTable;
+		barsBlock = DRBlocks.windDwarfBars;
+		larderContents = DRChestContents.windDwarfHouseLarder;
+		personalContents = DRChestContents.windMountainsStronghold;
+		plateFoods = DRFoods.windDwarf;
 		drinkFoods = LOTRFoods.DWARF_DRINK;
 	}
 }

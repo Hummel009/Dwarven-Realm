@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.util.*;
-import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -70,7 +69,7 @@ public class DRSpeech {
 			FMLLog.severe("Failed to load Dwarven Realm speech banks");
 			e.printStackTrace();
 		}
-		for (Entry<String, BufferedReader> speechBankName : speechBankNamesAndReaders.entrySet()) {
+		for (Map.Entry<String, BufferedReader> speechBankName : speechBankNamesAndReaders.entrySet()) {
 			BufferedReader reader = speechBankName.getValue();
 			try {
 				String line;
@@ -91,9 +90,9 @@ public class DRSpeech {
 					continue;
 				}
 				if (random) {
-					DRCommander.addSpeechBank(speechBankName.getKey(), true, speeches);
+					DRAPI.addSpeechBank(speechBankName.getKey(), true, speeches);
 				} else {
-					DRCommander.addSpeechBank(speechBankName.getKey(), false, allLines);
+					DRAPI.addSpeechBank(speechBankName.getKey(), false, allLines);
 				}
 			} catch (Exception e) {
 				FMLLog.severe("Failed to load Dwarven Realm speech bank " + speechBankName.getKey());

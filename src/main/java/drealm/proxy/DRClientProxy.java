@@ -8,15 +8,14 @@ import drealm.render.DRRenderDwarf;
 import drealm.render.DRRenderDwarfCommander;
 import drealm.render.DRRenderDwarfSmith;
 import drealm.render.DRRendererManager;
-import drealm.util.DRCommander;
+import drealm.util.DRAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 
-public class DRClientProxy extends DRServerProxy implements IResourceManagerReloadListener {
-	public static DRRendererManager rendererManager;
+public class DRClientProxy extends DRCommonProxy implements IResourceManagerReloadListener {
 
 	@Override
 	public void onInit(FMLInitializationEvent event) {
@@ -25,12 +24,12 @@ public class DRClientProxy extends DRServerProxy implements IResourceManagerRelo
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
-		DRCommander.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
+		DRAPI.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		rendererManager = new DRRendererManager();
+		DRRendererManager rendererManager = new DRRendererManager();
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarf.class, new DRRenderDwarf());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfSmith.class, new DRRenderDwarfSmith());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfCommander.class, new DRRenderDwarfCommander());

@@ -1,6 +1,6 @@
 package drealm.entity;
 
-import drealm.database.*;
+import drealm.content.*;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRFoods;
 import lotr.common.entity.npc.LOTREntityDwarf;
@@ -18,12 +18,12 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	public DREntityRedDwarf(World world) {
 		super(world);
 		familyInfo.marriageEntityClass = DREntityRedDwarf.class;
-		familyInfo.marriageAchievement = DRAchievement.marryRedDwarf;
+		familyInfo.marriageAchievement = DRAchievements.marryRedDwarf;
 	}
 
 	@Override
 	public LOTRMiniQuest createMiniQuest() {
-		return DRMiniQuestFactory.RED_MOUNTAINS.createQuest(this);
+		return DRMiniQuests.redMountains.createQuest(this);
 	}
 
 	@Override
@@ -33,37 +33,37 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 
 	@Override
 	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
-		return DRMiniQuestFactory.RED_MOUNTAINS;
+		return DRMiniQuests.redMountains;
 	}
 
 	@Override
 	public LOTRFoods getDwarfFoods() {
-		return DRFoods.RED_DWARF;
+		return DRFoods.redDwarf;
 	}
 
 	@Override
 	public Item getDwarfSteelDrop() {
-		return DRRegistry.redDwarfSteel;
+		return DRItems.redDwarfSteel;
 	}
 
 	@Override
 	public LOTRFaction getFaction() {
-		return DRFaction.RED_MOUNTAINS;
+		return DRFactions.redMountains;
 	}
 
 	@Override
 	public LOTRChestContents getGenericDrops() {
-		return DRChestContents.RED_MOUNTAINS_STRONGHOLD;
+		return DRChestContents.redMountainsStronghold;
 	}
 
 	@Override
 	public LOTRAchievement getKillAchievement() {
-		return DRAchievement.killRedDwarf;
+		return DRAchievements.killRedDwarf;
 	}
 
 	@Override
 	public LOTRChestContents getLarderDrops() {
-		return DRChestContents.RED_DWARF_HOUSE_LARDER;
+		return DRChestContents.redDwarfHouseLarder;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class DREntityRedDwarf extends LOTREntityDwarf {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		IEntityLivingData d = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.daggerRedDwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRItems.daggerRedDwarven));
 		npcItemsInv.setIdleItem(null);
 		return d;
 	}

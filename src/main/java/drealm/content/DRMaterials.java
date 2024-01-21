@@ -1,6 +1,6 @@
-package drealm.database;
+package drealm.content;
 
-import drealm.util.DRCommander;
+import drealm.util.DRAPI;
 import lotr.common.item.LOTRMaterial;
 import lotr.common.util.LOTRLog;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,24 +12,26 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class DRMaterial {
-	public static boolean setup;
-	public static Constructor<LOTRMaterial> constructor;
-	public static LOTRMaterial RED_DWARVEN = newLOTRMaterial("RED_DWARVEN", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
-	public static LOTRMaterial WIND_DWARVEN = newLOTRMaterial("WIND_DWARVEN", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
-	public static LOTRMaterial RED_DWARVEN14 = newLOTRMaterial("RED_DWARVEN14", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
-	public static LOTRMaterial WIND_DWARVEN14 = newLOTRMaterial("WIND_DWARVEN14", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
-	public static Method setUses;
-	public static Method setDamage;
-	public static Method setProtection;
-	public static Method setSpeed;
-	public static Method setHarvestLevel;
-	public static Method setEnchantibility;
-	public static Method setCraftingMaterial;
-	public static Method setUndamageable;
-	public static Method setManFlesh;
+public class DRMaterials {
+	private static boolean setup;
+	private static Constructor<LOTRMaterial> constructor;
 
-	public static LOTRMaterial editLOTRMaterial(LOTRMaterial material, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
+	public static LOTRMaterial redDwarven = newLOTRMaterial("RED_DWARVEN", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
+	public static LOTRMaterial windDwarven = newLOTRMaterial("WIND_DWARVEN", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
+	public static LOTRMaterial redDwarven14 = newLOTRMaterial("RED_DWARVEN14", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
+	public static LOTRMaterial windDwarven14 = newLOTRMaterial("WIND_DWARVEN14", 650, 3.0f, 0.7f, 7.0f, 3, 12, null);
+
+	private static Method setUses;
+	private static Method setDamage;
+	private static Method setProtection;
+	private static Method setSpeed;
+	private static Method setHarvestLevel;
+	private static Method setEnchantibility;
+	private static Method setCraftingMaterial;
+	private static Method setUndamageable;
+	private static Method setManFlesh;
+
+	private static LOTRMaterial editLOTRMaterial(LOTRMaterial material, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
 		setup();
 		try {
 			if (uses != -1) {
@@ -81,15 +83,15 @@ public class DRMaterial {
 		return material;
 	}
 
-	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial) {
+	private static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial) {
 		return newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, false);
 	}
 
-	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial, boolean manFlesh) {
+	private static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial, boolean manFlesh) {
 		return newLOTRMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, craftingMaterial, manFlesh, false);
 	}
 
-	public static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
+	private static LOTRMaterial newLOTRMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
 		setup();
 		LOTRMaterial material = null;
 		try {
@@ -102,13 +104,13 @@ public class DRMaterial {
 	}
 
 	public static void onInit() {
-		DRCommander.setMaterialCraftingItem(RED_DWARVEN, DRRegistry.redDwarfSteel);
-		DRCommander.setMaterialCraftingItem(WIND_DWARVEN, DRRegistry.windDwarfSteel);
-		DRCommander.setMaterialCraftingItem(RED_DWARVEN14, DRRegistry.redDwarfSteel);
-		DRCommander.setMaterialCraftingItem(WIND_DWARVEN14, DRRegistry.windDwarfSteel);
+		DRAPI.setMaterialCraftingItem(redDwarven, DRItems.redDwarfSteel);
+		DRAPI.setMaterialCraftingItem(windDwarven, DRItems.windDwarfSteel);
+		DRAPI.setMaterialCraftingItem(redDwarven14, DRItems.redDwarfSteel);
+		DRAPI.setMaterialCraftingItem(windDwarven14, DRItems.windDwarfSteel);
 	}
 
-	public static void setup() {
+	private static void setup() {
 		if (setup) {
 			return;
 		}

@@ -12,6 +12,6 @@ public class DREntityRedDwarfBannerBearer extends DREntityRedDwarfWarrior implem
 
 	@Override
 	public LOTRItemBanner.BannerType getBannerType() {
-		return DRItemBanner.RED_MOUNTAINS;
+		return DRItemBanner.redMountains;
 	}
 }

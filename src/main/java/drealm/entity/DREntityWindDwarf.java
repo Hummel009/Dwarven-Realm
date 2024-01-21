@@ -1,6 +1,6 @@
 package drealm.entity;
 
-import drealm.database.*;
+import drealm.content.*;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRFoods;
 import lotr.common.entity.npc.LOTREntityDwarf;
@@ -18,12 +18,12 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	public DREntityWindDwarf(World world) {
 		super(world);
 		familyInfo.marriageEntityClass = DREntityWindDwarf.class;
-		familyInfo.marriageAchievement = DRAchievement.marryWindDwarf;
+		familyInfo.marriageAchievement = DRAchievements.marryWindDwarf;
 	}
 
 	@Override
 	public LOTRMiniQuest createMiniQuest() {
-		return DRMiniQuestFactory.WIND_MOUNTAINS.createQuest(this);
+		return DRMiniQuests.windMountains.createQuest(this);
 	}
 
 	@Override
@@ -33,37 +33,37 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 
 	@Override
 	public LOTRMiniQuestFactory getBountyHelpSpeechDir() {
-		return DRMiniQuestFactory.WIND_MOUNTAINS;
+		return DRMiniQuests.windMountains;
 	}
 
 	@Override
 	public LOTRFoods getDwarfFoods() {
-		return DRFoods.WIND_DWARF;
+		return DRFoods.windDwarf;
 	}
 
 	@Override
 	public Item getDwarfSteelDrop() {
-		return DRRegistry.windDwarfSteel;
+		return DRItems.windDwarfSteel;
 	}
 
 	@Override
 	public LOTRFaction getFaction() {
-		return DRFaction.WIND_MOUNTAINS;
+		return DRFactions.windMountains;
 	}
 
 	@Override
 	public LOTRChestContents getGenericDrops() {
-		return DRChestContents.WIND_MOUNTAINS_STRONGHOLD;
+		return DRChestContents.windMountainsStronghold;
 	}
 
 	@Override
 	public LOTRAchievement getKillAchievement() {
-		return DRAchievement.killWindDwarf;
+		return DRAchievements.killWindDwarf;
 	}
 
 	@Override
 	public LOTRChestContents getLarderDrops() {
-		return DRChestContents.WIND_DWARF_HOUSE_LARDER;
+		return DRChestContents.windDwarfHouseLarder;
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class DREntityWindDwarf extends LOTREntityDwarf {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		IEntityLivingData d = super.onSpawnWithEgg(data);
-		npcItemsInv.setMeleeWeapon(new ItemStack(DRRegistry.daggerWindDwarven));
+		npcItemsInv.setMeleeWeapon(new ItemStack(DRItems.daggerWindDwarven));
 		npcItemsInv.setIdleItem(null);
 		return d;
 	}

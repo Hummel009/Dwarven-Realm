@@ -7,13 +7,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 public class DRRenderDwarfCommander extends DRRenderDwarf {
-	public static ResourceLocation cloak = new ResourceLocation("lotr:mob/dwarf/commander_cloak.png");
-	public static ResourceLocation blueCloak = new ResourceLocation("lotr:mob/dwarf/blueMountains_commander_cloak.png");
+	private static final ResourceLocation CLOAK = new ResourceLocation("lotr:mob/dwarf/commander_cloak.png");
+	private static final ResourceLocation BLUE_CLOAK = new ResourceLocation("lotr:mob/dwarf/blueMountains_commander_cloak.png");
 
-	private LOTRModelDwarf cloakModel = new LOTRModelDwarf(1.5f);
+	private final LOTRModelDwarf cloakModel = new LOTRModelDwarf(1.5f);
 
-	public ResourceLocation getCloakTexture(EntityLivingBase entity) {
-		return entity instanceof LOTREntityBlueDwarf ? blueCloak : cloak;
+	private ResourceLocation getCloakTexture(EntityLivingBase entity) {
+		return entity instanceof LOTREntityBlueDwarf ? BLUE_CLOAK : CLOAK;
 	}
 
 	@Override

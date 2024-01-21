@@ -16,15 +16,16 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class DRRenderDwarf extends LOTRRenderBiped {
-	public static LOTRRandomSkins dwarfSkinsMale;
-	public static LOTRRandomSkins dwarfSkinsFemale;
-	public static LOTRRandomSkins blueDwarfSkinsMale;
-	public static LOTRRandomSkins blueDwarfSkinsFemale;
-	public static LOTRRandomSkins redDwarfSkinsMale;
-	public static LOTRRandomSkins redDwarfSkinsFemale;
-	public static LOTRRandomSkins windDwarfSkinsMale;
-	public static LOTRRandomSkins windDwarfSkinsFemale;
-	public static ResourceLocation ringTexture = new ResourceLocation("lotr:mob/dwarf/ring.png");
+	private static final ResourceLocation RING_TEXTURE = new ResourceLocation("lotr:mob/dwarf/ring.png");
+
+	private static LOTRRandomSkins dwarfSkinsMale;
+	private static LOTRRandomSkins dwarfSkinsFemale;
+	private static LOTRRandomSkins blueDwarfSkinsMale;
+	private static LOTRRandomSkins blueDwarfSkinsFemale;
+	private static LOTRRandomSkins redDwarfSkinsMale;
+	private static LOTRRandomSkins redDwarfSkinsFemale;
+	private static LOTRRandomSkins windDwarfSkinsMale;
+	private static LOTRRandomSkins windDwarfSkinsFemale;
 
 	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
@@ -92,7 +93,7 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 	public int shouldRenderPass(EntityLiving entity, int pass, float f) {
 		LOTREntityDwarf dwarf = (LOTREntityDwarf) entity;
 		if (pass == 1 && dwarf.getClass() == dwarf.familyInfo.marriageEntityClass && dwarf.getEquipmentInSlot(4) != null && dwarf.getEquipmentInSlot(4).getItem() == dwarf.familyInfo.marriageRing) {
-			bindTexture(ringTexture);
+			bindTexture(RING_TEXTURE);
 			setRenderPassModel(standardRenderPassModel);
 			((ModelBiped) renderPassModel).bipedRightArm.showModel = false;
 			return 1;

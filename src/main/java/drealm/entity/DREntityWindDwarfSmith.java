@@ -1,23 +1,18 @@
 package drealm.entity;
 
-import drealm.database.DRAchievement;
-import drealm.database.DRRegistry;
+import drealm.content.DRAchievements;
+import drealm.content.DRItems;
+import drealm.content.DRTradeEntries;
 import lotr.common.LOTRLevelData;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTRTradeEntries;
-import lotr.common.entity.npc.LOTRTradeEntries.TradeType;
-import lotr.common.entity.npc.LOTRTradeEntry;
 import lotr.common.entity.npc.LOTRTradeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTradeable.Smith {
-	public static final LOTRTradeEntries WIND_DWARF_SMITH_BUY = new LOTRTradeEntries(TradeType.BUY, new LOTRTradeEntry(new ItemStack(DRRegistry.windDwarvenTable), 100), new LOTRTradeEntry(new ItemStack(LOTRMod.blacksmithHammer), 18), new LOTRTradeEntry(new ItemStack(LOTRMod.dwarvenRing), 20), new LOTRTradeEntry(new ItemStack(DRRegistry.swordWindDwarven), 16), new LOTRTradeEntry(new ItemStack(DRRegistry.spearWindDwarven), 18), new LOTRTradeEntry(new ItemStack(DRRegistry.battleaxeWindDwarven), 18), new LOTRTradeEntry(new ItemStack(DRRegistry.hammerWindDwarven), 18), new LOTRTradeEntry(new ItemStack(DRRegistry.pikeWindDwarven), 18), new LOTRTradeEntry(new ItemStack(DRRegistry.daggerWindDwarven), 13), new LOTRTradeEntry(new ItemStack(DRRegistry.axeWindDwarven), 15), new LOTRTradeEntry(new ItemStack(DRRegistry.pickaxeWindDwarven), 14), new LOTRTradeEntry(new ItemStack(DRRegistry.shovelWindDwarven), 12), new LOTRTradeEntry(new ItemStack(DRRegistry.mattockWindDwarven), 18), new LOTRTradeEntry(new ItemStack(DRRegistry.throwingAxeWindDwarven), 15), new LOTRTradeEntry(new ItemStack(DRRegistry.helmetWindDwarven), 25), new LOTRTradeEntry(new ItemStack(DRRegistry.bodyWindDwarven), 36), new LOTRTradeEntry(new ItemStack(DRRegistry.legsWindDwarven), 30), new LOTRTradeEntry(new ItemStack(DRRegistry.bootsWindDwarven), 22), new LOTRTradeEntry(new ItemStack(DRRegistry.boarArmorWindDwarven), 25), new LOTRTradeEntry(new ItemStack(DRRegistry.windDwarfBars, 8), 20));
-	public static final LOTRTradeEntries WIND_DWARF_SMITH_SELL = new LOTRTradeEntries(TradeType.SELL, new LOTRTradeEntry(new ItemStack(Items.iron_ingot), 3), new LOTRTradeEntry(new ItemStack(DRRegistry.windDwarfSteel), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.rock, 8, 3), 1), new LOTRTradeEntry(new ItemStack(Items.coal, 2, 32767), 1), new LOTRTradeEntry(new ItemStack(Items.gold_ingot), 15), new LOTRTradeEntry(new ItemStack(LOTRMod.copper), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.tin), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.bronze), 3), new LOTRTradeEntry(new ItemStack(Items.string, 3), 1), new LOTRTradeEntry(new ItemStack(LOTRMod.diamond), 25), new LOTRTradeEntry(new ItemStack(LOTRMod.emerald), 15), new LOTRTradeEntry(new ItemStack(LOTRMod.sapphire), 12), new LOTRTradeEntry(new ItemStack(LOTRMod.ruby), 12), new LOTRTradeEntry(new ItemStack(LOTRMod.opal), 10), new LOTRTradeEntry(new ItemStack(LOTRMod.amber), 10), new LOTRTradeEntry(new ItemStack(LOTRMod.amethyst), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.topaz), 8), new LOTRTradeEntry(new ItemStack(LOTRMod.pearl), 25), new LOTRTradeEntry(new ItemStack(Items.cooked_beef), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_porkchop), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.muttonCooked), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_chicken), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.gammon), 3), new LOTRTradeEntry(new ItemStack(Items.cooked_fished), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.rabbitCooked), 3), new LOTRTradeEntry(new ItemStack(LOTRMod.deerCooked), 3), new LOTRTradeEntry(new ItemStack(Items.bread), 2), new LOTRTradeEntry(new ItemStack(Items.lava_bucket), 16));
-
 	public DREntityWindDwarfSmith(World world) {
 		super(world);
 		addTargetTasks(false);
@@ -31,7 +26,7 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 	@Override
 	public void dropFewItems(boolean flag, int i) {
 		super.dropFewItems(flag, i);
-		dropItem(DRRegistry.windDwarfSteel, 1 + rand.nextInt(3) + rand.nextInt(i + 1));
+		dropItem(DRItems.windDwarfSteel, 1 + rand.nextInt(3) + rand.nextInt(i + 1));
 	}
 
 	@Override
@@ -41,12 +36,12 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 
 	@Override
 	public LOTRTradeEntries getBuyPool() {
-		return WIND_DWARF_SMITH_BUY;
+		return DRTradeEntries.windDwarfSmithBuy;
 	}
 
 	@Override
 	public LOTRTradeEntries getSellPool() {
-		return WIND_DWARF_SMITH_SELL;
+		return DRTradeEntries.windDwarfSmithSell;
 	}
 
 	@Override
@@ -62,7 +57,7 @@ public class DREntityWindDwarfSmith extends DREntityWindDwarf implements LOTRTra
 
 	@Override
 	public void onPlayerTrade(EntityPlayer entityplayer, LOTRTradeEntries.TradeType type, ItemStack itemstack) {
-		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.tradeWindDwarfSmith);
+		LOTRLevelData.getData(entityplayer).addAchievement(DRAchievements.tradeWindDwarfSmith);
 	}
 
 	@Override

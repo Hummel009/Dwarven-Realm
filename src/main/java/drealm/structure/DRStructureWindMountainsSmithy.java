@@ -1,7 +1,7 @@
 package drealm.structure;
 
-import drealm.database.DRChestContents;
-import drealm.database.DRRegistry;
+import drealm.content.DRBlocks;
+import drealm.content.DRChestContents;
 import drealm.entity.DREntityWindDwarfSmith;
 import lotr.common.entity.npc.LOTREntityDwarf;
 import lotr.common.world.structure.LOTRChestContents;
@@ -11,14 +11,14 @@ import net.minecraft.world.World;
 public class DRStructureWindMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 	public DRStructureWindMountainsSmithy(boolean flag) {
 		super(flag);
-		baseBrickBlock = DRRegistry.brick;
+		baseBrickBlock = DRBlocks.brick;
 		baseBrickMeta = 0;
-		carvedBrickBlock = DRRegistry.brick;
+		carvedBrickBlock = DRBlocks.brick;
 		carvedBrickMeta = 1;
-		pillarBlock = DRRegistry.pillar;
+		pillarBlock = DRBlocks.pillar;
 		pillarMeta = 0;
-		tableBlock = DRRegistry.windDwarvenTable;
-		barsBlock = DRRegistry.windDwarfBars;
+		tableBlock = DRBlocks.windDwarvenTable;
+		barsBlock = DRBlocks.windDwarfBars;
 	}
 
 	@Override
@@ -28,6 +28,6 @@ public class DRStructureWindMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 
 	@Override
 	public LOTRChestContents getChestContents() {
-		return DRChestContents.WIND_MOUNTAINS_SMITHY;
+		return DRChestContents.windMountainsSmithy;
 	}
 }

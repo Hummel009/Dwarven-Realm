@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Random;
 
 public class DRBlockChandelier extends Block {
+	private final String[] chandelierNames = new String[]{"redDwarven", "windDwarven"};
 	@SideOnly(Side.CLIENT)
 	private IIcon[] chandelierIcons;
-	private String[] chandelierNames = {"redDwarven", "windDwarven"};
 
 	public DRBlockChandelier() {
 		super(Material.circuits);
@@ -33,7 +33,7 @@ public class DRBlockChandelier extends Block {
 		setBlockBounds(0.0625f, 0.1875f, 0.0625f, 0.9375f, 1.0f, 0.9375f);
 	}
 
-	public static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
+	private static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
 		world.spawnParticle("smoke", d, d1, d2, 0.0, 0.0, 0.0);
 		world.spawnParticle("flame", d, d1, d2, 0.0, 0.0, 0.0);
 	}

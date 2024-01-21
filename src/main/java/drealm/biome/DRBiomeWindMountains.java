@@ -1,10 +1,10 @@
 package drealm.biome;
 
-import drealm.entity.*;
+import drealm.content.DRSpawnLists;
+import drealm.entity.DREntityWindDwarfMerchant;
 import drealm.structure.DRStructureWindMountainsHouse;
 import drealm.structure.DRStructureWindMountainsSmithy;
 import drealm.structure.DRStructureWindMountainsStronghold;
-import drealm.util.DRCommander;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityScrapTrader;
@@ -16,24 +16,21 @@ import lotr.common.world.feature.LOTRWorldGenMountainsideBush;
 import lotr.common.world.map.LOTRWaypoint;
 import lotr.common.world.spawning.LOTRBiomeSpawnList;
 import lotr.common.world.spawning.LOTREventSpawner;
-import lotr.common.world.spawning.LOTRSpawnEntry;
-import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
 public class DRBiomeWindMountains extends LOTRBiome {
-	public static final LOTRSpawnList WIND_DWARVES = DRCommander.newLOTRSpawnList(new LOTRSpawnEntry(DREntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(DREntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(DREntityWindDwarfCrossbower.class, 10, 4, 4));
-
 	public DRBiomeWindMountains(int i, boolean major) {
 		super(i, major);
 		spawnableCreatureList.clear();
 		npcSpawnList.clear();
 		LOTRBiomeSpawnList.SpawnListContainer[] arrspawnListContainer = new LOTRBiomeSpawnList.SpawnListContainer[1];
-		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(WIND_DWARVES, 10);
+		arrspawnListContainer[0] = LOTRBiomeSpawnList.entry(DRSpawnLists.windDwarves, 10);
 		npcSpawnList.newFactionList(600).add(arrspawnListContainer);
 		addBiomeVariantSet(LOTRBiomeVariant.SET_MOUNTAINS);
 		addBiomeVariant(LOTRBiomeVariant.FOREST_LARCH, 0.3f);
@@ -64,17 +61,19 @@ public class DRBiomeWindMountains extends LOTRBiome {
 	@Override
 	public void decorate(World world, Random random, int i, int k) {
 		super.decorate(world, random, i, k);
+		WorldGenerator str1 = new LOTRWorldGenMountainsideBush(LOTRMod.leaves5, 0);
+		WorldGenerator str2 = new DRStructureWindMountainsHouse(false);
 		for (int l = 0; l < 3; ++l) {
 			int i1 = i + random.nextInt(16) + 8;
 			int j1 = MathHelper.getRandomIntegerInRange(random, 70, 160);
 			int k1 = k + random.nextInt(16) + 8;
-			new LOTRWorldGenMountainsideBush(LOTRMod.leaves5, 0).generate(world, random, i1, j1, k1);
+			str1.generate(world, random, i1, j1, k1);
 		}
 		for (int l = 0; l < 4; ++l) {
 			int i1 = i + random.nextInt(16) + 8;
 			int j1 = 70 + random.nextInt(80);
 			int k1 = k + random.nextInt(16) + 8;
-			new DRStructureWindMountainsHouse(false).generate(world, random, i1, j1, k1);
+			str2.generate(world, random, i1, j1, k1);
 		}
 	}
 

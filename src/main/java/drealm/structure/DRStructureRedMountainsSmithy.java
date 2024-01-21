@@ -1,7 +1,7 @@
 package drealm.structure;
 
-import drealm.database.DRChestContents;
-import drealm.database.DRRegistry;
+import drealm.content.DRBlocks;
+import drealm.content.DRChestContents;
 import drealm.entity.DREntityRedDwarfSmith;
 import lotr.common.LOTRMod;
 import lotr.common.entity.npc.LOTREntityDwarf;
@@ -18,8 +18,8 @@ public class DRStructureRedMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 		carvedBrickMeta = 2;
 		pillarBlock = LOTRMod.pillar;
 		pillarMeta = 4;
-		tableBlock = DRRegistry.redDwarvenTable;
-		barsBlock = DRRegistry.redDwarfBars;
+		tableBlock = DRBlocks.redDwarvenTable;
+		barsBlock = DRBlocks.redDwarfBars;
 	}
 
 	@Override
@@ -29,6 +29,6 @@ public class DRStructureRedMountainsSmithy extends LOTRWorldGenDwarfSmithy {
 
 	@Override
 	public LOTRChestContents getChestContents() {
-		return DRChestContents.RED_MOUNTAINS_SMITHY;
+		return DRChestContents.redMountainsSmithy;
 	}
 }

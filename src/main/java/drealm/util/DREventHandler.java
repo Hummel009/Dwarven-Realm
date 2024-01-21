@@ -6,8 +6,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import drealm.block.DRBlockTableRedDwarven;
 import drealm.block.DRBlockTableWindDwarven;
-import drealm.database.DRAchievement;
-import drealm.database.DRRegistry;
+import drealm.content.DRAchievements;
+import drealm.content.DRItems;
 import lotr.common.LOTRLevelData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -37,9 +37,9 @@ public class DREventHandler {
 		}
 		Container container = player.openContainer;
 		if (container instanceof DRBlockTableRedDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(DRAchievement.useRedDwarvenTable);
+			LOTRLevelData.getData(player).addAchievement(DRAchievements.useRedDwarvenTable);
 		} else if (container instanceof DRBlockTableWindDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(DRAchievement.useWindDwarvenTable);
+			LOTRLevelData.getData(player).addAchievement(DRAchievements.useWindDwarvenTable);
 		}
 	}
 
@@ -48,10 +48,10 @@ public class DREventHandler {
 		EntityPlayer entityplayer = event.player;
 		ItemStack itemstack = event.smelting;
 		if (!entityplayer.worldObj.isRemote) {
-			if (itemstack.getItem() == DRRegistry.redDwarfSteel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smeltRedDwarfSteel);
-			} else if (itemstack.getItem() == DRRegistry.windDwarfSteel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievement.smeltWindDwarfSteel);
+			if (itemstack.getItem() == DRItems.redDwarfSteel) {
+				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievements.smeltRedDwarfSteel);
+			} else if (itemstack.getItem() == DRItems.windDwarfSteel) {
+				LOTRLevelData.getData(entityplayer).addAchievement(DRAchievements.smeltWindDwarfSteel);
 			}
 		}
 	}

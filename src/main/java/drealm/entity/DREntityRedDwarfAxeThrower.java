@@ -1,6 +1,6 @@
 package drealm.entity;
 
-import drealm.database.DRRegistry;
+import drealm.content.DRItems;
 import lotr.common.entity.ai.LOTREntityAIRangedAttack;
 import lotr.common.entity.npc.LOTREntityNPC;
 import lotr.common.entity.projectile.LOTREntityThrowingAxe;
@@ -22,10 +22,11 @@ public class DREntityRedDwarfAxeThrower extends DREntityRedDwarfWarrior {
 	}
 
 	@Override
+	@SuppressWarnings("NumericCastThatLosesPrecision")
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float f) {
 		ItemStack axeItem = npcItemsInv.getRangedWeapon();
 		if (axeItem == null) {
-			axeItem = new ItemStack(DRRegistry.throwingAxeRedDwarven);
+			axeItem = new ItemStack(DRItems.throwingAxeRedDwarven);
 		}
 		LOTREntityThrowingAxe axe = new LOTREntityThrowingAxe(worldObj, this, target, axeItem, 1.0f, (float) getEntityAttribute(npcRangedAccuracy).getAttributeValue());
 		playSound("random.bow", 1.0f, 1.0f / (rand.nextFloat() * 0.4f + 0.8f));
@@ -50,7 +51,7 @@ public class DREntityRedDwarfAxeThrower extends DREntityRedDwarfWarrior {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		IEntityLivingData d = super.onSpawnWithEgg(data);
-		npcItemsInv.setRangedWeapon(new ItemStack(DRRegistry.throwingAxeRedDwarven));
+		npcItemsInv.setRangedWeapon(new ItemStack(DRItems.throwingAxeRedDwarven));
 		npcItemsInv.setIdleItem(npcItemsInv.getRangedWeapon());
 		return d;
 	}

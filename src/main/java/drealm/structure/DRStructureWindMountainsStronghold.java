@@ -1,7 +1,7 @@
 package drealm.structure;
 
-import drealm.database.DRChestContents;
-import drealm.database.DRRegistry;
+import drealm.content.DRBlocks;
+import drealm.content.DRChestContents;
 import drealm.entity.DREntityWindDwarf;
 import drealm.entity.DREntityWindDwarfAxeThrower;
 import drealm.entity.DREntityWindDwarfCommander;
@@ -24,7 +24,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		super(flag);
 	}
 
-	public static void spawnDwarf(World world, int i, int j, int k) {
+	private static void spawnDwarf(World world, int i, int j, int k) {
 		DREntityWindDwarfWarrior dwarf = world.rand.nextInt(3) == 0 ? new DREntityWindDwarfAxeThrower(world) : new DREntityWindDwarfWarrior(world);
 		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
 		((DREntityWindDwarf) dwarf).onSpawnWithEgg(null);
@@ -33,7 +33,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		world.spawnEntityInWorld(dwarf);
 	}
 
-	public static void spawnDwarfCommander(World world, int i, int j, int k) {
+	private static void spawnDwarfCommander(World world, int i, int j, int k) {
 		DREntityWindDwarfCommander dwarf = new DREntityWindDwarfCommander(world);
 		dwarf.setLocationAndAngles(i + 0.5, j, k + 0.5, 0.0f, 0.0f);
 		((LOTREntityDwarf) dwarf).onSpawnWithEgg(null);
@@ -101,7 +101,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				boolean flag = Math.abs(k1 - k3) == 6 && Math.abs(i1 - i3) == 6;
 				for (int j1 = j2 + 7; (j1 >= j2 || !LOTRMod.isOpaque(world, i1, j1, k1)) && j1 >= 0; --j1) {
 					if (flag) {
-						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.pillar, 0);
+						setBlockAndNotifyAdequately(world, i1, j1, k1, DRBlocks.pillar, 0);
 					} else {
 						if (Math.abs(i1 - i3) < 6 && Math.abs(k1 - k3) < 6) {
 							if (j1 >= j2 + 1 && j1 <= j2 + 3 || j1 >= j2 + 4 && j1 <= j2 + 7) {
@@ -113,7 +113,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 								continue;
 							}
 						}
-						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.brick, 0);
+						setBlockAndNotifyAdequately(world, i1, j1, k1, DRBlocks.brick, 0);
 					}
 					if (j1 > j2) {
 						continue;
@@ -133,8 +133,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		}
 		for (k1 = k3 - 5; k1 <= k3 + 5; ++k1) {
 			for (i1 = i3 - 5; i1 <= i3 + 5; ++i1) {
-				setBlockAndNotifyAdequately(world, i1, j2 + 4, k1, DRRegistry.slabDouble, 0);
-				setBlockAndNotifyAdequately(world, i1, j2 + 8, k1, DRRegistry.slabDouble, 0);
+				setBlockAndNotifyAdequately(world, i1, j2 + 4, k1, DRBlocks.slabDouble, 0);
+				setBlockAndNotifyAdequately(world, i1, j2 + 8, k1, DRBlocks.slabDouble, 0);
 				int i2 = Math.abs(i1 - i3);
 				int k2 = Math.abs(k1 - k3);
 				int l = -1;
@@ -148,11 +148,11 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				}
 				if (l == 1) {
 					for (int j1 = j2 + 9; j1 <= j2 + 11; ++j1) {
-						setBlockAndNotifyAdequately(world, i1, j1, k1, DRRegistry.pillar, 0);
+						setBlockAndNotifyAdequately(world, i1, j1, k1, DRBlocks.pillar, 0);
 					}
 					continue;
 				}
-				setBlockAndNotifyAdequately(world, i1, j2 + 9, k1, DRRegistry.wall, 0);
+				setBlockAndNotifyAdequately(world, i1, j2 + 9, k1, DRBlocks.wall, 0);
 			}
 		}
 		for (i12 = i3 - 5; i12 <= i3 + 5; ++i12) {
@@ -168,8 +168,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setBlockAndNotifyAdequately(world, i1, j2 + 12, k1, LOTRMod.slabSingle, 15);
 			}
 		}
-		setBlockAndNotifyAdequately(world, i3, j2 + 7, k3, DRRegistry.chandelier, 1);
-		setBlockAndNotifyAdequately(world, i3, j2 + 11, k3, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i3, j2 + 7, k3, DRBlocks.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i3, j2 + 11, k3, DRBlocks.chandelier, 1);
 		setBlockAndNotifyAdequately(world, i3, j2 + 12, k3, LOTRMod.brick, 6);
 		switch (rotation) {
 			case 0:
@@ -199,22 +199,22 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		return true;
 	}
 
-	public void generateFacingEast(World world, Random random, int i, int j, int k) {
+	private void generateFacingEast(World world, Random random, int i, int j, int k) {
 		int k12;
 		int j1;
 		for (k12 = k - 6; k12 <= k + 6; ++k12) {
-			setBlockAndNotifyAdequately(world, i - 7, j + 1, k12, DRRegistry.slabSingle, 0);
+			setBlockAndNotifyAdequately(world, i - 7, j + 1, k12, DRBlocks.slabSingle, 0);
 			setGrassToDirt(world, i - 7, j, k12);
 			for (j1 = j; !LOTRMod.isOpaque(world, i - 7, j1, k12) && j1 >= 0; --j1) {
-				setBlockAndNotifyAdequately(world, i - 7, j1, k12, DRRegistry.pillar, 0);
+				setBlockAndNotifyAdequately(world, i - 7, j1, k12, DRBlocks.pillar, 0);
 				setGrassToDirt(world, i - 7, j1 - 1, k12);
 			}
 		}
 		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i - 6, j12, k);
-			setBlockAndNotifyAdequately(world, i - 7, j12, k - 1, DRRegistry.pillar, 0);
-			setBlockAndNotifyAdequately(world, i - 7, j12, k + 1, DRRegistry.pillar, 0);
+			setBlockAndNotifyAdequately(world, i - 7, j12, k - 1, DRBlocks.pillar, 0);
+			setBlockAndNotifyAdequately(world, i - 7, j12, k + 1, DRBlocks.pillar, 0);
 		}
 		setBlockAndNotifyAdequately(world, i - 7, j, k, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i - 6, j, k, Blocks.planks, 1);
@@ -224,21 +224,21 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i - 7, j + 3, k, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i - 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i - 7, j + 4, k, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i - 6, j + 6, k, 1, DRItemBanner.WIND_MOUNTAINS);
+		placeWallBanner(world, i - 6, j + 6, k, 1, DRItemBanner.windMountains);
 		int k13;
 		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (i1 = i - 4; i1 <= i - 1; ++i1) {
 				for (k13 = k - 5; k13 <= k - 1; ++k13) {
-					setBlockAndNotifyAdequately(world, i1, j12, k13, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k13, DRBlocks.brick, 0);
 				}
 				for (k13 = k + 1; k13 <= k + 5; ++k13) {
-					setBlockAndNotifyAdequately(world, i1, j12, k13, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k13, DRBlocks.brick, 0);
 				}
 			}
 			for (i1 = i - 2; i1 <= i + 5; ++i1) {
-				setBlockAndNotifyAdequately(world, i1, j12, k - 1, DRRegistry.brick, 0);
-				setBlockAndNotifyAdequately(world, i1, j12, k + 1, DRRegistry.brick, 0);
+				setBlockAndNotifyAdequately(world, i1, j12, k - 1, DRBlocks.brick, 0);
+				setBlockAndNotifyAdequately(world, i1, j12, k + 1, DRBlocks.brick, 0);
 			}
 		}
 		setBlockAndNotifyAdequately(world, i + 3, j + 1, k - 1, LOTRMod.doorSpruce, 1);
@@ -253,8 +253,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i, j + 1, k12 + 1, Blocks.chest, 0);
 			setBlockAndNotifyAdequately(world, i, j + 1, k12 + 2, Blocks.chest, 0);
 			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 1, LOTRChestContents.DWARF_HOUSE_LARDER);
-			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 2, DRChestContents.WIND_MOUNTAINS_STRONGHOLD);
-			setBlockAndNotifyAdequately(world, i + 3, j + 3, k12 + 1, DRRegistry.chandelier, 1);
+			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 2, DRChestContents.windMountainsStronghold);
+			setBlockAndNotifyAdequately(world, i + 3, j + 3, k12 + 1, DRBlocks.chandelier, 1);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 5, j + 1, k12 + 3, Blocks.planks, 1);
 			placeBarrel(world, random, i + 5, j + 2, k12, 4, LOTRFoods.DWARF_DRINK);
@@ -288,7 +288,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 6, k1, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.windDwarvenTable, 0);
+			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRBlocks.windDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i - 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i + 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 		}
@@ -342,13 +342,13 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			}
 			placeBalconySection(world, i + 11, j, k1, true, false);
 		}
-		setBlockAndNotifyAdequately(world, i + 6, j + 4, k, DRRegistry.slabDouble, 0);
+		setBlockAndNotifyAdequately(world, i + 6, j + 4, k, DRBlocks.slabDouble, 0);
 		setAir(world, i + 6, j + 5, k);
 		setAir(world, i + 6, j + 6, k);
 		setBlockAndNotifyAdequately(world, i + 6, j, k, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i + 6, j + 1, k, LOTRMod.doorSpruce, 2);
 		setBlockAndNotifyAdequately(world, i + 6, j + 2, k, LOTRMod.doorSpruce, 8);
-		setBlockAndNotifyAdequately(world, i + 8, j + 3, k, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i + 8, j + 3, k, DRBlocks.chandelier, 1);
 		for (j1 = j + 1; j1 <= j + 2; ++j1) {
 			for (int i12 = i + 7; i12 <= i + 8; ++i12) {
 				placeRandomOre(world, random, i12, j1, k - 4);
@@ -365,22 +365,22 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 3, j + 9, k, LOTRMod.commandTable, 0);
 	}
 
-	public void generateFacingNorth(World world, Random random, int i, int j, int k) {
+	private void generateFacingNorth(World world, Random random, int i, int j, int k) {
 		int i12;
 		int j1;
 		for (i12 = i - 6; i12 <= i + 6; ++i12) {
-			setBlockAndNotifyAdequately(world, i12, j + 1, k + 7, DRRegistry.slabSingle, 0);
+			setBlockAndNotifyAdequately(world, i12, j + 1, k + 7, DRBlocks.slabSingle, 0);
 			setGrassToDirt(world, i12, j, k + 7);
 			for (j1 = j; !LOTRMod.isOpaque(world, i12, j1, k + 7) && j1 >= 0; --j1) {
-				setBlockAndNotifyAdequately(world, i12, j1, k + 7, DRRegistry.pillar, 0);
+				setBlockAndNotifyAdequately(world, i12, j1, k + 7, DRBlocks.pillar, 0);
 				setGrassToDirt(world, i12, j1 - 1, k + 7);
 			}
 		}
 		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i, j12, k + 6);
-			setBlockAndNotifyAdequately(world, i - 1, j12, k + 7, DRRegistry.pillar, 0);
-			setBlockAndNotifyAdequately(world, i + 1, j12, k + 7, DRRegistry.pillar, 0);
+			setBlockAndNotifyAdequately(world, i - 1, j12, k + 7, DRBlocks.pillar, 0);
+			setBlockAndNotifyAdequately(world, i + 1, j12, k + 7, DRBlocks.pillar, 0);
 		}
 		setBlockAndNotifyAdequately(world, i, j, k + 7, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i, j, k + 6, Blocks.planks, 1);
@@ -390,21 +390,21 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 3, k + 7, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k + 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k + 7, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i, j + 6, k + 6, 0, DRItemBanner.WIND_MOUNTAINS);
+		placeWallBanner(world, i, j + 6, k + 6, 0, DRItemBanner.windMountains);
 		int i1;
 		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (k1 = k + 4; k1 >= k + 1; --k1) {
 				for (i1 = i - 5; i1 <= i - 1; ++i1) {
-					setBlockAndNotifyAdequately(world, i1, j12, k1, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k1, DRBlocks.brick, 0);
 				}
 				for (i1 = i + 1; i1 <= i + 5; ++i1) {
-					setBlockAndNotifyAdequately(world, i1, j12, k1, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k1, DRBlocks.brick, 0);
 				}
 			}
 			for (k1 = k + 2; k1 >= k - 5; --k1) {
-				setBlockAndNotifyAdequately(world, i - 1, j12, k1, DRRegistry.brick, 0);
-				setBlockAndNotifyAdequately(world, i + 1, j12, k1, DRRegistry.brick, 0);
+				setBlockAndNotifyAdequately(world, i - 1, j12, k1, DRBlocks.brick, 0);
+				setBlockAndNotifyAdequately(world, i + 1, j12, k1, DRBlocks.brick, 0);
 			}
 		}
 		setBlockAndNotifyAdequately(world, i - 1, j + 1, k - 3, LOTRMod.doorSpruce, 0);
@@ -419,8 +419,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 1, k, Blocks.chest, 0);
 			setBlockAndNotifyAdequately(world, i12 + 2, j + 1, k, Blocks.chest, 0);
 			LOTRChestContents.fillChest(world, random, i12 + 1, j + 1, k, LOTRChestContents.DWARF_HOUSE_LARDER);
-			LOTRChestContents.fillChest(world, random, i12 + 2, j + 1, k, DRChestContents.WIND_MOUNTAINS_STRONGHOLD);
-			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k - 3, DRRegistry.chandelier, 1);
+			LOTRChestContents.fillChest(world, random, i12 + 2, j + 1, k, DRChestContents.windMountainsStronghold);
+			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k - 3, DRBlocks.chandelier, 1);
 			setBlockAndNotifyAdequately(world, i12, j + 1, k - 5, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i12 + 3, j + 1, k - 5, Blocks.planks, 1);
 			placeBarrel(world, random, i12, j + 2, k - 5, 3, LOTRFoods.DWARF_DRINK);
@@ -454,7 +454,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i13, j + 6, k + 2, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k - 2, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.windDwarvenTable, 0);
+			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRBlocks.windDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 1, LOTRMod.dwarvenForge, 0);
 		}
@@ -508,13 +508,13 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			}
 			placeBalconySection(world, i13, j, k - 11, true, false);
 		}
-		setBlockAndNotifyAdequately(world, i, j + 4, k - 6, DRRegistry.slabDouble, 0);
+		setBlockAndNotifyAdequately(world, i, j + 4, k - 6, DRBlocks.slabDouble, 0);
 		setAir(world, i, j + 5, k - 6);
 		setAir(world, i, j + 6, k - 6);
 		setBlockAndNotifyAdequately(world, i, j, k - 6, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i, j + 1, k - 6, LOTRMod.doorSpruce, 1);
 		setBlockAndNotifyAdequately(world, i, j + 2, k - 6, LOTRMod.doorSpruce, 8);
-		setBlockAndNotifyAdequately(world, i, j + 3, k - 8, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i, j + 3, k - 8, DRBlocks.chandelier, 1);
 		for (j1 = j + 1; j1 <= j + 2; ++j1) {
 			for (int k12 = k - 7; k12 >= k - 8; --k12) {
 				placeRandomOre(world, random, i - 4, j1, k12);
@@ -531,22 +531,22 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 9, k - 3, LOTRMod.commandTable, 0);
 	}
 
-	public void generateFacingSouth(World world, Random random, int i, int j, int k) {
+	private void generateFacingSouth(World world, Random random, int i, int j, int k) {
 		int i12;
 		int j1;
 		for (i12 = i - 6; i12 <= i + 6; ++i12) {
-			setBlockAndNotifyAdequately(world, i12, j + 1, k - 7, DRRegistry.slabSingle, 0);
+			setBlockAndNotifyAdequately(world, i12, j + 1, k - 7, DRBlocks.slabSingle, 0);
 			setGrassToDirt(world, i12, j, k - 7);
 			for (j1 = j; !LOTRMod.isOpaque(world, i12, j1, k - 7) && j1 >= 0; --j1) {
-				setBlockAndNotifyAdequately(world, i12, j1, k - 7, DRRegistry.pillar, 0);
+				setBlockAndNotifyAdequately(world, i12, j1, k - 7, DRBlocks.pillar, 0);
 				setGrassToDirt(world, i12, j1 - 1, k - 7);
 			}
 		}
 		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i, j12, k - 6);
-			setBlockAndNotifyAdequately(world, i - 1, j12, k - 7, DRRegistry.pillar, 0);
-			setBlockAndNotifyAdequately(world, i + 1, j12, k - 7, DRRegistry.pillar, 0);
+			setBlockAndNotifyAdequately(world, i - 1, j12, k - 7, DRBlocks.pillar, 0);
+			setBlockAndNotifyAdequately(world, i + 1, j12, k - 7, DRBlocks.pillar, 0);
 		}
 		setBlockAndNotifyAdequately(world, i, j, k - 7, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i, j, k - 6, Blocks.planks, 1);
@@ -556,21 +556,21 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 3, k - 7, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k - 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k - 7, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i, j + 6, k - 6, 2, DRItemBanner.WIND_MOUNTAINS);
+		placeWallBanner(world, i, j + 6, k - 6, 2, DRItemBanner.windMountains);
 		int i1;
 		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (k1 = k - 4; k1 <= k - 1; ++k1) {
 				for (i1 = i - 5; i1 <= i - 1; ++i1) {
-					setBlockAndNotifyAdequately(world, i1, j12, k1, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k1, DRBlocks.brick, 0);
 				}
 				for (i1 = i + 1; i1 <= i + 5; ++i1) {
-					setBlockAndNotifyAdequately(world, i1, j12, k1, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k1, DRBlocks.brick, 0);
 				}
 			}
 			for (k1 = k - 2; k1 <= k + 5; ++k1) {
-				setBlockAndNotifyAdequately(world, i - 1, j12, k1, DRRegistry.brick, 0);
-				setBlockAndNotifyAdequately(world, i + 1, j12, k1, DRRegistry.brick, 0);
+				setBlockAndNotifyAdequately(world, i - 1, j12, k1, DRBlocks.brick, 0);
+				setBlockAndNotifyAdequately(world, i + 1, j12, k1, DRBlocks.brick, 0);
 			}
 		}
 		setBlockAndNotifyAdequately(world, i - 1, j + 1, k + 3, LOTRMod.doorSpruce, 0);
@@ -585,8 +585,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i12 + 1, j + 1, k, Blocks.chest, 0);
 			setBlockAndNotifyAdequately(world, i12 + 2, j + 1, k, Blocks.chest, 0);
 			LOTRChestContents.fillChest(world, random, i12 + 1, j + 1, k, LOTRChestContents.DWARF_HOUSE_LARDER);
-			LOTRChestContents.fillChest(world, random, i12 + 2, j + 1, k, DRChestContents.WIND_MOUNTAINS_STRONGHOLD);
-			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k + 3, DRRegistry.chandelier, 1);
+			LOTRChestContents.fillChest(world, random, i12 + 2, j + 1, k, DRChestContents.windMountainsStronghold);
+			setBlockAndNotifyAdequately(world, i12 + 1, j + 3, k + 3, DRBlocks.chandelier, 1);
 			setBlockAndNotifyAdequately(world, i12, j + 1, k + 5, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i12 + 3, j + 1, k + 5, Blocks.planks, 1);
 			placeBarrel(world, random, i12, j + 2, k + 5, 2, LOTRFoods.DWARF_DRINK);
@@ -620,7 +620,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i13, j + 6, k - 2, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 2, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i13, j + 6, k + 2, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRRegistry.windDwarvenTable, 0);
+			setBlockAndNotifyAdequately(world, i13, j + 5, k, DRBlocks.windDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k - 1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i13, j + 5, k + 1, LOTRMod.dwarvenForge, 0);
 		}
@@ -674,13 +674,13 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			}
 			placeBalconySection(world, i13, j, k + 11, true, false);
 		}
-		setBlockAndNotifyAdequately(world, i, j + 4, k + 6, DRRegistry.slabDouble, 0);
+		setBlockAndNotifyAdequately(world, i, j + 4, k + 6, DRBlocks.slabDouble, 0);
 		setAir(world, i, j + 5, k + 6);
 		setAir(world, i, j + 6, k + 6);
 		setBlockAndNotifyAdequately(world, i, j, k + 6, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i, j + 1, k + 6, LOTRMod.doorSpruce, 3);
 		setBlockAndNotifyAdequately(world, i, j + 2, k + 6, LOTRMod.doorSpruce, 8);
-		setBlockAndNotifyAdequately(world, i, j + 3, k + 8, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i, j + 3, k + 8, DRBlocks.chandelier, 1);
 		for (j1 = j + 1; j1 <= j + 2; ++j1) {
 			for (int k12 = k + 7; k12 <= k + 8; ++k12) {
 				placeRandomOre(world, random, i - 4, j1, k12);
@@ -697,22 +697,22 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i, j + 9, k + 3, LOTRMod.commandTable, 0);
 	}
 
-	public void generateFacingWest(World world, Random random, int i, int j, int k) {
+	private void generateFacingWest(World world, Random random, int i, int j, int k) {
 		int k12;
 		int j1;
 		for (k12 = k - 6; k12 <= k + 6; ++k12) {
-			setBlockAndNotifyAdequately(world, i + 7, j + 1, k12, DRRegistry.slabSingle, 0);
+			setBlockAndNotifyAdequately(world, i + 7, j + 1, k12, DRBlocks.slabSingle, 0);
 			setGrassToDirt(world, i + 7, j, k12);
 			for (j1 = j; !LOTRMod.isOpaque(world, i + 7, j1, k12) && j1 >= 0; --j1) {
-				setBlockAndNotifyAdequately(world, i + 7, j1, k12, DRRegistry.pillar, 0);
+				setBlockAndNotifyAdequately(world, i + 7, j1, k12, DRBlocks.pillar, 0);
 				setGrassToDirt(world, i + 7, j1 - 1, k12);
 			}
 		}
 		int j12;
 		for (j12 = j + 1; j12 <= j + 2; ++j12) {
 			setAir(world, i + 6, j12, k);
-			setBlockAndNotifyAdequately(world, i + 7, j12, k - 1, DRRegistry.pillar, 0);
-			setBlockAndNotifyAdequately(world, i + 7, j12, k + 1, DRRegistry.pillar, 0);
+			setBlockAndNotifyAdequately(world, i + 7, j12, k - 1, DRBlocks.pillar, 0);
+			setBlockAndNotifyAdequately(world, i + 7, j12, k + 1, DRBlocks.pillar, 0);
 		}
 		setBlockAndNotifyAdequately(world, i + 7, j, k, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i + 6, j, k, Blocks.planks, 1);
@@ -722,21 +722,21 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i + 7, j + 3, k, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i + 7, j + 4, k, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i + 6, j + 6, k, 3, DRItemBanner.WIND_MOUNTAINS);
+		placeWallBanner(world, i + 6, j + 6, k, 3, DRItemBanner.windMountains);
 		int k13;
 		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
 			for (i1 = i + 4; i1 >= i + 1; --i1) {
 				for (k13 = k - 5; k13 <= k - 1; ++k13) {
-					setBlockAndNotifyAdequately(world, i1, j12, k13, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k13, DRBlocks.brick, 0);
 				}
 				for (k13 = k + 1; k13 <= k + 5; ++k13) {
-					setBlockAndNotifyAdequately(world, i1, j12, k13, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i1, j12, k13, DRBlocks.brick, 0);
 				}
 			}
 			for (i1 = i + 2; i1 >= i - 5; --i1) {
-				setBlockAndNotifyAdequately(world, i1, j12, k - 1, DRRegistry.brick, 0);
-				setBlockAndNotifyAdequately(world, i1, j12, k + 1, DRRegistry.brick, 0);
+				setBlockAndNotifyAdequately(world, i1, j12, k - 1, DRBlocks.brick, 0);
+				setBlockAndNotifyAdequately(world, i1, j12, k + 1, DRBlocks.brick, 0);
 			}
 		}
 		setBlockAndNotifyAdequately(world, i - 3, j + 1, k - 1, LOTRMod.doorSpruce, 1);
@@ -751,8 +751,8 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i, j + 1, k12 + 1, Blocks.chest, 0);
 			setBlockAndNotifyAdequately(world, i, j + 1, k12 + 2, Blocks.chest, 0);
 			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 1, LOTRChestContents.DWARF_HOUSE_LARDER);
-			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 2, DRChestContents.WIND_MOUNTAINS_STRONGHOLD);
-			setBlockAndNotifyAdequately(world, i - 3, j + 3, k12 + 1, DRRegistry.chandelier, 1);
+			LOTRChestContents.fillChest(world, random, i, j + 1, k12 + 2, DRChestContents.windMountainsStronghold);
+			setBlockAndNotifyAdequately(world, i - 3, j + 3, k12 + 1, DRBlocks.chandelier, 1);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i - 5, j + 1, k12 + 3, Blocks.planks, 1);
 			placeBarrel(world, random, i - 5, j + 2, k12, 5, LOTRFoods.DWARF_DRINK);
@@ -786,7 +786,7 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			setBlockAndNotifyAdequately(world, i - 2, j + 6, k1, Blocks.wooden_slab, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 5, k1, Blocks.planks, 1);
 			setBlockAndNotifyAdequately(world, i + 2, j + 6, k1, Blocks.wooden_slab, 1);
-			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRRegistry.windDwarvenTable, 0);
+			setBlockAndNotifyAdequately(world, i, j + 5, k1, DRBlocks.windDwarvenTable, 0);
 			setBlockAndNotifyAdequately(world, i - 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 			setBlockAndNotifyAdequately(world, i + 1, j + 5, k1, LOTRMod.dwarvenForge, 0);
 		}
@@ -840,13 +840,13 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 			}
 			placeBalconySection(world, i - 11, j, k1, true, false);
 		}
-		setBlockAndNotifyAdequately(world, i - 6, j + 4, k, DRRegistry.slabDouble, 0);
+		setBlockAndNotifyAdequately(world, i - 6, j + 4, k, DRBlocks.slabDouble, 0);
 		setAir(world, i - 6, j + 5, k);
 		setAir(world, i - 6, j + 6, k);
 		setBlockAndNotifyAdequately(world, i - 6, j, k, Blocks.planks, 1);
 		setBlockAndNotifyAdequately(world, i - 6, j + 1, k, LOTRMod.doorSpruce, 0);
 		setBlockAndNotifyAdequately(world, i - 6, j + 2, k, LOTRMod.doorSpruce, 8);
-		setBlockAndNotifyAdequately(world, i - 8, j + 3, k, DRRegistry.chandelier, 1);
+		setBlockAndNotifyAdequately(world, i - 8, j + 3, k, DRBlocks.chandelier, 1);
 		for (j1 = j + 1; j1 <= j + 2; ++j1) {
 			for (int i12 = i - 7; i12 >= i - 8; --i12) {
 				placeRandomOre(world, random, i12, j1, k - 4);
@@ -863,13 +863,13 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 		setBlockAndNotifyAdequately(world, i - 3, j + 9, k, LOTRMod.commandTable, 0);
 	}
 
-	public void placeBalconySection(World world, int i, int j, int k, boolean isEdge, boolean isPillar) {
+	private void placeBalconySection(World world, int i, int j, int k, boolean isEdge, boolean isPillar) {
 		if (isEdge) {
 			for (int j1 = j + 4; (j1 >= j || !LOTRMod.isOpaque(world, i, j1, k)) && j1 >= 0; --j1) {
 				if (isPillar) {
-					setBlockAndNotifyAdequately(world, i, j1, k, DRRegistry.pillar, 0);
+					setBlockAndNotifyAdequately(world, i, j1, k, DRBlocks.pillar, 0);
 				} else {
-					setBlockAndNotifyAdequately(world, i, j1, k, DRRegistry.brick, 0);
+					setBlockAndNotifyAdequately(world, i, j1, k, DRBlocks.brick, 0);
 				}
 				setGrassToDirt(world, i, j1 - 1, k);
 			}
@@ -877,22 +877,22 @@ public class DRStructureWindMountainsStronghold extends LOTRWorldGenStructureBas
 				setBlockAndNotifyAdequately(world, i, j + 4, k, LOTRMod.brick3, 12);
 			}
 			setBlockAndNotifyAdequately(world, i, j + 5, k, LOTRMod.brick, 6);
-			setBlockAndNotifyAdequately(world, i, j + 6, k, DRRegistry.wall, 0);
+			setBlockAndNotifyAdequately(world, i, j + 6, k, DRBlocks.wall, 0);
 		} else {
 			int j1;
 			for (j1 = j - 1; !LOTRMod.isOpaque(world, i, j1, k) && j1 >= 0; --j1) {
-				setBlockAndNotifyAdequately(world, i, j1, k, DRRegistry.brick, 0);
+				setBlockAndNotifyAdequately(world, i, j1, k, DRBlocks.brick, 0);
 				setGrassToDirt(world, i, j1 - 1, k);
 			}
 			setBlockAndNotifyAdequately(world, i, j, k, Blocks.planks, 1);
 			for (j1 = j + 1; j1 <= j + 6; ++j1) {
 				setAir(world, i, j1, k);
 			}
-			setBlockAndNotifyAdequately(world, i, j + 4, k, DRRegistry.slabDouble, 0);
+			setBlockAndNotifyAdequately(world, i, j + 4, k, DRBlocks.slabDouble, 0);
 		}
 	}
 
-	public void placeRandomOre(World world, Random random, int i, int j, int k) {
+	private void placeRandomOre(World world, Random random, int i, int j, int k) {
 		if (!LOTRMod.isOpaque(world, i, j - 1, k) || !random.nextBoolean()) {
 			return;
 		}

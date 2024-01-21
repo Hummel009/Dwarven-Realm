@@ -1,8 +1,7 @@
 package drealm.render;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import drealm.database.DRRegistry;
-import drealm.util.DRCommander;
+import drealm.content.DRItems;
 import lotr.client.render.item.LOTRRenderBow;
 import lotr.client.render.item.LOTRRenderCrossbow;
 import lotr.client.render.item.LOTRRenderElvenBlade;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DRRendererManager implements IResourceManagerReloadListener {
-	public static List<DRRenderLargeItem> largeItemRenderers;
+	private static List<DRRenderLargeItem> largeItemRenderers;
 
 	public DRRendererManager() {
 		largeItemRenderers = new ArrayList<>();
@@ -36,7 +35,7 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
-		for (Item item : DRCommander.getObjectFieldsOfType(DRRegistry.class, Item.class)) {
+		for (Item item : DRItems.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			DRRenderLargeItem largeItemRenderer = DRRenderLargeItem.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
