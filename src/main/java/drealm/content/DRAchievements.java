@@ -11,10 +11,9 @@ import net.minecraft.item.ItemArmor;
 import java.util.EnumMap;
 import java.util.Map;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRAchievements {
 	private static final Map<ItemArmor.ArmorMaterial, LOTRAchievement> ARMOR_ACHIEVEMENTS = new EnumMap<>(ItemArmor.ArmorMaterial.class);
-
 	public static LOTRAchievement tradeRedDwarfSmith;
 	public static LOTRAchievement tradeRedDwarfMiner;
 	public static LOTRAchievement tradeRedDwarfCommander;
@@ -56,17 +55,17 @@ public class DRAchievements {
 		doMiniquestRedMountains = new LOTRAchievement(LOTRAchievement.Category.OROCARNI, 10, LOTRMod.redBook, "doMiniquestRedMountains").setRequiresAlly(DRFactions.redMountains);
 		tradeRedDwarfSmith = new LOTRAchievement(LOTRAchievement.Category.OROCARNI, 11, LOTRMod.silverCoin, "tradeRedDwarfSmith").setRequiresAlly(DRFactions.redMountains);
 
-		smeltWindDwarfSteel = new LOTRAchievement(Category.WIND_MOUNTAINS, 12, DRItems.windDwarfSteel, "smeltWindDwarfSteel");
-		killWindDwarf = new LOTRAchievement(Category.WIND_MOUNTAINS, 13, LOTRMod.dwarfBone, "killWindDwarf").setRequiresEnemy(DRFactions.windMountains).createTitle();
-		wearFullWindDwarven = createArmorAchievement(Category.WIND_MOUNTAINS, 14, DRItems.bodyWindDwarven, "wearFullWindDwarven");
-		useWindDwarvenTable = new LOTRAchievement(Category.WIND_MOUNTAINS, 15, DRBlocks.windDwarvenTable, "useWindDwarvenTable").setRequiresAlly(DRFactions.windMountains);
-		tradeWindDwarfSmith = new LOTRAchievement(Category.WIND_MOUNTAINS, 16, LOTRMod.silverCoin, "tradeWindDwarfSmith").setRequiresAlly(DRFactions.windMountains);
-		tradeWindDwarfMiner = new LOTRAchievement(Category.WIND_MOUNTAINS, 17, LOTRMod.silverCoin, "tradeWindDwarfMiner").setRequiresAlly(DRFactions.windMountains);
-		tradeWindDwarfCommander = new LOTRAchievement(Category.WIND_MOUNTAINS, 18, LOTRMod.silverCoin, "tradeWindDwarfCommander").setRequiresAlly(DRFactions.windMountains);
-		tradeWindDwarfMerchant = new LOTRAchievement(Category.WIND_MOUNTAINS, 19, LOTRMod.silverCoin, "tradeWindDwarfMerchant").setRequiresAlly(DRFactions.windMountains);
-		marryWindDwarf = new LOTRAchievement(Category.WIND_MOUNTAINS, 20, LOTRMod.dwarvenRing, "marryWindDwarf").setRequiresAlly(DRFactions.windMountains);
-		doMiniquestWindMountains = new LOTRAchievement(Category.WIND_MOUNTAINS, 21, LOTRMod.redBook, "doMiniquestWindMountains").setRequiresAlly(DRFactions.windMountains);
-		tradeWindDwarfSmith = new LOTRAchievement(Category.WIND_MOUNTAINS, 22, LOTRMod.silverCoin, "tradeWindDwarfSmith").setRequiresAlly(DRFactions.windMountains);
+		smeltWindDwarfSteel = new LOTRAchievement(Category.windMountains, 12, DRItems.windDwarfSteel, "smeltWindDwarfSteel");
+		killWindDwarf = new LOTRAchievement(Category.windMountains, 13, LOTRMod.dwarfBone, "killWindDwarf").setRequiresEnemy(DRFactions.windMountains).createTitle();
+		wearFullWindDwarven = createArmorAchievement(Category.windMountains, 14, DRItems.bodyWindDwarven, "wearFullWindDwarven");
+		useWindDwarvenTable = new LOTRAchievement(Category.windMountains, 15, DRBlocks.windDwarvenTable, "useWindDwarvenTable").setRequiresAlly(DRFactions.windMountains);
+		tradeWindDwarfSmith = new LOTRAchievement(Category.windMountains, 16, LOTRMod.silverCoin, "tradeWindDwarfSmith").setRequiresAlly(DRFactions.windMountains);
+		tradeWindDwarfMiner = new LOTRAchievement(Category.windMountains, 17, LOTRMod.silverCoin, "tradeWindDwarfMiner").setRequiresAlly(DRFactions.windMountains);
+		tradeWindDwarfCommander = new LOTRAchievement(Category.windMountains, 18, LOTRMod.silverCoin, "tradeWindDwarfCommander").setRequiresAlly(DRFactions.windMountains);
+		tradeWindDwarfMerchant = new LOTRAchievement(Category.windMountains, 19, LOTRMod.silverCoin, "tradeWindDwarfMerchant").setRequiresAlly(DRFactions.windMountains);
+		marryWindDwarf = new LOTRAchievement(Category.windMountains, 20, LOTRMod.dwarvenRing, "marryWindDwarf").setRequiresAlly(DRFactions.windMountains);
+		doMiniquestWindMountains = new LOTRAchievement(Category.windMountains, 21, LOTRMod.redBook, "doMiniquestWindMountains").setRequiresAlly(DRFactions.windMountains);
+		tradeWindDwarfSmith = new LOTRAchievement(Category.windMountains, 22, LOTRMod.silverCoin, "tradeWindDwarfSmith").setRequiresAlly(DRFactions.windMountains);
 	}
 
 	public static void runAchievementCheck(EntityPlayer player) {
@@ -76,11 +75,12 @@ public class DRAchievements {
 		}
 	}
 
+	@SuppressWarnings({"WeakerAccess", "PublicField"})
 	public static class Category {
-		public static LOTRAchievement.Category WIND_MOUNTAINS;
+		public static LOTRAchievement.Category windMountains;
 
 		public static void onInit() {
-			WIND_MOUNTAINS = DRAPI.addAchievementCategory("WIND_MOUNTAINS", DRFactions.windMountains);
+			windMountains = DRAPI.addAchievementCategory("WIND_MOUNTAINS", DRFactions.windMountains);
 		}
 	}
 }

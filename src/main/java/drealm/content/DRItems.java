@@ -9,12 +9,12 @@ import lotr.common.block.LOTRBlockSlabBase;
 import lotr.common.item.*;
 import net.minecraft.item.Item;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRItems {
-	public static final Set<Item> CONTENT = new HashSet<>();
+	public static final Collection<Item> CONTENT = new HashSet<>();
 
 	public static Item axeRedDwarven;
 	public static Item axeWindDwarven;

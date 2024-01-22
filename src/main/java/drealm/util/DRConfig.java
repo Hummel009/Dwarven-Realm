@@ -4,6 +4,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRConfig {
 	private static final String CATEGORY_MISC = "1_misc";
 	private static Configuration config;

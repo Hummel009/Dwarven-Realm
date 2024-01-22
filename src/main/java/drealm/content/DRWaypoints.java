@@ -3,6 +3,7 @@ package drealm.content;
 import drealm.util.DRAPI;
 import lotr.common.world.map.LOTRWaypoint;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRWaypoints {
 	public static LOTRWaypoint naragGund;
 	public static LOTRWaypoint khibilTarag;

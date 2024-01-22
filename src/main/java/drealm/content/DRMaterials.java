@@ -12,6 +12,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRMaterials {
 	private static boolean setup;
 	private static Constructor<LOTRMaterial> constructor;

@@ -9,6 +9,7 @@ import lotr.common.quest.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRMiniQuests {
 	public static LOTRMiniQuestFactory redMountains;
 	public static LOTRMiniQuestFactory windMountains;

@@ -9,6 +9,7 @@ import lotr.common.item.LOTRItemBlockMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRBlocks {
 	public static Block brick;
 	public static Block chandelier;

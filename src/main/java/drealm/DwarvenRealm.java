@@ -20,9 +20,13 @@ import net.minecraft.util.ResourceLocation;
 @Mod(modid = "drealm", dependencies = "required-after:lotr", useMetadata = true)
 public class DwarvenRealm {
 	@Mod.Instance("drealm")
-	public static DwarvenRealm instance;
+	private static DwarvenRealm instance;
 	@SidedProxy(serverSide = "drealm.proxy.DRCommonProxy", clientSide = "drealm.proxy.DRClientProxy")
 	private static DRCommonProxy proxy;
+
+	public static DwarvenRealm getInstance() {
+		return instance;
+	}
 
 	public static ModContainer getModContainer() {
 		return FMLCommonHandler.instance().findContainerFor(instance);

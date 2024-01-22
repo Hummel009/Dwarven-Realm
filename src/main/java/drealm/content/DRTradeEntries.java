@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRTradeEntries {
 	public static LOTRTradeEntries redDwarfMerchantBuy;
 	public static LOTRTradeEntries redDwarfMerchantSell;

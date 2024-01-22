@@ -15,6 +15,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRRecipes {
 	public static List<IRecipe> redMountains = new ArrayList<>();
 	public static List<IRecipe> windMountains = new ArrayList<>();

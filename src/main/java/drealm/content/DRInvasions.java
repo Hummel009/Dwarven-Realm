@@ -4,6 +4,7 @@ import drealm.entity.*;
 import drealm.util.DRAPI;
 import lotr.common.world.spawning.LOTRInvasions;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRInvasions {
 	public static LOTRInvasions redMountains;
 	public static LOTRInvasions windMountains;

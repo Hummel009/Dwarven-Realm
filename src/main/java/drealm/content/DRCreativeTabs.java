@@ -3,7 +3,7 @@ package drealm.content;
 import drealm.util.DRAPI;
 import lotr.common.LOTRCreativeTabs;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRCreativeTabs {
 	public static LOTRCreativeTabs tabCombat;
 	public static LOTRCreativeTabs tabTools;

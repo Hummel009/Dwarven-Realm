@@ -14,6 +14,7 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,11 +36,12 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
 		largeItemRenderers.clear();
+		IItemRenderer renderCrossbow = new LOTRRenderCrossbow();
 		for (Item item : DRItems.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
 			DRRenderLargeItem largeItemRenderer = DRRenderLargeItem.getRendererIfLarge(item);
 			if (item instanceof LOTRItemCrossbow) {
-				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderCrossbow());
+				MinecraftForgeClient.registerItemRenderer(item, renderCrossbow);
 			} else if (item instanceof LOTRItemBow) {
 				MinecraftForgeClient.registerItemRenderer(item, new LOTRRenderBow(largeItemRenderer));
 			} else if (item instanceof LOTRItemSword && ((LOTRItemSword) item).isElvenBlade()) {

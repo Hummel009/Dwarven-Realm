@@ -5,6 +5,7 @@ import drealm.util.DRAPI;
 import lotr.common.world.spawning.LOTRSpawnEntry;
 import lotr.common.world.spawning.LOTRSpawnList;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRSpawnLists {
 	public static LOTRSpawnList redDwarves;
 	public static LOTRSpawnList windDwarves;

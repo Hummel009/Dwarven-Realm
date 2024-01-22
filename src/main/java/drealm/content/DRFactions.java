@@ -11,6 +11,7 @@ import lotr.common.world.map.LOTRWaypoint;
 
 import java.util.EnumSet;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRFactions {
 	public static LOTRFaction redMountains;
 	public static LOTRFaction windMountains;
@@ -59,7 +60,7 @@ public class DRFactions {
 		DRAPI.addFactionRank(redMountains, 1000.0F, "commander").makeAchievement().makeTitle();
 		DRAPI.addFactionRank(redMountains, 1500.0F, "lord", true).makeAchievement().makeTitle();
 		DRAPI.addFactionRank(redMountains, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
-		DRAPI.setFactionAchievementCategory(windMountains, DRAchievements.Category.WIND_MOUNTAINS);
+		DRAPI.setFactionAchievementCategory(windMountains, DRAchievements.Category.windMountains);
 		DRAPI.addFactionRank(windMountains, 10.0F, "guest").makeAchievement().makeTitle();
 		DRAPI.addFactionRank(windMountains, 50.0F, "friend").makeAchievement().makeTitle();
 		DRAPI.addFactionRank(windMountains, 100.0F, "oathfriend").makeAchievement().makeTitle().setPledgeRank();

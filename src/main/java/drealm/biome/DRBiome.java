@@ -3,7 +3,7 @@ package drealm.biome;
 import lotr.common.LOTRDimension;
 import lotr.common.world.biome.LOTRBiome;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRBiome {
 	public static LOTRBiome redMountains;
 	public static LOTRBiome redMountainsFoothills;

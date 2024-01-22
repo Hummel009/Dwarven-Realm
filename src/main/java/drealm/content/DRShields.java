@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Locale;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRShields {
 	public static LOTRShields alignmentWindMountains;
 	public static LOTRShields alignmentRedMountains;

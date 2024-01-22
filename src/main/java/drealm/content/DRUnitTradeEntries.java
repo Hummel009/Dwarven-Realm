@@ -5,6 +5,7 @@ import lotr.common.entity.animal.LOTREntityWildBoar;
 import lotr.common.entity.npc.LOTRUnitTradeEntries;
 import lotr.common.entity.npc.LOTRUnitTradeEntry;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRUnitTradeEntries {
 	public static LOTRUnitTradeEntries redDwarfCommander;
 	public static LOTRUnitTradeEntries windDwarfCommander;

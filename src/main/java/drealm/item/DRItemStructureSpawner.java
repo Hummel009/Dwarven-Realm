@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class DRItemStructureSpawner extends Item {
-	public static int lastStructureSpawnTick;
+	private static int lastStructureSpawnTick;
 	@SideOnly(Side.CLIENT)
 	private IIcon iconBase;
 	@SideOnly(Side.CLIENT)
@@ -34,8 +34,16 @@ public class DRItemStructureSpawner extends Item {
 		setCreativeTab(LOTRCreativeTabs.tabSpawn);
 	}
 
+	public static int getLastStructureSpawnTick() {
+		return lastStructureSpawnTick;
+	}
+
+	public static void setLastStructureSpawnTick(int lastStructureSpawnTick) {
+		DRItemStructureSpawner.lastStructureSpawnTick = lastStructureSpawnTick;
+	}
+
 	private static boolean spawnStructure(EntityPlayer entityplayer, World world, int id, int i, int j, int k) {
-		if (!DRStructure.structureItemSpawners.containsKey(id)) {
+		if (!DRStructure.STRUCTURE_ITEM_SPAWNERS.containsKey(id)) {
 			return false;
 		}
 		DRStructure.IStructureProvider strProvider = DRStructure.getStructureForID(id);
@@ -53,7 +61,7 @@ public class DRItemStructureSpawner extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack itemstack, int pass) {
-		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(itemstack.getItemDamage());
+		DRStructure.StructureColorInfo info = DRStructure.STRUCTURE_ITEM_SPAWNERS.get(itemstack.getItemDamage());
 		if (info != null) {
 			if (pass == 0) {
 				return info.colorBackground;
@@ -66,7 +74,7 @@ public class DRItemStructureSpawner extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int i, int pass) {
-		DRStructure.StructureColorInfo info = DRStructure.structureItemSpawners.get(i);
+		DRStructure.StructureColorInfo info = DRStructure.STRUCTURE_ITEM_SPAWNERS.get(i);
 		if (info != null) {
 			if (info.isVillage) {
 				if (pass == 0) {
@@ -96,7 +104,7 @@ public class DRItemStructureSpawner extends Item {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("rawtypes")
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		for (DRStructure.StructureColorInfo info : DRStructure.structureItemSpawners.values()) {
+		for (DRStructure.StructureColorInfo info : DRStructure.STRUCTURE_ITEM_SPAWNERS.values()) {
 			if (info.isHidden) {
 				continue;
 			}

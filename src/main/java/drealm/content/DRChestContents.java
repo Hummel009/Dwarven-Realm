@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRChestContents {
 	public static LOTRChestContents redDwarfHouseLarder;
 	public static LOTRChestContents redMountainsStronghold;

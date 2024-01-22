@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DRStructure {
-	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
+	public static final Map<Integer, StructureColorInfo> STRUCTURE_ITEM_SPAWNERS = new LinkedHashMap<>();
 
 	private static final Map<Integer, IStructureProvider> ID_TO_CLASS_MAPPING = new HashMap<>();
 	private static final Map<Integer, String> ID_TO_STRING_MAPPING = new HashMap<>();
@@ -94,7 +94,7 @@ public class DRStructure {
 		}
 		ID_TO_CLASS_MAPPING.put(id, str);
 		ID_TO_STRING_MAPPING.put(id, name);
-		structureItemSpawners.put(id, new StructureColorInfo(id, colorBG, colorFG, str.isVillage(), hide));
+		STRUCTURE_ITEM_SPAWNERS.put(id, new StructureColorInfo(id, colorBG, colorFG, str.isVillage(), hide));
 	}
 
 	public interface IStructureProvider {

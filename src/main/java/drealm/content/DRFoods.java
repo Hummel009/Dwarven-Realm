@@ -5,6 +5,7 @@ import lotr.common.LOTRMod;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings({"WeakerAccess", "PublicField"})
 public class DRFoods {
 	public static LOTRFoods redDwarf;
 	public static LOTRFoods windDwarf;
