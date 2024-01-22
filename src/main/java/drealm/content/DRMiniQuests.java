@@ -14,6 +14,9 @@ public class DRMiniQuests {
 	public static LOTRMiniQuestFactory redMountains;
 	public static LOTRMiniQuestFactory windMountains;
 
+	private DRMiniQuests() {
+	}
+
 	private static void addMiniQuestsFactories() {
 		redMountains = DRAPI.addMiniQuestFactory("RED_MOUNTAINS", "redMountains");
 		windMountains = DRAPI.addMiniQuestFactory("WIND_MOUNTAINS", "windMountains");

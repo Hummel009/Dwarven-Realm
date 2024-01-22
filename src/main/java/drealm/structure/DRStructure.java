@@ -20,6 +20,9 @@ public class DRStructure {
 	private static final Map<Integer, String> ID_TO_STRING_MAPPING = new HashMap<>();
 	private static int id = 3000;
 
+	private DRStructure() {
+	}
+
 	public static String getNameFromID(int ID) {
 		return ID_TO_STRING_MAPPING.get(ID);
 	}

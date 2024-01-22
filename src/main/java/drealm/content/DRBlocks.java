@@ -23,6 +23,9 @@ public class DRBlocks {
 	public static Block windDwarfBars;
 	public static Block windDwarvenTable;
 
+	private DRBlocks() {
+	}
+
 	public static void preInit() {
 		brick = new DRBlockBrick();
 		chandelier = new DRBlockChandelier();

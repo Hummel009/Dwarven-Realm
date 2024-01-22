@@ -14,6 +14,9 @@ import net.minecraft.item.crafting.IRecipe;
 import java.util.List;
 
 public class NEIDRIntegrator {
+	private NEIDRIntegrator() {
+	}
+
 	private static void registerHandler(String unlocalizedName, Class<? extends GuiContainer> guiClass, List<IRecipe> recipes) {
 		registerHandler(new DRHandlerTableShaped(recipes, guiClass, unlocalizedName));
 		registerHandler(new DRHandlerTableShapeless(recipes, guiClass, unlocalizedName));

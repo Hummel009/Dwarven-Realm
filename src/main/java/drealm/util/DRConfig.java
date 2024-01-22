@@ -12,6 +12,9 @@ public class DRConfig {
 	public static boolean enableTextures14;
 	public static boolean enableRussian;
 
+	private DRConfig() {
+	}
+
 	public static void load() {
 		enableTextures14 = config.get(CATEGORY_MISC, "Enable 1.14 Textures", false).getBoolean();
 		enableRussian = config.get(CATEGORY_MISC, "Enable Russian text assets", false).getBoolean();

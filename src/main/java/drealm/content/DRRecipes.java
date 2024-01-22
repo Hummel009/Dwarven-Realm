@@ -20,6 +20,9 @@ public class DRRecipes {
 	public static List<IRecipe> redMountains = new ArrayList<>();
 	public static List<IRecipe> windMountains = new ArrayList<>();
 
+	private DRRecipes() {
+	}
+
 	private static void createOtherRecipes() {
 		GameRegistry.addRecipe(new ItemStack(DRBlocks.wall, 6, 0), "XXX", "XXX", 'X', new ItemStack(DRBlocks.brick, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(DRBlocks.slabSingle, 6, 0), "XXX", 'X', new ItemStack(DRBlocks.brick, 1, 0));

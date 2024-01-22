@@ -56,6 +56,9 @@ public class DRItems {
 	public static Item throwingAxeWindDwarven;
 	public static Item windDwarfSteel;
 
+	private DRItems() {
+	}
+
 	public static void preInit() {
 		if (DRConfig.enableTextures14) {
 			bodyRedDwarven = new DRItemArmor(DRMaterials.redDwarven14, 1);

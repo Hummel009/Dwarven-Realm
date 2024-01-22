@@ -12,6 +12,9 @@ public class DRShields {
 	public static LOTRShields alignmentWindMountains;
 	public static LOTRShields alignmentRedMountains;
 
+	private DRShields() {
+	}
+
 	private static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
 		LOTRShields shield = DRAPI.addAlignmentShield(enumName, faction);
 		DRAPI.setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase(Locale.ROOT) + ".png"));

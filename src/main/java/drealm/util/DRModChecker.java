@@ -4,6 +4,9 @@ public class DRModChecker {
 	private static int hasNEI = -1;
 	private static int hasGuiContainer = -1;
 
+	private DRModChecker() {
+	}
+
 	public static boolean hasGuiContainer() {
 		if (hasGuiContainer == -1) {
 			try {

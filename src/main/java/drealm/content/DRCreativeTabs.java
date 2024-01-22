@@ -10,6 +10,9 @@ public class DRCreativeTabs {
 	public static LOTRCreativeTabs tabMaterials;
 	public static LOTRCreativeTabs tabBlocks;
 
+	private DRCreativeTabs() {
+	}
+
 	public static void preInit() {
 		tabCombat = DRAPI.getLOTRCreativeTab("tabCombat");
 		tabTools = DRAPI.getLOTRCreativeTab("tabTools");

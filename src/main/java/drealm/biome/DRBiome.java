@@ -10,6 +10,9 @@ public class DRBiome {
 	public static LOTRBiome windMountains;
 	public static LOTRBiome windMountainsFoothills;
 
+	private DRBiome() {
+	}
+
 	public static void onInit() {
 		for (int i : new int[]{117, 118, 164, 165}) {
 			LOTRDimension.MIDDLE_EARTH.biomeList[i] = null;

@@ -9,6 +9,9 @@ public class DRInvasions {
 	public static LOTRInvasions redMountains;
 	public static LOTRInvasions windMountains;
 
+	private DRInvasions() {
+	}
+
 	private static void addInvasionIcons() {
 		DRAPI.changeInvasionIcon(redMountains, DRItems.hammerRedDwarven);
 		DRAPI.changeInvasionIcon(windMountains, DRItems.hammerWindDwarven);

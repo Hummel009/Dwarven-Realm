@@ -11,6 +11,9 @@ public class DRWaypoints {
 	public static LOTRWaypoint redRoad;
 	public static LOTRWaypoint bragazgathol;
 
+	private DRWaypoints() {
+	}
+
 	public static void preInit() {
 		naragGund = DRAPI.addWaypoint("NARAG_GUND", LOTRWaypoint.Region.RHUN, DRFactions.redMountains, 2579.0, 1262.0);
 		khibilTarag = DRAPI.addWaypoint("KHIBIL_TARAG", LOTRWaypoint.Region.RHUN, DRFactions.redMountains, 2448.0, 952.0);

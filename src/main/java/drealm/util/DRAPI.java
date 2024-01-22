@@ -46,6 +46,9 @@ import java.util.*;
 public class DRAPI {
 	private static int lastBannerId = 52;
 
+	private DRAPI() {
+	}
+
 	public static LOTRAchievement.Category addAchievementCategory(String enumName, LOTRFaction faction) {
 		Class<?>[] classArr = new Class[]{LOTRFaction.class};
 		Object[] args = new Object[]{faction};

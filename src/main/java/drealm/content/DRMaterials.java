@@ -32,6 +32,9 @@ public class DRMaterials {
 	private static Method setUndamageable;
 	private static Method setManFlesh;
 
+	private DRMaterials() {
+	}
+
 	private static LOTRMaterial editLOTRMaterial(LOTRMaterial material, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
 		setup();
 		try {

@@ -17,6 +17,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class DRSpeech {
+	private DRSpeech() {
+	}
+
 	public static void onInit() {
 		Map<String, BufferedReader> speechBankNamesAndReaders = new HashMap<>();
 		ZipFile zip = null;

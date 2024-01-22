@@ -5,6 +5,9 @@ import lotr.common.entity.LOTREntities;
 public class DREntity {
 	private static int id = 3000;
 
+	private DREntity() {
+	}
+
 	public static void preInit() {
 		LOTREntities.registerCreature(DREntityRedDwarf.class, "RedDwarf", id++, 0x570000, 0x570000);
 		LOTREntities.registerCreature(DREntityRedDwarfWarrior.class, "RedDwarfWarrior", id++, 0x570000, 0x570000);

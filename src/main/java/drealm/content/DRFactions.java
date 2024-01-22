@@ -16,6 +16,9 @@ public class DRFactions {
 	public static LOTRFaction redMountains;
 	public static LOTRFaction windMountains;
 
+	private DRFactions() {
+	}
+
 	public static void onInit() {
 		setupRelations();
 		setupMapInfo();

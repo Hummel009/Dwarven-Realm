@@ -35,6 +35,9 @@ public class DRAchievements {
 	public static LOTRAchievement wearFullWindDwarven;
 	public static LOTRAchievement useWindDwarvenTable;
 
+	private DRAchievements() {
+	}
+
 	private static LOTRAchievement createArmorAchievement(LOTRAchievement.Category category, int id, Item item, String name) {
 		LOTRAchievement achievement = new LOTRAchievement(category, id, item, name);
 		ARMOR_ACHIEVEMENTS.put(((ItemArmor) item).getArmorMaterial(), achievement);
@@ -78,6 +81,9 @@ public class DRAchievements {
 	@SuppressWarnings({"WeakerAccess", "PublicField"})
 	public static class Category {
 		public static LOTRAchievement.Category windMountains;
+
+		private Category() {
+		}
 
 		public static void onInit() {
 			windMountains = DRAPI.addAchievementCategory("WIND_MOUNTAINS", DRFactions.windMountains);
