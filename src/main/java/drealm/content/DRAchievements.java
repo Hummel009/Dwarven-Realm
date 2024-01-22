@@ -25,7 +25,6 @@ public class DRAchievements {
 	public static LOTRAchievement smeltRedDwarfSteel;
 	public static LOTRAchievement wearFullRedDwarven;
 	public static LOTRAchievement useRedDwarvenTable;
-
 	public static LOTRAchievement tradeWindDwarfSmith;
 	public static LOTRAchievement tradeWindDwarfMiner;
 	public static LOTRAchievement tradeWindDwarfCommander;

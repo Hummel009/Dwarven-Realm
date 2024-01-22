@@ -14,12 +14,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DRStructure {
+	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
+
 	private static final Map<Integer, IStructureProvider> ID_TO_CLASS_MAPPING = new HashMap<>();
 	private static final Map<Integer, String> ID_TO_STRING_MAPPING = new HashMap<>();
 	private static int id = 3000;
-
-	public static Map<Integer, StructureColorInfo> structureItemSpawners = new LinkedHashMap<>();
-
 
 	public static String getNameFromID(int ID) {
 		return ID_TO_STRING_MAPPING.get(ID);
