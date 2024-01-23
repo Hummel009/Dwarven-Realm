@@ -34,6 +34,7 @@ public class DwarvenRealm {
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
+		DRTickHandlerServer tickHandler = new DRTickHandlerServer();
 		DRMaterials.onInit();
 		DRChestContents.onInit();
 		DRInvasions.onInit();
@@ -49,7 +50,7 @@ public class DwarvenRealm {
 		DRMiniQuests.onInit();
 		DRFactions.onInit();
 		DRAPI.setServerMapImage(new ResourceLocation("drealm:map/map.png"));
-		DRTickHandlerServer tickHandler = new DRTickHandlerServer();
+		tickHandler.onInit();
 		proxy.onInit(event);
 	}
 
@@ -70,6 +71,7 @@ public class DwarvenRealm {
 		if (DRModChecker.hasNEI() && DRModChecker.hasGuiContainer()) {
 			NEIDRIntegrator.registerRecipes();
 		}
+		eventHandler.preInit();
 		proxy.preInit(event);
 	}
 }

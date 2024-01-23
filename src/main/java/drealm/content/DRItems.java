@@ -158,19 +158,21 @@ public class DRItems {
 
 	private static void registerItem(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		String prefix = "drealm:";
 		item.setUnlocalizedName(itemName);
 		if (DRConfig.enableTextures14) {
-			item.setTextureName("drealm:" + itemName + "14");
+			item.setTextureName(prefix + itemName + "14");
 		} else {
-			item.setTextureName("drealm:" + itemName);
+			item.setTextureName(prefix + itemName);
 		}
 		GameRegistry.registerItem(item, itemName);
 		CONTENT.add(item);
 	}
 
 	private static void registerItemLOTR(Item item, String name) {
-		item.setTextureName("lotr:" + name);
-		item.setUnlocalizedName("lotr:" + name);
+		String prefix = "lotr:";
+		item.setTextureName(prefix + name);
+		item.setUnlocalizedName(prefix + name);
 		GameRegistry.registerItem(item, name);
 		CONTENT.add(item);
 	}

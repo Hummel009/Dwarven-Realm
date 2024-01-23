@@ -30,6 +30,7 @@ public class DRClientProxy extends DRCommonProxy implements IResourceManagerRelo
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		DRRendererManager rendererManager = new DRRendererManager();
+		rendererManager.preInit();
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarf.class, new DRRenderDwarf());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfSmith.class, new DRRenderDwarfSmith());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfCommander.class, new DRRenderDwarfCommander());

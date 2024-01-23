@@ -23,12 +23,12 @@ public class DRStructure {
 	private DRStructure() {
 	}
 
-	public static String getNameFromID(int ID) {
-		return ID_TO_STRING_MAPPING.get(ID);
+	public static String getNameFromID(int id) {
+		return ID_TO_STRING_MAPPING.get(id);
 	}
 
-	public static IStructureProvider getStructureForID(int ID) {
-		return ID_TO_CLASS_MAPPING.get(ID);
+	public static IStructureProvider getStructureForID(int id) {
+		return ID_TO_CLASS_MAPPING.get(id);
 	}
 
 	public static void onInit() {

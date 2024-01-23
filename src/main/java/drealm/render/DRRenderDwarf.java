@@ -18,28 +18,20 @@ import org.lwjgl.opengl.GL11;
 public class DRRenderDwarf extends LOTRRenderBiped {
 	private static final ResourceLocation RING_TEXTURE = new ResourceLocation("lotr:mob/dwarf/ring.png");
 
-	private static LOTRRandomSkins dwarfSkinsMale;
-	private static LOTRRandomSkins dwarfSkinsFemale;
-	private static LOTRRandomSkins blueDwarfSkinsMale;
-	private static LOTRRandomSkins blueDwarfSkinsFemale;
-	private static LOTRRandomSkins redDwarfSkinsMale;
-	private static LOTRRandomSkins redDwarfSkinsFemale;
-	private static LOTRRandomSkins windDwarfSkinsMale;
-	private static LOTRRandomSkins windDwarfSkinsFemale;
+	private static final LOTRRandomSkins DWARF_SKINS_MALE = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/dwarf_male");
+	private static final LOTRRandomSkins DWARF_SKINS_FEMALE = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/dwarf_female");
+	private static final LOTRRandomSkins BLUE_DWARF_SKINS_MALE = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/blueMountains_male");
+	private static final LOTRRandomSkins BLUE_DWARF_SKINS_FEMALE = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/blueMountains_female");
+	private static final LOTRRandomSkins RED_DWARF_SKINS_MALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/redMountains_male");
+	private static final LOTRRandomSkins RED_DWARF_SKINS_FEMALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/redMountains_female");
+	private static final LOTRRandomSkins WIND_DWARF_SKINS_MALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_male");
+	private static final LOTRRandomSkins WIND_DWARF_SKINS_FEMALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_female");
 
 	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public DRRenderDwarf() {
 		super(new LOTRModelDwarf(), 0.5f);
 		setRenderPassModel(standardRenderPassModel);
-		dwarfSkinsMale = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/dwarf_male");
-		dwarfSkinsFemale = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/dwarf_female");
-		blueDwarfSkinsMale = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/blueMountains_male");
-		blueDwarfSkinsFemale = LOTRRandomSkins.loadSkinsList("lotr:mob/dwarf/blueMountains_female");
-		redDwarfSkinsMale = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/redMountains_male");
-		redDwarfSkinsFemale = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/redMountains_female");
-		windDwarfSkinsMale = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_male");
-		windDwarfSkinsFemale = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_female");
 	}
 
 	@Override
@@ -53,26 +45,26 @@ public class DRRenderDwarf extends LOTRRenderBiped {
 		LOTREntityDwarf dwarf = (LOTREntityDwarf) entity;
 		if (dwarf instanceof LOTREntityBlueDwarf) {
 			if (dwarf.familyInfo.isMale()) {
-				return blueDwarfSkinsMale.getRandomSkin(dwarf);
+				return BLUE_DWARF_SKINS_MALE.getRandomSkin(dwarf);
 			}
-			return blueDwarfSkinsFemale.getRandomSkin(dwarf);
+			return BLUE_DWARF_SKINS_FEMALE.getRandomSkin(dwarf);
 		}
 		if (dwarf instanceof DREntityRedDwarf) {
 			if (dwarf.familyInfo.isMale()) {
-				return redDwarfSkinsMale.getRandomSkin(dwarf);
+				return RED_DWARF_SKINS_MALE.getRandomSkin(dwarf);
 			}
-			return redDwarfSkinsFemale.getRandomSkin(dwarf);
+			return RED_DWARF_SKINS_FEMALE.getRandomSkin(dwarf);
 		}
 		if (dwarf instanceof DREntityWindDwarf) {
 			if (dwarf.familyInfo.isMale()) {
-				return windDwarfSkinsMale.getRandomSkin(dwarf);
+				return WIND_DWARF_SKINS_MALE.getRandomSkin(dwarf);
 			}
-			return windDwarfSkinsFemale.getRandomSkin(dwarf);
+			return WIND_DWARF_SKINS_FEMALE.getRandomSkin(dwarf);
 		}
 		if (dwarf.familyInfo.isMale()) {
-			return dwarfSkinsMale.getRandomSkin(dwarf);
+			return DWARF_SKINS_MALE.getRandomSkin(dwarf);
 		}
-		return dwarfSkinsFemale.getRandomSkin(dwarf);
+		return DWARF_SKINS_FEMALE.getRandomSkin(dwarf);
 	}
 
 	@Override

@@ -44,12 +44,12 @@ public class DRBlocks {
 		registerBlockNoAlt(redDwarvenTable, "redDwarvenTable");
 		registerBlockNoAlt(windDwarvenTable, "windDwarvenTable");
 		registerBlock(chandelier, "chandelier", LOTRItemBlockMetadata.class);
-		registerBlockNoAlt(brick, "brick", LOTRItemBlockMetadata.class);
-		registerBlockNoAlt(pillar, "pillar", LOTRItemBlockMetadata.class);
+		registerBlockNoAlt(brick, "brick", LOTRItemBlockMetadata.class, true);
+		registerBlockNoAlt(pillar, "pillar", LOTRItemBlockMetadata.class, true);
 		registerBlock(oreStorage, "oreStorage", LOTRItemBlockMetadata.class);
-		registerBlockNoAlt(wall, "wall", LOTRItemBlockMetadata.class, true);
-		registerBlockNoAlt(slabSingle, "slabSingle", DRBlockSlab.SlabExSingle.class);
-		registerBlockNoAlt(slabDouble, "slabDouble", DRBlockSlab.SlabExDouble.class);
+		registerBlockNoAlt(wall, "wall", LOTRItemBlockMetadata.class, false);
+		registerBlockNoAlt(slabSingle, "slabSingle", DRBlockSlab.SlabExSingle.class, true);
+		registerBlockNoAlt(slabDouble, "slabDouble", DRBlockSlab.SlabExDouble.class, true);
 	}
 
 	private static void registerBlock(Block block, String name) {
@@ -65,32 +65,31 @@ public class DRBlocks {
 
 	private static void registerBlock(Block block, String name, Class<? extends ItemBlock> itemClass) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		String prefix = "drealm:";
 		block.setBlockName(blockName);
 		if (DRConfig.enableTextures14) {
-			block.setBlockTextureName("drealm:" + blockName + "14");
+			block.setBlockTextureName(prefix + blockName + "14");
 		} else {
-			block.setBlockTextureName("drealm:" + blockName);
+			block.setBlockTextureName(prefix + blockName);
 		}
 		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 
 	private static void registerBlockNoAlt(Block block, String name) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		String prefix = "drealm:";
 		block.setBlockName(blockName);
-		block.setBlockTextureName("drealm:" + blockName);
+		block.setBlockTextureName(prefix + blockName);
 		GameRegistry.registerBlock(block, blockName);
 	}
 
-	private static void registerBlockNoAlt(Block block, String name, Class<? extends ItemBlock> itemClass) {
+	private static void registerBlockNoAlt(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasTexture) {
 		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
+		String prefix = "drealm:";
 		block.setBlockName(blockName);
-		block.setBlockTextureName("drealm:" + blockName);
-		GameRegistry.registerBlock(block, itemClass, blockName);
-	}
-
-	private static void registerBlockNoAlt(Block block, String name, Class<? extends ItemBlock> itemClass, boolean hasNoTexture) {
-		String blockName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
-		block.setBlockName(blockName);
+		if (hasTexture) {
+			block.setBlockTextureName(prefix + blockName);
+		}
 		GameRegistry.registerBlock(block, itemClass, blockName);
 	}
 }

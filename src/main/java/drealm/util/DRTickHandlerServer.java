@@ -11,7 +11,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 
 public class DRTickHandlerServer {
-	public DRTickHandlerServer() {
+	public void onInit() {
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
 	}

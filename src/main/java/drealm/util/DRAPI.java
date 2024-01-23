@@ -66,7 +66,7 @@ public class DRAPI {
 		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(Locale.ROOT), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
 		LOTRItemBanner.BannerType.bannerTypes.add(banner);
 		Map<Integer, LOTRItemBanner.BannerType> map = ReflectionHelper.getPrivateValue(LOTRItemBanner.BannerType.class, null, "bannerForID");
-		LOTRItemBanner.BannerType prior = map.put(id, banner);
+		map.put(id, banner);
 		return banner;
 	}
 
@@ -151,7 +151,7 @@ public class DRAPI {
 		return findAndInvokeMethod(new Object[0], clazz, instance, methodName);
 	}
 
-	private static <T, E> void findAndInvokeMethod(Object arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
+	private static <E> void findAndInvokeMethod(Object arg, Class<? super E> clazz, E instance, String methodName, Class<?>... methodTypes) {
 		findAndInvokeMethod(new Object[]{arg}, clazz, instance, new String[]{methodName}, methodTypes);
 	}
 

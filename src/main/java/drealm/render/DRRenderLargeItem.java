@@ -46,8 +46,8 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 	private static ResourceLocation getLargeTexturePath(Item item, String folder) {
 		String itemIconString = item.getUnlocalizedName().substring("item.".length());
 		itemIconString = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemIconString);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(item);
-		String modID = StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId;
+		GameRegistry.UniqueIdentifier uniqueIdentifier = GameRegistry.findUniqueIdentifierFor(item);
+		String modID = StringUtils.isNullOrEmpty(uniqueIdentifier.modId) ? "minecraft" : uniqueIdentifier.modId;
 		return new ResourceLocation(modID, "textures/items/" + folder + '/' + itemIconString + ".png");
 	}
 
@@ -90,8 +90,8 @@ public class DRRenderLargeItem extends LOTRRenderLargeItem {
 	private IIcon registerLargeIcon(IIconRegister register, String extra) {
 		String itemName = theItem.getUnlocalizedName().substring("item.".length());
 		itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, itemName);
-		GameRegistry.UniqueIdentifier UID = GameRegistry.findUniqueIdentifierFor(theItem);
-		String modID = (StringUtils.isNullOrEmpty(UID.modId) ? "minecraft" : UID.modId) + ':';
+		GameRegistry.UniqueIdentifier uniqueIdentifier = GameRegistry.findUniqueIdentifierFor(theItem);
+		String modID = (StringUtils.isNullOrEmpty(uniqueIdentifier.modId) ? "minecraft" : uniqueIdentifier.modId) + ':';
 		String path = modID + folderName + '/' + itemName;
 		if (!StringUtils.isNullOrEmpty(extra)) {
 			path += '_' + extra;

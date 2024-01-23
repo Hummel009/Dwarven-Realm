@@ -33,7 +33,7 @@ public class DRBlockChandelier extends Block {
 		setBlockBounds(0.0625f, 0.1875f, 0.0625f, 0.9375f, 1.0f, 0.9375f);
 	}
 
-	private static void spawnChandelierParticles(World world, double d, double d1, double d2, Random random, int meta) {
+	private static void spawnChandelierParticles(World world, double d, double d1, double d2) {
 		world.spawnParticle("smoke", d, d1, d2, 0.0, 0.0, 0.0);
 		world.spawnParticle("flame", d, d1, d2, 0.0, 0.0, 0.0);
 	}
@@ -102,11 +102,11 @@ public class DRBlockChandelier extends Block {
 		int meta = world.getBlockMetadata(i, j, k);
 		double d = 0.13;
 		double d2 = 0.6875;
-		spawnChandelierParticles(world, i + d, j + d2, k + d, random, meta);
 		double d1 = 1.0 - d;
-		spawnChandelierParticles(world, i + d1, j + d2, k + d1, random, meta);
-		spawnChandelierParticles(world, i + d, j + d2, k + d1, random, meta);
-		spawnChandelierParticles(world, i + d1, j + d2, k + d, random, meta);
+		spawnChandelierParticles(world, i + d, j + d2, k + d);
+		spawnChandelierParticles(world, i + d1, j + d2, k + d1);
+		spawnChandelierParticles(world, i + d, j + d2, k + d1);
+		spawnChandelierParticles(world, i + d1, j + d2, k + d);
 	}
 
 	@Override

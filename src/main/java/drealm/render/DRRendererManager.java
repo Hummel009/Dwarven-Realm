@@ -20,13 +20,12 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class DRRendererManager implements IResourceManagerReloadListener {
-	private static List<DRRenderLargeItem> largeItemRenderers;
+	private static final Collection<DRRenderLargeItem> LARGE_ITEM_RENDERERS = new ArrayList<>();
 
-	public DRRendererManager() {
-		largeItemRenderers = new ArrayList<>();
+	public void preInit() {
 		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
 		onResourceManagerReload(resMgr);
 		((IReloadableResourceManager) resMgr).registerReloadListener(this);
@@ -35,7 +34,7 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {
-		largeItemRenderers.clear();
+		LARGE_ITEM_RENDERERS.clear();
 		IItemRenderer renderCrossbow = new LOTRRenderCrossbow();
 		for (Item item : DRItems.CONTENT) {
 			MinecraftForgeClient.registerItemRenderer(item, null);
@@ -52,7 +51,7 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 			if (largeItemRenderer == null) {
 				continue;
 			}
-			largeItemRenderers.add(largeItemRenderer);
+			LARGE_ITEM_RENDERERS.add(largeItemRenderer);
 		}
 	}
 
@@ -60,7 +59,7 @@ public class DRRendererManager implements IResourceManagerReloadListener {
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {
-			for (DRRenderLargeItem largeRenderer : largeItemRenderers) {
+			for (DRRenderLargeItem largeRenderer : LARGE_ITEM_RENDERERS) {
 				largeRenderer.registerIcons(map);
 			}
 		}
