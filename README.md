@@ -9,7 +9,9 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=sqale_index)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=ncloc)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
 
-Dwarven Realm - аддон к моду "Властелин колец" для Minecraft 1.7.10. Добавляет две новые фракции - гномы Красных гор и гномы гор Ветра, а также весь связанный с ними контент: мобы, достижения, путевые точки, дороги, щиты, флаги, блоки, предметы, структуры, зоны влияния...
+Dwarven Realm - аддон к моду "Властелин колец" для Minecraft 1.7.10. Добавляет две новые фракции - гномы Красных гор и
+гномы гор Ветра, а также весь связанный с ними контент: мобы, достижения, путевые точки, дороги, щиты, флаги, блоки,
+предметы, структуры, зоны влияния...
 
 https://lotrminecraftmod.fandom.com/ru/wiki/Dwarven_Realm - статья, в которой подробно описан мод.
 
