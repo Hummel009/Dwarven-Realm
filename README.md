@@ -1,8 +1,7 @@
 > [!CAUTION]
 > С 29.02.2024 разработка проекта завершена. Инструментарий будет поддерживаться в актуальном и рабочем состоянии, но правки в основной код вноситься не будут.
 
-[![Code Smells](badge_placeholder)](details_placeholder)
-
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=code_smells)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=security_rating)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=bugs)](https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm)
@@ -20,5 +19,4 @@ Dwarven Realm - аддон к моду "Властелин колец" для Mi
 https://lotrminecraftmod.fandom.com/ru/wiki/Dwarven_Realm - статья, в которой подробно описан мод.
 
 <!----------------------------------------------------------------------------->
-[badge_placeholder]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=metric_name
-[details_placeholder]: https://sonarcloud.io/summary/overall?id=Hummel009_Dwarven-Realm
+
