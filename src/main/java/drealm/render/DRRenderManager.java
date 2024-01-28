@@ -9,9 +9,7 @@ import lotr.client.render.item.LOTRRenderElvenBlade;
 import lotr.common.item.LOTRItemBow;
 import lotr.common.item.LOTRItemCrossbow;
 import lotr.common.item.LOTRItemSword;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.item.Item;
@@ -19,16 +17,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class DRRenderManager {
 	public static class Map implements IResourceManagerReloadListener {
-		public void onInit() {
-		}
-
 		@Override
 		public void onResourceManagerReload(IResourceManager resourceManager) {
 			DRAPI.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
@@ -37,13 +31,6 @@ public class DRRenderManager {
 
 	public static class Items implements IResourceManagerReloadListener {
 		private static final Collection<DRRenderLargeItem> LARGE_ITEM_RENDERERS = new ArrayList<>();
-
-		public void preInit() {
-			IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-			onResourceManagerReload(resMgr);
-			((IReloadableResourceManager) resMgr).registerReloadListener(this);
-			MinecraftForge.EVENT_BUS.register(this);
-		}
 
 		@Override
 		public void onResourceManagerReload(IResourceManager resourceManager) {
