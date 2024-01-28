@@ -17,8 +17,6 @@ Dwarven Realm - аддон к моду "Властелин колец" для Mi
 гномы гор Ветра, а также весь связанный с ними контент: мобы, достижения, путевые точки, дороги, щиты, флаги, блоки,
 предметы, структуры, зоны влияния...
 
-https://lotrminecraftmod.fandom.com/ru/wiki/Dwarven_Realm - статья, в которой подробно описан мод.
-
 <!----------------------------------------------------------------------------->
 
 [code_smells_badge]: https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Dwarven-Realm&metric=code_smells
