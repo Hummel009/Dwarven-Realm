@@ -7,30 +7,31 @@ import drealm.entity.*;
 import drealm.render.DRRenderDwarf;
 import drealm.render.DRRenderDwarfCommander;
 import drealm.render.DRRenderDwarfSmith;
-import drealm.render.DRRendererManager;
-import drealm.util.DRAPI;
+import drealm.render.DRRenderManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
-import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 
-public class DRClientProxy extends DRCommonProxy implements IResourceManagerReloadListener {
-
+public class DRClientProxy extends DRCommonProxy {
 	@Override
 	public void onInit(FMLInitializationEvent event) {
-		((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(new DRClientProxy());
-	}
-
-	@Override
-	public void onResourceManagerReload(IResourceManager resourceManager) {
-		DRAPI.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
+		IResourceManagerReloadListener rendererManager = new DRRenderManager.Map();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		rendererManager.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(rendererManager);
+		MinecraftForge.EVENT_BUS.register(rendererManager);
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		DRRendererManager rendererManager = new DRRendererManager();
-		rendererManager.preInit();
+		IResourceManagerReloadListener rendererManager = new DRRenderManager.Items();
+		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
+		rendererManager.onResourceManagerReload(resMgr);
+		((IReloadableResourceManager) resMgr).registerReloadListener(rendererManager);
+		MinecraftForge.EVENT_BUS.register(rendererManager);
+
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarf.class, new DRRenderDwarf());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfSmith.class, new DRRenderDwarfSmith());
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarfCommander.class, new DRRenderDwarfCommander());
