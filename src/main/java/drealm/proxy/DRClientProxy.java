@@ -18,18 +18,18 @@ public class DRClientProxy extends DRCommonProxy {
 	@Override
 	public void onInit(FMLInitializationEvent event) {
 		IResourceManagerReloadListener rendererManager = new DRRenderManager.Map();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		rendererManager.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(rendererManager);
+		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
+		rendererManager.onResourceManagerReload(resourceManager);
+		((IReloadableResourceManager) resourceManager).registerReloadListener(rendererManager);
 		MinecraftForge.EVENT_BUS.register(rendererManager);
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		IResourceManagerReloadListener rendererManager = new DRRenderManager.Items();
-		IResourceManager resMgr = Minecraft.getMinecraft().getResourceManager();
-		rendererManager.onResourceManagerReload(resMgr);
-		((IReloadableResourceManager) resMgr).registerReloadListener(rendererManager);
+		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
+		rendererManager.onResourceManagerReload(resourceManager);
+		((IReloadableResourceManager) resourceManager).registerReloadListener(rendererManager);
 		MinecraftForge.EVENT_BUS.register(rendererManager);
 
 		RenderingRegistry.registerEntityRenderingHandler(DREntityRedDwarf.class, new DRRenderDwarf());
