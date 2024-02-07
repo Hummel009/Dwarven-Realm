@@ -30,6 +30,7 @@ public interface CommonProxy {
 
 	default void preInit(FMLPreInitializationEvent event) {
 		Config.preInit(event);
+
 		Factions.preInit();
 		Waypoints.preInit();
 		BannerTypes.preInit();
