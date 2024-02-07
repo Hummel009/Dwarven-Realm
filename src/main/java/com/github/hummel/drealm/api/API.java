@@ -226,13 +226,13 @@ public class API {
 		ReflectionHelper.setPrivateValue(LOTRGenLayerWorld.class, null, biomeImageData, "biomeImageData");
 	}
 
-	public static void setShieldTexture(LOTRShields shield, ResourceLocation resourceLocation) {
+	private static void setShieldTexture(LOTRShields shield, ResourceLocation resourceLocation) {
 		try {
 			Field privateField = LOTRShields.class.getDeclaredField("shieldTexture");
 			privateField.setAccessible(true);
 			privateField.set(shield, resourceLocation);
-		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e2) {
-			e2.printStackTrace();
+		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
 		}
 	}
 
