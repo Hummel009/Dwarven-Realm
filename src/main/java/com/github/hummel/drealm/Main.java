@@ -6,7 +6,6 @@ import com.github.hummel.drealm.handler.TickHandler;
 import com.github.hummel.drealm.proxy.CommonProxy;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -18,15 +17,12 @@ import net.minecraftforge.common.MinecraftForge;
 public class Main {
 	@Mod.Instance("drealm")
 	private static Main instance;
+
 	@SidedProxy(clientSide = "com.github.hummel.drealm.proxy.ClientProxy", serverSide = "com.github.hummel.drealm.proxy.ServerProxy")
 	private static CommonProxy proxy;
 
 	public static Main getInstance() {
 		return instance;
-	}
-
-	public static ModContainer getModContainer() {
-		return FMLCommonHandler.instance().findContainerFor(instance);
 	}
 
 	@Mod.EventHandler

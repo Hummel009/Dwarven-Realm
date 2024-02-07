@@ -1,7 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.util.EnumHelper;
-import com.github.hummel.drealm.util.ReflectionHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRDimension;
 import lotr.common.fac.LOTRControlZone;
@@ -32,21 +31,21 @@ public class Factions {
 	}
 
 	private static void setupControlZones() {
-		ReflectionHelper.addControlZone(redMountains, new LOTRControlZone(2437, 898, 454));
-		ReflectionHelper.addControlZone(redMountains, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
-		ReflectionHelper.addControlZone(redMountains, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
-		ReflectionHelper.addControlZone(windMountains, new LOTRControlZone(2500, 1535, 292));
-		ReflectionHelper.addControlZone(windMountains, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
-		ReflectionHelper.addControlZone(windMountains, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
+		API.addControlZone(redMountains, new LOTRControlZone(2437, 898, 454));
+		API.addControlZone(redMountains, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
+		API.addControlZone(redMountains, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
+		API.addControlZone(windMountains, new LOTRControlZone(2500, 1535, 292));
+		API.addControlZone(windMountains, new LOTRControlZone(LOTRWaypoint.MORANNON, 70));
+		API.addControlZone(windMountains, new LOTRControlZone(LOTRWaypoint.DIMRILL_DALE, 1));
 	}
 
 	private static void setupFactions() {
 		EnumSet<LOTRFaction.FactionType> enumSetFreeDwarf = EnumSet.of(LOTRFaction.FactionType.TYPE_FREE, LOTRFaction.FactionType.TYPE_DWARF);
 		EnumSet<LOTRFaction.FactionType> enumSetEvilDwarf = EnumSet.of(LOTRFaction.FactionType.TYPE_ORC, LOTRFaction.FactionType.TYPE_DWARF);
 
-		redMountains = EnumHelper.addFaction("RED_MOUNTAINS", 0x570000, LOTRDimension.DimensionRegion.EAST, enumSetFreeDwarf);
+		redMountains = API.addFaction("RED_MOUNTAINS", 0x570000, LOTRDimension.DimensionRegion.EAST, enumSetFreeDwarf);
 		redMountains.approvesWarCrimes = false;
-		windMountains = EnumHelper.addFaction("WIND_MOUNTAINS", 0xCEA863, LOTRDimension.DimensionRegion.EAST, enumSetEvilDwarf);
+		windMountains = API.addFaction("WIND_MOUNTAINS", 0xCEA863, LOTRDimension.DimensionRegion.EAST, enumSetEvilDwarf);
 	}
 
 	private static void setupMapInfo() {
@@ -55,24 +54,24 @@ public class Factions {
 	}
 
 	private static void setupRanks() {
-		ReflectionHelper.setFactionAchievementCategory(redMountains, LOTRAchievement.Category.OROCARNI);
-		ReflectionHelper.addFactionRank(redMountains, 10.0F, "guest").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 50.0F, "friend").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 100.0F, "oathfriend").makeAchievement().makeTitle().setPledgeRank();
-		ReflectionHelper.addFactionRank(redMountains, 200.0F, "axebearer").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 500.0F, "champion").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 1000.0F, "commander").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 1500.0F, "lord", true).makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(redMountains, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
-		ReflectionHelper.setFactionAchievementCategory(windMountains, Achievements.Category.windMountains);
-		ReflectionHelper.addFactionRank(windMountains, 10.0F, "guest").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 50.0F, "friend").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 100.0F, "oathfriend").makeAchievement().makeTitle().setPledgeRank();
-		ReflectionHelper.addFactionRank(windMountains, 200.0F, "axebearer").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 500.0F, "champion").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 1000.0F, "commander").makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 1500.0F, "lord", true).makeAchievement().makeTitle();
-		ReflectionHelper.addFactionRank(windMountains, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
+		API.setFactionAchievementCategory(redMountains, LOTRAchievement.Category.OROCARNI);
+		API.addFactionRank(redMountains, 10.0F, "guest").makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 50.0F, "friend").makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 100.0F, "oathfriend").makeAchievement().makeTitle().setPledgeRank();
+		API.addFactionRank(redMountains, 200.0F, "axebearer").makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 500.0F, "champion").makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 1000.0F, "commander").makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 1500.0F, "lord", true).makeAchievement().makeTitle();
+		API.addFactionRank(redMountains, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
+		API.setFactionAchievementCategory(windMountains, Achievements.Category.windMountains);
+		API.addFactionRank(windMountains, 10.0F, "guest").makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 50.0F, "friend").makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 100.0F, "oathfriend").makeAchievement().makeTitle().setPledgeRank();
+		API.addFactionRank(windMountains, 200.0F, "axebearer").makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 500.0F, "champion").makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 1000.0F, "commander").makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 1500.0F, "lord", true).makeAchievement().makeTitle();
+		API.addFactionRank(windMountains, 3000.0F, "uzbad", true).makeAchievement().makeTitle();
 	}
 
 	private static void setupRelations() {

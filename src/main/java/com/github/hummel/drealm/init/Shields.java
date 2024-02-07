@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.util.EnumHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.LOTRShields;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
@@ -12,7 +12,7 @@ public class Shields {
 	}
 
 	public static void preInit() {
-		alignmentWindMountains = EnumHelper.addAlignmentShield("ALIGNMENT_WIND_MOUNTAINS", Factions.windMountains);
-		alignmentRedMountains = EnumHelper.addAlignmentShield("ALIGNMENT_RED_MOUNTAINS", Factions.redMountains);
+		alignmentWindMountains = API.addAlignmentShield("ALIGNMENT_WIND_MOUNTAINS", Factions.windMountains);
+		alignmentRedMountains = API.addAlignmentShield("ALIGNMENT_RED_MOUNTAINS", Factions.redMountains);
 	}
 }

@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.util.EnumHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRLevelData;
 import lotr.common.LOTRMod;
@@ -86,7 +86,7 @@ public class Achievements {
 		}
 
 		public static void onInit() {
-			windMountains = EnumHelper.addAchievementCategory("WIND_MOUNTAINS", Factions.windMountains);
+			windMountains = API.addAchievementCategory("WIND_MOUNTAINS", Factions.windMountains);
 		}
 	}
 }

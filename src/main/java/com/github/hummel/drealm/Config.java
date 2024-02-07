@@ -7,8 +7,10 @@ import java.io.File;
 @SuppressWarnings({"WeakerAccess", "PublicField"})
 public class Config {
 	private static final String CATEGORY_MISC = "1_misc";
+
 	public static boolean enableTextures14;
 	public static boolean enableRussian;
+
 	private static Configuration config;
 
 	private Config() {

@@ -1,8 +1,11 @@
-package com.github.hummel.drealm.util;
+package com.github.hummel.drealm.api;
 
+import com.github.hummel.drealm.Main;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lotr.client.LOTRTextures;
@@ -14,19 +17,23 @@ import lotr.common.entity.npc.LOTRSpeech;
 import lotr.common.fac.LOTRControlZone;
 import lotr.common.fac.LOTRFaction;
 import lotr.common.fac.LOTRFactionRank;
+import lotr.common.fac.LOTRMapRegion;
 import lotr.common.item.LOTRItemArmor;
+import lotr.common.item.LOTRItemBanner;
 import lotr.common.item.LOTRMaterial;
 import lotr.common.quest.LOTRMiniQuest;
 import lotr.common.quest.LOTRMiniQuestFactory;
 import lotr.common.util.LOTRLog;
 import lotr.common.world.genlayer.LOTRGenLayerWorld;
 import lotr.common.world.map.LOTRRoads;
+import lotr.common.world.map.LOTRWaypoint;
 import lotr.common.world.spawning.LOTRInvasions;
 import lotr.common.world.spawning.LOTRSpawnEntry;
 import lotr.common.world.spawning.LOTRSpawnList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.EnumHelper;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -36,11 +43,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class ReflectionHelper {
-	private ReflectionHelper() {
+public class API {
+	private static int lastBannerId = 52;
+
+	private API() {
 	}
 
 	public static void addControlZone(LOTRFaction faction, LOTRControlZone zone) {
@@ -62,13 +70,13 @@ public class ReflectionHelper {
 	public static void addSpeechBank(String name, boolean rand, List<String> lines) {
 		Class<?> speechBankClass = LOTRSpeech.class.getDeclaredClasses()[0];
 		Object speechBank = findAndInvokeConstructor(new Object[]{name, rand, lines}, speechBankClass, String.class, boolean.class, List.class);
-		Map<String, Object> allSpeechBanks = cpw.mods.fml.relauncher.ReflectionHelper.getPrivateValue(LOTRSpeech.class, null, "allSpeechBanks");
+		Map<String, Object> allSpeechBanks = ReflectionHelper.getPrivateValue(LOTRSpeech.class, null, "allSpeechBanks");
 		allSpeechBanks.put(name, speechBank);
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRSpeech.class, null, allSpeechBanks, "allSpeechBanks");
+		ReflectionHelper.setPrivateValue(LOTRSpeech.class, null, allSpeechBanks, "allSpeechBanks");
 	}
 
 	public static void changeInvasionIcon(LOTRInvasions invasion, Item icon) {
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRInvasions.class, invasion, (Object) icon, "invasionIcon");
+		ReflectionHelper.setPrivateValue(LOTRInvasions.class, invasion, (Object) icon, "invasionIcon");
 	}
 
 	private static <E> E findAndInvokeConstructor(Object[] args, Class<E> clazz, Class<?>... parameterTypes) {
@@ -97,7 +105,7 @@ public class ReflectionHelper {
 	}
 
 	private static <T, E> T findAndInvokeMethod(Object[] args, Class<? super E> clazz, E instance, String[] methodNames, Class<?>... methodTypes) {
-		Method addControlZoneMethod = cpw.mods.fml.relauncher.ReflectionHelper.findMethod(clazz, instance, methodNames, methodTypes);
+		Method addControlZoneMethod = ReflectionHelper.findMethod(clazz, instance, methodNames, methodTypes);
 		try {
 			return (T) addControlZoneMethod.invoke(instance, args);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -128,6 +136,10 @@ public class ReflectionHelper {
 		return modContainer;
 	}
 
+	public static ModContainer getModContainer() {
+		return FMLCommonHandler.instance().findContainerFor(Main.getInstance());
+	}
+
 	private static BufferedImage getImage(InputStream in) {
 		try {
 			return ImageIO.read(in);
@@ -151,7 +163,7 @@ public class ReflectionHelper {
 	}
 
 	public static LOTRCreativeTabs getLOTRCreativeTab(String name) {
-		return cpw.mods.fml.relauncher.ReflectionHelper.getPrivateValue(LOTRCreativeTabs.class, null, name);
+		return ReflectionHelper.getPrivateValue(LOTRCreativeTabs.class, null, name);
 	}
 
 	private static String getPath(ResourceLocation res) {
@@ -168,7 +180,7 @@ public class ReflectionHelper {
 
 	@SideOnly(Side.CLIENT)
 	public static void setClientMapImage(ResourceLocation res) {
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRTextures.class, null, res, "mapTexture");
+		ReflectionHelper.setPrivateValue(LOTRTextures.class, null, res, "mapTexture");
 		ResourceLocation sepiaMapTexture;
 		try {
 			BufferedImage mapImage = getImage(Minecraft.getMinecraft().getResourceManager().getResource(res).getInputStream());
@@ -178,11 +190,11 @@ public class ReflectionHelper {
 			e.printStackTrace();
 			sepiaMapTexture = res;
 		}
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRTextures.class, null, sepiaMapTexture, "sepiaMapTexture");
+		ReflectionHelper.setPrivateValue(LOTRTextures.class, null, sepiaMapTexture, "sepiaMapTexture");
 	}
 
 	public static void setFactionAchievementCategory(LOTRFaction faction, LOTRAchievement.Category category) {
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRFaction.class, faction, category, "achieveCategory");
+		ReflectionHelper.setPrivateValue(LOTRFaction.class, faction, category, "achieveCategory");
 	}
 
 	public static void setMaterialCraftingItem(LOTRMaterial material, Item item) {
@@ -211,7 +223,7 @@ public class ReflectionHelper {
 				biomeImageData[i] = (byte) biomeID.intValue();
 			}
 		}
-		cpw.mods.fml.relauncher.ReflectionHelper.setPrivateValue(LOTRGenLayerWorld.class, null, biomeImageData, "biomeImageData");
+		ReflectionHelper.setPrivateValue(LOTRGenLayerWorld.class, null, biomeImageData, "biomeImageData");
 	}
 
 	public static void setShieldTexture(LOTRShields shield, ResourceLocation resourceLocation) {
@@ -222,5 +234,64 @@ public class ReflectionHelper {
 		} catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e2) {
 			e2.printStackTrace();
 		}
+	}
+
+	public static LOTRAchievement.Category addAchievementCategory(String enumName, LOTRFaction faction) {
+		Class<?>[] classArr = new Class[]{LOTRFaction.class};
+		Object[] args = new Object[]{faction};
+		return EnumHelper.addEnum(LOTRAchievement.Category.class, enumName, classArr, args);
+	}
+
+	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
+		Class<?>[] classArr = new Class[]{LOTRFaction.class};
+		Object[] args = new Object[]{faction};
+		LOTRShields shield = EnumHelper.addEnum(LOTRShields.class, enumName, classArr, args);
+		setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase(Locale.ROOT) + ".png"));
+		return shield;
+	}
+
+	public static LOTRItemBanner.BannerType addBanner(String name, LOTRFaction faction) {
+		int id = lastBannerId++;
+		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(Locale.ROOT), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
+		LOTRItemBanner.BannerType.bannerTypes.add(banner);
+		Map<Integer, LOTRItemBanner.BannerType> map = ReflectionHelper.getPrivateValue(LOTRItemBanner.BannerType.class, null, "bannerForID");
+		map.put(id, banner);
+		return banner;
+	}
+
+	private static LOTRFaction addFaction(String enumName, int color, LOTRDimension dim, LOTRDimension.DimensionRegion region, boolean player, boolean registry, int alignment, LOTRMapRegion mapInfo, Set<LOTRFaction.FactionType> types) {
+		Class<?>[] classArr = new Class[]{Integer.TYPE, LOTRDimension.class, LOTRDimension.DimensionRegion.class, Boolean.TYPE, Boolean.TYPE, Integer.TYPE, LOTRMapRegion.class, EnumSet.class};
+		Object[] args = new Object[]{color, dim, region, player, registry, alignment, mapInfo, types};
+		return EnumHelper.addEnum(LOTRFaction.class, enumName, classArr, args);
+	}
+
+	public static LOTRFaction addFaction(String enumName, int color, LOTRDimension.DimensionRegion region, Set<LOTRFaction.FactionType> types) {
+		return addFaction(enumName, color, LOTRDimension.MIDDLE_EARTH, region, true, true, Integer.MIN_VALUE, null, types);
+	}
+
+	public static LOTRInvasions addInvasion(String enumName, LOTRFaction faction) {
+		return addInvasion(enumName, faction, null);
+	}
+
+	private static LOTRInvasions addInvasion(String enumName, LOTRFaction faction, String subfaction) {
+		Class<?>[] classArr = new Class[]{LOTRFaction.class, String.class};
+		Object[] args = new Object[]{faction, subfaction};
+		return EnumHelper.addEnum(LOTRInvasions.class, enumName, classArr, args);
+	}
+
+	public static LOTRMiniQuestFactory addMiniQuestFactory(String enumName, String name) {
+		Class<?>[] classArr = new Class[]{String.class};
+		Object[] args = new Object[]{name};
+		return EnumHelper.addEnum(LOTRMiniQuestFactory.class, enumName, classArr, args);
+	}
+
+	public static LOTRWaypoint addWaypoint(String name, LOTRWaypoint.Region region, LOTRFaction faction, double d, double e) {
+		return addWaypoint(name, region, faction, d, e, false);
+	}
+
+	private static LOTRWaypoint addWaypoint(String name, LOTRWaypoint.Region region, LOTRFaction faction, double x, double z, boolean hidden) {
+		Class<?>[] classArr = new Class[]{LOTRWaypoint.Region.class, LOTRFaction.class, Double.TYPE, Double.TYPE, Boolean.TYPE};
+		Object[] args = new Object[]{region, faction, x, z, hidden};
+		return EnumHelper.addEnum(LOTRWaypoint.class, name, classArr, args);
 	}
 }

@@ -1,8 +1,8 @@
 package com.github.hummel.drealm.proxy;
 
 import com.github.hummel.drealm.Config;
+import com.github.hummel.drealm.api.API;
 import com.github.hummel.drealm.init.*;
-import com.github.hummel.drealm.util.ReflectionHelper;
 import com.github.hummel.drealm.util.ResourceHelper;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -25,7 +25,7 @@ public interface CommonProxy {
 		Factions.onInit();
 
 		ResourceHelper.loadSpeeechBanks();
-		ReflectionHelper.setCommonMapImage(new ResourceLocation("drealm:map/map.png"));
+		API.setCommonMapImage(new ResourceLocation("drealm:map/map.png"));
 	}
 
 	default void preInit(FMLPreInitializationEvent event) {

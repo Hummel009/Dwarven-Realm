@@ -1,8 +1,7 @@
 package com.github.hummel.drealm.init;
 
+import com.github.hummel.drealm.api.API;
 import com.github.hummel.drealm.entity.*;
-import com.github.hummel.drealm.util.EnumHelper;
-import com.github.hummel.drealm.util.ReflectionHelper;
 import lotr.common.world.spawning.LOTRInvasions;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
@@ -14,8 +13,8 @@ public class Invasions {
 	}
 
 	private static void addInvasionIcons() {
-		ReflectionHelper.changeInvasionIcon(redMountains, Items.hammerRedDwarven);
-		ReflectionHelper.changeInvasionIcon(windMountains, Items.hammerWindDwarven);
+		API.changeInvasionIcon(redMountains, Items.hammerRedDwarven);
+		API.changeInvasionIcon(windMountains, Items.hammerWindDwarven);
 	}
 
 	private static void addInvasionMobs() {
@@ -35,7 +34,7 @@ public class Invasions {
 	}
 
 	private static void setupInvasions() {
-		redMountains = EnumHelper.addInvasion("RED_MOUNTAINS", Factions.redMountains);
-		windMountains = EnumHelper.addInvasion("WIND_MOUNTAINS", Factions.windMountains);
+		redMountains = API.addInvasion("RED_MOUNTAINS", Factions.redMountains);
+		windMountains = API.addInvasion("WIND_MOUNTAINS", Factions.windMountains);
 	}
 }

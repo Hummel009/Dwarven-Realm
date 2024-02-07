@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.util.EnumHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.item.LOTRItemBanner;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
@@ -12,7 +12,7 @@ public class BannerTypes {
 	}
 
 	public static void preInit() {
-		redMountains = EnumHelper.addBanner("red_mountains", Factions.redMountains);
-		windMountains = EnumHelper.addBanner("wind_mountains", Factions.windMountains);
+		redMountains = API.addBanner("red_mountains", Factions.redMountains);
+		windMountains = API.addBanner("wind_mountains", Factions.windMountains);
 	}
 }

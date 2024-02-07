@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.item;
 
-import com.github.hummel.drealm.util.ReflectionHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.item.LOTRItemArmor;
 import lotr.common.item.LOTRMaterial;
 import net.minecraft.entity.Entity;
@@ -17,7 +17,7 @@ public class ItemArmor extends LOTRItemArmor {
 
 	@Override
 	public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type) {
-		StringBuilder texture = new StringBuilder("drealm:armor/").append(ReflectionHelper.getArmorName(this));
+		StringBuilder texture = new StringBuilder("drealm:armor/").append(API.getArmorName(this));
 		if (type != null) {
 			texture.append('_').append(type);
 		}

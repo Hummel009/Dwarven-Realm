@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.util.ReflectionHelper;
+import com.github.hummel.drealm.api.API;
 import lotr.common.LOTRCreativeTabs;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
@@ -14,9 +14,9 @@ public class CreativeTabs {
 	}
 
 	public static void preInit() {
-		tabCombat = ReflectionHelper.getLOTRCreativeTab("tabCombat");
-		tabTools = ReflectionHelper.getLOTRCreativeTab("tabTools");
-		tabMaterials = ReflectionHelper.getLOTRCreativeTab("tabMaterials");
-		tabBlocks = ReflectionHelper.getLOTRCreativeTab("tabBlock");
+		tabCombat = API.getLOTRCreativeTab("tabCombat");
+		tabTools = API.getLOTRCreativeTab("tabTools");
+		tabMaterials = API.getLOTRCreativeTab("tabMaterials");
+		tabBlocks = API.getLOTRCreativeTab("tabBlock");
 	}
 }
