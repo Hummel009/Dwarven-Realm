@@ -1,31 +1,37 @@
 package com.github.hummel.drealm;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
-
-import java.io.File;
 
 @SuppressWarnings({"WeakerAccess", "PublicField"})
 public class Config {
-	private static final String CATEGORY_MISC = "1_misc";
-
 	public static boolean enableTextures14;
 	public static boolean enableRussian;
 
-	private static Configuration config;
+	private static Configuration configuration;
+	private static boolean loaded;
 
 	private Config() {
 	}
 
-	public static void load() {
-		enableTextures14 = config.get(CATEGORY_MISC, "Enable 1.14 Textures", false).getBoolean();
-		enableRussian = config.get(CATEGORY_MISC, "Enable Russian text assets", false).getBoolean();
-		if (config.hasChanged()) {
-			config.save();
+	public static void preInit(FMLPreInitializationEvent event) {
+		if (!loaded) {
+			configuration = new Configuration(event.getSuggestedConfigurationFile());
+			setDefaultValues();
 		}
 	}
 
-	public static void preInit() {
-		config = new Configuration(new File("config", "Dwarven Realm.cfg"));
-		load();
+	private static void setDefaultValues() {
+		try {
+			configuration.load();
+			enableTextures14 = configuration.get("misc", "Enable 1.14 Textures", false).getBoolean();
+			enableRussian = configuration.get("misc", "Enable Russian text assets", false).getBoolean();
+		} catch (Exception e) {
+			FMLLog.severe("Dwarven Realm has a problem loading it's configuration");
+		} finally {
+			configuration.save();
+			loaded = true;
+		}
 	}
 }
