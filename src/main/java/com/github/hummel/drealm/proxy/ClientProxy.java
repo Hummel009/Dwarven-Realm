@@ -2,9 +2,11 @@ package com.github.hummel.drealm.proxy;
 
 import com.github.hummel.drealm.entity.*;
 import com.github.hummel.drealm.listener.ReloadListener;
+import com.github.hummel.drealm.nei.NEIDRIntegrator;
 import com.github.hummel.drealm.render.RenderDwarf;
 import com.github.hummel.drealm.render.RenderDwarfCommander;
 import com.github.hummel.drealm.render.RenderDwarfSmith;
+import com.github.hummel.drealm.util.NeiChecker;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -28,6 +30,8 @@ public class ClientProxy implements CommonProxy {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
+		CommonProxy.super.preInit(event);
+
 		IResourceManagerReloadListener rendererManager = new ReloadListener.Items();
 		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
 		rendererManager.onResourceManagerReload(resourceManager);
@@ -42,5 +46,9 @@ public class ClientProxy implements CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityWindDwarfSmith.class, new RenderDwarfSmith());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWindDwarfCommander.class, new RenderDwarfCommander());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWindDwarfMerchant.class, new RenderDwarfCommander());
+
+		if (NeiChecker.hasNEI()) {
+			NEIDRIntegrator.registerRecipes();
+		}
 	}
 }

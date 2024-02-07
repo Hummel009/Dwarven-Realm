@@ -11,5 +11,6 @@ public class ServerProxy implements CommonProxy {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
+		CommonProxy.super.preInit(event);
 	}
 }
