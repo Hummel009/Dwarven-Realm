@@ -2,7 +2,7 @@ package com.github.hummel.drealm.handler;
 
 import com.github.hummel.drealm.block.BlockTableRedDwarven;
 import com.github.hummel.drealm.block.BlockTableWindDwarven;
-import com.github.hummel.drealm.init.GuiIds;
+import com.github.hummel.drealm.util.GuiIds;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

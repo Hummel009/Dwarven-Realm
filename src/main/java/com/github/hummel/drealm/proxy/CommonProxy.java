@@ -34,6 +34,7 @@ public interface CommonProxy {
 		Waypoints.preInit();
 		BannerTypes.preInit();
 		CreativeTabs.preInit();
+		Materials.preInit();
 		Blocks.preInit();
 		Items.preInit();
 		Foods.preInit();

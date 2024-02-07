@@ -60,29 +60,20 @@ public class Items {
 	}
 
 	public static void preInit() {
-		if (Config.enableTextures14) {
-			bodyRedDwarven = new ItemArmor(Materials.redDwarven14, 1);
-			bodyWindDwarven = new ItemArmor(Materials.windDwarven14, 1);
-			legsRedDwarven = new ItemArmor(Materials.redDwarven14, 2);
-			legsWindDwarven = new ItemArmor(Materials.windDwarven14, 2);
-			bootsRedDwarven = new ItemArmor(Materials.redDwarven14, 3);
-			bootsWindDwarven = new ItemArmor(Materials.windDwarven14, 3);
-			helmetRedDwarven = new ItemArmor(Materials.redDwarven14, 0);
-			helmetWindDwarven = new ItemArmor(Materials.windDwarven14, 0);
-			boarArmorRedDwarven = new LOTRItemMountArmor(Materials.redDwarven14, LOTRItemMountArmor.Mount.BOAR);
-			boarArmorWindDwarven = new LOTRItemMountArmor(Materials.windDwarven14, LOTRItemMountArmor.Mount.BOAR);
-		} else {
-			bodyRedDwarven = new ItemArmor(Materials.redDwarven, 1);
-			bodyWindDwarven = new ItemArmor(Materials.windDwarven, 1);
-			legsRedDwarven = new ItemArmor(Materials.redDwarven, 2);
-			legsWindDwarven = new ItemArmor(Materials.windDwarven, 2);
-			bootsRedDwarven = new ItemArmor(Materials.redDwarven, 3);
-			bootsWindDwarven = new ItemArmor(Materials.windDwarven, 3);
-			helmetRedDwarven = new ItemArmor(Materials.redDwarven, 0);
-			helmetWindDwarven = new ItemArmor(Materials.windDwarven, 0);
-			boarArmorRedDwarven = new LOTRItemMountArmor(Materials.redDwarven, LOTRItemMountArmor.Mount.BOAR);
-			boarArmorWindDwarven = new LOTRItemMountArmor(Materials.windDwarven, LOTRItemMountArmor.Mount.BOAR);
-		}
+		LOTRMaterial redMaterial = Config.enableTextures14 ? Materials.redDwarven14 : Materials.redDwarven;
+		LOTRMaterial windMaterial = Config.enableTextures14 ? Materials.windDwarven14 : Materials.windDwarven;
+
+		bodyRedDwarven = new ItemArmor(redMaterial, 1);
+		bodyWindDwarven = new ItemArmor(windMaterial, 1);
+		legsRedDwarven = new ItemArmor(redMaterial, 2);
+		legsWindDwarven = new ItemArmor(windMaterial, 2);
+		bootsRedDwarven = new ItemArmor(redMaterial, 3);
+		bootsWindDwarven = new ItemArmor(windMaterial, 3);
+		helmetRedDwarven = new ItemArmor(redMaterial, 0);
+		helmetWindDwarven = new ItemArmor(windMaterial, 0);
+		boarArmorRedDwarven = new LOTRItemMountArmor(redMaterial, LOTRItemMountArmor.Mount.BOAR);
+		boarArmorWindDwarven = new LOTRItemMountArmor(windMaterial, LOTRItemMountArmor.Mount.BOAR);
+
 		axeRedDwarven = new LOTRItemAxe(Materials.redDwarven);
 		axeWindDwarven = new LOTRItemAxe(Materials.windDwarven);
 		battleaxeRedDwarven = new LOTRItemBattleaxe(Materials.redDwarven);
@@ -159,12 +150,9 @@ public class Items {
 	private static void registerItem(Item item, String name) {
 		String itemName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
 		String prefix = "drealm:";
+		String postfix = Config.enableTextures14 ? "14" : "";
 		item.setUnlocalizedName(itemName);
-		if (Config.enableTextures14) {
-			item.setTextureName(prefix + itemName + "14");
-		} else {
-			item.setTextureName(prefix + itemName);
-		}
+		item.setTextureName(prefix + itemName + postfix);
 		GameRegistry.registerItem(item, itemName);
 		CONTENT.add(item);
 	}

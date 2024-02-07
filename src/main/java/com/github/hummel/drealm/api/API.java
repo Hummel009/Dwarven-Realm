@@ -47,6 +47,17 @@ import java.util.*;
 
 public class API {
 	private static int lastBannerId = 52;
+	private static boolean setup;
+	private static Method setUses;
+	private static Method setDamage;
+	private static Method setProtection;
+	private static Method setSpeed;
+	private static Method setHarvestLevel;
+	private static Method setEnchantibility;
+	private static Method setCraftingMaterial;
+	private static Method setUndamageable;
+	private static Method setManFlesh;
+	private static Constructor<LOTRMaterial> constructor;
 
 	private API() {
 	}
@@ -293,5 +304,93 @@ public class API {
 		Class<?>[] classArr = new Class[]{LOTRWaypoint.Region.class, LOTRFaction.class, Double.TYPE, Double.TYPE, Boolean.TYPE};
 		Object[] args = new Object[]{region, faction, x, z, hidden};
 		return EnumHelper.addEnum(LOTRWaypoint.class, name, classArr, args);
+	}
+
+	private static LOTRMaterial editLotrMaterial(LOTRMaterial material, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
+		accessLotrMaterial();
+		try {
+			if (uses != -1) {
+				setUses.invoke(material, uses);
+			}
+			if (damage != -1.0f) {
+				setDamage.invoke(material, damage);
+			}
+			if (protection != -1.0f) {
+				setProtection.invoke(material, protection);
+			}
+			if (speed != -1.0f) {
+				setSpeed.invoke(material, speed);
+			}
+			if (harvestLevel != -1) {
+				setHarvestLevel.invoke(material, harvestLevel);
+			}
+			if (enchantability != -1) {
+				setEnchantibility.invoke(material, enchantability);
+			}
+			if (craftingMaterialTool != null && craftingMaterialArmor != null) {
+				setCraftingMaterial.invoke(material, craftingMaterialTool, craftingMaterialArmor);
+			}
+			if (undamageable) {
+				setUndamageable.invoke(material);
+			}
+			if (manFlesh) {
+				setManFlesh.invoke(material);
+			}
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			LOTRLog.logger.error("Failed to edit LOTRMaterial {}", material, e);
+		}
+		return material;
+	}
+
+	public static LOTRMaterial addLotrMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial) {
+		return addLotrMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, false);
+	}
+
+	private static LOTRMaterial addLotrMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterial, boolean manFlesh) {
+		return addLotrMaterial(name, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterial, craftingMaterial, manFlesh, false);
+	}
+
+	private static LOTRMaterial addLotrMaterial(String name, int uses, float damage, float protection, float speed, int harvestLevel, int enchantability, Item craftingMaterialTool, Item craftingMaterialArmor, boolean manFlesh, boolean undamageable) {
+		accessLotrMaterial();
+		LOTRMaterial material = null;
+		try {
+			material = constructor.newInstance(name);
+		} catch (IllegalAccessException | IllegalArgumentException | InstantiationException |
+		         InvocationTargetException e) {
+			LOTRLog.logger.error("Failed to create LOTRMaterial {}", name, e);
+		}
+		return editLotrMaterial(material, uses, damage, protection, speed, harvestLevel, enchantability, craftingMaterialTool, craftingMaterialArmor, manFlesh, undamageable);
+	}
+
+	private static void accessLotrMaterial() {
+		if (setup) {
+			return;
+		}
+		try {
+			Class<LOTRMaterial> clazz = LOTRMaterial.class;
+			constructor = clazz.getDeclaredConstructor(String.class);
+			constructor.setAccessible(true);
+			setUses = clazz.getDeclaredMethod("setUses", Integer.TYPE);
+			setUses.setAccessible(true);
+			setDamage = clazz.getDeclaredMethod("setDamage", Float.TYPE);
+			setDamage.setAccessible(true);
+			setProtection = clazz.getDeclaredMethod("setProtection", Float.TYPE);
+			setProtection.setAccessible(true);
+			setSpeed = clazz.getDeclaredMethod("setSpeed", Float.TYPE);
+			setSpeed.setAccessible(true);
+			setHarvestLevel = clazz.getDeclaredMethod("setHarvestLevel", Integer.TYPE);
+			setHarvestLevel.setAccessible(true);
+			setEnchantibility = clazz.getDeclaredMethod("setEnchantability", Integer.TYPE);
+			setEnchantibility.setAccessible(true);
+			setCraftingMaterial = clazz.getDeclaredMethod("setCraftingItems", Item.class, Item.class);
+			setCraftingMaterial.setAccessible(true);
+			setUndamageable = clazz.getDeclaredMethod("setUndamageable");
+			setUndamageable.setAccessible(true);
+			setManFlesh = clazz.getDeclaredMethod("setManFlesh");
+			setManFlesh.setAccessible(true);
+			setup = true;
+		} catch (NoSuchMethodException | SecurityException e) {
+			LOTRLog.logger.error("Failed to setup LOTRMaterials.", e);
+		}
 	}
 }

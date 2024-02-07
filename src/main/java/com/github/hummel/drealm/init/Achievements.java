@@ -4,9 +4,11 @@ import com.github.hummel.drealm.api.API;
 import lotr.common.LOTRAchievement;
 import lotr.common.LOTRLevelData;
 import lotr.common.LOTRMod;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -72,10 +74,26 @@ public class Achievements {
 	}
 
 	public static void runAchievementCheck(EntityPlayer player) {
-		ItemArmor.ArmorMaterial material = Materials.getFullArmorMaterial(player);
+		ItemArmor.ArmorMaterial material = getFullArmorMaterial(player);
 		if (ARMOR_ACHIEVEMENTS.containsKey(material)) {
 			LOTRLevelData.getData(player).addAchievement(ARMOR_ACHIEVEMENTS.get(material));
 		}
+	}
+
+	private static ItemArmor.ArmorMaterial getFullArmorMaterial(EntityLivingBase entity) {
+		ItemArmor.ArmorMaterial material = null;
+		for (int i = 1; i <= 4; ++i) {
+			ItemStack item = entity.getEquipmentInSlot(i);
+			if (item == null || !(item.getItem() instanceof ItemArmor)) {
+				return null;
+			}
+			ItemArmor.ArmorMaterial itemMaterial = ((ItemArmor) item.getItem()).getArmorMaterial();
+			if (material != null && itemMaterial != material) {
+				return null;
+			}
+			material = itemMaterial;
+		}
+		return material;
 	}
 
 	@SuppressWarnings({"WeakerAccess", "PublicField"})

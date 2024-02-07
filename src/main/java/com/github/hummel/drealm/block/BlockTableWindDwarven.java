@@ -3,7 +3,7 @@ package com.github.hummel.drealm.block;
 import com.github.hummel.drealm.Main;
 import com.github.hummel.drealm.init.Blocks;
 import com.github.hummel.drealm.init.Factions;
-import com.github.hummel.drealm.init.GuiIds;
+import com.github.hummel.drealm.util.GuiIds;
 import com.github.hummel.drealm.init.Recipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
