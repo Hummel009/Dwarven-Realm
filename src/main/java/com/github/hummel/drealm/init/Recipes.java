@@ -1,6 +1,5 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.item.ItemBanner;
 import cpw.mods.fml.common.registry.GameRegistry;
 import lotr.common.LOTRMod;
 import lotr.common.recipe.LOTRRecipePoisonWeapon;
@@ -60,7 +59,7 @@ public class Recipes {
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Items.throwingAxeRedDwarven), " X ", " YX", "Y  ", 'X', Items.redDwarfSteel, 'Y', STICK_WOOD));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Blocks.chandelier, 0, 8), " X ", "YZY", 'X', STICK_WOOD, 'Y', net.minecraft.init.Blocks.torch, 'Z', Items.redDwarfSteel));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Items.mattockRedDwarven), "XXX", "XY ", " Y ", 'X', Items.redDwarfSteel, 'Y', STICK_WOOD));
-		redMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.banner, 1, ItemBanner.redMountains.bannerID), "X", "Y", "Z", 'X', net.minecraft.init.Blocks.wool, 'Y', STICK_WOOD, 'Z', PLANK_WOOD));
+		redMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.banner, 1, BannerTypes.redMountains.bannerID), "X", "Y", "Z", 'X', net.minecraft.init.Blocks.wool, 'Y', STICK_WOOD, 'Z', PLANK_WOOD));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Items.spearRedDwarven), "  X", " Y ", "Y  ", 'X', Items.redDwarfSteel, 'Y', STICK_WOOD));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Blocks.redDwarfBars, 16), "XXX", "XXX", 'X', Items.redDwarfSteel));
 		redMountains.add(new ShapedOreRecipe(new ItemStack(Items.boarArmorRedDwarven), "X  ", "XYX", "XXX", 'X', Items.redDwarfSteel, 'Y', net.minecraft.init.Items.leather));
@@ -118,7 +117,7 @@ public class Recipes {
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Items.throwingAxeWindDwarven), " X ", " YX", "Y  ", 'X', Items.windDwarfSteel, 'Y', STICK_WOOD));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Blocks.chandelier, 1, 8), " X ", "YZY", 'X', STICK_WOOD, 'Y', net.minecraft.init.Blocks.torch, 'Z', Items.windDwarfSteel));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Items.mattockWindDwarven), "XXX", "XY ", " Y ", 'X', Items.windDwarfSteel, 'Y', STICK_WOOD));
-		windMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.banner, 1, ItemBanner.redMountains.bannerID), "X", "Y", "Z", 'X', net.minecraft.init.Blocks.wool, 'Y', STICK_WOOD, 'Z', PLANK_WOOD));
+		windMountains.add(new ShapedOreRecipe(new ItemStack(LOTRMod.banner, 1, BannerTypes.redMountains.bannerID), "X", "Y", "Z", 'X', net.minecraft.init.Blocks.wool, 'Y', STICK_WOOD, 'Z', PLANK_WOOD));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Items.spearWindDwarven), "  X", " Y ", "Y  ", 'X', Items.windDwarfSteel, 'Y', STICK_WOOD));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Blocks.windDwarfBars, 16), "XXX", "XXX", 'X', Items.windDwarfSteel));
 		windMountains.add(new ShapedOreRecipe(new ItemStack(Items.boarArmorWindDwarven), "X  ", "XYX", "XXX", 'X', Items.windDwarfSteel, 'Y', net.minecraft.init.Items.leather));

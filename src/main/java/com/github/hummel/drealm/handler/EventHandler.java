@@ -17,36 +17,38 @@ import net.minecraft.world.World;
 public class EventHandler {
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if ("com/github/hummel/drealm".equals(event.modID)) {
+		if ("drealm".equals(event.modID)) {
 			Config.load();
 		}
 	}
 
 	@SubscribeEvent
 	public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
-		EntityPlayer player = event.player;
-		World world = player.worldObj;
+		EntityPlayer entityPlayer = event.player;
+		World world = entityPlayer.worldObj;
 		if (world.isRemote) {
 			return;
 		}
-		Container container = player.openContainer;
+		Container container = entityPlayer.openContainer;
 		if (container instanceof BlockTableRedDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(Achievements.useRedDwarvenTable);
+			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.useRedDwarvenTable);
 		} else if (container instanceof BlockTableWindDwarven.Container) {
-			LOTRLevelData.getData(player).addAchievement(Achievements.useWindDwarvenTable);
+			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.useWindDwarvenTable);
 		}
 	}
 
 	@SubscribeEvent
 	public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
-		EntityPlayer entityplayer = event.player;
-		ItemStack itemstack = event.smelting;
-		if (!entityplayer.worldObj.isRemote) {
-			if (itemstack.getItem() == Items.redDwarfSteel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(Achievements.smeltRedDwarfSteel);
-			} else if (itemstack.getItem() == Items.windDwarfSteel) {
-				LOTRLevelData.getData(entityplayer).addAchievement(Achievements.smeltWindDwarfSteel);
-			}
+		EntityPlayer entityPlayer = event.player;
+		World world = entityPlayer.worldObj;
+		if (world.isRemote) {
+			return;
+		}
+		ItemStack itemStack = event.smelting;
+		if (itemStack.getItem() == Items.redDwarfSteel) {
+			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.smeltRedDwarfSteel);
+		} else if (itemStack.getItem() == Items.windDwarfSteel) {
+			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.smeltWindDwarfSteel);
 		}
 	}
 }

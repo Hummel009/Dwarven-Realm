@@ -4,9 +4,9 @@ import com.github.hummel.drealm.entity.EntityRedDwarf;
 import com.github.hummel.drealm.entity.EntityRedDwarfAxeThrower;
 import com.github.hummel.drealm.entity.EntityRedDwarfCommander;
 import com.github.hummel.drealm.entity.EntityRedDwarfWarrior;
+import com.github.hummel.drealm.init.BannerTypes;
 import com.github.hummel.drealm.init.Blocks;
 import com.github.hummel.drealm.init.ChestContents;
-import com.github.hummel.drealm.item.ItemBanner;
 import lotr.common.LOTRFoods;
 import lotr.common.LOTRMod;
 import lotr.common.entity.LOTREntityNPCRespawner;
@@ -223,7 +223,7 @@ public class StructureRedMountainsStronghold extends LOTRWorldGenStructureBase {
 		setBlockAndNotifyAdequately(world, i - 7, j + 3, k, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i - 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i - 7, j + 4, k, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i - 6, j + 6, k, 1, ItemBanner.redMountains);
+		placeWallBanner(world, i - 6, j + 6, k, 1, BannerTypes.redMountains);
 		int k13;
 		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
@@ -389,7 +389,7 @@ public class StructureRedMountainsStronghold extends LOTRWorldGenStructureBase {
 		setBlockAndNotifyAdequately(world, i, j + 3, k + 7, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k + 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k + 7, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i, j + 6, k + 6, 0, ItemBanner.redMountains);
+		placeWallBanner(world, i, j + 6, k + 6, 0, BannerTypes.redMountains);
 		int i1;
 		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
@@ -555,7 +555,7 @@ public class StructureRedMountainsStronghold extends LOTRWorldGenStructureBase {
 		setBlockAndNotifyAdequately(world, i, j + 3, k - 7, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 1, j + 3, k - 7, LOTRMod.stairsDwarvenBrick, 1);
 		setBlockAndNotifyAdequately(world, i, j + 4, k - 7, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i, j + 6, k - 6, 2, ItemBanner.redMountains);
+		placeWallBanner(world, i, j + 6, k - 6, 2, BannerTypes.redMountains);
 		int i1;
 		int k1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {
@@ -721,7 +721,7 @@ public class StructureRedMountainsStronghold extends LOTRWorldGenStructureBase {
 		setBlockAndNotifyAdequately(world, i + 7, j + 3, k, LOTRMod.brick3, 12);
 		setBlockAndNotifyAdequately(world, i + 7, j + 3, k + 1, LOTRMod.stairsDwarvenBrick, 3);
 		setBlockAndNotifyAdequately(world, i + 7, j + 4, k, LOTRMod.slabSingle, 7);
-		placeWallBanner(world, i + 6, j + 6, k, 3, ItemBanner.redMountains);
+		placeWallBanner(world, i + 6, j + 6, k, 3, BannerTypes.redMountains);
 		int k13;
 		int i1;
 		for (j12 = j + 1; j12 <= j + 3; ++j12) {

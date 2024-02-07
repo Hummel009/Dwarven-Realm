@@ -2,7 +2,6 @@ package com.github.hummel.drealm.util;
 
 import com.github.hummel.drealm.Config;
 import com.github.hummel.drealm.Main;
-import com.github.hummel.drealm.api.API;
 import com.google.common.base.Charsets;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.ModContainer;
@@ -18,11 +17,11 @@ import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class SpeechHelper {
-	private SpeechHelper() {
+public class ResourceHelper {
+	private ResourceHelper() {
 	}
 
-	public static void onInit() {
+	public static void loadSpeeechBanks() {
 		Map<String, BufferedReader> speechBankNamesAndReaders = new HashMap<>();
 		ZipFile zip = null;
 		String addition = Config.enableRussian ? "rus/" : "eng/";
@@ -95,9 +94,9 @@ public class SpeechHelper {
 					continue;
 				}
 				if (random) {
-					API.addSpeechBank(speechBankName.getKey(), true, speeches);
+					ReflectionHelper.addSpeechBank(speechBankName.getKey(), true, speeches);
 				} else {
-					API.addSpeechBank(speechBankName.getKey(), false, allLines);
+					ReflectionHelper.addSpeechBank(speechBankName.getKey(), false, allLines);
 				}
 			} catch (Exception e) {
 				FMLLog.severe("Failed to load Dwarven Realm speech bank " + speechBankName.getKey());

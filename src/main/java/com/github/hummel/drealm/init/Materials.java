@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.api.API;
+import com.github.hummel.drealm.util.ReflectionHelper;
 import lotr.common.item.LOTRMaterial;
 import lotr.common.util.LOTRLog;
 import net.minecraft.entity.EntityLivingBase;
@@ -108,10 +108,10 @@ public class Materials {
 	}
 
 	public static void onInit() {
-		API.setMaterialCraftingItem(redDwarven, Items.redDwarfSteel);
-		API.setMaterialCraftingItem(windDwarven, Items.windDwarfSteel);
-		API.setMaterialCraftingItem(redDwarven14, Items.redDwarfSteel);
-		API.setMaterialCraftingItem(windDwarven14, Items.windDwarfSteel);
+		ReflectionHelper.setMaterialCraftingItem(redDwarven, Items.redDwarfSteel);
+		ReflectionHelper.setMaterialCraftingItem(windDwarven, Items.windDwarfSteel);
+		ReflectionHelper.setMaterialCraftingItem(redDwarven14, Items.redDwarfSteel);
+		ReflectionHelper.setMaterialCraftingItem(windDwarven14, Items.windDwarfSteel);
 	}
 
 	private static void setup() {

@@ -1,6 +1,6 @@
 package com.github.hummel.drealm.entity;
 
-import com.github.hummel.drealm.item.ItemBanner;
+import com.github.hummel.drealm.init.BannerTypes;
 import lotr.common.entity.npc.LOTRBannerBearer;
 import lotr.common.item.LOTRItemBanner;
 import net.minecraft.world.World;
@@ -12,6 +12,6 @@ public class EntityWindDwarfBannerBearer extends EntityWindDwarfWarrior implemen
 
 	@Override
 	public LOTRItemBanner.BannerType getBannerType() {
-		return ItemBanner.windMountains;
+		return BannerTypes.windMountains;
 	}
 }

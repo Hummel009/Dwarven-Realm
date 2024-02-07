@@ -1,7 +1,7 @@
 package com.github.hummel.drealm.init;
 
-import com.github.hummel.drealm.api.API;
 import com.github.hummel.drealm.entity.*;
+import com.github.hummel.drealm.util.ReflectionHelper;
 import lotr.common.world.spawning.LOTRSpawnEntry;
 import lotr.common.world.spawning.LOTRSpawnList;
 
@@ -14,7 +14,7 @@ public class SpawnLists {
 	}
 
 	public static void onInit() {
-		redDwarves = API.addLotrSpawnList(new LOTRSpawnEntry(EntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(EntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(EntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(EntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(EntityRedDwarfFireThrower.class, 10, 4, 4));
-		windDwarves = API.addLotrSpawnList(new LOTRSpawnEntry(EntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(EntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(EntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(EntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(EntityWindDwarfCrossbower.class, 10, 4, 4));
+		redDwarves = ReflectionHelper.addLotrSpawnList(new LOTRSpawnEntry(EntityRedDwarf.class, 100, 4, 4), new LOTRSpawnEntry(EntityRedDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(EntityRedDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(EntityRedDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(EntityRedDwarfFireThrower.class, 10, 4, 4));
+		windDwarves = ReflectionHelper.addLotrSpawnList(new LOTRSpawnEntry(EntityWindDwarf.class, 100, 4, 4), new LOTRSpawnEntry(EntityWindDwarfMiner.class, 15, 1, 3), new LOTRSpawnEntry(EntityWindDwarfWarrior.class, 20, 4, 4), new LOTRSpawnEntry(EntityWindDwarfAxeThrower.class, 10, 4, 4), new LOTRSpawnEntry(EntityWindDwarfCrossbower.class, 10, 4, 4));
 	}
 }

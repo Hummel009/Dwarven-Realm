@@ -1,7 +1,7 @@
 package com.github.hummel.drealm.listener;
 
-import com.github.hummel.drealm.api.API;
 import com.github.hummel.drealm.render.RenderLargeItem;
+import com.github.hummel.drealm.util.ReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import lotr.client.render.item.LOTRRenderBow;
 import lotr.client.render.item.LOTRRenderCrossbow;
@@ -25,7 +25,7 @@ public class ReloadListener {
 	public static class Map implements IResourceManagerReloadListener {
 		@Override
 		public void onResourceManagerReload(IResourceManager resourceManager) {
-			API.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
+			ReflectionHelper.setClientMapImage(new ResourceLocation("drealm:map/map.png"));
 		}
 	}
 
