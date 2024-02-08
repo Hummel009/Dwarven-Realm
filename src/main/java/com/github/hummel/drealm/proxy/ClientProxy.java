@@ -19,8 +19,6 @@ import net.minecraftforge.common.MinecraftForge;
 public class ClientProxy implements CommonProxy {
 	@Override
 	public void onInit(FMLInitializationEvent event) {
-		CommonProxy.super.onInit(event);
-
 		IResourceManagerReloadListener rendererManager = new ReloadListener.Map();
 		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
 		rendererManager.onResourceManagerReload(resourceManager);
@@ -30,8 +28,6 @@ public class ClientProxy implements CommonProxy {
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		CommonProxy.super.preInit(event);
-
 		IResourceManagerReloadListener rendererManager = new ReloadListener.Items();
 		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
 		rendererManager.onResourceManagerReload(resourceManager);
