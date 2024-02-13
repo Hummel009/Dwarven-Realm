@@ -6,6 +6,7 @@ import com.github.hummel.drealm.handler.GuiHandler;
 import com.github.hummel.drealm.init.*;
 import com.github.hummel.drealm.proxy.CommonProxy;
 import com.github.hummel.drealm.util.ResourceHelper;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -30,9 +31,11 @@ public class Main {
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
-		EventBus eventBus = MinecraftForge.EVENT_BUS;
+		EventBus fmlEventBus = FMLCommonHandler.instance().bus();
+		EventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 		EventHandler eventHandler = new EventHandler();
-		eventBus.register(eventHandler);
+		forgeEventBus.register(eventHandler);
+		fmlEventBus.register(eventHandler);
 
 		Materials.onInit();
 		ChestContents.onInit();
