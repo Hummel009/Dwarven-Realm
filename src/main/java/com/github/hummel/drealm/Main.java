@@ -3,15 +3,14 @@ package com.github.hummel.drealm;
 import com.github.hummel.drealm.api.API;
 import com.github.hummel.drealm.handler.EventHandler;
 import com.github.hummel.drealm.handler.GuiHandler;
-import com.github.hummel.drealm.handler.TickHandler;
 import com.github.hummel.drealm.init.*;
 import com.github.hummel.drealm.proxy.CommonProxy;
 import com.github.hummel.drealm.util.ResourceHelper;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.EventBus;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -31,10 +30,9 @@ public class Main {
 
 	@Mod.EventHandler
 	public void onInit(FMLInitializationEvent event) {
-		TickHandler tickHandler = new TickHandler();
-
-		MinecraftForge.EVENT_BUS.register(tickHandler);
-		FMLCommonHandler.instance().bus().register(tickHandler);
+		EventBus eventBus = MinecraftForge.EVENT_BUS;
+		EventHandler eventHandler = new EventHandler();
+		eventBus.register(eventHandler);
 
 		Materials.onInit();
 		ChestContents.onInit();
@@ -58,12 +56,9 @@ public class Main {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		NetworkRegistry networkRegistry = NetworkRegistry.INSTANCE;
 		IGuiHandler guiHandler = new GuiHandler();
-		EventHandler eventHandler = new EventHandler();
-
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
-		MinecraftForge.EVENT_BUS.register(eventHandler);
-		FMLCommonHandler.instance().bus().register(eventHandler);
+		networkRegistry.registerGuiHandler(this, guiHandler);
 
 		Config.preInit(event);
 

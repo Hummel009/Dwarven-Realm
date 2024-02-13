@@ -14,25 +14,22 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
-import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy implements CommonProxy {
 	@Override
 	public void onInit(FMLInitializationEvent event) {
-		IResourceManagerReloadListener rendererManager = new ReloadListener.Map();
+		IResourceManagerReloadListener reloadListener = new ReloadListener.Map();
 		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
-		rendererManager.onResourceManagerReload(resourceManager);
-		((IReloadableResourceManager) resourceManager).registerReloadListener(rendererManager);
-		MinecraftForge.EVENT_BUS.register(rendererManager);
+		reloadListener.onResourceManagerReload(resourceManager);
+		((IReloadableResourceManager) resourceManager).registerReloadListener(reloadListener);
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-		IResourceManagerReloadListener rendererManager = new ReloadListener.Items();
+		IResourceManagerReloadListener reloadListener = new ReloadListener.Items();
 		IResourceManager resourceManager = Minecraft.getMinecraft().getResourceManager();
-		rendererManager.onResourceManagerReload(resourceManager);
-		((IReloadableResourceManager) resourceManager).registerReloadListener(rendererManager);
-		MinecraftForge.EVENT_BUS.register(rendererManager);
+		reloadListener.onResourceManagerReload(resourceManager);
+		((IReloadableResourceManager) resourceManager).registerReloadListener(reloadListener);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityRedDwarf.class, new RenderDwarf());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRedDwarfSmith.class, new RenderDwarfSmith());
