@@ -35,7 +35,7 @@ public class FmlEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onCrafting(PlayerEvent.ItemCraftedEvent event) {
+	public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
 		EntityPlayer entityPlayer = event.player;
 		World world = entityPlayer.worldObj;
 		if (world.isRemote) {
@@ -50,7 +50,7 @@ public class FmlEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onSmelting(PlayerEvent.ItemSmeltedEvent event) {
+	public void onItemSmelted(PlayerEvent.ItemSmeltedEvent event) {
 		EntityPlayer entityPlayer = event.player;
 		World world = entityPlayer.worldObj;
 		if (world.isRemote) {
