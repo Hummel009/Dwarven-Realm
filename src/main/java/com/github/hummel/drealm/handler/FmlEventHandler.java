@@ -5,21 +5,17 @@ import com.github.hummel.drealm.block.BlockTableWindDwarven;
 import com.github.hummel.drealm.init.Achievements;
 import com.github.hummel.drealm.init.Items;
 import com.github.hummel.drealm.item.ItemStructureSpawner;
-import com.github.hummel.drealm.listener.ReloadListener;
-import com.github.hummel.drealm.render.RenderLargeItem;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import lotr.common.LOTRLevelData;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.DimensionManager;
 
-public class EventHandler {
+public class FmlEventHandler {
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
@@ -65,16 +61,6 @@ public class EventHandler {
 			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.smeltRedDwarfSteel);
 		} else if (itemStack.getItem() == Items.windDwarfSteel) {
 			LOTRLevelData.getData(entityPlayer).addAchievement(Achievements.smeltWindDwarfSteel);
-		}
-	}
-
-	@SubscribeEvent
-	public void preTextureStitch(TextureStitchEvent.Pre event) {
-		TextureMap map = event.map;
-		if (map.getTextureType() == 1) {
-			for (RenderLargeItem largeRenderer : ReloadListener.Items.LARGE_ITEM_RENDERERS) {
-				largeRenderer.registerIcons(map);
-			}
 		}
 	}
 }
