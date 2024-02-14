@@ -148,7 +148,7 @@ public class API {
 	}
 
 	public static ModContainer getModContainer() {
-		return FMLCommonHandler.instance().findContainerFor(Main.getInstance());
+		return FMLCommonHandler.instance().findContainerFor(Main.instance);
 	}
 
 	private static BufferedImage getImage(InputStream in) {

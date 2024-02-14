@@ -46,7 +46,7 @@ public class BlockTableWindDwarven extends LOTRBlockCraftingTable {
 		boolean hasRequiredAlignment = LOTRLevelData.getData(entityplayer).getAlignment(tableFaction) >= 1.0f;
 		if (hasRequiredAlignment) {
 			if (!world.isRemote) {
-				entityplayer.openGui(Main.getInstance(), tableGUIID, world, i, j, k);
+				entityplayer.openGui(Main.instance, tableGUIID, world, i, j, k);
 			}
 		} else {
 			for (int l = 0; l < 8; ++l) {

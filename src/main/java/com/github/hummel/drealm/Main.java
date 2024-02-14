@@ -18,20 +18,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
+@SuppressWarnings({"PublicField", "WeakerAccess"})
 @Mod(modid = "drealm", dependencies = "required-after:lotr", useMetadata = true)
 public class Main {
 	@Mod.Instance("drealm")
-	private static Main instance;
+	public static Main instance;
 
 	@SidedProxy(clientSide = "com.github.hummel.drealm.proxy.ClientProxy", serverSide = "com.github.hummel.drealm.proxy.ServerProxy")
-	private static CommonProxy proxy;
+	public static CommonProxy proxy;
 
-	public static Main getInstance() {
-		return instance;
-	}
-
-	@Mod.EventHandler
-	public void onInit(FMLInitializationEvent event) {
+	public Main() {
 		EventBus fmlEventBus = FMLCommonHandler.instance().bus();
 		FmlEventHandler fmlEventHandler = new FmlEventHandler();
 		fmlEventBus.register(fmlEventHandler);
@@ -39,25 +35,6 @@ public class Main {
 		EventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 		ForgeEventHandler forgeEventHandler = new ForgeEventHandler();
 		forgeEventBus.register(forgeEventHandler);
-
-		Materials.onInit();
-		ChestContents.onInit();
-		Invasions.onInit();
-		SpawnLists.onInit();
-		Biomes.onInit();
-		Recipes.onInit();
-		Achievements.onInit();
-		Roads.onInit();
-		TradeEntries.onInit();
-		UnitTradeEntries.onInit();
-		Structures.onInit();
-		MiniQuests.onInit();
-		Factions.onInit();
-
-		ResourceHelper.loadSpeeechBanks();
-		API.setCommonMapImage(new ResourceLocation("drealm:map/map.png"));
-
-		proxy.onInit(event);
 	}
 
 	@Mod.EventHandler
@@ -80,5 +57,27 @@ public class Main {
 		Shields.preInit();
 
 		proxy.preInit(event);
+	}
+
+	@Mod.EventHandler
+	public void onInit(FMLInitializationEvent event) {
+		Materials.onInit();
+		ChestContents.onInit();
+		Invasions.onInit();
+		SpawnLists.onInit();
+		Biomes.onInit();
+		Recipes.onInit();
+		Achievements.onInit();
+		Roads.onInit();
+		TradeEntries.onInit();
+		UnitTradeEntries.onInit();
+		Structures.onInit();
+		MiniQuests.onInit();
+		Factions.onInit();
+
+		ResourceHelper.loadSpeeechBanks();
+		API.setCommonMapImage(new ResourceLocation("drealm:map/map.png"));
+
+		proxy.onInit(event);
 	}
 }
