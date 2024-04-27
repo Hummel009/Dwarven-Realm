@@ -16,6 +16,7 @@ import java.util.Map;
 @SuppressWarnings({"WeakerAccess", "PublicField"})
 public class Achievements {
 	private static final Map<ItemArmor.ArmorMaterial, LOTRAchievement> ARMOR_ACHIEVEMENTS = new EnumMap<>(ItemArmor.ArmorMaterial.class);
+
 	public static LOTRAchievement tradeRedDwarfSmith;
 	public static LOTRAchievement tradeRedDwarfMiner;
 	public static LOTRAchievement tradeRedDwarfCommander;

@@ -27,7 +27,7 @@ public class RenderDwarf extends LOTRRenderBiped {
 	private static final LOTRRandomSkins WIND_DWARF_SKINS_MALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_male");
 	private static final LOTRRandomSkins WIND_DWARF_SKINS_FEMALE = LOTRRandomSkins.loadSkinsList("drealm:mob/dwarf/windMountains_female");
 
-	protected ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
+	protected final ModelBiped standardRenderPassModel = new LOTRModelDwarf(0.5f, 64, 64);
 
 	public RenderDwarf() {
 		super(new LOTRModelDwarf(), 0.5f);

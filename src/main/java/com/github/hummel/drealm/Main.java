@@ -60,6 +60,7 @@ public class Main {
 	}
 
 	@Mod.EventHandler
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onInit(FMLInitializationEvent event) {
 		Materials.onInit();
 		ChestContents.onInit();

@@ -40,6 +40,7 @@ public class EntityRedDwarfAxeThrower extends EntityRedDwarfWarrior {
 	}
 
 	@Override
+	@SuppressWarnings("ClassEscapesDefinedScope")
 	public void onAttackModeChange(LOTREntityNPC.AttackMode mode, boolean mounted) {
 		if (mode == LOTREntityNPC.AttackMode.IDLE) {
 			setCurrentItemOrArmor(0, npcItemsInv.getIdleItem());

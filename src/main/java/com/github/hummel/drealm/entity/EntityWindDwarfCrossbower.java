@@ -39,6 +39,7 @@ public class EntityWindDwarfCrossbower extends EntityWindDwarfWarrior {
 	}
 
 	@Override
+	@SuppressWarnings("ClassEscapesDefinedScope")
 	public void onAttackModeChange(LOTREntityNPC.AttackMode mode, boolean mounted) {
 		if (mode == LOTREntityNPC.AttackMode.IDLE) {
 			tasks.removeTask(meleeAttackAI);

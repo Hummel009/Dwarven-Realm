@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 public class ForgeEventHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("MethodMayBeStatic")
 	public void preTextureStitch(TextureStitchEvent.Pre event) {
 		TextureMap map = event.map;
 		if (map.getTextureType() == 1) {

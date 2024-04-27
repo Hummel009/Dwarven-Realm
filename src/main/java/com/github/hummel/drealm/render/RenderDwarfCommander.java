@@ -12,7 +12,7 @@ public class RenderDwarfCommander extends RenderDwarf {
 
 	private final LOTRModelDwarf cloakModel = new LOTRModelDwarf(1.5f);
 
-	private ResourceLocation getCloakTexture(EntityLivingBase entity) {
+	private static ResourceLocation getCloakTexture(EntityLivingBase entity) {
 		return entity instanceof LOTREntityBlueDwarf ? BLUE_CLOAK : CLOAK;
 	}
 

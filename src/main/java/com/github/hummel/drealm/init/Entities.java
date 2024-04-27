@@ -4,12 +4,12 @@ import com.github.hummel.drealm.entity.*;
 import lotr.common.entity.LOTREntities;
 
 public class Entities {
-	private static int id = 3000;
-
 	private Entities() {
 	}
 
+	@SuppressWarnings({"ValueOfIncrementOrDecrementUsed", "UnusedAssignment"})
 	public static void preInit() {
+		int id = 3000;
 		LOTREntities.registerCreature(EntityRedDwarf.class, "RedDwarf", id++, 0x570000, 0x570000);
 		LOTREntities.registerCreature(EntityRedDwarfWarrior.class, "RedDwarfWarrior", id++, 0x570000, 0x570000);
 		LOTREntities.registerCreature(EntityRedDwarfAxeThrower.class, "RedDwarfAxeThrower", id++, 0x570000, 0x570000);

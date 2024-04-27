@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockChandelier extends Block {
-	private final String[] chandelierNames = new String[]{"redDwarven", "windDwarven"};
+	private final String[] chandelierNames = {"redDwarven", "windDwarven"};
 	@SideOnly(Side.CLIENT)
 	private IIcon[] chandelierIcons;
 
@@ -30,7 +30,7 @@ public class BlockChandelier extends Block {
 		setCreativeTab(LOTRCreativeTabs.tabDeco);
 		setHardness(0.0f);
 		setResistance(2.0f);
-		setStepSound(Block.soundTypeMetal);
+		setStepSound(soundTypeMetal);
 		setLightLevel(0.9375f);
 		setBlockBounds(0.0625f, 0.1875f, 0.0625f, 0.9375f, 1.0f, 0.9375f);
 	}

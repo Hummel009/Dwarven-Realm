@@ -12,7 +12,6 @@ import lotr.common.LOTRLevelData;
 import lotr.common.block.LOTRBlockCraftingTable;
 import lotr.common.fac.LOTRAlignmentValues;
 import lotr.common.inventory.LOTRContainerCraftingTable;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +25,7 @@ public class BlockTableWindDwarven extends LOTRBlockCraftingTable {
 
 	public BlockTableWindDwarven() {
 		super(Material.rock, Factions.windMountains, GuiIds.WIND_DWARVEN.ordinal());
-		setStepSound(Block.soundTypeStone);
+		setStepSound(soundTypeStone);
 	}
 
 	@Override
@@ -73,7 +72,7 @@ public class BlockTableWindDwarven extends LOTRBlockCraftingTable {
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(inv, world, i, j, k, Recipes.windMountains, Blocks.windDwarvenTable);
+			super(inv, world, i, j, k, Recipes.WIND_MOUNTAINS, Blocks.windDwarvenTable);
 		}
 	}
 

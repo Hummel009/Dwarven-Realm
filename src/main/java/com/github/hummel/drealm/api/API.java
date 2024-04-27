@@ -249,20 +249,21 @@ public class API {
 
 	public static LOTRAchievement.Category addAchievementCategory(String enumName, LOTRFaction faction) {
 		Class<?>[] classArr = new Class[]{LOTRFaction.class};
-		Object[] args = new Object[]{faction};
+		Object[] args = {faction};
 		return EnumHelper.addEnum(LOTRAchievement.Category.class, enumName, classArr, args);
 	}
 
 	public static LOTRShields addAlignmentShield(String enumName, LOTRFaction faction) {
 		Class<?>[] classArr = new Class[]{LOTRFaction.class};
-		Object[] args = new Object[]{faction};
+		Object[] args = {faction};
 		LOTRShields shield = EnumHelper.addEnum(LOTRShields.class, enumName, classArr, args);
 		setShieldTexture(shield, new ResourceLocation("drealm", "shield/" + shield.name().toLowerCase(Locale.ROOT) + ".png"));
 		return shield;
 	}
 
 	public static LOTRItemBanner.BannerType addBanner(String name, LOTRFaction faction) {
-		int id = lastBannerId++;
+		int id = lastBannerId;
+		lastBannerId++;
 		LOTRItemBanner.BannerType banner = EnumHelper.addEnum(LOTRItemBanner.BannerType.class, name.toUpperCase(Locale.ROOT), new Class[]{Integer.TYPE, String.class, LOTRFaction.class}, new Object[]{id, name, faction});
 		LOTRItemBanner.BannerType.bannerTypes.add(banner);
 		Map<Integer, LOTRItemBanner.BannerType> map = ReflectionHelper.getPrivateValue(LOTRItemBanner.BannerType.class, null, "bannerForID");
@@ -272,7 +273,7 @@ public class API {
 
 	private static LOTRFaction addFaction(String enumName, int color, LOTRDimension dim, LOTRDimension.DimensionRegion region, boolean player, boolean registry, int alignment, LOTRMapRegion mapInfo, Set<LOTRFaction.FactionType> types) {
 		Class<?>[] classArr = new Class[]{Integer.TYPE, LOTRDimension.class, LOTRDimension.DimensionRegion.class, Boolean.TYPE, Boolean.TYPE, Integer.TYPE, LOTRMapRegion.class, EnumSet.class};
-		Object[] args = new Object[]{color, dim, region, player, registry, alignment, mapInfo, types};
+		Object[] args = {color, dim, region, player, registry, alignment, mapInfo, types};
 		return EnumHelper.addEnum(LOTRFaction.class, enumName, classArr, args);
 	}
 
@@ -286,13 +287,13 @@ public class API {
 
 	private static LOTRInvasions addInvasion(String enumName, LOTRFaction faction, String subfaction) {
 		Class<?>[] classArr = new Class[]{LOTRFaction.class, String.class};
-		Object[] args = new Object[]{faction, subfaction};
+		Object[] args = {faction, subfaction};
 		return EnumHelper.addEnum(LOTRInvasions.class, enumName, classArr, args);
 	}
 
 	public static LOTRMiniQuestFactory addMiniQuestFactory(String enumName, String name) {
 		Class<?>[] classArr = new Class[]{String.class};
-		Object[] args = new Object[]{name};
+		Object[] args = {name};
 		return EnumHelper.addEnum(LOTRMiniQuestFactory.class, enumName, classArr, args);
 	}
 
@@ -302,7 +303,7 @@ public class API {
 
 	private static LOTRWaypoint addWaypoint(String name, LOTRWaypoint.Region region, LOTRFaction faction, double x, double z, boolean hidden) {
 		Class<?>[] classArr = new Class[]{LOTRWaypoint.Region.class, LOTRFaction.class, Double.TYPE, Double.TYPE, Boolean.TYPE};
-		Object[] args = new Object[]{region, faction, x, z, hidden};
+		Object[] args = {region, faction, x, z, hidden};
 		return EnumHelper.addEnum(LOTRWaypoint.class, name, classArr, args);
 	}
 

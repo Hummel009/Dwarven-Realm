@@ -4,7 +4,6 @@ import com.github.hummel.drealm.api.API;
 import lotr.common.world.map.LOTRWaypoint;
 
 public class Roads {
-
 	private Roads() {
 	}
 

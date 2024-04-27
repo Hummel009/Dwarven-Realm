@@ -26,13 +26,13 @@ public class StructureRedMountainsHouse extends LOTRWorldGenDwarfHouse {
 
 	@Override
 	public ItemStack getRandomOtherItem(Random random) {
-		ItemStack[] items = new ItemStack[]{new ItemStack(Items.helmetRedDwarven), new ItemStack(Items.bodyRedDwarven), new ItemStack(Items.legsRedDwarven), new ItemStack(Items.bootsRedDwarven), new ItemStack(Items.redDwarfSteel), new ItemStack(LOTRMod.bronze), new ItemStack(net.minecraft.init.Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(net.minecraft.init.Items.gold_ingot), new ItemStack(net.minecraft.init.Items.gold_nugget)};
+		ItemStack[] items = {new ItemStack(Items.helmetRedDwarven), new ItemStack(Items.bodyRedDwarven), new ItemStack(Items.legsRedDwarven), new ItemStack(Items.bootsRedDwarven), new ItemStack(Items.redDwarfSteel), new ItemStack(LOTRMod.bronze), new ItemStack(net.minecraft.init.Items.iron_ingot), new ItemStack(LOTRMod.silver), new ItemStack(LOTRMod.silverNugget), new ItemStack(net.minecraft.init.Items.gold_ingot), new ItemStack(net.minecraft.init.Items.gold_nugget)};
 		return items[random.nextInt(items.length)].copy();
 	}
 
 	@Override
 	public ItemStack getRandomWeaponItem(Random random) {
-		ItemStack[] items = new ItemStack[]{new ItemStack(Items.swordRedDwarven), new ItemStack(Items.daggerRedDwarven), new ItemStack(Items.hammerRedDwarven), new ItemStack(Items.battleaxeRedDwarven), new ItemStack(Items.pickaxeRedDwarven), new ItemStack(Items.mattockRedDwarven), new ItemStack(Items.throwingAxeRedDwarven), new ItemStack(Items.pikeRedDwarven)};
+		ItemStack[] items = {new ItemStack(Items.swordRedDwarven), new ItemStack(Items.daggerRedDwarven), new ItemStack(Items.hammerRedDwarven), new ItemStack(Items.battleaxeRedDwarven), new ItemStack(Items.pickaxeRedDwarven), new ItemStack(Items.mattockRedDwarven), new ItemStack(Items.throwingAxeRedDwarven), new ItemStack(Items.pikeRedDwarven)};
 		return items[random.nextInt(items.length)].copy();
 	}
 

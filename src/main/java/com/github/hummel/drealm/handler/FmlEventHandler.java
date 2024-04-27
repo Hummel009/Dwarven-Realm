@@ -17,6 +17,7 @@ import net.minecraftforge.common.DimensionManager;
 
 public class FmlEventHandler {
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
 		World world = player.worldObj;
@@ -27,6 +28,7 @@ public class FmlEventHandler {
 	}
 
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
 		World world = event.world;
 		if (event.phase == TickEvent.Phase.END && world == DimensionManager.getWorld(0) && ItemStructureSpawner.getLastStructureSpawnTick() > 0) {
@@ -35,6 +37,7 @@ public class FmlEventHandler {
 	}
 
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
 		EntityPlayer entityPlayer = event.player;
 		World world = entityPlayer.worldObj;
@@ -50,6 +53,7 @@ public class FmlEventHandler {
 	}
 
 	@SubscribeEvent
+	@SuppressWarnings("MethodMayBeStatic")
 	public void onItemSmelted(PlayerEvent.ItemSmeltedEvent event) {
 		EntityPlayer entityPlayer = event.player;
 		World world = entityPlayer.worldObj;

@@ -8,7 +8,6 @@ public class Waypoints {
 	public static LOTRWaypoint naragGund;
 	public static LOTRWaypoint khibilTarag;
 	public static LOTRWaypoint kheledDum;
-	public static LOTRWaypoint redRoad;
 	public static LOTRWaypoint bragazgathol;
 
 	private Waypoints() {

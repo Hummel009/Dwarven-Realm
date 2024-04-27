@@ -46,7 +46,7 @@ public class ItemStructureSpawner extends Item {
 		if (!Structures.STRUCTURE_ITEM_SPAWNERS.containsKey(id)) {
 			return false;
 		}
-		Structures.IStructureProvider strProvider = Structures.getStructureForID(id);
+		Structures.StructureProvider strProvider = Structures.getStructureForID(id);
 		if (strProvider != null) {
 			boolean generated = strProvider.generateStructure(world, entityplayer, i, j, k);
 			if (generated) {
@@ -64,9 +64,9 @@ public class ItemStructureSpawner extends Item {
 		Structures.StructureColorInfo info = Structures.STRUCTURE_ITEM_SPAWNERS.get(itemstack.getItemDamage());
 		if (info != null) {
 			if (pass == 0) {
-				return info.colorBackground;
+				return info.getColorBackground();
 			}
-			return info.colorForeground;
+			return info.getColorForeground();
 		}
 		return 16777215;
 	}
@@ -76,7 +76,7 @@ public class ItemStructureSpawner extends Item {
 	public IIcon getIconFromDamageForRenderPass(int i, int pass) {
 		Structures.StructureColorInfo info = Structures.STRUCTURE_ITEM_SPAWNERS.get(i);
 		if (info != null) {
-			if (info.isVillage) {
+			if (info.isVillage()) {
 				if (pass == 0) {
 					return iconVillageBase;
 				}
@@ -105,10 +105,10 @@ public class ItemStructureSpawner extends Item {
 	@SuppressWarnings("rawtypes")
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (Structures.StructureColorInfo info : Structures.STRUCTURE_ITEM_SPAWNERS.values()) {
-			if (info.isHidden) {
+			if (info.isHidden()) {
 				continue;
 			}
-			list.add(new ItemStack(item, 1, info.spawnedID));
+			list.add(new ItemStack(item, 1, info.getSpawnedID()));
 		}
 	}
 

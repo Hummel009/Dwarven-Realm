@@ -13,7 +13,6 @@ import lotr.common.LOTRMod;
 import lotr.common.block.LOTRBlockCraftingTable;
 import lotr.common.fac.LOTRAlignmentValues;
 import lotr.common.inventory.LOTRContainerCraftingTable;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +26,7 @@ public class BlockTableRedDwarven extends LOTRBlockCraftingTable {
 
 	public BlockTableRedDwarven() {
 		super(Material.rock, Factions.redMountains, GuiIds.RED_DWARVEN.ordinal());
-		setStepSound(Block.soundTypeStone);
+		setStepSound(soundTypeStone);
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class BlockTableRedDwarven extends LOTRBlockCraftingTable {
 
 	public static class Container extends LOTRContainerCraftingTable {
 		public Container(InventoryPlayer inv, World world, int i, int j, int k) {
-			super(inv, world, i, j, k, Recipes.redMountains, Blocks.redDwarvenTable);
+			super(inv, world, i, j, k, Recipes.RED_MOUNTAINS, Blocks.redDwarvenTable);
 		}
 	}
 
