@@ -101,7 +101,6 @@ public class BlockChandelier extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
-		int meta = world.getBlockMetadata(i, j, k);
 		double d = 0.13;
 		double d2 = 0.6875;
 		double d1 = 1.0 - d;
