@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler {
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		GuiIds gui = GuiIds.values()[ID];
+	public Object getClientGuiElement(int id, EntityPlayer entityplayer, World world, int i, int j, int k) {
+		GuiIds gui = GuiIds.values()[id];
 		switch (gui) {
 			case RED_DWARVEN:
 				return new BlockTableRedDwarven.Gui(entityplayer.inventory, world, i, j, k);
@@ -22,8 +22,8 @@ public class GuiHandler implements IGuiHandler {
 	}
 
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer entityplayer, World world, int i, int j, int k) {
-		GuiIds gui = GuiIds.values()[ID];
+	public Object getServerGuiElement(int id, EntityPlayer entityplayer, World world, int i, int j, int k) {
+		GuiIds gui = GuiIds.values()[id];
 		switch (gui) {
 			case RED_DWARVEN:
 				return new BlockTableRedDwarven.Container(entityplayer.inventory, world, i, j, k);

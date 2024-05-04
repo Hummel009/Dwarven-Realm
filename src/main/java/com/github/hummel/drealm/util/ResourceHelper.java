@@ -19,6 +19,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class ResourceHelper {
+	private static final String FAILED = "Failed to load Dwarven Realm speech bank ";
+
 	private ResourceHelper() {
 	}
 
@@ -45,7 +47,7 @@ public class ResourceHelper {
 						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(zip.getInputStream(entry)), Charsets.UTF_8));
 						speechBankNamesAndReaders.put(s, reader);
 					} catch (Exception e) {
-						FMLLog.severe("Failed to load Dwarven Realm speech bank " + s + "from zip file");
+						FMLLog.severe(FAILED + s + "from zip file");
 						e.printStackTrace();
 					}
 				}
@@ -57,7 +59,7 @@ public class ResourceHelper {
 					s = s.substring(speechBankDir.getPath().length() + 1);
 					int i = (s = s.replace(File.separator, "/")).indexOf(".txt");
 					if (i < 0) {
-						FMLLog.severe("Failed to load Dwarven Realm speech bank " + s + " from MCP folder; speech bank files must be in .txt format");
+						FMLLog.severe(FAILED + s + " from MCP folder; speech bank files must be in .txt format");
 						continue;
 					}
 					try {
@@ -65,7 +67,7 @@ public class ResourceHelper {
 						BufferedReader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(Files.newInputStream(subfile.toPath())), Charsets.UTF_8));
 						speechBankNamesAndReaders.put(s, reader);
 					} catch (Exception e) {
-						FMLLog.severe("Failed to load Dwarven Realm speech bank " + s + " from MCP folder");
+						FMLLog.severe(FAILED + s + " from MCP folder");
 						e.printStackTrace();
 					}
 				}
@@ -100,7 +102,7 @@ public class ResourceHelper {
 					API.addSpeechBank(speechBankName.getKey(), false, allLines);
 				}
 			} catch (Exception e) {
-				FMLLog.severe("Failed to load Dwarven Realm speech bank " + speechBankName.getKey());
+				FMLLog.severe(FAILED + speechBankName.getKey());
 				e.printStackTrace();
 			}
 		}
