@@ -10,16 +10,4 @@ public class BlockOreStorage extends LOTRBlockOreStorageBase {
 	public BlockOreStorage() {
 		setOreStorageNames("windDwarfSteel", "redDwarfSteel");
 	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return super.getIcon(i, j);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister iconregister) {
-		super.registerBlockIcons(iconregister);
-	}
 }
