@@ -77,7 +77,6 @@ public class Factions {
 	private static void setupRelations() {
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.GUNDABAD, LOTRFactionRelations.Relation.MORTAL_ENEMY);
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.MORDOR, LOTRFactionRelations.Relation.MORTAL_ENEMY);
-		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.RHUDEL, LOTRFactionRelations.Relation.FRIEND);
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.ANGMAR, LOTRFactionRelations.Relation.MORTAL_ENEMY);
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.ISENGARD, LOTRFactionRelations.Relation.MORTAL_ENEMY);
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.DOL_GULDUR, LOTRFactionRelations.Relation.MORTAL_ENEMY);
@@ -89,9 +88,7 @@ public class Factions {
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.BLUE_MOUNTAINS, LOTRFactionRelations.Relation.ALLY);
 		LOTRFactionRelations.setDefaultRelations(redMountains, LOTRFaction.DURINS_FOLK, LOTRFactionRelations.Relation.ALLY);
 
-		LOTRFactionRelations.setDefaultRelations(redMountains, windMountains, LOTRFactionRelations.Relation.NEUTRAL);
-
-		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.MORDOR, LOTRFactionRelations.Relation.ALLY);
+		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.MORDOR, LOTRFactionRelations.Relation.FRIEND);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.RHUDEL, LOTRFactionRelations.Relation.FRIEND);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.HIGH_ELF, LOTRFactionRelations.Relation.ENEMY);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.ANGMAR, LOTRFactionRelations.Relation.FRIEND);
@@ -106,6 +103,7 @@ public class Factions {
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.GONDOR, LOTRFactionRelations.Relation.ENEMY);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.ROHAN, LOTRFactionRelations.Relation.ENEMY);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.DALE, LOTRFactionRelations.Relation.ENEMY);
+		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.HALF_TROLL, LOTRFactionRelations.Relation.FRIEND);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.BLUE_MOUNTAINS, LOTRFactionRelations.Relation.NEUTRAL);
 		LOTRFactionRelations.setDefaultRelations(windMountains, LOTRFaction.DURINS_FOLK, LOTRFactionRelations.Relation.NEUTRAL);
 	}
